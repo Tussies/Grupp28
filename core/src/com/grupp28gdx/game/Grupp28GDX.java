@@ -11,7 +11,7 @@ public class Grupp28GDX extends ApplicationAdapter {
 	public void create () {
 		ground = new ShapeRenderer();
 	}
-
+	//Alex
 	@Override
 	public void render () {
 		ground.begin(ShapeRenderer.ShapeType.Filled);
