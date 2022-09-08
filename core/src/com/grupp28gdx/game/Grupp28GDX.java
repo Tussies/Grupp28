@@ -7,12 +7,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.*;
 import com.grupp28gdx.game.States.GameStateManager;
 import com.grupp28gdx.game.States.MenuState;
+
+import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
 public class Grupp28GDX extends ApplicationAdapter {
 	private GameStateManager gsm;
@@ -24,13 +24,13 @@ public class Grupp28GDX extends ApplicationAdapter {
 
 	@Override
 	public void create () {
-		int w = Gdx.graphics.getWidth();
-		int h = Gdx.graphics.getHeight();
+		float w = Gdx.graphics.getWidth();
+		float h = Gdx.graphics.getHeight();
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, w/2, h/2);
 
-		world = new World(new Vector2(0, -10), true);
+		world = new World(new Vector2(0, -9.8f), true);
 		ground = createGround();
 
 		debugRenderer = new Box2DDebugRenderer();
@@ -41,13 +41,17 @@ public class Grupp28GDX extends ApplicationAdapter {
 	}
 
 	public Body createGround() {
-		Body ground;
 		BodyDef definition = new BodyDef();
 		definition.type = BodyDef.BodyType.StaticBody;
 		definition.position.set(0,0);
 		definition.fixedRotation = true;
 		ground = world.createBody(definition);
-		
+
+		PolygonShape shape = new PolygonShape();
+		shape.setAsBox(200/pixelsPerMeter, 30/pixelsPerMeter);
+
+		ground.createFixture(shape, 1.0f);
+		shape.dispose();
 
 		return ground;
 	}
@@ -58,7 +62,19 @@ public class Grupp28GDX extends ApplicationAdapter {
 	}
 
 	public void update(float delta) {
+		world.step(1/60f, 6,2);
 
+		cameraUpdate(delta);
+	}
+
+	public void cameraUpdate(float delta) {
+		Vector3 position = camera.position;
+		position.x = ground.getPosition().x * pixelsPerMeter;
+		position.y = ground.getPosition().y * pixelsPerMeter;
+
+		camera.position.set(position);
+
+		camera.update();
 	}
 
 	@Override
@@ -68,6 +84,8 @@ public class Grupp28GDX extends ApplicationAdapter {
 
 		Gdx.gl.glClearColor(0f, 0f, 0f,1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		debugRenderer.render(world, camera.combined.scl(pixelsPerMeter));
 
 		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		//gsm.update(Gdx.graphics.getDeltaTime());
