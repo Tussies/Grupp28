@@ -20,7 +20,7 @@ public class Grupp28GDX extends ApplicationAdapter {
 		gsm = new GameStateManager();
 		gsm.push(new MenuState(gsm));
 	}
-	//HELLO
+
 	@Override
 	public void render () {
 		//To get to main starting screen uncomment and comment the section below instead.
