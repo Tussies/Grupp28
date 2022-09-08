@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class Player {
     private Body player = createPlayer();
+    //remove tempworld since it's only temporary for the player to be created
     public World tempworld = new World(new Vector2(0,-9.8f), false);
 
     public Body createPlayer() {
