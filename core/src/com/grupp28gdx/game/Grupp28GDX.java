@@ -26,13 +26,13 @@ public class Grupp28GDX extends ApplicationAdapter {
 	@Override
 	public void render () {
 		//To get to main starting screen uncomment and comment the section below instead.
-		//ground.begin(ShapeRenderer.ShapeType.Filled);
-		//ground.setColor(0, 1, 0, 1);
-		//ground.rect(Gdx.graphics.getWidth()/2, 0, Gdx.graphics.getWidth(), 50);
-		//ground.end();
+		ground.begin(ShapeRenderer.ShapeType.Filled);
+		ground.setColor(0, 1, 0, 1);
+		ground.rect(Gdx.graphics.getWidth()/2, 0, Gdx.graphics.getWidth(), 50);
+		ground.end();
 
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		gsm.update(Gdx.graphics.getDeltaTime());
-		gsm.render(batch);
+		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		//gsm.update(Gdx.graphics.getDeltaTime());
+		//gsm.render(batch);
 	}
 }
