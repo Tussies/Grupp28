@@ -1,6 +1,7 @@
 package com.grupp28gdx.game.States;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.grupp28gdx.game.Player;
 
 import java.util.Stack;
 
@@ -29,5 +30,9 @@ public class GameStateManager {
 
     public void render(SpriteBatch sb){
         states.peek().render(sb);
+        Player testPlayer = new Player();
+        testPlayer.playerTalk();
     }
+
+
 }

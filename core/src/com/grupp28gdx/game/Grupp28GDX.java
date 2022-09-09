@@ -10,10 +10,13 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.grupp28gdx.game.States.GameStateManager;
 import com.grupp28gdx.game.States.MenuState;
 
+
 public class Grupp28GDX extends ApplicationAdapter {
 	private GameStateManager gsm;
 	private SpriteBatch batch;
 	ShapeRenderer ground;
+
+
 
 	@Override
 	public void create () {
@@ -21,6 +24,8 @@ public class Grupp28GDX extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		gsm = new GameStateManager();
 		gsm.push(new MenuState(gsm));
+
+
 	}
 
 	@Override
@@ -34,5 +39,7 @@ public class Grupp28GDX extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		gsm.update(Gdx.graphics.getDeltaTime());
 		gsm.render(batch);
+
+
 	}
 }

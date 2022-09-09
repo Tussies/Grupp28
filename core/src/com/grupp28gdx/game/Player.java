@@ -6,10 +6,14 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import java.awt.event.ActionEvent;
+import java.util.Scanner;
+
 public class Player {
     private Body player = createPlayer();
     //remove tempworld since it's only temporary for the player to be created
-    public World tempworld = new World(new Vector2(0,-9.8f), false);
+    public World tempworld;
+
 
     public Body createPlayer() {
         Body pBody;
@@ -17,6 +21,7 @@ public class Player {
         def.type = BodyDef.BodyType.DynamicBody;
         def.position.set(0,0);
         def.fixedRotation = true;
+        this.tempworld = new World(new Vector2(0,-9.8f), false);
         pBody = tempworld.createBody(def);
 
         PolygonShape shape = new PolygonShape();
@@ -24,8 +29,28 @@ public class Player {
 
         pBody.createFixture(shape, 1.0f);
         shape.dispose();
+        System.out.println("Player has been created");
+
 
         return pBody;
+
+
+    }
+    public void update(float delta){
+    tempworld.step(1/60f, 6 , 2);
+
+
+    }
+    public void playerTalk(){
+        Scanner keyboard = new Scanner(System.in);
+        int myInt = keyboard.nextInt();
+        System.out.println(myInt);
+
+
+    }
+    public void jumpPerformed(ActionEvent e){
+
+        //Call method that lets player jump
     }
 
 
