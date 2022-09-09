@@ -11,8 +11,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.grupp28gdx.game.States.GameStateManager;
 import com.grupp28gdx.game.States.MenuState;
-
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
+
 
 public class Grupp28GDX extends ApplicationAdapter {
 	private GameStateManager gsm;
@@ -21,6 +21,8 @@ public class Grupp28GDX extends ApplicationAdapter {
 	private OrthographicCamera camera;
 	private World world;
 	private Body ground;
+
+
 
 	@Override
 	public void create () {
@@ -38,6 +40,8 @@ public class Grupp28GDX extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		gsm = new GameStateManager();
 		gsm.push(new MenuState(gsm));
+
+
 	}
 
 	public Body createGround() {
