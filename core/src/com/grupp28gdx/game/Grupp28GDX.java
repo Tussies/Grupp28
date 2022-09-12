@@ -87,6 +87,7 @@ public class Grupp28GDX extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+
 		//To get to main starting screen uncomment and comment the section below instead.
 /*		update(Gdx.graphics.getDeltaTime());
 
