@@ -83,6 +83,7 @@ public class Grupp28GDX extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+
 		//To get to main starting screen uncomment and comment the section below instead.
 		update(Gdx.graphics.getDeltaTime());
 
@@ -91,7 +92,6 @@ public class Grupp28GDX extends ApplicationAdapter {
 
 		debugRenderer.render(world, camera.combined.scl(pixelsPerMeter));
 
-		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		//gsm.update(Gdx.graphics.getDeltaTime());
 		//gsm.render(batch);
 	}
