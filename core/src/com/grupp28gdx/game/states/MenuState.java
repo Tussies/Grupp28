@@ -47,4 +47,12 @@ public class MenuState extends State{
         sb.draw(exitButton,0,30);
         sb.end();
     }
+
+    @Override
+    public void dispose() {
+        background.dispose();
+        playButton.dispose();
+        optionButton.dispose();
+        exitButton.dispose();
+    }
 }
