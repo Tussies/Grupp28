@@ -35,21 +35,23 @@ public class MenuState extends State{
             if (Gdx.input.isTouched()){
                 gsm.set(new PlayState(gsm));
                 System.out.println("Play game button pressed");
+                dispose();
             }
         }
         if (Gdx.input.getX() < x + playButton.getWidth() && Gdx.input.getX() > x && Gdx.graphics.getHeight() - Gdx.input.getY() < playButton.getHeight() + Gdx.graphics.getHeight()/3 && Gdx.graphics.getHeight() - Gdx.input.getY() > Gdx.graphics.getHeight()/3) {
             if (Gdx.input.isTouched()){
                 // gsm.set(new OptionState());
                 System.out.println("Option button pressed");
+                dispose();
             }
         }
         if (Gdx.input.getX() < x + playButton.getWidth() && Gdx.input.getX() > x && Gdx.graphics.getHeight() - Gdx.input.getY() < playButton.getHeight() + Gdx.graphics.getHeight()/6 && Gdx.graphics.getHeight() - Gdx.input.getY() > Gdx.graphics.getHeight()/6) {
             if (Gdx.input.isTouched()){
                 System.out.println("Exit game button pressed");
                 Gdx.app.exit();
+                dispose();
             }
         }
-        dispose();
     }
 
     @Override
