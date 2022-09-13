@@ -25,8 +25,8 @@ public class PlayState extends State {
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
         background = new Texture("nebulaset1.png");
-        backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2, -300);
-        backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) + background.getWidth(), -300);
+        backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 1000, -300);
+        backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2 - 1000) + background.getWidth(), -300);
         world = new World(new Vector2(0, -9.8f), true);
         player = createPlayer();
         ground = createGround();
@@ -67,7 +67,7 @@ public class PlayState extends State {
         ground = world.createBody(definition);
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(6000/pixelsPerMeter, 30/pixelsPerMeter);
+        shape.setAsBox(10000/pixelsPerMeter, 30/pixelsPerMeter);
 
         ground.createFixture(shape, 1.0f);
         shape.dispose();
@@ -90,7 +90,7 @@ public class PlayState extends State {
 
     public void inputUpdate(float delta) {
         int horizontalForce = 0;
-        player.applyForceToCenter(500, 0, false);
+        player.applyForceToCenter(1000, 0, false);
 
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             horizontalForce -= 1;
@@ -125,9 +125,8 @@ public class PlayState extends State {
         update(Gdx.graphics.getDeltaTime());
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
-        sb.draw(background,-600 ,-300, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        sb.draw(background, backgroundPosition1.x, backgroundPosition1.y);
-        sb.draw(background, backgroundPosition2.x, backgroundPosition2.y);
+        sb.draw(background, backgroundPosition1.x, backgroundPosition1.y, Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2);
+        sb.draw(background, backgroundPosition2.x, backgroundPosition2.y, Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2);
         sb.end();
 
         debugRenderer.render(world, cam.combined.scl(pixelsPerMeter));
