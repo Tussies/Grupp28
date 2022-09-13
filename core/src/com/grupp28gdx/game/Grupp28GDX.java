@@ -11,6 +11,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.grupp28gdx.game.States.GameStateManager;
 import com.grupp28gdx.game.States.MenuState;
+import com.grupp28gdx.game.obstacles.Obstacle;
+
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
 
@@ -53,8 +55,12 @@ public class Grupp28GDX extends ApplicationAdapter {
 
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(200/pixelsPerMeter, 30/pixelsPerMeter);
-
 		ground.createFixture(shape, 1.0f);
+		ObstacleHandler handler = new ObstacleHandler();
+		handler.generateObstacle();
+		for(Obstacle x:handler.getObstacles()){
+			ground.createFixture(x.getBody(), 1.0f);
+		}
 		shape.dispose();
 
 		return ground;
