@@ -17,16 +17,19 @@ import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 public class Grupp28GDX extends ApplicationAdapter {
 	private GameStateManager gsm;
 	private SpriteBatch batch;
+/*	private GameStateManager gsm;
+	private SpriteBatch batch;
 	Box2DDebugRenderer debugRenderer;
 	private OrthographicCamera camera;
 	private World world;
 	private Body ground;
 	private Texture background;
-	private Vector2 backgroundPosition1, backgroundPosition2;
+	private Vector2 backgroundPosition1, backgroundPosition2;*/
+
 
 	@Override
 	public void create () {
-		float w = Gdx.graphics.getWidth();
+/*		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
 
 		camera = new OrthographicCamera();
@@ -38,7 +41,7 @@ public class Grupp28GDX extends ApplicationAdapter {
 		backgroundPosition1 = new Vector2(camera.position.x - camera.viewportWidth / 2, 0);
 		backgroundPosition2 = new Vector2((camera.position.x - camera.viewportWidth / 2) + background.getWidth(), 0);
 
-		debugRenderer = new Box2DDebugRenderer();
+		debugRenderer = new Box2DDebugRenderer();*/
 
 		batch = new SpriteBatch();
 		gsm = new GameStateManager();
@@ -46,6 +49,7 @@ public class Grupp28GDX extends ApplicationAdapter {
 
 
 	}
+/*
 
 	public Body createGround() {
 		BodyDef definition = new BodyDef();
@@ -84,6 +88,7 @@ public class Grupp28GDX extends ApplicationAdapter {
 		camera.update();
 	}
 
+*/
 
 	@Override
 	public void render () {
@@ -106,9 +111,10 @@ public class Grupp28GDX extends ApplicationAdapter {
 		gsm.update(Gdx.graphics.getDeltaTime());
 		gsm.render(batch);
 	}
-
+/*
 	@Override
 	public void dispose() {
 		world.dispose();
 		debugRenderer.dispose();
-}   }
+}*/
+}

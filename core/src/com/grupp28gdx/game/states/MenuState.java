@@ -15,21 +15,14 @@ public class MenuState extends State{
     private Texture exitButton;
     public MenuState(GameStateManager gsm){
         super(gsm);
-        background =  new Texture("Background.png");
         playButton = new Texture("New Game button.png");
         exitButton = new Texture("Exit button.png");
         optionButton = new Texture("Options button.png");
         background = new Texture("nebulaset1.png");
-
-
     }
 
     @Override
     public void handleInput() {
-/*       if (Gdx.input.justTouched()) {
-            gsm.set(new PlayState(gsm));
-            dispose();
-        }*/
         int x = Gdx.graphics.getWidth() / 2 - playButton.getWidth();
         if (Gdx.input.getX() < x + playButton.getWidth() && Gdx.input.getX() > x && Gdx.graphics.getHeight() - Gdx.input.getY() < playButton.getHeight() + Gdx.graphics.getHeight()/2 && Gdx.graphics.getHeight() - Gdx.input.getY() > Gdx.graphics.getHeight()/2) {
             if (Gdx.input.isTouched()){
