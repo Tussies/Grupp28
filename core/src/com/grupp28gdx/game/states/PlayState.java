@@ -25,8 +25,8 @@ public class PlayState extends State {
         float w = Gdx.graphics.getWidth();
         float h = Gdx.graphics.getHeight();
         background = new Texture("nebulaset1.png");
-        backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 1000, -300);
-        backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2 - 1000) + background.getWidth(), -300);
+        backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2, -300);
+        backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) + background.getWidth(), -300);
         world = new World(new Vector2(0, -9.8f), true);
         player = createPlayer();
         ground = createGround();
@@ -125,8 +125,8 @@ public class PlayState extends State {
         update(Gdx.graphics.getDeltaTime());
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
-        sb.draw(background, backgroundPosition1.x, backgroundPosition1.y, Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2);
-        sb.draw(background, backgroundPosition2.x, backgroundPosition2.y, Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2);
+        sb.draw(background, backgroundPosition1.x, backgroundPosition1.y);
+        sb.draw(background, backgroundPosition2.x, backgroundPosition2.y);
         sb.end();
 
         debugRenderer.render(world, cam.combined.scl(pixelsPerMeter));
