@@ -21,6 +21,7 @@ public class Grupp28GDX extends ApplicationAdapter {
 	private OrthographicCamera camera;
 	private World world;
 	private Body ground;
+	private Body player;
 
 
 
@@ -34,6 +35,7 @@ public class Grupp28GDX extends ApplicationAdapter {
 
 		world = new World(new Vector2(0, -9.8f), true);
 		ground = createGround();
+		player = Player.createPlayer(world);
 
 		debugRenderer = new Box2DDebugRenderer();
 
@@ -59,6 +61,8 @@ public class Grupp28GDX extends ApplicationAdapter {
 
 		return ground;
 	}
+
+
 
 	@Override
 	public void resize(int width, int height) {

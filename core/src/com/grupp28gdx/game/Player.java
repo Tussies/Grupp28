@@ -10,37 +10,34 @@ import java.awt.event.ActionEvent;
 import java.util.Scanner;
 
 public class Player {
-    private Body player = createPlayer();
+
     //remove tempworld since it's only temporary for the player to be created
-    public World tempworld;
+    //public World tempworld;
 
 
-    public Body createPlayer() {
+    public static Body createPlayer(World world) {
         Body pBody;
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.DynamicBody;
         def.position.set(0,0);
         def.fixedRotation = true;
-        this.tempworld = new World(new Vector2(0,-9.8f), false);
-        pBody = tempworld.createBody(def);
+        pBody = world.createBody(def);
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(16,16);
+        shape.setAsBox(1,1);
 
-        pBody.createFixture(shape, 1.0f);
+        pBody.createFixture(shape, 0f);
         shape.dispose();
-        System.out.println("Player has been created");
+        //System.out.println("Player has been created");
 
 
         return pBody;
 
 
     }
-    public void update(float delta){
+    /*public void update(float delta){
     tempworld.step(1/60f, 6 , 2);
-
-
-    }
+    }*/
     public void playerTalk(){
         Scanner keyboard = new Scanner(System.in);
         int myInt = keyboard.nextInt();
