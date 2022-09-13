@@ -134,6 +134,7 @@ public class PlayState extends State {
 
     @Override
     public void dispose() {
+        background.dispose();
         world.dispose();
         debugRenderer.dispose();
     }
