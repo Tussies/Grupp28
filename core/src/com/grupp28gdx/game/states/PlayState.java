@@ -17,16 +17,16 @@ public class PlayState extends State {
     private World world;
     private Body ground;
     private Body player;
+    private float w = Gdx.graphics.getWidth();
+    private float h = Gdx.graphics.getHeight();
     private Texture background;
     private Vector2 backgroundPosition1, backgroundPosition2;
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
-        float w = Gdx.graphics.getWidth();
-        float h = Gdx.graphics.getHeight();
         background = new Texture("nebulaset1.png");
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2, -300);
-        backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) + background.getWidth(), -300);
+        backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) + w, -300);
         world = new World(new Vector2(0, -9.8f), true);
         player = createPlayer();
         ground = createGround();
@@ -37,10 +37,10 @@ public class PlayState extends State {
     }
 
     private void updateBackground() {
-        if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition1.x + background.getWidth())
-            backgroundPosition1.add(background.getWidth() * 2, 0);
-        if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition2.x + background.getWidth())
-            backgroundPosition2.add(background.getWidth() * 2, 0);
+        if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition1.x + w)
+            backgroundPosition1.add(w * 2, 0);
+        if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition2.x + w)
+            backgroundPosition2.add(w * 2, 0);
     }
 
     public Body createPlayer() {
@@ -90,7 +90,7 @@ public class PlayState extends State {
 
     public void inputUpdate(float delta) {
         int horizontalForce = 0;
-        player.applyForceToCenter(1000, 0, false);
+        player.applyForceToCenter(500, 0, false);
 
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             horizontalForce -= 1;
@@ -125,8 +125,8 @@ public class PlayState extends State {
         update(Gdx.graphics.getDeltaTime());
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
-        sb.draw(background, backgroundPosition1.x, backgroundPosition1.y);
-        sb.draw(background, backgroundPosition2.x, backgroundPosition2.y);
+        sb.draw(background, backgroundPosition1.x, backgroundPosition1.y, w, h);
+        sb.draw(background, backgroundPosition2.x, backgroundPosition2.y, w, h);
         sb.end();
 
         debugRenderer.render(world, cam.combined.scl(pixelsPerMeter));
