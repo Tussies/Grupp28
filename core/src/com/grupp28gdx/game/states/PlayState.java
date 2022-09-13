@@ -69,7 +69,7 @@ public class PlayState extends State {
         ground = world.createBody(definition);
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(300/pixelsPerMeter, 30/pixelsPerMeter);
+        shape.setAsBox(6000/pixelsPerMeter, 30/pixelsPerMeter);
 
         ground.createFixture(shape, 1.0f);
         shape.dispose();
@@ -92,6 +92,7 @@ public class PlayState extends State {
 
     public void inputUpdate(float delta) {
         int horizontalForce = 0;
+        player.applyForceToCenter(500, 0, false);
 
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             horizontalForce -= 1;
@@ -126,7 +127,7 @@ public class PlayState extends State {
         update(Gdx.graphics.getDeltaTime());
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
-        //sb.draw(background,-600 ,-300, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        sb.draw(background,-600 ,-300, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         sb.draw(background, backgroundPosition1.x, backgroundPosition1.y);
         sb.draw(background, backgroundPosition2.x, backgroundPosition2.y);
         sb.end();
