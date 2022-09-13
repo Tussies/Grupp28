@@ -38,6 +38,13 @@ public class PlayState extends State {
         cam.setToOrtho(false, w/2, h/2);
     }
 
+    private void updateBackground() {
+        if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition1.x + background.getWidth())
+            backgroundPosition1.add(background.getWidth() * 2, 0);
+        if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition2.x + background.getWidth())
+            backgroundPosition2.add(background.getWidth() * 2, 0);
+    }
+
     public Body createPlayer() {
         Body playerBody;
         BodyDef def = new BodyDef();
@@ -78,6 +85,7 @@ public class PlayState extends State {
     @Override
     public void update(float delta) {
         world.step(1/60f, 6,2);
+        updateBackground();
         inputUpdate(delta);
         cameraUpdate(delta);
     }
