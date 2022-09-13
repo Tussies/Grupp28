@@ -25,8 +25,8 @@ public class PlayState extends State {
     public PlayState(GameStateManager gsm) {
         super(gsm);
         background = new Texture("nebulaset1.png");
-        backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2, -300);
-        backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) + w, -300);
+        backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
+        backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
         world = new World(new Vector2(0, -9.8f), true);
         player = createPlayer();
         ground = createGround();
