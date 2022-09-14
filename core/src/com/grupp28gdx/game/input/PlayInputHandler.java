@@ -16,7 +16,6 @@ public class PlayInputHandler extends InputHandler {
 
     @Override
     public boolean keyUp(int keycode) {
-        System.out.println("Wow");
         return false;
 
         /** Called when a key was typed

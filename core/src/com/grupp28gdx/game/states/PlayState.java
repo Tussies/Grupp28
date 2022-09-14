@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.grupp28gdx.game.input.PlayInputHandler;
+import com.grupp28gdx.game.render.RenderController;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
@@ -116,9 +117,7 @@ public class PlayState extends State {
         position.x = player.getPosition().x * pixelsPerMeter;
         position.y = player.getPosition().y * pixelsPerMeter;
 
-        cam.position.set(position);
-
-        cam.update();
+        rc.updateCamera(cam,position);
     }
 
     @Override
@@ -131,7 +130,6 @@ public class PlayState extends State {
         rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
         rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
         rc.render(sb,background, backgroundPosition2.x, backgroundPosition2.y, w, h);
-        //debugRenderer.render(world, cam.combined.scl(pixelsPerMeter));
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
     }
 
