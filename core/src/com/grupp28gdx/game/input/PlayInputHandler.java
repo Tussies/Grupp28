@@ -1,0 +1,39 @@
+package com.grupp28gdx.game.input;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
+
+public class PlayInputHandler extends InputHandler {
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+
+        /** Called when a key was released
+         *
+         * @param keycode one of the constants in {@link Input.Keys}
+         * @return whether the input was processed */
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        System.out.println("Wow");
+        return false;
+
+        /** Called when a key was typed
+         *
+         * @param character The character
+         * @return whether the input was processed */
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+
+        /** Called when the screen was touched or a mouse button was pressed. The button parameter will be {@link Buttons#LEFT} on iOS.
+         * @param screenX The x coordinate, origin is in the upper left corner
+         * @param screenY The y coordinate, origin is in the upper left corner
+         * @param pointer the pointer for the event.
+         * @param button the button
+         * @return whether the input was processed */
+    }
+}

@@ -3,6 +3,9 @@ package com.grupp28gdx.game.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.grupp28gdx.game.input.InputHandler;
+import com.grupp28gdx.game.input.MenuInputHandler;
+import com.grupp28gdx.game.input.PlayInputHandler;
 
 public class MenuState extends State{
     private Texture background;
@@ -15,6 +18,7 @@ public class MenuState extends State{
 
     public MenuState(GameStateManager gsm){
         super(gsm);
+        setInputProcessor(menuInput);
         playButton = new Texture("New Game button.png");
         exitButton = new Texture("Exit button.png");
         optionButton = new Texture("Options button.png");
@@ -25,28 +29,36 @@ public class MenuState extends State{
 
     }
 
-    public void hover(SpriteBatch sb, Texture x,int y){
-        sb.draw(x,(Gdx.graphics.getWidth()/2) - (playButton.getWidth()/2), Gdx.graphics.getHeight()/y);
+    public void hover(SpriteBatch sb, Texture texture,int y,int screenWidth,int buttonWidth, int screenHeight){
+        int posX =(screenWidth/2) - (buttonWidth/2);
+        int posY = screenHeight/y;
+        this.rc.render(sb,texture,posX,posY);
     }
 
     @Override
     public void handleInput() {
-        int x = Gdx.graphics.getWidth() / 2 - playButton.getWidth();
-        if (Gdx.input.getX() < x + playButton.getWidth() && Gdx.input.getX() > x && Gdx.graphics.getHeight() - Gdx.input.getY() < playButton.getHeight() + Gdx.graphics.getHeight()/2 && Gdx.graphics.getHeight() - Gdx.input.getY() > Gdx.graphics.getHeight()/2) {
+        int inputX = MenuInputHandler.checkInputX();
+        int inputY = MenuInputHandler.checkInputY();
+        int playButtonWidth = playButton.getWidth();
+        int playButtonHeight = playButton.getHeight();
+        int screenHeight = Gdx.graphics.getHeight();
+        int x = Gdx.graphics.getWidth() / 2 - playButtonWidth/2;
+
+        if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/2 && screenHeight - inputY > screenHeight/2) {
             if (Gdx.input.isTouched()) {
                 gsm.set(new PlayState(gsm));
                 System.out.println("Play game button pressed");
                 dispose();
             }
         }
-        if (Gdx.input.getX() < x + playButton.getWidth() && Gdx.input.getX() > x && Gdx.graphics.getHeight() - Gdx.input.getY() < playButton.getHeight() + Gdx.graphics.getHeight()/3 && Gdx.graphics.getHeight() - Gdx.input.getY() > Gdx.graphics.getHeight()/3) {
+        if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/3 && screenHeight - inputY > screenHeight/3) {
             if (Gdx.input.isTouched()){
                 // gsm.set(new OptionState());
                 System.out.println("Option button pressed");
                 dispose();
             }
         }
-        if (Gdx.input.getX() < x + playButton.getWidth() && Gdx.input.getX() > x && Gdx.graphics.getHeight() - Gdx.input.getY() < playButton.getHeight() + Gdx.graphics.getHeight()/6 && Gdx.graphics.getHeight() - Gdx.input.getY() > Gdx.graphics.getHeight()/6) {
+        if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/6 && screenHeight - inputY > screenHeight/6) {
             if (Gdx.input.isTouched()){
                 System.out.println("Exit game button pressed");
                 Gdx.app.exit();
@@ -62,24 +74,29 @@ public class MenuState extends State{
 
     @Override
     public void render(SpriteBatch sb) {
-        int x = Gdx.graphics.getWidth() / 2 - playButton.getWidth();
+        int inputX = MenuInputHandler.checkInputX();
+        int inputY = MenuInputHandler.checkInputY();
+        int playButtonWidth = playButton.getWidth();
+        int playButtonHeight = playButton.getHeight();
+        int screenHeight = Gdx.graphics.getHeight();
+        int screenWidth = Gdx.graphics.getWidth();
 
-        sb.begin();
-        sb.draw(background,0 ,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        sb.draw(playButton, (Gdx.graphics.getWidth()/2) - (playButton.getWidth()/2), Gdx.graphics.getHeight()/2);
-        if (Gdx.input.getX() < x + playButton.getWidth() && Gdx.input.getX() > x && Gdx.graphics.getHeight() - Gdx.input.getY() < playButton.getHeight() + Gdx.graphics.getHeight()/2 && Gdx.graphics.getHeight() - Gdx.input.getY() > Gdx.graphics.getHeight()/2) {
-            hover(sb, playButtonPressed, 2);
+        int x = screenWidth / 2 - playButtonWidth/2;
+
+        rc.render(sb,background,0 ,0, screenWidth, screenHeight);
+        rc.render(sb,playButton, (screenWidth/2) - (playButtonWidth/2), screenHeight/2);
+        if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/2 && screenHeight - inputY > screenHeight/2) {
+            hover(sb, playButtonPressed, 2,screenWidth,playButtonWidth,screenHeight);
         }
-        sb.draw(optionButton,(Gdx.graphics.getWidth()/2) - (optionButton.getWidth()/2),Gdx.graphics.getHeight()/3);
-        if (Gdx.input.getX() < x + playButton.getWidth() && Gdx.input.getX() > x && Gdx.graphics.getHeight() - Gdx.input.getY() < playButton.getHeight() + Gdx.graphics.getHeight()/3 && Gdx.graphics.getHeight() - Gdx.input.getY() > Gdx.graphics.getHeight()/3) {
-            hover(sb, optionButtonPressed,3);
+        rc.render(sb,optionButton,(screenWidth/2) - (playButtonWidth/2),screenHeight/3);
+        if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/3 && screenHeight - inputY > screenHeight/3) {
+            hover(sb, optionButtonPressed,3,screenWidth,playButtonWidth,screenHeight);
         }
-            sb.draw(exitButton,(Gdx.graphics.getWidth()/2) - (optionButton.getWidth()/2),Gdx.graphics.getHeight()/6);
-        if (Gdx.input.getX() < x + playButton.getWidth() && Gdx.input.getX() > x && Gdx.graphics.getHeight() - Gdx.input.getY() < playButton.getHeight() + Gdx.graphics.getHeight()/6 && Gdx.graphics.getHeight() - Gdx.input.getY() > Gdx.graphics.getHeight()/6) {
-            hover(sb, exitButtonPressed,6);
+        rc.render(sb,exitButton,(screenWidth/2) - (playButtonWidth/2),screenHeight/6);
+        if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/6 && screenHeight - inputY > screenHeight/6) {
+            hover(sb, exitButtonPressed,6,screenWidth,playButtonWidth,screenHeight);
 
         }
-            sb.end();
     }
 
     @Override

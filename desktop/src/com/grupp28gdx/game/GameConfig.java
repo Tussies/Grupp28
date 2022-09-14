@@ -10,7 +10,7 @@ public class GameConfig {
 
     GameConfig(){
         config = new Lwjgl3ApplicationConfiguration();
-        config.setForegroundFPS(60);
+        config.setForegroundFPS(240);
         config.setTitle("Grupp28_GDX");
         config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
     }

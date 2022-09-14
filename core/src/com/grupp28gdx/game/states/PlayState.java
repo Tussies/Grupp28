@@ -2,12 +2,15 @@ package com.grupp28gdx.game.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
+import com.grupp28gdx.game.input.PlayInputHandler;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
@@ -34,6 +37,8 @@ public class PlayState extends State {
         debugRenderer = new Box2DDebugRenderer();
 
         cam.setToOrtho(false, w/2, h/2);
+
+        setInputProcessor(playInput);
     }
 
     private void updateBackground() {
@@ -53,7 +58,6 @@ public class PlayState extends State {
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(30/pixelsPerMeter, 30/pixelsPerMeter);
-
         playerBody.createFixture(shape, 1.0f);
         shape.dispose();
         return playerBody;
@@ -124,12 +128,11 @@ public class PlayState extends State {
 
         update(Gdx.graphics.getDeltaTime());
         sb.setProjectionMatrix(cam.combined);
-        sb.begin();
-        sb.draw(background, backgroundPosition1.x, backgroundPosition1.y, w, h);
-        sb.draw(background, backgroundPosition2.x, backgroundPosition2.y, w, h);
-        sb.end();
-
-        debugRenderer.render(world, cam.combined.scl(pixelsPerMeter));
+        rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
+        rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
+        rc.render(sb,background, backgroundPosition2.x, backgroundPosition2.y, w, h);
+        //debugRenderer.render(world, cam.combined.scl(pixelsPerMeter));
+        rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
     }
 
     @Override
