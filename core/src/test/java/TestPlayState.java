@@ -19,7 +19,7 @@ public class TestPlayState {
     public void testCreatePlayer(){
         Body testBody = testPlaystate.createPlayer();
 
-        assertArrayEquals();
+        assertNotNull(testBody);
     }
 
 }
