@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
+import com.grupp28gdx.game.Player;
 import com.grupp28gdx.game.input.PlayInputHandler;
 import com.grupp28gdx.game.render.RenderController;
 
@@ -20,7 +21,8 @@ public class PlayState extends State {
     Box2DDebugRenderer debugRenderer;
     private World world;
     private Body ground;
-    private Body player;
+    private Player player;
+    private Body playerBody;
     private float w = Gdx.graphics.getWidth();
     private float h = Gdx.graphics.getHeight();
     private Texture background;
@@ -32,7 +34,9 @@ public class PlayState extends State {
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
         world = new World(new Vector2(0, -9.8f), true);
-        player = createPlayer();
+        player = new Player(this.world);
+        this.playInput = new PlayInputHandler(player);
+        playerBody = player.getPlayerBody();
         ground = createGround();
 
         debugRenderer = new Box2DDebugRenderer();
@@ -47,21 +51,6 @@ public class PlayState extends State {
             backgroundPosition1.add(w * 2, 0);
         if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition2.x + w)
             backgroundPosition2.add(w * 2, 0);
-    }
-
-    public Body createPlayer() {
-        Body playerBody;
-        BodyDef def = new BodyDef();
-        def.type = BodyDef.BodyType.DynamicBody;
-        def.position.set(0,0);
-        def.fixedRotation = true;
-        playerBody = world.createBody(def);
-
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(30/pixelsPerMeter, 30/pixelsPerMeter);
-        playerBody.createFixture(shape, 1.0f);
-        shape.dispose();
-        return playerBody;
     }
 
     public Body createGround() {
@@ -89,33 +78,14 @@ public class PlayState extends State {
     public void update(float delta) {
         world.step(1/60f, 6,2);
         updateBackground();
-        inputUpdate(delta);
+        player.playerMovementUpdate(delta);
         cameraUpdate(delta);
-    }
-
-    public void inputUpdate(float delta) {
-        int horizontalForce = 0;
-        player.applyForceToCenter(500, 0, false);
-
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            horizontalForce -= 1;
-        }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            horizontalForce += 1;
-        }
-
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            player.applyForceToCenter(0,600, false);
-        }
-
-        player.setLinearVelocity(horizontalForce * 5, player.getLinearVelocity().y);
     }
 
     public void cameraUpdate(float delta) {
         Vector3 position = cam.position;
-        position.x = player.getPosition().x * pixelsPerMeter;
-        position.y = player.getPosition().y * pixelsPerMeter;
+        position.x = playerBody.getPosition().x * pixelsPerMeter;
+        position.y = playerBody.getPosition().y * pixelsPerMeter;
 
         rc.updateCamera(cam,position);
     }

@@ -2,10 +2,17 @@ package com.grupp28gdx.game.input;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.grupp28gdx.game.Player;
 
 public class PlayInputHandler extends InputHandler {
+    private Player player;
+    public PlayInputHandler(Player player){
+        this.player = player;
+    }
     @Override
     public boolean keyDown(int keycode) {
+        System.out.println(String.valueOf(keycode));
+        player.inputActionDown(keycode);
         return false;
 
         /** Called when a key was released
@@ -16,6 +23,8 @@ public class PlayInputHandler extends InputHandler {
 
     @Override
     public boolean keyUp(int keycode) {
+        System.out.println(String.valueOf(keycode));
+        player.inputActionUp(keycode);
         return false;
 
         /** Called when a key was typed
