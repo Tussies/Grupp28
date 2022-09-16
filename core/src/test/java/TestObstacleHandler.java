@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.Array;
 
 public class TestObstacleHandler {
-    @Test
-    ObstacleHandler testObstacleArray = new ObstacleHandler();
-    assertArrayEquals(new Array<>, testObstacleArray.);
+    //@Test
+    //ObstacleHandler testObstacleArray = new ObstacleHandler();
+    //assertArrayEquals(new Array<>, testObstacleArray.);
 }
