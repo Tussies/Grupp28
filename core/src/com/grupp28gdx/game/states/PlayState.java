@@ -1,5 +1,6 @@
 package com.grupp28gdx.game.states;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
@@ -35,6 +36,7 @@ public class PlayState extends State {
 
         cam.setToOrtho(false, w/2, h/2);
     }
+
 
     private void updateBackground() {
         if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition1.x + w)
