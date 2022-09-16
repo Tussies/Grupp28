@@ -2,6 +2,7 @@ package com.grupp28gdx.game.input;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.grupp28gdx.game.states.PlayState;
 
 public class MenuInputHandler extends InputHandler {
     public static int checkInputX(){

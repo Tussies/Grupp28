@@ -25,7 +25,6 @@ public abstract class State {
         mouse = new Vector3();
         rc = new RenderController();;
         menuInput = new MenuInputHandler();
-        playInput = new PlayInputHandler();
     }
 
     protected void setInputProcessor(InputHandler inputHandler){
