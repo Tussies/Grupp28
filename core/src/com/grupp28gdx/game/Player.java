@@ -29,7 +29,7 @@ public class Player extends Actor {
         bodyDef.position.set(0,1);
         bodyDef.fixedRotation = true;
         player = world.createBody(bodyDef);
-        movementSpeed = 500;
+        movementSpeed = 700;
         bodyShape = new PolygonShape();
         bodyShape.setAsBox(30/pixelsPerMeter, 30/pixelsPerMeter);
         player.createFixture(bodyShape, 1.0f);
@@ -38,14 +38,16 @@ public class Player extends Actor {
     public void inputActionDown(int key) {
         if(player.getLinearVelocity().y==0) {hasJumped = false;}
         switch (key){
-            case 19: if(player.getLinearVelocity().y==0){ this.forceY = 200;System.out.println("jump");}break;
-            case 22: forceX += 1;
+            case 19: if(player.getLinearVelocity().y==0){ this.forceY = 220;System.out.println("jump");}break;
+            case 22: forceX += 1; break;
+            case 20: forceY = -60; break;
         }
     }
     public void inputActionUp(int key) {
         switch (key){
             case 19:this.forceY=0; break;
-            case 22: forceX -= 1;
+            case 22: forceX -= 1; break;
+            case 20: forceY = 0; break;
         }
     }
     public Body getPlayerBody(){
@@ -60,6 +62,6 @@ public class Player extends Actor {
         player.applyForceToCenter(movementSpeed, forceY, false);
         player.setLinearVelocity(forceX * 5, player.getLinearVelocity().y);
         if(forceY>0) {forceY +=-10;}
-        System.out.println(String.valueOf(forceY));
+        this.setPosition(player.getPosition());
     }
 }

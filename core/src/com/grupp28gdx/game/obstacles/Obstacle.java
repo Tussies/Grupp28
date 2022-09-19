@@ -7,8 +7,8 @@ public abstract class Obstacle extends Actor {
     private String typeOfObstacle;
     private int obstacleDifficutly;
     private PolygonShape body;
-    private int posX;
-    private int posY;
+    private float posX;
+    private float posY;
     public Obstacle(){
         posX = this.getX_position();
         posY = this.getY_position();
