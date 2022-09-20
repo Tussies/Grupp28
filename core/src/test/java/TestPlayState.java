@@ -13,25 +13,7 @@ import static org.junit.Assert.*;
 
 
 public class TestPlayState {
-    /*
-    GameStateManager testGsm = new GameStateManager();
-    PlayState testPlayState = new PlayState(testGsm);
 
-
-    @Test
-    public void testCreatePlayer(){
-        Body testBody = testPlayState.createPlayer();
-
-        assertArrayEquals(new Body, testBody);
-    }
-
-    @Test
-    public void testCreateGround(){
-        Body testGround = testPlayState.createGround();
-
-        assertArrayEquals(new Body() , testGround);
-
-    } */
 
 }
 
