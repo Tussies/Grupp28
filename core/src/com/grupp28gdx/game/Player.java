@@ -8,6 +8,9 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.grupp28gdx.game.input.PlayInputHandler;
+import com.grupp28gdx.game.states.GameStateManager;
+import com.grupp28gdx.game.states.MenuState;
+import com.grupp28gdx.game.states.PlayState;
 
 import java.awt.event.ActionEvent;
 import java.util.Scanner;
@@ -22,6 +25,7 @@ public class Player extends Actor {
     private int forceX=0;
     private int forceY=0;
     private boolean hasJumped;
+    protected GameStateManager gsm;
 
     public Player(World world){
         bodyDef = new BodyDef();
@@ -33,6 +37,7 @@ public class Player extends Actor {
         bodyShape = new PolygonShape();
         bodyShape.setAsBox(30/pixelsPerMeter, 30/pixelsPerMeter);
         player.createFixture(bodyShape, 1.0f);
+        gsm = new GameStateManager();
     }
 
     public void inputActionDown(int key) {
@@ -48,7 +53,7 @@ public class Player extends Actor {
             case 19:this.forceY=0; break;
             case 22: forceX -= 1; break;
             case 20: forceY = 0; break;
-            case 111: System.out.println("Escape button pressed. Switch to menu here!");
+            case 111: gsm.set(new MenuState(gsm));
         }
     }
     public Body getPlayerBody(){
