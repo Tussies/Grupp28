@@ -2,15 +2,16 @@ package com.grupp28gdx.game.handlers;
 import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.Coin;
 
-import java.util.Random;
-
 public class CoinHandler extends SpawnHandler{
 
     protected Array<Coin> itemArray = new Array<>();
 
+    public Array<Coin> getCoin(){
+        return itemArray;
+    }
 
     @Override
-    protected void generate() {
+    public void generate() {
         int n = 1 - numberOfSpawnableItems + 1;
         int i = rand.nextInt() % n;
         int randomNum = 1 + i;

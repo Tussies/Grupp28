@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
+import com.grupp28gdx.game.handlers.CoinHandler;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
@@ -31,7 +32,6 @@ public class PlayState extends State {
         world = new World(new Vector2(0, -9.8f), true);
         player = createPlayer();
         ground = createGround();
-
         debugRenderer = new Box2DDebugRenderer();
 
         cam.setToOrtho(false, w/2, h/2);
