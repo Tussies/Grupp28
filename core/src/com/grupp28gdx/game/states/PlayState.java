@@ -1,5 +1,6 @@
 package com.grupp28gdx.game.states;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
+import com.grupp28gdx.game.handlers.CoinHandler;
 import com.grupp28gdx.game.Player;
 import com.grupp28gdx.game.input.PlayInputHandler;
 import com.grupp28gdx.game.render.RenderController;
@@ -38,13 +40,13 @@ public class PlayState extends State {
         this.playInput = new PlayInputHandler(player);
         playerBody = player.getPlayerBody();
         ground = createGround();
-
         debugRenderer = new Box2DDebugRenderer();
 
         cam.setToOrtho(false, w/2, h/2);
 
         setInputProcessor(playInput);
     }
+
 
     private void updateBackground() {
         if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition1.x + w)
