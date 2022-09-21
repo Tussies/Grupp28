@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.grupp28gdx.game.handlers.CoinHandler;
 import com.grupp28gdx.game.Player;
+import com.grupp28gdx.game.handlers.ObstacleHandler;
 import com.grupp28gdx.game.input.PlayInputHandler;
 import com.grupp28gdx.game.render.RenderController;
 
@@ -29,6 +30,7 @@ public class PlayState extends State {
     private float h = Gdx.graphics.getHeight();
     private Texture background;
     private Vector2 backgroundPosition1, backgroundPosition2;
+    private ObstacleHandler obstacleHandler;
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -45,6 +47,7 @@ public class PlayState extends State {
         cam.setToOrtho(false, w/2, h/2);
 
         setInputProcessor(playInput);
+        obstacleHandler = new ObstacleHandler(world);
     }
 
 
@@ -82,6 +85,10 @@ public class PlayState extends State {
         updateBackground();
         player.playerMovementUpdate(delta);
         cameraUpdate(delta);
+        if (Math.round(player.getX_position()) % 5 == 0){
+            obstacleHandler.update(Math.round(player.getX_position()),Math.round(player.getX_position()));
+        }
+
     }
 
     public void cameraUpdate(float delta) {

@@ -11,7 +11,7 @@ public class CoinHandler extends SpawnHandler{
     }
 
     @Override
-    public void generate() {
+    public void generate(float posX, float posY) {
         int n = 1 - numberOfSpawnableItems + 1;
         int i = rand.nextInt() % n;
         int randomNum = 1 + i;
@@ -20,5 +20,10 @@ public class CoinHandler extends SpawnHandler{
                 System.out.println("Coin added to array");
                 itemArray.add(new Coin());
         }
+    }
+
+    @Override
+    public void update(float posX, float posY) {
+
     }
 }
