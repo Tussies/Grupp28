@@ -26,20 +26,31 @@ public class ObstacleHandler extends SpawnHandler{
         int i = rand.nextInt() % n;
         int randomNum = 1 + i;
         switch (randomNum){
-            case 1:System.out.println("Test"); itemArray.add(new Spike(posX+10,0));
+            case 1: itemArray.add(new Spike(posX+20,posY));
         }
     }
 
     @Override
     public void update(float posX,float posY) {
-        if (itemArray.isEmpty())generate(posX,posY);
-        else if (!(itemArray.get(itemArray.size - 1).getX_position() == posX)){
-            generate(posX,posY);
+
+        if (posX % 10 == 0) {
+            if (itemArray.isEmpty()) {
+                createObstacle(posX, -0.1f);
+            } else if (!(itemArray.get(itemArray.size - 1).getX_position() == posX)) {
+                createObstacle(posX, -0.1f);
+            }
+            while (itemArray.get(0).getX_position() - posX <= -10) {
+                world.destroyBody(itemArray.get(0).getBody());
+                itemArray.removeIndex(0);
+            }
         }
-        for (Obstacle obstacle : itemArray){
-            obstacle.setBody(world.createBody(obstacle.getBodyDef()));
-            obstacle.getBody().createFixture(obstacle.getBodyShape(),1.0f);
-        }
+    }
+
+    private void createObstacle(float posX, float posY) {
+        generate(posX,posY);
+        itemArray.get(itemArray.size - 1).setBody(world.createBody(itemArray.get(itemArray.size - 1).getBodyDef()));
+        itemArray.get(itemArray.size - 1).getBody().createFixture(itemArray.get(itemArray.size - 1).getBodyShape(),1.0f);
+        itemArray.get(itemArray.size - 1).getBodyShape().dispose();
     }
 }
 

@@ -27,7 +27,7 @@ public abstract class Obstacle extends Actor {
         return typeOfObstacle;
     }
 
-    public void setPosX(int value){
+    public void setPosX(float value){
         this.posX = value;
     }
 

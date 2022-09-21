@@ -85,10 +85,7 @@ public class PlayState extends State {
         updateBackground();
         player.playerMovementUpdate(delta);
         cameraUpdate(delta);
-        if (Math.round(player.getX_position()) % 5 == 0){
-            obstacleHandler.update(Math.round(player.getX_position()),Math.round(player.getX_position()));
-        }
-
+        obstacleHandler.update(Math.round(player.getX_position()),Math.round(player.getX_position()));
     }
 
     public void cameraUpdate(float delta) {
