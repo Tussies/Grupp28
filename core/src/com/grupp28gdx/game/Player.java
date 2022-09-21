@@ -64,4 +64,9 @@ public class Player extends Actor {
         if(forceY>0) {forceY +=-10;}
         this.setPosition(player.getPosition());
     }
+
+    public int getForceX(){return this.forceX;}
+    public int getForceY(){return this.forceY;}
+
+
 }
