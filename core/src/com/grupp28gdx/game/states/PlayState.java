@@ -29,6 +29,7 @@ public class PlayState extends State {
     private float h = Gdx.graphics.getHeight();
     private Texture background;
     private Vector2 backgroundPosition1, backgroundPosition2;
+    private boolean isPaused = false;
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -94,15 +95,17 @@ public class PlayState extends State {
 
     @Override
     public void render(SpriteBatch sb) {
-        Gdx.gl.glClearColor(0f, 0f, 0f,1f);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        if (!isPaused) {
+            Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        update(Gdx.graphics.getDeltaTime());
-        sb.setProjectionMatrix(cam.combined);
-        rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
-        rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
-        rc.render(sb,background, backgroundPosition2.x, backgroundPosition2.y, w, h);
-        rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
+            update(Gdx.graphics.getDeltaTime());
+            sb.setProjectionMatrix(cam.combined);
+            rc.render(sb, background, backgroundPosition1.x, backgroundPosition1.y, w, h);
+            rc.render(sb, background, backgroundPosition1.x, backgroundPosition1.y, w, h);
+            rc.render(sb, background, backgroundPosition2.x, backgroundPosition2.y, w, h);
+            rc.debugRender(debugRenderer, world, cam, pixelsPerMeter);
+        }
     }
 
     @Override
