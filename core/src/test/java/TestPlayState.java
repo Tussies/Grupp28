@@ -20,7 +20,7 @@ public class TestPlayState {
 
     @Test
     public void testCreatePlayer(){
-        Body testBody = testPlayState.createPlayer();
+        //Body testBody = testPlayState.createPlayer();
 
        // assertArrayEquals(new Body, testBody);
     }

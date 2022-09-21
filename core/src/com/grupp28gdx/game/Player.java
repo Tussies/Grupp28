@@ -19,11 +19,13 @@ public class Player extends Actor {
     private BodyDef bodyDef;
     private PolygonShape bodyShape;
     private int movementSpeed;
-    private int forceX=0;
-    private int forceY=0;
+    private int forceX;
+    private int forceY;
     private boolean hasJumped;
 
     public Player(World world){
+        this.forceX = 0;
+        this.forceY = 0;
         bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(0,1);
