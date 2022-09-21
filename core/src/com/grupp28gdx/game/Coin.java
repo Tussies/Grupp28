@@ -9,8 +9,8 @@ public class Coin extends Actor{
     CircleShape coin;
 
     public Coin(){
-        posX = this.getX_position();
-        posY = this.getY_position();
+        posX = (int) this.getX_position();
+        posY = (int) this.getY_position();
         coin = new CircleShape();
         coin.setRadius(0.4f);
     }
