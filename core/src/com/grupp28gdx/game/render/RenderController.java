@@ -3,12 +3,18 @@ package com.grupp28gdx.game.render;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
+
+import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
 public class RenderController {
 
@@ -17,6 +23,19 @@ public class RenderController {
         sb.draw(texture,x,y);
         sb.end();
     }
+
+/*    public void render(SpriteBatch sb, World world, Array<Body> bodies){
+        sb.begin();
+        world.getBodies(bodies);
+        for (Body body: bodies) {
+            if (body.getUserData() != null && body.getUserData() instanceof Sprite) {
+                Sprite sprite = (Sprite) body.getUserData();
+                sprite.setPosition(body.getPosition().x - sprite.getWidth() / 2, body.getPosition().y - sprite.getHeight() / 2);
+                sprite.draw(sb);
+            }
+        }
+        sb.end();
+    }*/
 
     public void render(SpriteBatch sb, Texture texture,int x,int y,int screenWith,int screenHeight){
         sb.begin();

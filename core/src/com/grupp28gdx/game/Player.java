@@ -2,19 +2,24 @@ package com.grupp28gdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.input.PlayInputHandler;
+import com.grupp28gdx.game.states.PlayState;
 
 import java.awt.event.ActionEvent;
 import java.util.Scanner;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
-public class Player extends Actor {
+public class Player extends Sprite {
     private Body player;
     private BodyDef bodyDef;
     private PolygonShape bodyShape;
@@ -22,17 +27,37 @@ public class Player extends Actor {
     private int forceX=0;
     private int forceY=0;
     private boolean hasJumped;
+    private float x_position;
+    private float y_position;
+    private TextureRegion alienStand;
+    //private Sprite alienSprite;
 
-    public Player(World world){
+    public Player(World world, PlayState state){
+        super(state.getAtlas().findRegion("armor"));
         bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(0,1);
         bodyDef.fixedRotation = true;
         player = world.createBody(bodyDef);
-        movementSpeed = 700;
+        movementSpeed = 0;
         bodyShape = new PolygonShape();
         bodyShape.setAsBox(30/pixelsPerMeter, 30/pixelsPerMeter);
         player.createFixture(bodyShape, 1.0f);
+
+        //alienStand = new TextureRegion(getTexture(), 0,0,32,32);
+        //setBounds(0,0,32/pixelsPerMeter, 32/pixelsPerMeter);
+        //setRegion(alienStand);
+
+        //alienSprite = new Sprite(new Texture("armor__0000_idle_1.png"));
+        //player.setUserData(alienSprite);
+
+        //alienSprite.getTexture().dispose();
+        bodyShape.dispose();
+    }
+
+    public void  setPosition(Vector2 v2){
+        x_position = v2.x;
+        y_position = v2.y;
     }
 
     public void inputActionDown(int key) {

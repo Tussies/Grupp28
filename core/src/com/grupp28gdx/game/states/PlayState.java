@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -27,6 +28,7 @@ public class PlayState extends State {
     private float h = Gdx.graphics.getHeight();
     private Texture background;
     private Vector2 backgroundPosition1, backgroundPosition2;
+    private TextureAtlas atlas;
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -34,16 +36,22 @@ public class PlayState extends State {
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
         world = new World(new Vector2(0, -9.8f), true);
-        player = new Player(this.world);
+        player = new Player(this.world, this);
         this.playInput = new PlayInputHandler(player);
         playerBody = player.getPlayerBody();
         ground = createGround();
 
+        atlas = new TextureAtlas("alien.pack");
+
         debugRenderer = new Box2DDebugRenderer();
 
-        cam.setToOrtho(false, w/2, h/2);
+        cam.setToOrtho(false, w*2, h*2);
 
         setInputProcessor(playInput);
+    }
+
+    public TextureAtlas getAtlas() {
+        return atlas;
     }
 
     private void updateBackground() {
@@ -97,6 +105,7 @@ public class PlayState extends State {
 
         update(Gdx.graphics.getDeltaTime());
         sb.setProjectionMatrix(cam.combined);
+        //player.draw(sb);
         rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
         rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
         rc.render(sb,background, backgroundPosition2.x, backgroundPosition2.y, w, h);

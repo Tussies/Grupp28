@@ -1,0 +1,222 @@
+alien.png
+size: 1946, 1700
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+armor
+  rotate: false
+  xy: 1033, 372
+  size: 213, 428
+  orig: 213, 428
+  offset: 0, 0
+  index: 1
+armor
+  rotate: false
+  xy: 370, 1238
+  size: 223, 438
+  orig: 223, 438
+  offset: 0, 0
+  index: 2
+armor
+  rotate: false
+  xy: 593, 1238
+  size: 235, 440
+  orig: 235, 440
+  offset: 0, 0
+  index: 3
+armor
+  rotate: false
+  xy: 221, 803
+  size: 213, 432
+  orig: 213, 432
+  offset: 0, 0
+  index: 4
+armor
+  rotate: false
+  xy: 434, 803
+  size: 205, 432
+  orig: 205, 432
+  offset: 0, 0
+  index: 5
+armor
+  rotate: false
+  xy: 639, 803
+  size: 202, 432
+  orig: 202, 432
+  offset: 0, 0
+  index: 6
+armor
+  rotate: false
+  xy: 0, 1238
+  size: 193, 436
+  orig: 193, 436
+  offset: 0, 0
+  index: 7
+armor
+  rotate: false
+  xy: 1215, 1238
+  size: 200, 442
+  orig: 200, 442
+  offset: 0, 0
+  index: 8
+armor
+  rotate: false
+  xy: 828, 1238
+  size: 193, 440
+  orig: 193, 440
+  offset: 0, 0
+  index: 9
+armor
+  rotate: false
+  xy: 1677, 372
+  size: 180, 431
+  orig: 180, 431
+  offset: 0, 0
+  index: 10
+armor
+  rotate: false
+  xy: 1270, 803
+  size: 184, 434
+  orig: 184, 434
+  offset: 0, 0
+  index: 11
+armor
+  rotate: false
+  xy: 1648, 803
+  size: 176, 435
+  orig: 176, 435
+  offset: 0, 0
+  index: 12
+armor
+  rotate: false
+  xy: 1454, 803
+  size: 194, 434
+  orig: 194, 434
+  offset: 0, 0
+  index: 13
+armor
+  rotate: false
+  xy: 1021, 1238
+  size: 194, 441
+  orig: 194, 441
+  offset: 0, 0
+  index: 14
+armor
+  rotate: false
+  xy: 550, 372
+  size: 217, 425
+  orig: 217, 425
+  offset: 0, 0
+  index: 15
+armor
+  rotate: false
+  xy: 193, 1238
+  size: 177, 436
+  orig: 177, 436
+  offset: 0, 0
+  index: 16
+armor
+  rotate: false
+  xy: 841, 803
+  size: 204, 432
+  orig: 204, 432
+  offset: 0, 0
+  index: 17
+armor
+  rotate: false
+  xy: 1459, 372
+  size: 218, 430
+  orig: 218, 430
+  offset: 0, 0
+  index: 18
+armor
+  rotate: false
+  xy: 1246, 372
+  size: 213, 428
+  orig: 213, 428
+  offset: 0, 0
+  index: 19
+armor
+  rotate: false
+  xy: 347, 372
+  size: 203, 423
+  orig: 203, 423
+  offset: 0, 0
+  index: 20
+armor
+  rotate: false
+  xy: 0, 803
+  size: 221, 431
+  orig: 221, 431
+  offset: 0, 0
+  index: 21
+armor
+  rotate: false
+  xy: 1045, 803
+  size: 225, 432
+  orig: 225, 432
+  offset: 0, 0
+  index: 22
+armor
+  rotate: false
+  xy: 0, 372
+  size: 347, 410
+  orig: 347, 410
+  offset: 0, 0
+  index: 23
+armor
+  rotate: false
+  xy: 1202, 0
+  size: 413, 329
+  orig: 413, 329
+  offset: 0, 0
+  index: 24
+armor
+  rotate: false
+  xy: 816, 0
+  size: 386, 241
+  orig: 386, 241
+  offset: 0, 0
+  index: 25
+armor
+  rotate: false
+  xy: 0, 0
+  size: 409, 186
+  orig: 409, 186
+  offset: 0, 0
+  index: 26
+armor
+  rotate: false
+  xy: 409, 0
+  size: 407, 210
+  orig: 407, 210
+  offset: 0, 0
+  index: 27
+armor
+  rotate: false
+  xy: 767, 372
+  size: 266, 426
+  orig: 266, 426
+  offset: 0, 0
+  index: 28
+armor
+  rotate: false
+  xy: 1415, 1238
+  size: 235, 460
+  orig: 235, 460
+  offset: 0, 0
+  index: 29
+armor
+  rotate: false
+  xy: 1650, 1238
+  size: 263, 462
+  orig: 263, 462
+  offset: 0, 0
+  index: 30
+armor
+  rotate: false
+  xy: 1615, 0
+  size: 331, 372
+  orig: 331, 372
+  offset: 0, 0
+  index: 31
