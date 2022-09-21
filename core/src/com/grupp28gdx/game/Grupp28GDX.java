@@ -1,11 +1,12 @@
 package com.grupp28gdx.game;
 
+//<<external>>
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import com.grupp28gdx.game.states.GameStateManager;
-import com.grupp28gdx.game.states.MenuState;
 
 
 public class Grupp28GDX extends ApplicationAdapter {
@@ -17,7 +18,6 @@ public class Grupp28GDX extends ApplicationAdapter {
 
 		batch = new SpriteBatch();
 		gsm = new GameStateManager();
-		gsm.push(new MenuState(gsm));
 
 	}
 

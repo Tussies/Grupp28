@@ -1,26 +1,25 @@
 package com.grupp28gdx.game;
 
-import com.grupp28gdx.game.Grupp28GDX;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+//<<external>>
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
 public class GameConfig {
 
-    private static Lwjgl3ApplicationConfiguration config = null;
+    private static Lwjgl3ApplicationConfiguration appConfig = null;
 
     GameConfig(){
-        config = new Lwjgl3ApplicationConfiguration();
-        config.setForegroundFPS(60);
-        config.setTitle("Grupp28_GDX");
-        config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
+        appConfig = new Lwjgl3ApplicationConfiguration();
+        appConfig.setForegroundFPS(60);
+        appConfig.setTitle("Grupp28_GDX1337");
+        appConfig.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
     }
 
     public static Lwjgl3ApplicationConfiguration getInstance(){
 
-        if(config == null){
-            config = new Lwjgl3ApplicationConfiguration();
+        if(appConfig == null){
+            appConfig = new Lwjgl3ApplicationConfiguration();
         }
-        return config;
+        return appConfig;
     }
 
 }

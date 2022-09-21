@@ -73,7 +73,7 @@ public class MenuState extends State{
     }
 
     @Override
-    public void render(SpriteBatch sb) {
+    public void sendToRenderController(SpriteBatch sb) {
         int inputX = MenuInputHandler.checkInputX();
         int inputY = MenuInputHandler.checkInputY();
         int playButtonWidth = playButton.getWidth();

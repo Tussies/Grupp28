@@ -1,6 +1,6 @@
 package com.grupp28gdx.game;
 
-import com.badlogic.gdx.physics.box2d.PolygonShape;
+//<<external>>
 import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.obstacles.*;
 

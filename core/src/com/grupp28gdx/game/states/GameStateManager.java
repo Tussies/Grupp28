@@ -1,15 +1,14 @@
 package com.grupp28gdx.game.states;
 
-import com.badlogic.gdx.Game;
+//<<external>>
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.grupp28gdx.game.render.RenderController;
-
 import java.util.Stack;
 
 public class GameStateManager {
     private Stack<State> states;
     public GameStateManager(){
         states = new Stack<State>();
+        push(new MenuState(this));
     }
 
     public void push(State state){
@@ -30,7 +29,7 @@ public class GameStateManager {
     }
 
     public void render(SpriteBatch sb){
-        states.peek().render(sb);
+        states.peek().sendToRenderController(sb);
     }
 
 

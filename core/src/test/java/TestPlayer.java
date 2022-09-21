@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class TestPlayer {
-    Player playerClass = new Player();
+    //Player playerClass = new Player();
 
     @Test
     public void TestCreatePlayer(){
-    Body testPlayer = playerClass.createPlayer();
+    //Body testPlayer = playerClass.createPlayer();
 
     //assertArrayEquals(new Body(), testPlayer);
 
