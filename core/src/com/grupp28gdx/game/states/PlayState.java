@@ -3,13 +3,18 @@ package com.grupp28gdx.game.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.grupp28gdx.game.handlers.CoinHandler;
+import com.grupp28gdx.game.Player;
+import com.grupp28gdx.game.input.PlayInputHandler;
+import com.grupp28gdx.game.render.RenderController;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
@@ -18,7 +23,8 @@ public class PlayState extends State {
     Box2DDebugRenderer debugRenderer;
     private World world;
     private Body ground;
-    private Body player;
+    private Player player;
+    private Body playerBody;
     private float w = Gdx.graphics.getWidth();
     private float h = Gdx.graphics.getHeight();
     private Texture background;
@@ -30,11 +36,15 @@ public class PlayState extends State {
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
         world = new World(new Vector2(0, -9.8f), true);
-        player = createPlayer();
+        player = new Player(this.world);
+        this.playInput = new PlayInputHandler(player);
+        playerBody = player.getPlayerBody();
         ground = createGround();
         debugRenderer = new Box2DDebugRenderer();
 
         cam.setToOrtho(false, w/2, h/2);
+
+        setInputProcessor(playInput);
     }
 
 
@@ -43,22 +53,6 @@ public class PlayState extends State {
             backgroundPosition1.add(w * 2, 0);
         if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition2.x + w)
             backgroundPosition2.add(w * 2, 0);
-    }
-
-    public Body createPlayer() {
-        Body playerBody;
-        BodyDef def = new BodyDef();
-        def.type = BodyDef.BodyType.DynamicBody;
-        def.position.set(0,0);
-        def.fixedRotation = true;
-        playerBody = world.createBody(def);
-
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(30/pixelsPerMeter, 30/pixelsPerMeter);
-
-        playerBody.createFixture(shape, 1.0f);
-        shape.dispose();
-        return playerBody;
     }
 
     public Body createGround() {
@@ -86,37 +80,16 @@ public class PlayState extends State {
     public void update(float delta) {
         world.step(1/60f, 6,2);
         updateBackground();
-        inputUpdate(delta);
+        player.playerMovementUpdate(delta);
         cameraUpdate(delta);
-    }
-
-    public void inputUpdate(float delta) {
-        int horizontalForce = 0;
-        player.applyForceToCenter(500, 0, false);
-
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            horizontalForce -= 1;
-        }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            horizontalForce += 1;
-        }
-
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            player.applyForceToCenter(0,600, false);
-        }
-
-        player.setLinearVelocity(horizontalForce * 5, player.getLinearVelocity().y);
     }
 
     public void cameraUpdate(float delta) {
         Vector3 position = cam.position;
-        position.x = player.getPosition().x * pixelsPerMeter;
-        position.y = player.getPosition().y * pixelsPerMeter;
+        position.x = playerBody.getPosition().x * pixelsPerMeter;
+        position.y = playerBody.getPosition().y * pixelsPerMeter;
 
-        cam.position.set(position);
-
-        cam.update();
+        rc.updateCamera(cam,position);
     }
 
     @Override
@@ -126,12 +99,10 @@ public class PlayState extends State {
 
         update(Gdx.graphics.getDeltaTime());
         sb.setProjectionMatrix(cam.combined);
-        sb.begin();
-        sb.draw(background, backgroundPosition1.x, backgroundPosition1.y, w, h);
-        sb.draw(background, backgroundPosition2.x, backgroundPosition2.y, w, h);
-        sb.end();
-
-        debugRenderer.render(world, cam.combined.scl(pixelsPerMeter));
+        rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
+        rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
+        rc.render(sb,background, backgroundPosition2.x, backgroundPosition2.y, w, h);
+        rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
     }
 
     @Override

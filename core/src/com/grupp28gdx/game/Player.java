@@ -1,57 +1,67 @@
 package com.grupp28gdx.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.grupp28gdx.game.input.PlayInputHandler;
 
 import java.awt.event.ActionEvent;
 import java.util.Scanner;
 
-public class Player {
-    private Body player = createPlayer();
-    //remove tempworld since it's only temporary for the player to be created
-    public World tempworld;
+import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
+public class Player extends Actor {
+    private Body player;
+    private BodyDef bodyDef;
+    private PolygonShape bodyShape;
+    private int movementSpeed;
+    private int forceX=0;
+    private int forceY=0;
+    private boolean hasJumped;
 
-    public Body createPlayer() {
-        Body pBody;
-        BodyDef def = new BodyDef();
-        def.type = BodyDef.BodyType.DynamicBody;
-        def.position.set(0,0);
-        def.fixedRotation = true;
-        this.tempworld = new World(new Vector2(0,-9.8f), false);
-        pBody = tempworld.createBody(def);
-
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(16,16);
-
-        pBody.createFixture(shape, 1.0f);
-        shape.dispose();
-        System.out.println("Player has been created");
-
-
-        return pBody;
-
-
-    }
-    public void update(float delta){
-    tempworld.step(1/60f, 6 , 2);
-
-
-    }
-    public void playerTalk(){
-        Scanner keyboard = new Scanner(System.in);
-        int myInt = keyboard.nextInt();
-        System.out.println(myInt);
-
-
-    }
-    public void jumpPerformed(ActionEvent e){
-
-        //Call method that lets player jump
+    public Player(World world){
+        bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        bodyDef.position.set(0,1);
+        bodyDef.fixedRotation = true;
+        player = world.createBody(bodyDef);
+        movementSpeed = 700;
+        bodyShape = new PolygonShape();
+        bodyShape.setAsBox(30/pixelsPerMeter, 30/pixelsPerMeter);
+        player.createFixture(bodyShape, 1.0f);
     }
 
+    public void inputActionDown(int key) {
+        if(player.getLinearVelocity().y==0) {hasJumped = false;}
+        switch (key){
+            case 19: if(player.getLinearVelocity().y==0){ this.forceY = 220;System.out.println("jump");}break;
+            case 22: forceX += 1; break;
+            case 20: forceY = -60; break;
+        }
+    }
+    public void inputActionUp(int key) {
+        switch (key){
+            case 19:this.forceY=0; break;
+            case 22: forceX -= 1; break;
+            case 20: forceY = 0; break;
+        }
+    }
+    public Body getPlayerBody(){
+        return player;
+    }
 
+    public PolygonShape getBodyShape(){
+        return bodyShape;
+    }
+
+    public void playerMovementUpdate(float delta) {
+        player.applyForceToCenter(movementSpeed, forceY, false);
+        player.setLinearVelocity(forceX * 5, player.getLinearVelocity().y);
+        if(forceY>0) {forceY +=-10;}
+        this.setPosition(player.getPosition());
+    }
 }
