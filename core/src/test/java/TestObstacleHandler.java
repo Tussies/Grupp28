@@ -1,4 +1,4 @@
-import com.grupp28gdx.game.ObstacleHandler;
+//import com.grupp28gdx.game.ObstacleHandler;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Array;
