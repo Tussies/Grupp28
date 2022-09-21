@@ -48,6 +48,7 @@ public class Player extends Actor {
             case 19:this.forceY=0; break;
             case 22: forceX -= 1; break;
             case 20: forceY = 0; break;
+            case 111: System.out.println("Escape button pressed. Switch to menu here!");
         }
     }
     public Body getPlayerBody(){
