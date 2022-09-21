@@ -5,27 +5,29 @@ import com.grupp28gdx.game.Player;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class TestPlayer {
-
+    World testWorld;
     Player playerObject;
 
-    @Before
-            public void setUp(){
+    @BeforeEach
+    public void setUp(){
 
-        World testWorld = new World(new Vector2(0, -9.8f), true);
-         playerObject = new Player(testWorld);
+        this.testWorld = new World(new Vector2(0, -9.8f), true);
+         this.playerObject = new Player(testWorld);
     }
 
 
 
     @Test
     public void testGetForceX(){
-        assertTrue(playerObject.getForceX() == 0);
+        setUp();
+        assertTrue(this.playerObject.getForceX() == 0);
     }
 
     @Test
