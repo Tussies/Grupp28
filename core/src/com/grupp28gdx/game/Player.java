@@ -31,9 +31,10 @@ public class Player extends Sprite {
     private float y_position;
     private TextureRegion alienStand;
     //private Sprite alienSprite;
+    private Texture texture;
 
     public Player(World world, PlayState state){
-        super(state.getAtlas().findRegion("armor"));
+        //super(state.getAtlas().findRegion("armor"));
         bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(0,1);
@@ -44,7 +45,9 @@ public class Player extends Sprite {
         bodyShape.setAsBox(30/pixelsPerMeter, 30/pixelsPerMeter);
         player.createFixture(bodyShape, 1.0f);
 
-        //alienStand = new TextureRegion(getTexture(), 0,0,32,32);
+        texture = new Texture("alien00.png");
+
+        //alienStand = new TextureRegion(getTexture(), 1033,372,32,32);
         //setBounds(0,0,32/pixelsPerMeter, 32/pixelsPerMeter);
         //setRegion(alienStand);
 
@@ -53,6 +56,10 @@ public class Player extends Sprite {
 
         //alienSprite.getTexture().dispose();
         bodyShape.dispose();
+    }
+
+    public Texture getTexture() {
+        return texture;
     }
 
     public void  setPosition(Vector2 v2){

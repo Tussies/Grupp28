@@ -29,6 +29,7 @@ public class PlayState extends State {
     private Texture background;
     private Vector2 backgroundPosition1, backgroundPosition2;
     private TextureAtlas atlas;
+    private Texture alien;
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -40,12 +41,11 @@ public class PlayState extends State {
         this.playInput = new PlayInputHandler(player);
         playerBody = player.getPlayerBody();
         ground = createGround();
-
-        atlas = new TextureAtlas("alien.pack");
-
+        atlas = new TextureAtlas(Gdx.files.internal("alien.pack"));
+        alien = player.getTexture();
         debugRenderer = new Box2DDebugRenderer();
 
-        cam.setToOrtho(false, w*2, h*2);
+        cam.setToOrtho(false, w/2, h/2);
 
         setInputProcessor(playInput);
     }
@@ -109,6 +109,7 @@ public class PlayState extends State {
         rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
         rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
         rc.render(sb,background, backgroundPosition2.x, backgroundPosition2.y, w, h);
+        rc.render(sb, alien, playerBody.getPosition().x * pixelsPerMeter - (alien.getWidth()/8), playerBody.getPosition().y * pixelsPerMeter - 30, 213/4, 428/4);
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
     }
 
@@ -117,5 +118,6 @@ public class PlayState extends State {
         background.dispose();
         world.dispose();
         debugRenderer.dispose();
+        alien.dispose();
     }
 }
