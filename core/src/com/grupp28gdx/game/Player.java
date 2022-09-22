@@ -1,9 +1,20 @@
 package com.grupp28gdx.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.grupp28gdx.game.input.PlayInputHandler;
+import com.grupp28gdx.game.states.GameStateManager;
+import com.grupp28gdx.game.states.MenuState;
+import com.grupp28gdx.game.states.PlayState;
+
+import java.awt.event.ActionEvent;
+import java.util.Scanner;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
@@ -25,6 +36,12 @@ public class Player extends Actor {
         bodyShape = new PolygonShape();
         bodyShape.setAsBox(30/pixelsPerMeter, 30/pixelsPerMeter);
         player.createFixture(bodyShape, 1.0f);
+        gsm = new GameStateManager();
+        texture = new Texture("alien1.png");
+    }
+
+    public Texture getTexture() {
+        return texture;
     }
 
     public void inputActionDown(int key) {
@@ -39,6 +56,7 @@ public class Player extends Actor {
             case 19:this.forceY=0; break;
             case 22: forceX -= 1; break;
             case 20: forceY = 0; break;
+            case 111: gsm.set(new MenuState(gsm));
         }
     }
     public Body getPlayerBody(){
