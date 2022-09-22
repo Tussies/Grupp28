@@ -1,16 +1,9 @@
 package com.grupp28gdx.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.grupp28gdx.game.input.PlayInputHandler;
-
-import java.awt.event.ActionEvent;
-import java.util.Scanner;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
@@ -21,7 +14,6 @@ public class Player extends Actor {
     private int movementSpeed;
     private int forceX=0;
     private int forceY=0;
-    private boolean hasJumped;
 
     public Player(World world){
         bodyDef = new BodyDef();
@@ -36,7 +28,6 @@ public class Player extends Actor {
     }
 
     public void inputActionDown(int key) {
-        if(player.getLinearVelocity().y==0) {hasJumped = false;}
         switch (key){
             case 19: if(player.getLinearVelocity().y==0){ this.forceY = 220;System.out.println("jump");}break;
             case 22: forceX += 1; break;

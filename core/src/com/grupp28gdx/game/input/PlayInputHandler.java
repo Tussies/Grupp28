@@ -3,6 +3,7 @@ package com.grupp28gdx.game.input;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.grupp28gdx.game.Player;
+import com.grupp28gdx.game.handlers.ObstacleHandler;
 
 public class PlayInputHandler extends InputHandler {
     private Player player;
