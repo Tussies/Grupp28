@@ -15,7 +15,7 @@ public class Grupp28GDX extends ApplicationAdapter {
 	@Override
 	public void create () {
 
-		batch = new SpriteBatch();
+		//batch = new SpriteBatch();
 		gsm = new GameStateManager();
 		gsm.push(new MenuState(gsm));
 
@@ -26,7 +26,7 @@ public class Grupp28GDX extends ApplicationAdapter {
 
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		gsm.update(Gdx.graphics.getDeltaTime());
-		gsm.render(batch);
+		gsm.render();
 	}
 
 }
