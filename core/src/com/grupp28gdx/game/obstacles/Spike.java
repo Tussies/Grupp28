@@ -17,6 +17,10 @@ public class Spike extends Obstacle {
         definition.type = BodyDef.BodyType.StaticBody;
         definition.position.set(posX,posY);
         definition.fixedRotation = true;
+        Vector2 v2 = new Vector2();
+        v2.x = posX;
+        v2.y = posY;
+        this.setPosition(v2);
         spike = new PolygonShape();
         spike.set(spikeBodyVectors);
     }

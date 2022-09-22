@@ -11,7 +11,6 @@ public class PlayInputHandler extends InputHandler {
     }
     @Override
     public boolean keyDown(int keycode) {
-        System.out.println(String.valueOf(keycode));
         player.inputActionDown(keycode);
         return false;
 
@@ -23,7 +22,6 @@ public class PlayInputHandler extends InputHandler {
 
     @Override
     public boolean keyUp(int keycode) {
-        System.out.println(String.valueOf(keycode));
         player.inputActionUp(keycode);
         return false;
 
