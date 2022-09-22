@@ -15,7 +15,7 @@ public class Spike extends Obstacle {
     public Spike(float posX, float posY) {
         definition = new BodyDef();
         definition.type = BodyDef.BodyType.StaticBody;
-        definition.position.set(posX,posY);
+        definition.position.set(posX, (float) (Math.random()%5));
         definition.fixedRotation = true;
         Vector2 v2 = new Vector2();
         v2.x = posX;

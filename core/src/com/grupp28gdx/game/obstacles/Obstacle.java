@@ -14,8 +14,6 @@ public abstract class Obstacle extends Actor {
     protected BodyDef bodyDef;
     protected Body body;
     public Obstacle(){
-        posX = this.getX_position();
-        posY = this.getY_position();
     }
     public PolygonShape getBodyShape(){
         return bodyShape;

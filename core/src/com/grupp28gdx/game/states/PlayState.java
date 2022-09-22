@@ -68,7 +68,7 @@ public class PlayState extends State {
         ground = world.createBody(definition);
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(10000/pixelsPerMeter, 30/pixelsPerMeter);
+        shape.setAsBox(100/pixelsPerMeter, 20/pixelsPerMeter);
 
         ground.createFixture(shape, 1.0f);
         shape.dispose();
@@ -87,7 +87,8 @@ public class PlayState extends State {
         updateBackground();
         player.playerMovementUpdate(delta);
         cameraUpdate(delta);
-        obstacleHandler.update(Math.round(player.getX_position()),Math.round(player.getX_position()));
+        ground.setTransform(player.getX_position(),0, 0);
+        obstacleHandler.update(Math.round(player.getX_position()),0);
     }
 
     public void cameraUpdate(float delta) {

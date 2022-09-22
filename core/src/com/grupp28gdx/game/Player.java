@@ -25,6 +25,8 @@ public class Player extends Actor {
     private int movementSpeed;
     private int forceX=0;
     private int forceY=0;
+    private GameStateManager gsm;
+    private Texture texture;
 
     public Player(World world){
         bodyDef = new BodyDef();
