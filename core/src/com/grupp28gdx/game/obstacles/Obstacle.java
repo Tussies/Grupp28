@@ -1,27 +1,33 @@
 package com.grupp28gdx.game.obstacles;
 
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.grupp28gdx.game.Actor;
 
 public abstract class Obstacle extends Actor {
-    private String typeOfObstacle;
-    private int obstacleDifficutly;
-    private PolygonShape body;
-    private float posX;
-    private float posY;
+    protected String typeOfObstacle;
+    protected int obstacleDifficutly;
+    protected PolygonShape bodyShape;
+    protected float posX;
+    protected float posY;
+    protected BodyDef bodyDef;
+    protected Body body;
     public Obstacle(){
         posX = this.getX_position();
         posY = this.getY_position();
     }
-    public PolygonShape getBody(){
-        return body;
+    public PolygonShape getBodyShape(){
+        return bodyShape;
     }
+    public BodyDef getBodyDef(){return bodyDef;}
+    public Body getBody(){return body;}
 
     public String getTypeOfObstacle(){
         return typeOfObstacle;
     }
 
-    public void setPosX(int value){
+    public void setPosX(float value){
         this.posX = value;
     }
 
@@ -29,5 +35,6 @@ public abstract class Obstacle extends Actor {
         this.posY = value;
     }
 
-    }
+    public abstract void setBody(Body body);
+}
 

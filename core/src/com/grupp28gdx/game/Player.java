@@ -2,6 +2,7 @@ package com.grupp28gdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -26,6 +27,7 @@ public class Player extends Actor {
     private int forceY=0;
     private boolean hasJumped;
     protected GameStateManager gsm;
+    private Texture texture;
 
     public Player(World world){
         bodyDef = new BodyDef();
@@ -38,6 +40,11 @@ public class Player extends Actor {
         bodyShape.setAsBox(30/pixelsPerMeter, 30/pixelsPerMeter);
         player.createFixture(bodyShape, 1.0f);
         gsm = new GameStateManager();
+        texture = new Texture("alien1.png");
+    }
+
+    public Texture getTexture() {
+        return texture;
     }
 
     public void inputActionDown(int key) {

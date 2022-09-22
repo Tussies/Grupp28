@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.grupp28gdx.game.handlers.CoinHandler;
 import com.grupp28gdx.game.Player;
+import com.grupp28gdx.game.handlers.ObstacleHandler;
 import com.grupp28gdx.game.input.PlayInputHandler;
 import com.grupp28gdx.game.render.RenderController;
 
@@ -29,7 +30,8 @@ public class PlayState extends State {
     private float h = Gdx.graphics.getHeight();
     private Texture background;
     private Vector2 backgroundPosition1, backgroundPosition2;
-    private boolean isPaused = false;
+    private ObstacleHandler obstacleHandler;
+    private Texture alien;
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -41,11 +43,13 @@ public class PlayState extends State {
         this.playInput = new PlayInputHandler(player);
         playerBody = player.getPlayerBody();
         ground = createGround();
+        alien = player.getTexture();
         debugRenderer = new Box2DDebugRenderer();
 
         cam.setToOrtho(false, w/2, h/2);
 
         setInputProcessor(playInput);
+        obstacleHandler = new ObstacleHandler(world);
     }
 
 
@@ -83,6 +87,7 @@ public class PlayState extends State {
         updateBackground();
         player.playerMovementUpdate(delta);
         cameraUpdate(delta);
+        obstacleHandler.update(Math.round(player.getX_position()),Math.round(player.getX_position()));
     }
 
     public void cameraUpdate(float delta) {
@@ -95,17 +100,16 @@ public class PlayState extends State {
 
     @Override
     public void render(SpriteBatch sb) {
-        if (!isPaused) {
-            Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
-            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClearColor(0f, 0f, 0f,1f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-            update(Gdx.graphics.getDeltaTime());
-            sb.setProjectionMatrix(cam.combined);
-            rc.render(sb, background, backgroundPosition1.x, backgroundPosition1.y, w, h);
-            rc.render(sb, background, backgroundPosition1.x, backgroundPosition1.y, w, h);
-            rc.render(sb, background, backgroundPosition2.x, backgroundPosition2.y, w, h);
-            rc.debugRender(debugRenderer, world, cam, pixelsPerMeter);
-        }
+        update(Gdx.graphics.getDeltaTime());
+        sb.setProjectionMatrix(cam.combined);
+        rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
+        rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
+        rc.render(sb,background, backgroundPosition2.x, backgroundPosition2.y, w, h);
+        rc.render(sb, alien, playerBody.getPosition().x * pixelsPerMeter - (alien.getWidth()/8), playerBody.getPosition().y * pixelsPerMeter - 30, 213/4, 428/4);
+        rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
     }
 
     @Override
@@ -113,5 +117,6 @@ public class PlayState extends State {
         background.dispose();
         world.dispose();
         debugRenderer.dispose();
+        alien.dispose();
     }
 }
