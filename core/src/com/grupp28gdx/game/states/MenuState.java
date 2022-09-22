@@ -29,10 +29,10 @@ public class MenuState extends State{
 
     }
 
-    public void hover(SpriteBatch sb, Texture texture,int y,int screenWidth,int buttonWidth, int screenHeight){
+    public void hover(Texture texture,int y,int screenWidth,int buttonWidth, int screenHeight){
         int posX =(screenWidth/2) - (buttonWidth/2);
         int posY = screenHeight/y;
-        this.rc.render(sb,texture,posX,posY);
+        this.rc.render(texture,posX,posY);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class MenuState extends State{
     }
 
     @Override
-    public void render(SpriteBatch sb) {
+    public void render() {
         int inputX = MenuInputHandler.checkInputX();
         int inputY = MenuInputHandler.checkInputY();
         int playButtonWidth = playButton.getWidth();
@@ -83,18 +83,18 @@ public class MenuState extends State{
 
         int x = screenWidth / 2 - playButtonWidth/2;
 
-        rc.render(sb,background,0 ,0, screenWidth, screenHeight);
-        rc.render(sb,playButton, (screenWidth/2) - (playButtonWidth/2), screenHeight/2);
+        rc.render(background,0 ,0, screenWidth, screenHeight);
+        rc.render(playButton, (screenWidth/2) - (playButtonWidth/2), screenHeight/2);
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/2 && screenHeight - inputY > screenHeight/2) {
-            hover(sb, playButtonPressed, 2,screenWidth,playButtonWidth,screenHeight);
+            hover(playButtonPressed, 2,screenWidth,playButtonWidth,screenHeight);
         }
-        rc.render(sb,optionButton,(screenWidth/2) - (playButtonWidth/2),screenHeight/3);
+        rc.render(optionButton,(screenWidth/2) - (playButtonWidth/2),screenHeight/3);
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/3 && screenHeight - inputY > screenHeight/3) {
-            hover(sb, optionButtonPressed,3,screenWidth,playButtonWidth,screenHeight);
+            hover(optionButtonPressed,3,screenWidth,playButtonWidth,screenHeight);
         }
-        rc.render(sb,exitButton,(screenWidth/2) - (playButtonWidth/2),screenHeight/6);
+        rc.render(exitButton,(screenWidth/2) - (playButtonWidth/2),screenHeight/6);
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/6 && screenHeight - inputY > screenHeight/6) {
-            hover(sb, exitButtonPressed,6,screenWidth,playButtonWidth,screenHeight);
+            hover(exitButtonPressed,6,screenWidth,playButtonWidth,screenHeight);
 
         }
     }
