@@ -32,11 +32,10 @@ public class ObstacleHandler extends SpawnHandler{
 
     @Override
     public void update(float posX,float posY) {
-
         if (posX % 10 == 0) {
             if (itemArray.isEmpty()) {
                 createObstacle(posX, -0.1f);
-            } else if (!(itemArray.get(itemArray.size - 1).getX_position() == posX)) {
+            } else if (!(itemArray.get(itemArray.size - 1).getX_position() == posX+20)) {
                 createObstacle(posX, -0.1f);
             }
             while (itemArray.get(0).getX_position() - posX <= -10) {

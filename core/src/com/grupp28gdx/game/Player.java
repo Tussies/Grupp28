@@ -25,9 +25,6 @@ public class Player extends Actor {
     private int movementSpeed;
     private int forceX=0;
     private int forceY=0;
-    private boolean hasJumped;
-    protected GameStateManager gsm;
-    private Texture texture;
 
     public Player(World world){
         bodyDef = new BodyDef();
@@ -48,7 +45,6 @@ public class Player extends Actor {
     }
 
     public void inputActionDown(int key) {
-        if(player.getLinearVelocity().y==0) {hasJumped = false;}
         switch (key){
             case 19: if(player.getLinearVelocity().y==0){ this.forceY = 220;System.out.println("jump");}break;
             case 22: forceX += 1; break;
