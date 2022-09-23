@@ -15,6 +15,11 @@ public class MenuState extends State{
     private Texture optionButtonPressed;
     private Texture exitButtonPressed;
     private MenuInputHandler menuInput;
+    private int playButtonWidth;
+    private int playButtonHeight;
+    private int screenHeight;
+    private int screenWidth;
+    private int x;
 
     public MenuState(GameStateManager gsm){
         super(gsm);
@@ -28,40 +33,37 @@ public class MenuState extends State{
         exitButtonPressed = new Texture("Exit button Pressed.png");
         optionButtonPressed = new Texture("Options button Pressed.png");
 
+        this.playButtonWidth = playButton.getWidth();
+        this.playButtonHeight = playButton.getHeight();
+        this.screenHeight = Gdx.graphics.getHeight();
+        this.screenWidth = Gdx.graphics.getWidth();
+        this.x = screenWidth/2 - playButtonWidth/2;
     }
 
-    public void hover(Texture texture,int y,int screenWidth,int buttonWidth, int screenHeight){
-        int posX =(screenWidth/2) - (buttonWidth/2);
+    public void hover(Texture texture, int y, int screenWidth, int buttonWidth, int screenHeight){
+        int posX = (screenWidth/2) - (buttonWidth/2);
         int posY = screenHeight/y;
-        this.rc.render(texture,posX,posY);
+        this.rc.render(texture, posX, posY);
     }
 
     @Override
     public void handleInput() {
         int inputX = MenuInputHandler.checkInputX();
         int inputY = MenuInputHandler.checkInputY();
-        int playButtonWidth = playButton.getWidth();
-        int playButtonHeight = playButton.getHeight();
-        int screenHeight = Gdx.graphics.getHeight();
-        int x = Gdx.graphics.getWidth() / 2 - playButtonWidth/2;
-
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/2 && screenHeight - inputY > screenHeight/2) {
             if (Gdx.input.isTouched()) {
                 gsm.set(new PlayState(gsm));
-                System.out.println("Play game button pressed");
                 dispose();
             }
         }
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/3 && screenHeight - inputY > screenHeight/3) {
             if (Gdx.input.isTouched()){
                 // gsm.set(new OptionState());
-                System.out.println("Option button pressed");
                 dispose();
             }
         }
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/6 && screenHeight - inputY > screenHeight/6) {
             if (Gdx.input.isTouched()){
-                System.out.println("Exit game button pressed");
                 Gdx.app.exit();
                 dispose();
             }
@@ -77,12 +79,6 @@ public class MenuState extends State{
     public void render() {
         int inputX = MenuInputHandler.checkInputX();
         int inputY = MenuInputHandler.checkInputY();
-        int playButtonWidth = playButton.getWidth();
-        int playButtonHeight = playButton.getHeight();
-        int screenHeight = Gdx.graphics.getHeight();
-        int screenWidth = Gdx.graphics.getWidth();
-
-        int x = screenWidth / 2 - playButtonWidth/2;
 
         rc.render(background,0 ,0, screenWidth, screenHeight);
         rc.render(playButton, (screenWidth/2) - (playButtonWidth/2), screenHeight/2);

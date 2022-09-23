@@ -22,6 +22,6 @@ public class TestActor {
     @Test
     public void testGetYDirection(){
         assertTrue(testActor.getY_direction() == 0);
-    }
+    }*/
 }
 
