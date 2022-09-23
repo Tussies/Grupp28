@@ -61,8 +61,8 @@ public class RenderController {
         hud.stage.draw();
     }
 
-    public void render(){
-        Music music = Gdx.audio.newMusic(Gdx.files.internal("Angry-Birds-Theme-Song.wav"));
+    public void renderBirdMusic(){
+        Music music = Gdx.audio.newMusic(Gdx.files.internal("Angry-Birds-Theme-Song.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();

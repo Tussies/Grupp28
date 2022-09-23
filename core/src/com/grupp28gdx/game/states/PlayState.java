@@ -29,7 +29,7 @@ public class PlayState extends State {
     private ObstacleHandler obstacleHandler;
     private Texture alien;
     private Hud hud;
-    private Music music;
+
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -43,7 +43,7 @@ public class PlayState extends State {
         ground = createGround();
         alien = player.getTexture();
         debugRenderer = new Box2DDebugRenderer();
-
+        rc.renderBirdMusic();
 
         cam.setToOrtho(false, w/2, h/2);
 
@@ -106,6 +106,7 @@ public class PlayState extends State {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
+
         update(Gdx.graphics.getDeltaTime());
         rc.setProjectionMatrix(cam.combined);
         rc.render(background, backgroundPosition1.x, backgroundPosition1.y, w, h);
@@ -114,7 +115,7 @@ public class PlayState extends State {
         rc.render(alien, playerBody.getPosition().x * pixelsPerMeter - (alien.getWidth()/8), playerBody.getPosition().y * pixelsPerMeter - 30, 213/4, 428/4);
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         rc.render(hud);
-        rc.render();
+
     }
 
     @Override
@@ -123,6 +124,6 @@ public class PlayState extends State {
         world.dispose();
         debugRenderer.dispose();
         alien.dispose();
-        music.dispose();
+
     }
 }
