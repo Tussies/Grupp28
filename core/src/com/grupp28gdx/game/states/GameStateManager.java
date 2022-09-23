@@ -1,9 +1,5 @@
 package com.grupp28gdx.game.states;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.grupp28gdx.game.render.RenderController;
-
 import java.util.Stack;
 
 public class GameStateManager {
