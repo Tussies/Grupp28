@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.grupp28gdx.game.input.InputHandler;
 import com.grupp28gdx.game.input.MenuInputHandler;
-import com.grupp28gdx.game.input.PlayInputHandler;
 
 public class MenuState extends State{
     private Texture background;
@@ -15,9 +14,11 @@ public class MenuState extends State{
     private Texture playButtonPressed;
     private Texture optionButtonPressed;
     private Texture exitButtonPressed;
+    private MenuInputHandler menuInput;
 
     public MenuState(GameStateManager gsm){
         super(gsm);
+        this.menuInput = new MenuInputHandler();
         setInputProcessor(menuInput);
         playButton = new Texture("New Game button.png");
         exitButton = new Texture("Exit button.png");
