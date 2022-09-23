@@ -13,10 +13,10 @@ public abstract class Obstacle {
     protected float posY;
     protected BodyDef bodyDef;
     protected Body body;
-    private float x_position;
-    private float y_position;
-    private int x_direction;
-    private int y_direction;
+    protected float x_position;
+    protected float y_position;
+    protected int x_direction;
+    protected int y_direction;
 
     public Obstacle(){
     }
@@ -45,8 +45,6 @@ public abstract class Obstacle {
 
     public float getX_position(){return this.x_position;}
     public float getY_position(){return this.y_position;}
-    public int getX_direction(){return this.x_direction;}
-    public int getY_direction(){return this.y_direction;}
 
     public abstract void setBody(Body body);
 }

@@ -20,8 +20,6 @@ public class Player {
     private int forceY=0;
     private float x_position;
     private float y_position;
-    private int x_direction;
-    private int y_direction;
     private GameStateManager gsm;
     private Texture texture;
     private int jumps = 0;
@@ -47,9 +45,6 @@ public class Player {
     }
 
     public float getX_position(){return this.x_position;}
-    public float getY_position(){return this.y_position;}
-    public int getX_direction(){return this.x_direction;}
-    public int getY_direction(){return this.y_direction;}
 
     public Texture getTexture() {
         return texture;
