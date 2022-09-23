@@ -3,7 +3,9 @@ package com.grupp28gdx.game.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -28,12 +30,15 @@ public class PlayState extends State {
     private Vector2 backgroundPosition1, backgroundPosition2;
     private ObstacleHandler obstacleHandler;
     private Texture alien;
+    private OrthographicCamera cam;
+    private PlayInputHandler playInput;
     private Hud hud;
 
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
         background = new Texture("nebulaset1.png");
+        cam = new OrthographicCamera();
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
         world = new World(new Vector2(0, -9.8f), true);
