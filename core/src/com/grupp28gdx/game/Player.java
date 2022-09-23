@@ -66,7 +66,6 @@ public class Player implements Spawnable {
     public void inputActionUp(int key) {
         switch (key){
             case 19:this.forceY=0; break;
-            case 22: forceX -= 3; break;
             case 20: forceY = 0; break;
             case 111: gsm.set(new MenuState(gsm));
         }
