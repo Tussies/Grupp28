@@ -2,21 +2,16 @@ package com.grupp28gdx.game.states;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
-import com.grupp28gdx.game.handlers.CoinHandler;
 import com.grupp28gdx.game.Player;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
 import com.grupp28gdx.game.input.PlayInputHandler;
 import com.grupp28gdx.game.render.Hud;
-import com.grupp28gdx.game.render.RenderController;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
@@ -34,6 +29,7 @@ public class PlayState extends State {
     private ObstacleHandler obstacleHandler;
     private Texture alien;
     private Hud hud;
+    private Music music;
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -47,6 +43,7 @@ public class PlayState extends State {
         ground = createGround();
         alien = player.getTexture();
         debugRenderer = new Box2DDebugRenderer();
+
 
         cam.setToOrtho(false, w/2, h/2);
 
@@ -108,6 +105,7 @@ public class PlayState extends State {
         Gdx.gl.glClearColor(0f, 0f, 0f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+
         update(Gdx.graphics.getDeltaTime());
         rc.setProjectionMatrix(cam.combined);
         rc.render(background, backgroundPosition1.x, backgroundPosition1.y, w, h);
@@ -116,6 +114,7 @@ public class PlayState extends State {
         rc.render(alien, playerBody.getPosition().x * pixelsPerMeter - (alien.getWidth()/8), playerBody.getPosition().y * pixelsPerMeter - 30, 213/4, 428/4);
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         rc.render(hud);
+        rc.render();
     }
 
     @Override
@@ -124,5 +123,6 @@ public class PlayState extends State {
         world.dispose();
         debugRenderer.dispose();
         alien.dispose();
+        music.dispose();
     }
 }

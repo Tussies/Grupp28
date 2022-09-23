@@ -1,23 +1,23 @@
 package com.grupp28gdx.game.render;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 public class RenderController {
     private SpriteBatch sb;
     public RenderController(){
         sb = new SpriteBatch();
     }
+
+    private Music music;
 
     public void render(Texture texture, int x, int y){
         sb.begin();
@@ -59,5 +59,13 @@ public class RenderController {
     public void render(Hud hud) {
         sb.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
+    }
+
+    public void render(){
+        Music music = Gdx.audio.newMusic(Gdx.files.internal("Angry-Birds-Theme-Song.wav"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();
+
     }
 }
