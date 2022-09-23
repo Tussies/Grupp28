@@ -2,6 +2,8 @@ package com.grupp28gdx.game.states;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -50,6 +52,7 @@ public class PlayState extends State {
     private OrthographicCamera cam;
     private Hud hud;
 
+
     public PlayState(GameStateManager gsm) {
         super(gsm);
         background = new Texture("nebulaset1.png");
@@ -62,6 +65,7 @@ public class PlayState extends State {
         playerBody = player.getPlayerBody();
         ground = createGround();
         debugRenderer = new Box2DDebugRenderer();
+        rc.renderBirdMusic();
 
         cam.setToOrtho(false, w/2, h/2);
 
@@ -125,6 +129,8 @@ public class PlayState extends State {
         Gdx.gl.glClearColor(0f, 0f, 0f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+
+
         update(Gdx.graphics.getDeltaTime());
         rc.setProjectionMatrix(cam.combined);
         rc.render(background, backgroundPosition1.x, backgroundPosition1.y, w, h);
@@ -133,6 +139,7 @@ public class PlayState extends State {
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         updatePlayerTexture();
         rc.render(hud);
+
     }
 
     private void updatePlayerTexture() {
