@@ -1,34 +1,31 @@
 package com.grupp28gdx.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.grupp28gdx.game.input.PlayInputHandler;
 import com.grupp28gdx.game.states.GameStateManager;
 import com.grupp28gdx.game.states.MenuState;
-import com.grupp28gdx.game.states.PlayState;
-
-import java.awt.event.ActionEvent;
-import java.util.Scanner;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
-public class Player extends Actor {
+public class Player {
     private Body player;
     private BodyDef bodyDef;
     private PolygonShape bodyShape;
     private int movementSpeed;
     private int forceX=0;
     private int forceY=0;
+    private float x_position;
+    private float y_position;
+    private int x_direction;
+    private int y_direction;
     private GameStateManager gsm;
     private Texture texture;
     private int jumps = 0;
-    long lastTap = 0;
+    private long lastTap = 0;
 
     public Player(World world){
         bodyDef = new BodyDef();
@@ -43,6 +40,16 @@ public class Player extends Actor {
         gsm = new GameStateManager();
         texture = new Texture("alien1.png");
     }
+
+    public void  setPosition(Vector2 v2){
+        x_position = v2.x;
+        y_position = v2.y;
+    }
+
+    public float getX_position(){return this.x_position;}
+    public float getY_position(){return this.y_position;}
+    public int getX_direction(){return this.x_direction;}
+    public int getY_direction(){return this.y_direction;}
 
     public Texture getTexture() {
         return texture;
