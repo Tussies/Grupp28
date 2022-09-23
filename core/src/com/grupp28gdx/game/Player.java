@@ -27,6 +27,8 @@ public class Player extends Actor {
     private int forceY=0;
     private GameStateManager gsm;
     private Texture texture;
+    private int jumps = 0;
+    long lastTap = 0;
 
     public Player(World world){
         bodyDef = new BodyDef();
@@ -48,7 +50,13 @@ public class Player extends Actor {
 
     public void inputActionDown(int key) {
         switch (key){
-            case 19: if(player.getLinearVelocity().y==0){ this.forceY = 220;System.out.println("jump");}break;
+            case 19: if(player.getLinearVelocity().y==0 || jumps < 2){
+                jumps ++;
+                this.forceY = 200;System.out.println("jump");
+                if(player.getLinearVelocity().y == 0) {
+                    jumps = 0;
+                }
+            }break;
             case 22: forceX += 1; break;
             case 20: forceY = -60; break;
         }
@@ -56,11 +64,12 @@ public class Player extends Actor {
     public void inputActionUp(int key) {
         switch (key){
             case 19:this.forceY=0; break;
-            case 22: forceX -= 1; break;
+            case 22: forceX -= 3; break;
             case 20: forceY = 0; break;
             case 111: gsm.set(new MenuState(gsm));
         }
     }
+
     public Body getPlayerBody(){
         return player;
     }
