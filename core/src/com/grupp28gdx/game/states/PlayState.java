@@ -15,6 +15,8 @@ import com.grupp28gdx.game.handlers.CoinHandler;
 import com.grupp28gdx.game.Player;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
 import com.grupp28gdx.game.input.PlayInputHandler;
+import com.grupp28gdx.game.render.Hud;
+import com.grupp28gdx.game.render.RenderController;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
@@ -33,7 +35,7 @@ public class PlayState extends State {
     private Texture alien;
     private OrthographicCamera cam;
     private PlayInputHandler playInput;
-
+    private Hud hud;
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -52,6 +54,7 @@ public class PlayState extends State {
         cam.setToOrtho(false, w/2, h/2);
 
         setInputProcessor(playInput);
+        hud = new Hud();
         obstacleHandler = new ObstacleHandler(world);
     }
 
@@ -92,6 +95,7 @@ public class PlayState extends State {
         cameraUpdate(delta);
         ground.setTransform(player.getX_position(),0, 0);
         obstacleHandler.update(Math.round(player.getX_position()),0);
+        hud.updateScore(Math.round(player.getX_position()));
     }
 
     public void cameraUpdate(float delta) {
@@ -103,17 +107,18 @@ public class PlayState extends State {
     }
 
     @Override
-    public void render(SpriteBatch sb) {
+    public void render() {
         Gdx.gl.glClearColor(0f, 0f, 0f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         update(Gdx.graphics.getDeltaTime());
-        sb.setProjectionMatrix(cam.combined);
-        rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
-        rc.render(sb,background, backgroundPosition1.x, backgroundPosition1.y, w, h);
-        rc.render(sb,background, backgroundPosition2.x, backgroundPosition2.y, w, h);
-        rc.render(sb, alien, playerBody.getPosition().x * pixelsPerMeter - (alien.getWidth()/8), playerBody.getPosition().y * pixelsPerMeter - 30, 213/4, 428/4);
+        rc.setProjectionMatrix(cam.combined);
+        rc.render(background, backgroundPosition1.x, backgroundPosition1.y, w, h);
+        rc.render(background, backgroundPosition1.x, backgroundPosition1.y, w, h);
+        rc.render(background, backgroundPosition2.x, backgroundPosition2.y, w, h);
+        rc.render(alien, playerBody.getPosition().x * pixelsPerMeter - (alien.getWidth()/8), playerBody.getPosition().y * pixelsPerMeter - 30, 213/4, 428/4);
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
+        rc.render(hud);
     }
 
     @Override

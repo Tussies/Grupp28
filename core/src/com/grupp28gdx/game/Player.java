@@ -1,32 +1,29 @@
 package com.grupp28gdx.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.grupp28gdx.game.input.PlayInputHandler;
 import com.grupp28gdx.game.states.GameStateManager;
 import com.grupp28gdx.game.states.MenuState;
-import com.grupp28gdx.game.states.PlayState;
-
-import java.awt.event.ActionEvent;
-import java.util.Scanner;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
-public class Player extends Actor {
+public class Player implements Spawnable {
     private Body player;
     private BodyDef bodyDef;
     private PolygonShape bodyShape;
     private int movementSpeed;
     private int forceX=0;
     private int forceY=0;
+    private float x_position;
+    private float y_position;
     private GameStateManager gsm;
     private Texture texture;
+    private int jumps = 0;
+    private long lastTap = 0;
 
     public Player(World world){
         bodyDef = new BodyDef();
@@ -42,13 +39,27 @@ public class Player extends Actor {
         texture = new Texture("alien1.png");
     }
 
+    public void  setPosition(Vector2 v2){
+        x_position = v2.x;
+        y_position = v2.y;
+    }
+
+    public float getX_position(){return this.x_position;}
+    public float getY_position(){return this.y_position;}
+
     public Texture getTexture() {
         return texture;
     }
 
     public void inputActionDown(int key) {
         switch (key){
-            case 19: if(player.getLinearVelocity().y==0){ this.forceY = 220;System.out.println("jump");}break;
+            case 19: if(player.getLinearVelocity().y==0 || jumps < 2){
+                jumps ++;
+                this.forceY = 200;System.out.println("jump");
+                if(player.getLinearVelocity().y == 0) {
+                    jumps = 0;
+                }
+            }break;
             case 22: forceX += 1; break;
             case 20: forceY = -60; break;
         }
@@ -56,11 +67,12 @@ public class Player extends Actor {
     public void inputActionUp(int key) {
         switch (key){
             case 19:this.forceY=0; break;
-            case 22: forceX -= 1; break;
+            case 22: forceX -= 3; break;
             case 20: forceY = 0; break;
             case 111: gsm.set(new MenuState(gsm));
         }
     }
+
     public Body getPlayerBody(){
         return player;
     }
