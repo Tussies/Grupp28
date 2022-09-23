@@ -1,10 +1,8 @@
-import com.grupp28gdx.game.Actor;
-import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertTrue;
 
 
 public class TestActor {
-    Actor testActor = new Actor();
+    /*Actor testActor = new Actor();
 
 
 
@@ -25,5 +23,5 @@ public class TestActor {
     public void testGetYDirection(){
         assertTrue(testActor.getY_direction() == 0);
 
-    }
+    }*/
 }
