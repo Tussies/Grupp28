@@ -2,21 +2,18 @@ package com.grupp28gdx.game.states;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
-import com.grupp28gdx.game.handlers.CoinHandler;
 import com.grupp28gdx.game.Player;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
 import com.grupp28gdx.game.input.PlayInputHandler;
 import com.grupp28gdx.game.render.Hud;
-import com.grupp28gdx.game.render.RenderController;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
@@ -33,11 +30,15 @@ public class PlayState extends State {
     private Vector2 backgroundPosition1, backgroundPosition2;
     private ObstacleHandler obstacleHandler;
     private Texture alien;
+    private OrthographicCamera cam;
+    private PlayInputHandler playInput;
     private Hud hud;
+
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
         background = new Texture("nebulaset1.png");
+        cam = new OrthographicCamera();
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
         world = new World(new Vector2(0, -9.8f), true);
@@ -47,6 +48,7 @@ public class PlayState extends State {
         ground = createGround();
         alien = player.getTexture();
         debugRenderer = new Box2DDebugRenderer();
+        rc.renderBirdMusic();
 
         cam.setToOrtho(false, w/2, h/2);
 
@@ -108,6 +110,8 @@ public class PlayState extends State {
         Gdx.gl.glClearColor(0f, 0f, 0f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+
+
         update(Gdx.graphics.getDeltaTime());
         rc.setProjectionMatrix(cam.combined);
         rc.render(background, backgroundPosition1.x, backgroundPosition1.y, w, h);
@@ -116,6 +120,7 @@ public class PlayState extends State {
         rc.render(alien, playerBody.getPosition().x * pixelsPerMeter - (alien.getWidth()/8), playerBody.getPosition().y * pixelsPerMeter - 30, 213/4, 428/4);
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         rc.render(hud);
+
     }
 
     @Override
@@ -124,5 +129,6 @@ public class PlayState extends State {
         world.dispose();
         debugRenderer.dispose();
         alien.dispose();
+
     }
 }
