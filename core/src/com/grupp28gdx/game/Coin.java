@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 
-public class Coin {
+public class Coin implements Spawnable{
     private int posX;
     private int posY;
     private float x_position;

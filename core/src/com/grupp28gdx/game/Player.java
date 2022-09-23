@@ -11,7 +11,7 @@ import com.grupp28gdx.game.states.MenuState;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
-public class Player {
+public class Player implements Spawnable {
     private Body player;
     private BodyDef bodyDef;
     private PolygonShape bodyShape;
@@ -45,6 +45,7 @@ public class Player {
     }
 
     public float getX_position(){return this.x_position;}
+    public float getY_position(){return this.y_position;}
 
     public Texture getTexture() {
         return texture;
