@@ -21,9 +21,9 @@ public class Player implements Spawnable {
     private float x_position;
     private float y_position;
     private GameStateManager gsm;
-    private Texture texture;
     private int jumps = 0;
     private long lastTap = 0;
+    private String playerState;
 
     public Player(World world){
         bodyDef = new BodyDef();
@@ -36,7 +36,8 @@ public class Player implements Spawnable {
         bodyShape.setAsBox(30/pixelsPerMeter, 30/pixelsPerMeter);
         player.createFixture(bodyShape, 1.0f);
         gsm = new GameStateManager();
-        texture = new Texture("alien1.png");
+
+        playerState = "walking";
     }
 
     public void  setPosition(Vector2 v2){
@@ -47,10 +48,6 @@ public class Player implements Spawnable {
     public float getX_position(){return this.x_position;}
     public float getY_position(){return this.y_position;}
 
-    public Texture getTexture() {
-        return texture;
-    }
-
     public void inputActionDown(int key) {
         switch (key){
             case 19: if(player.getLinearVelocity().y==0 || jumps < 2){
@@ -59,7 +56,9 @@ public class Player implements Spawnable {
                 if(player.getLinearVelocity().y == 0) {
                     jumps = 0;
                 }
-            }break;
+            }
+            playerState = "jumping";
+            break;
             case 22: forceX += 1; break;
             case 20: forceY = -60; break;
         }
@@ -85,6 +84,15 @@ public class Player implements Spawnable {
         player.applyForceToCenter(movementSpeed, forceY, false);
         player.setLinearVelocity(forceX * 5, player.getLinearVelocity().y);
         if(forceY>0) {forceY +=-10;}
+        if(player.getLinearVelocity().y<=-2){playerState="walking";}
         this.setPosition(player.getPosition());
+    }
+
+    public String getPlayerState() {
+        return playerState;
+    }
+
+    public int getForceY() {
+        return forceY;
     }
 }
