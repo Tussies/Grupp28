@@ -17,6 +17,10 @@ public class BodyContactListener implements ContactListener {
 
     @Override
     public void beginContact(Contact contact) {
+        System.out.println("Contact");
+        Fixture objectA = contact.getFixtureA();
+        Fixture objectB = contact.getFixtureB();
+        System.out.println(objectA.getBody().getType()+" has hit "+ objectB.getBody().getType());
     }
 
     @Override

@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
+import com.grupp28gdx.game.BodyContactListener;
 import com.grupp28gdx.game.Player;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
 import com.grupp28gdx.game.input.PlayInputHandler;
@@ -42,6 +43,7 @@ public class PlayState extends State {
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
         world = new World(new Vector2(0, -9.8f), true);
+        world.setContactListener(new BodyContactListener(this));
         player = new Player(this.world);
         this.playInput = new PlayInputHandler(player);
         playerBody = player.getPlayerBody();
