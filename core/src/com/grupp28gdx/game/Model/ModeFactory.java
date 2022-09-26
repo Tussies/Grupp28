@@ -1,7 +1,7 @@
 package com.grupp28gdx.game.Model;
 
-public interface Player {
+public interface ModeFactory {
     Player createPlayer();
-    void jump();
-    void run();
+    Coin createCoin();
+
 }
