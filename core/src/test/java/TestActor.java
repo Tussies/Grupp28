@@ -3,6 +3,7 @@ import static org.junit.Assert.assertTrue;
 
 public class TestActor {
     /*Actor testActor = new Actor();
+
     @Test
     public void testGetXPositions(){
         assertTrue(testActor.getX_position() == 0);
