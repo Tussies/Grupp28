@@ -10,7 +10,7 @@ import com.grupp28gdx.game.states.MenuState;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
-public class Player implements Spawnable {
+public class Player implements Spawnables {
     private Body player;
     private BodyDef bodyDef;
     private PolygonShape bodyShape;
