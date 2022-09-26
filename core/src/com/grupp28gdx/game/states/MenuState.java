@@ -46,10 +46,27 @@ public class MenuState extends State{
         this.rc.render(texture, posX, posY);
     }
 
+    public void inputTouchDown(int button){
+        switch (button){
+            case 1:
+                gsm.set(new PlayState(gsm));
+                dispose();
+                break;
+            case 2:
+                // gsm.set(new OptionState());
+                dispose();
+                break;
+            case 3:
+                Gdx.app.exit();
+                dispose();
+        }
+    }
+
     @Override
     public void handleInput() {
         int inputX = MenuInputHandler.checkInputX();
         int inputY = MenuInputHandler.checkInputY();
+
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/2 && screenHeight - inputY > screenHeight/2) {
             if (Gdx.input.isTouched()) {
                 gsm.set(new PlayState(gsm));
