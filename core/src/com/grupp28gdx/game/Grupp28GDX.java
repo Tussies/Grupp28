@@ -10,12 +10,10 @@ import com.grupp28gdx.game.states.MenuState;
 
 public class Grupp28GDX extends ApplicationAdapter {
 	private GameStateManager gsm;
-	private SpriteBatch batch;
 
 	@Override
 	public void create () {
 
-		//batch = new SpriteBatch();
 		gsm = new GameStateManager();
 		gsm.push(new MenuState(gsm));
 
