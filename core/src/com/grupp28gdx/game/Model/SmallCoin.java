@@ -10,7 +10,7 @@ public class SmallCoin implements Coin{
     private int points;
 
     public SmallCoin() {
-        points = 30;
+        points = 60;
         radius = 2;
         this.position = new Position(0,0);
         this.position.setXPosition(0);

@@ -11,7 +11,7 @@ public class BigCoin implements Coin{
     private int points;
 
     public BigCoin() {
-        points = 30;
+        points = 10;
         radius = 10;
         this.position = new Position(0,0);
         this.position.setXPosition(0);

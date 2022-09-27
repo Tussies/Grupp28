@@ -7,8 +7,10 @@ package com.grupp28gdx.game.Model;
 public class MediumCoin implements Coin{
     private Position position;
     private float radius;
+    private int points;
 
     public MediumCoin() {
+        points = 30;
         radius = 5;
         this.position = new Position(0,0);
         this.position.setXPosition(0);
