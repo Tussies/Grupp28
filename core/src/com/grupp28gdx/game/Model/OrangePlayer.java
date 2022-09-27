@@ -10,6 +10,7 @@ public class OrangePlayer implements Player{
     private Position position;
     private int numberOfJumps;
     private String stateOfPlayer;
+    private Player player;
 
     public OrangePlayer() {
         movementSpeed = 500;
@@ -24,7 +25,9 @@ public class OrangePlayer implements Player{
 
     @Override
     public Player createPlayer() {
-        Player player = new OrangePlayer();
+        if(player == null){
+            player = new OrangePlayer();
+        }
         return player;
     }
 

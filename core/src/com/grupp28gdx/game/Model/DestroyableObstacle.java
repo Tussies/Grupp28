@@ -5,10 +5,12 @@ package com.grupp28gdx.game.Model;
  */
 public class DestroyableObstacle implements Obstacle {
     private String shape;
+    private String color; //this color makes the destroyable obstacle distinguishable from the permanent obstacles
     private Position position;
 
     public DestroyableObstacle() {
-        shape = "circle";
+        shape = "square";
+        color = "blue";
         this.position = new Position(0,0);
         this.position.setXPosition(0);
         this.position.setYPosition(0);

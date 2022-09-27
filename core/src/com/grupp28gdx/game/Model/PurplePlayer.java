@@ -10,6 +10,7 @@ public class PurplePlayer implements Player{
     private int numberOfJumps;
     private String stateOfPlayer;
     private Position position;
+    private Player player;
 
     public PurplePlayer() {
         movementSpeed = 900;
@@ -24,9 +25,12 @@ public class PurplePlayer implements Player{
 
     @Override
     public Player createPlayer() {
-        Player player = new PurplePlayer();
+        if(player == null){
+            player = new PurplePlayer();
+        }
         return player;
     }
+
 
     @Override
     public void jump() {

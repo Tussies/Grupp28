@@ -10,6 +10,7 @@ public class GreenPlayer implements Player{
     private Position position;
     private int numberOfJumps;
     private String stateOfPlayer;
+    private Player player;
 
     public GreenPlayer() {
         movementSpeed = 700;
@@ -24,7 +25,9 @@ public class GreenPlayer implements Player{
 
     @Override
     public Player createPlayer() {
-        Player player = new PurplePlayer();
+        if(player == null){
+            player = new GreenPlayer();
+        }
         return player;
     }
 
