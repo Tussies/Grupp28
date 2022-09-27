@@ -13,9 +13,9 @@ public class PurplePlayer implements Player{
 
     public PurplePlayer() {
         movementSpeed = 900;
-        position = new Position(0,0);
-        position.setXPosition(0);
-        position.setYPosition(0);
+        this.position = new Position(0,0);
+        this.position.setXPosition(0);
+        this.position.setYPosition(0);
         forceX = 0;
         forceY = 0;
         numberOfJumps = 0;

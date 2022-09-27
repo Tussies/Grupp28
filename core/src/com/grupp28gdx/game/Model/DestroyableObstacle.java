@@ -1,14 +1,21 @@
 package com.grupp28gdx.game.Model;
 
-public class DestroyableObstacle implements ObstacleFactory{
-    private String typeOfObstacle;
-    private int obstacleDifficulty;
+/**
+ * This obstacle is not permanent, which means that it will disappear if the player shoots it with a gun.
+ */
+public class DestroyableObstacle implements Obstacle {
+    private String shape;
     private Position position;
 
     public DestroyableObstacle() {
-        obstacleDifficulty = 1;
-        position = new Position(0,0);
-        position.setXPosition(0);
-        position.setYPosition(0);
+        shape = "circle";
+        this.position = new Position(0,0);
+        this.position.setXPosition(0);
+        this.position.setYPosition(0);
+    }
+
+    @Override
+    public Obstacle createObstacle() {
+        return new PermanentObstacle();
     }
 }

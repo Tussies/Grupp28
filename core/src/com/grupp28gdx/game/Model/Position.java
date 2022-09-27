@@ -1,5 +1,9 @@
 package com.grupp28gdx.game.Model;
 
+/**
+ * All objects that have a position in the game(obstacles, player, coins) have a Position object that
+ * updates as the game progresses.
+ */
 public class Position {
 
     private float x_position;
