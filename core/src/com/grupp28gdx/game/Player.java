@@ -53,11 +53,11 @@ public class Player implements Spawnables {
     public void inputActionDown(int key) {
         switch (key) {
             case 19:
-                if (player.getLinearVelocity().y == 0 || jumps < 2) {
+                if (this.getYVelocity() == 0 || jumps < 2) {
                     jumps++;
                     this.forceY = 200;
                     System.out.println("jump");
-                    if (player.getLinearVelocity().y == 0) {
+                    if (this.getYVelocity() == 0) {
                         jumps = 0;
                     }
                 }

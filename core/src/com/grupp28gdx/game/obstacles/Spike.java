@@ -17,11 +17,12 @@ public class Spike extends Obstacle {
         definition.type = BodyDef.BodyType.StaticBody;
         definition.position.set(posX, (float) (Math.random()%5));
         definition.fixedRotation = true;
-        Vector2 v2 = new Vector2();
+        
 
         this.setPosition(posX, posY);
         spike = new PolygonShape();
-        spike.set(spikeBodyVectors);
+        //@TODO fix the fucking shapes
+        //spike.set(spikeBodyVectors);
     }
     @Override
     public PolygonShape getBodyShape(){

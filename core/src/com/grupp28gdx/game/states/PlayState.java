@@ -118,8 +118,8 @@ public class PlayState extends State {
 
     public void cameraUpdate(float delta) {
         Vector3 position = cam.position;
-        position.x = playerBody.getPosition().x * pixelsPerMeter;
-        position.y = playerBody.getPosition().y * pixelsPerMeter;
+        position.x = player.getX_position()* pixelsPerMeter;
+        position.y = player.getY_position() * pixelsPerMeter;
 
         rc.updateCamera(cam,position);
     }
@@ -149,7 +149,7 @@ public class PlayState extends State {
                 frame += 0.1;
                 frame = frame % 60;
                 animationFrame = animationFrame % 5;
-                rc.render(playerWalkingAnimation[animationFrame], playerBody.getPosition().x * pixelsPerMeter - (playerWalkingAnimation[1].getWidth()/8f), playerBody.getPosition().y * pixelsPerMeter - 30, 200/4f, 422/4f);
+                rc.render(playerWalkingAnimation[animationFrame], player.getX_position() * pixelsPerMeter - (playerWalkingAnimation[1].getWidth()/8f), player.getY_position() * pixelsPerMeter - 30, 200/4f, 422/4f);
                 break;
             case "jumping":
                 frame += 0.1;
@@ -158,7 +158,7 @@ public class PlayState extends State {
                 if(player.getForceY() == 180){ frame = 0; animationFrame=0;}
                 animationFrame = animationFrame % 4;
                 System.out.println(animationFrame);
-                rc.render(playerJumpingAnimation[animationFrame], playerBody.getPosition().x * pixelsPerMeter - (playerJumpingAnimation[1].getWidth()/8f), playerBody.getPosition().y * pixelsPerMeter - 30, 250/4f, 422/4f);
+                rc.render(playerJumpingAnimation[animationFrame], player.getX_position() * pixelsPerMeter - (playerJumpingAnimation[1].getWidth()/8f), player.getY_position() * pixelsPerMeter - 30, 250/4f, 422/4f);
                 break;
         }
     }
