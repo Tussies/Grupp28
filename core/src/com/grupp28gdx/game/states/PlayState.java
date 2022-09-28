@@ -2,8 +2,6 @@ package com.grupp28gdx.game.states;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -62,7 +60,7 @@ public class PlayState extends State {
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
         world = new World(new Vector2(0, -9.8f), true);
         world.setContactListener(new BodyContactListener(this));
-        player = new Player(this.world);
+        player = new Player();
         this.playInput = new PlayInputHandler(player);
         playerBody = player.getPlayerBody();
         ground = createGround();
