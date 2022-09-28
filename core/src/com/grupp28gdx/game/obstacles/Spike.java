@@ -18,9 +18,8 @@ public class Spike extends Obstacle {
         definition.position.set(posX, (float) (Math.random()%5));
         definition.fixedRotation = true;
         Vector2 v2 = new Vector2();
-        v2.x = posX;
-        v2.y = posY;
-        this.setPosition(v2);
+
+        this.setPosition(posX, posY);
         spike = new PolygonShape();
         spike.set(spikeBodyVectors);
     }

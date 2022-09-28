@@ -31,17 +31,11 @@ public abstract class Obstacle implements Spawnables {
         return typeOfObstacle;
     }
 
-    public void setPosX(float value){
-        this.posX = value;
-    }
 
-    public void setPosy(int value){
-        this.posY = value;
-    }
 
-    public void  setPosition(Vector2 v2){
-        x_position = v2.x;
-        y_position = v2.y;
+    public void  setPosition(float xPos, float yPos){
+        x_position = xPos;
+        y_position = yPos;
     }
 
     public float getX_position(){return this.x_position;}

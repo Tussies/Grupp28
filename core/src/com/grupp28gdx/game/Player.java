@@ -11,12 +11,13 @@ import com.grupp28gdx.game.states.MenuState;
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
 public class Player implements Spawnables {
+
     private Body player;
     private BodyDef bodyDef;
     private PolygonShape bodyShape;
     private int movementSpeed;
-    private int forceX=0;
-    private int forceY=0;
+    private int forceX = 0;
+    private int forceY = 0;
     private float x_position;
     private float y_position;
     private GameStateManager gsm;
@@ -27,8 +28,8 @@ public class Player implements Spawnables {
     private int xVelocity;
     private int yVelocity;
 
-        //Removed world from parameters
-    public Player(){
+    //Removed world from parameters
+    public Player() {
         //bodyDef = new BodyDef();
         //bodyDef.type = BodyDef.BodyType.DynamicBody;
         //bodyDef.position.set(0,1);
@@ -43,40 +44,52 @@ public class Player implements Spawnables {
         playerState = "walking";
     }
 
-    public void  setPosition(float xPos, float yPos){
+    public void setPosition(float xPos, float yPos) {
         x_position = xPos;
         y_position = yPos;
     }
 
 
     public void inputActionDown(int key) {
-        switch (key){
-            case 19: if(player.getLinearVelocity().y==0 || jumps < 2){
-                jumps ++;
-                this.forceY = 200;System.out.println("jump");
-                if(player.getLinearVelocity().y == 0) {
-                    jumps = 0;
+        switch (key) {
+            case 19:
+                if (player.getLinearVelocity().y == 0 || jumps < 2) {
+                    jumps++;
+                    this.forceY = 200;
+                    System.out.println("jump");
+                    if (player.getLinearVelocity().y == 0) {
+                        jumps = 0;
+                    }
                 }
-            }
-            playerState = "jumping";
-            break;
-            case 22: forceX += 1; break;
-            case 20: forceY = -60; break;
-        }
-    }
-    public void inputActionUp(int key) {
-        switch (key){
-            case 19:this.forceY=0; break;
-            case 20: forceY = 0; break;
-            case 111: gsm.set(new MenuState(gsm));
+                playerState = "jumping";
+                break;
+            case 22:
+                forceX += 1;
+                break;
+            case 20:
+                forceY = -60;
+                break;
         }
     }
 
-    public Body getPlayerBody(){
+    public void inputActionUp(int key) {
+        switch (key) {
+            case 19:
+                this.forceY = 0;
+                break;
+            case 20:
+                forceY = 0;
+                break;
+            case 111:
+                gsm.set(new MenuState(gsm));
+        }
+    }
+
+    public Body getPlayerBody() {
         return player;
     }
 
-    public PolygonShape getBodyShape(){
+    public PolygonShape getBodyShape() {
         return bodyShape;
     }
 
@@ -84,9 +97,13 @@ public class Player implements Spawnables {
         //player.applyForceToCenter(movementSpeed, forceY, false);
         this.setXVelocity(forceX * 5);
         this.setYVelocity(getYVelocity());
-        if(forceY>0) {forceY +=-10;}
-        if(this.getYVelocity()<=-2){playerState="walking";}
-        this.setPosition(this.getX_position(),this.getY_position());
+        if (forceY > 0) {
+            forceY += -10;
+        }
+        if (this.getYVelocity() <= -2) {
+            playerState = "walking";
+        }
+        this.setPosition(this.getX_position(), this.getY_position());
     }
 
     public String getPlayerState() {
@@ -97,17 +114,29 @@ public class Player implements Spawnables {
         return forceY;
     }
 
-    public void setXVelocity(int velocity){
+    public void setXVelocity(int velocity) {
         this.xVelocity = velocity;
     }
-    public void setYVelocity(int velocity){
+
+    public void setYVelocity(int velocity) {
         this.yVelocity = velocity;
     }
-    public int getXVelocity(){return this.xVelocity;}
-    public int getYVelocity(){return this.yVelocity;}
 
-    public float getX_position(){return this.x_position;}
-    public float getY_position(){return this.y_position;}
+    public int getXVelocity() {
+        return this.xVelocity;
+    }
+
+    public int getYVelocity() {
+        return this.yVelocity;
+    }
+
+    public float getX_position() {
+        return this.x_position;
+    }
+
+    public float getY_position() {
+        return this.y_position;
+    }
 
 
 }
