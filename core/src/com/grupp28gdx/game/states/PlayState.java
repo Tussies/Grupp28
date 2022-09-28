@@ -87,7 +87,7 @@ public class PlayState extends State {
     public Body createGround() {
         BodyDef definition = new BodyDef();
         definition.type = BodyDef.BodyType.StaticBody;
-        definition.position.set(0,0);
+        definition.position.set(-10,-10);
         definition.fixedRotation = true;
         ground = world.createBody(definition);
 

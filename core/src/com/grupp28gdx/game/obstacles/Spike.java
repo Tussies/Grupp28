@@ -23,7 +23,7 @@ public class Spike extends Obstacle {
         this.setPosition(posX, posY);
         spike = new PolygonShape();
         //@TODO fix the fucking shapes
-        spike.set(spikeBodyVectors);
+        //spike.set(spikeBodyVectors);
     }
     @Override
     public PolygonShape getBodyShape(){

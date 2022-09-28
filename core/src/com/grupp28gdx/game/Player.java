@@ -53,11 +53,11 @@ public class Player implements Spawnables {
     public void inputActionDown(int key) {
         switch (key) {
             case 19:
-                if (this.getYVelocity() == 0 || jumps < 2) {
+                if (this.getYVelocity() == 0 || jumps < 1) {
                     jumps++;
                     this.forceY = 200;
                     System.out.println("jump");
-                    if (this.getYVelocity() == 0) {
+                    if (this.getY_position() == 0) {
                         jumps = 0;
                     }
                 }
@@ -79,6 +79,7 @@ public class Player implements Spawnables {
                 break;
             case 20:
                 forceY = 0;
+
                 break;
             case 111:
                 gsm.set(new MenuState(gsm));
@@ -99,6 +100,7 @@ public class Player implements Spawnables {
         this.setYVelocity(getYVelocity());
         if (forceY > 0) {
             forceY += -10;
+
         }
         if (this.getYVelocity() <= -2) {
             playerState = "walking";
