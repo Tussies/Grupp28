@@ -4,13 +4,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.grupp28gdx.game.Model.VectorPosition;
+import com.grupp28gdx.game.Model.Position;
+
 
 public class Spike extends Obstacle {
-    VectorPosition[] spikeBodyVectors = {
-            new VectorPosition(this.getX_position(),this.getY_position()+1),
-            new VectorPosition(this.getX_position()+2,this.getY_position()+1),
-            new VectorPosition(this.getX_position()+1,this.getY_position()+2)};
+    Position[] spikeBodyVectors = {
+            new Position(this.getX_position(),this.getY_position()+1),
+            new Position(this.getX_position()+2,this.getY_position()+1),
+            new Position(this.getX_position()+1,this.getY_position()+2)};
     PolygonShape spike;
     BodyDef definition;
     public Spike(float posX, float posY) {
