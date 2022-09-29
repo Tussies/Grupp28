@@ -56,7 +56,7 @@ public class Player implements Spawnables {
                 if (this.getYVelocity() == 0 || jumps < 1) {
                     jumps++;
                     this.forceY = 200;
-                    System.out.println("jump");
+
                     if (this.getY_position() == 0) {
                         jumps = 0;
                     }
@@ -98,6 +98,12 @@ public class Player implements Spawnables {
         //player.applyForceToCenter(movementSpeed, forceY, false);
         this.setXVelocity(forceX * 5);
         this.setYVelocity(getYVelocity());
+        /* Code used to check is velocity and position work properly
+        System.out.println("X vel is " + this.getXVelocity() + " Y vel is " + this.getYVelocity());
+        System.out.println("X pos is " + this.getX_position() + " Y pos is " + this.getY_position());
+        */
+
+        this.setPosition(this.getX_position()+this.getXVelocity(), this.getY_position()+this.getYVelocity());
         if (forceY > 0) {
             forceY += -10;
 
@@ -106,6 +112,7 @@ public class Player implements Spawnables {
             playerState = "walking";
         }
         this.setPosition(this.getX_position(), this.getY_position());
+
     }
 
     public String getPlayerState() {

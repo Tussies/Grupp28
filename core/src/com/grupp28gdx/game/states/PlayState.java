@@ -154,10 +154,10 @@ public class PlayState extends State {
             case "jumping":
                 frame += 0.1;
                 frame = frame % 60;
-                System.out.println(player.getForceY());
+
                 if(player.getForceY() == 180){ frame = 0; animationFrame=0;}
                 animationFrame = animationFrame % 4;
-                System.out.println(animationFrame);
+
                 rc.render(playerJumpingAnimation[animationFrame], player.getX_position() * pixelsPerMeter - (playerJumpingAnimation[1].getWidth()/8f), player.getY_position() * pixelsPerMeter - 30, 250/4f, 422/4f);
                 break;
         }
