@@ -99,17 +99,19 @@ public class Player implements Spawnables {
         this.setXVelocity(forceX * 5);
         this.setYVelocity(forceY );
         // Code used to check is velocity and position work properly
-        System.out.println("X vel is " + this.getXVelocity() + " Y vel is " + this.getYVelocity());
+        //System.out.println("X vel is " + this.getXVelocity() + " Y vel is " + this.getYVelocity());
         System.out.println("X pos is " + this.getX_position() + " Y pos is " + this.getY_position());
 
 
         this.setPosition(this.getXVelocity(), this.getY_position()+this.getYVelocity());
-        if (forceY > 0) {
-            forceY += -10;
+        if (this.getY_position() > 0) {
+             this.forceY += -10;
 
         }
-        if (this.getYVelocity() <= -2) {
+        if (this.getY_position() <= -2) {
             playerState = "walking";
+            this.forceY = 0;
+            this.setPosition(this.getX_position(), 0);
         }
         this.setPosition(this.getX_position(), this.getY_position());
 
