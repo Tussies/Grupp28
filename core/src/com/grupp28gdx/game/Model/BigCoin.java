@@ -1,6 +1,5 @@
 package com.grupp28gdx.game.Model;
 
-
 /**
  * This is the big coin. When the player catches this coin it gains x/3 the amount of points as when the player
  * catches the medium coin. There are three types of coins in total in the game to catch.

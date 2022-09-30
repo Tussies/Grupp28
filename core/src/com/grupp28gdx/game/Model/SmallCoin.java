@@ -19,7 +19,7 @@ public class SmallCoin implements Coin{
 
     @Override
     public Coin createCoin() {
-        Coin coin = new MediumCoin();
+        Coin coin = new SmallCoin();
         return coin;
     }
 
