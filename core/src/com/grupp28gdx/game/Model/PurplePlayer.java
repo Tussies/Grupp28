@@ -4,22 +4,19 @@ package com.grupp28gdx.game.Model;
  * This is the most difficult player. It runs faster than the default player.
  */
 public class PurplePlayer implements Player{
-    private int movementSpeed;
-    private int forceX;
-    private int forceY;
-    private int numberOfJumps;
     private String stateOfPlayer;
     private Position position;
     private Player player;
+    private int lives;
 
     public PurplePlayer() {
-        movementSpeed = 900;
+        this.position.setMovementSpeed(900);
+        lives = 0;
         this.position = new Position(0,0);
         this.position.setXPosition(0);
         this.position.setYPosition(0);
-        forceX = 0;
-        forceY = 0;
-        numberOfJumps = 0;
+        this.position.setForceX(0);
+        this.position.setForceY(0);
         stateOfPlayer = "walking";
     }
 
@@ -42,4 +39,19 @@ public class PurplePlayer implements Player{
 
     }
 
+    public void setStateOfPlayer(String stateOfPlayer) {
+        this.stateOfPlayer = stateOfPlayer;
+    }
+
+    public String getStateOfPlayer() {
+        return stateOfPlayer;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
 }
