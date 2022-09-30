@@ -12,6 +12,4 @@ public interface Player {
     void setLives(int lives);
     void jump();
     void run();
-    void setMovementSpeed(int speed);
-    int getMovementSpeed();
 }
