@@ -19,4 +19,8 @@ public class WallObstacle implements Obstacle{
     public Obstacle createObstacle() {
         return new WallObstacle();
     }
+
+    public String getShape() {
+        return shape;
+    }
 }

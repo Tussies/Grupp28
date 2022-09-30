@@ -20,4 +20,8 @@ public class DestroyableObstacle implements Obstacle {
     public Obstacle createObstacle() {
         return new PermanentObstacle();
     }
+
+    public String getShape() {
+        return shape;
+    }
 }
