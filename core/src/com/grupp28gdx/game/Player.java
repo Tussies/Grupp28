@@ -16,7 +16,7 @@ public class Player implements Spawnables {
     private BodyDef bodyDef;
     private PolygonShape bodyShape;
     private int movementSpeed;
-    private int forceX = 0;
+    private float forceX = 0.2f;
     private int forceY = 0;
     private float x_position;
     private float y_position;
@@ -25,7 +25,7 @@ public class Player implements Spawnables {
     private long lastTap = 0;
     private String playerState;
 
-    private int xVelocity;
+    private float xVelocity;
     private int yVelocity;
 
     //Removed world from parameters
@@ -64,9 +64,12 @@ public class Player implements Spawnables {
                 playerState = "jumping";
                 break;
             case 22:
-                forceX += 1;
+                forceX += 0.2;
                 break;
             case 20:
+                if(this.getY_position() == 0){
+                    break;
+                }
                 forceY = -60;
                 break;
         }
@@ -75,7 +78,7 @@ public class Player implements Spawnables {
     public void inputActionUp(int key) {
         switch (key) {
             case 19:
-                this.forceY = 0;
+                this.forceY = 10;
                 break;
             case 20:
                 forceY = 0;
@@ -90,30 +93,24 @@ public class Player implements Spawnables {
         return player;
     }
 
-    public PolygonShape getBodyShape() {
-        return bodyShape;
-    }
 
     public void playerMovementUpdate(float delta) {
-        //player.applyForceToCenter(movementSpeed, forceY, false);
-        this.setXVelocity(forceX * 5);
-        this.setYVelocity(forceY );
-        // Code used to check is velocity and position work properly
-        //System.out.println("X vel is " + this.getXVelocity() + " Y vel is " + this.getYVelocity());
-        System.out.println("X pos is " + this.getX_position() + " Y pos is " + this.getY_position());
 
+        this.setXVelocity(this.getXVelocity()+this.forceX);
+        this.setYVelocity(this.getYVelocity()+this.forceY);
 
         this.setPosition(this.getXVelocity(), this.getY_position()+this.getYVelocity());
-        if (this.getY_position() > 0) {
-             this.forceY += -10;
-
+        if(this.getY_position() > 0){
+            this.forceY += -0.2;
         }
-        if (this.getY_position() <= -2) {
-            playerState = "walking";
+        if(this.getY_position() <=0){
+            this.playerState = "walking";
             this.forceY = 0;
             this.setPosition(this.getX_position(), 0);
         }
-        this.setPosition(this.getX_position(), this.getY_position());
+
+        //System.out.println(this.getXVelocity());
+        //System.out.println(this.jumps);
 
     }
 
@@ -125,7 +122,7 @@ public class Player implements Spawnables {
         return forceY;
     }
 
-    public void setXVelocity(int velocity) {
+    public void setXVelocity(float velocity) {
         this.xVelocity = velocity;
     }
 
@@ -133,7 +130,7 @@ public class Player implements Spawnables {
         this.yVelocity = velocity;
     }
 
-    public int getXVelocity() {
+    public float getXVelocity() {
         return this.xVelocity;
     }
 
