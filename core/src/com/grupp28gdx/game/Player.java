@@ -25,20 +25,12 @@ public class Player implements Spawnables {
     private long lastTap = 0;
     private String playerState;
 
-    private float xVelocity;
-    private int yVelocity;
+    private float xVelocity = 0.2f;
+    private float yVelocity;
 
     //Removed world from parameters
     public Player() {
-        //bodyDef = new BodyDef();
-        //bodyDef.type = BodyDef.BodyType.DynamicBody;
-        //bodyDef.position.set(0,1);
-        //bodyDef.fixedRotation = true;
-        //player = world.createBody(bodyDef);
-        movementSpeed = 700;
-        //bodyShape = new PolygonShape();
-        //bodyShape.setAsBox(30/pixelsPerMeter, 30/pixelsPerMeter);
-        //player.createFixture(bodyShape, 1.0f);
+
         gsm = new GameStateManager();
 
         playerState = "walking";
@@ -55,7 +47,7 @@ public class Player implements Spawnables {
             case 19:
                 if (this.getYVelocity() == 0 || jumps < 1) {
                     jumps++;
-                    this.forceY = 200;
+                    this.setYVelocity(0.0001f);
 
                     if (this.getY_position() == 0) {
                         jumps = 0;
@@ -78,12 +70,15 @@ public class Player implements Spawnables {
     public void inputActionUp(int key) {
         switch (key) {
             case 19:
-                this.forceY = 10;
+                this.setYVelocity(0.5f);
                 break;
             case 20:
                 forceY = 0;
 
                 break;
+
+            case 22:
+                //this.setXVelocity();
             case 111:
                 gsm.set(new MenuState(gsm));
         }
@@ -96,21 +91,24 @@ public class Player implements Spawnables {
 
     public void playerMovementUpdate(float delta) {
 
-        this.setXVelocity(this.getXVelocity()+this.forceX);
-        this.setYVelocity(this.getYVelocity()+this.forceY);
+        this.setPosition(this.getX_position() + this.getXVelocity(), this.getY_position()+this.getYVelocity());
 
-        this.setPosition(this.getXVelocity(), this.getY_position()+this.getYVelocity());
+
+
         if(this.getY_position() > 0){
-            this.forceY += -0.2;
+            this.setYVelocity(this.getYVelocity()-0.02f);
+            System.out.println(this.getYVelocity());
         }
         if(this.getY_position() <=0){
             this.playerState = "walking";
-            this.forceY = 0;
-            this.setPosition(this.getX_position(), 0);
+            this.setYVelocity(0);
+            this.setPosition(this.getX_position(), 0f);
         }
 
-        //System.out.println(this.getXVelocity());
-        //System.out.println(this.jumps);
+        //System.out.println(this.getXVelocity() + " left Xvel right Xpos " + this.getX_position());
+        if(this.getY_position() > 0 || this.getYVelocity()>0) {
+            System.out.println((this.getYVelocity() + " left is Yvel right is Ypos " + this.getY_position()));
+        }
 
     }
 
@@ -126,7 +124,7 @@ public class Player implements Spawnables {
         this.xVelocity = velocity;
     }
 
-    public void setYVelocity(int velocity) {
+    public void setYVelocity(float velocity) {
         this.yVelocity = velocity;
     }
 
@@ -134,7 +132,7 @@ public class Player implements Spawnables {
         return this.xVelocity;
     }
 
-    public int getYVelocity() {
+    public float getYVelocity() {
         return this.yVelocity;
     }
 
