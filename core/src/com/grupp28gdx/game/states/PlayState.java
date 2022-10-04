@@ -62,7 +62,6 @@ public class PlayState extends State {
         world.setContactListener(new BodyContactListener(this));
         player = new Player();
         this.playInput = new PlayInputHandler(player);
-        playerBody = player.getPlayerBody();
         ground = createGround();
         debugRenderer = new Box2DDebugRenderer();
         rc.renderBirdMusic();
