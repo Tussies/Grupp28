@@ -45,18 +45,11 @@ public class Player implements Spawnables {
     public void inputActionDown(int key) {
         switch (key) {
             case 19:
-                if (this.getYVelocity() == 0 || jumps < 1) {
-                    jumps++;
-                    this.setYVelocity(0.0001f);
-
-                    if (this.getY_position() == 0) {
-                        jumps = 0;
-                    }
-                }
+                this.jump();
                 playerState = "jumping";
                 break;
             case 22:
-                forceX += 0.2;
+                this.setXVelocity(0.4f);
                 break;
             case 20:
                 if(this.getY_position() == 0){
@@ -70,7 +63,8 @@ public class Player implements Spawnables {
     public void inputActionUp(int key) {
         switch (key) {
             case 19:
-                this.setYVelocity(0.5f);
+               //this.setYVelocity(0.5f);
+
                 break;
             case 20:
                 forceY = 0;
@@ -78,7 +72,8 @@ public class Player implements Spawnables {
                 break;
 
             case 22:
-                //this.setXVelocity();
+                this.setXVelocity(0.2f);
+                break;
             case 111:
                 gsm.set(new MenuState(gsm));
         }
@@ -88,27 +83,34 @@ public class Player implements Spawnables {
         return player;
     }
 
+    public void jump (){
+        if (this.getYVelocity() == 0 || this.jumps < 2) {
+            this.jumps++;
+            this.setYVelocity(0.5f);
+            System.out.println(this.jumps + " left jumps right ypos " + this.getY_position());
+
+            if (this.getY_position() == 0) {
+                this.jumps = 0;
+            }
+        }
+
+    }
+
 
     public void playerMovementUpdate(float delta) {
 
         this.setPosition(this.getX_position() + this.getXVelocity(), this.getY_position()+this.getYVelocity());
 
-
-
         if(this.getY_position() > 0){
             this.setYVelocity(this.getYVelocity()-0.02f);
-            System.out.println(this.getYVelocity());
         }
         if(this.getY_position() <=0){
             this.playerState = "walking";
             this.setYVelocity(0);
             this.setPosition(this.getX_position(), 0f);
+
         }
 
-        //System.out.println(this.getXVelocity() + " left Xvel right Xpos " + this.getX_position());
-        if(this.getY_position() > 0 || this.getYVelocity()>0) {
-            System.out.println((this.getYVelocity() + " left is Yvel right is Ypos " + this.getY_position()));
-        }
 
     }
 
