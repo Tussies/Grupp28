@@ -55,7 +55,9 @@ public class Player implements Spawnables {
                 if(this.getY_position() == 0){
                     break;
                 }
-                forceY = -60;
+
+                this.setYVelocity(-0.3f);
+
                 break;
         }
     }
@@ -87,7 +89,6 @@ public class Player implements Spawnables {
         if (this.getYVelocity() == 0 || this.jumps < 2) {
             this.jumps++;
             this.setYVelocity(0.5f);
-            System.out.println(this.jumps + " left jumps right ypos " + this.getY_position());
 
             if (this.getY_position() == 0) {
                 this.jumps = 0;
