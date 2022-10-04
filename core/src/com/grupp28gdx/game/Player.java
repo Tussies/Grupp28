@@ -1,28 +1,19 @@
 package com.grupp28gdx.game;
 
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
+
 import com.grupp28gdx.game.states.GameStateManager;
 import com.grupp28gdx.game.states.MenuState;
 
-import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
 public class Player implements Spawnables {
 
-    private Body player;
-    private BodyDef bodyDef;
-    private PolygonShape bodyShape;
-    private int movementSpeed;
+
     private float forceX = 0.2f;
     private int forceY = 0;
     private float x_position;
     private float y_position;
     private GameStateManager gsm;
     private int jumps = 0;
-    private long lastTap = 0;
     private String playerState;
 
     private float xVelocity = 0.2f;
@@ -81,9 +72,6 @@ public class Player implements Spawnables {
         }
     }
 
-    public Body getPlayerBody() {
-        return player;
-    }
 
     public void jump (){
         if (this.getYVelocity() == 0 || this.jumps < 2) {
