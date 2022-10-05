@@ -3,7 +3,7 @@ package com.grupp28gdx.game.Model;
 /**
  * This is where all objects of the world will be placed and updated. Also the game loop.
  */
-public class World implements Runnable {
+/*public class World implements Runnable {
     private Thread thread;
     private int fps;
     private double timePerTick;
@@ -77,4 +77,4 @@ public class World implements Runnable {
     private void update() {
         //skall uppdatera alla variabler sen
     }
-}
+}*/

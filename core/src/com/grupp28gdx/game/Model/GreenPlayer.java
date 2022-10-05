@@ -16,6 +16,7 @@ public class GreenPlayer implements Player{
 
     private String stateOfPlayer;
     private Player player;
+    private int lives;
 
     enum States{idle,walking,jumping, falling, running}
     enum Directions{left,right}
@@ -26,13 +27,13 @@ public class GreenPlayer implements Player{
     boolean onGround = true;
 
     public GreenPlayer() {
-        movementSpeed = 700;
+        this.position.setMovementSpeed(700);
+        lives = 3;
         this.position = new Position(0,0);
         this.position.setXPosition(0);
         this.position.setYPosition(0);
-        forceX = 0;
-        forceY = 0;
-        numberOfJumps = 0;
+        this.position.setForceX(0);
+        this.position.setForceY(0);
         stateOfPlayer = "walking";
     }
 
@@ -84,6 +85,7 @@ public class GreenPlayer implements Player{
 
     }
 
+
     public void inputKeyDown(int key){
         switch (key){
             case 51: // w
@@ -124,5 +126,20 @@ public class GreenPlayer implements Player{
         }
     }
 
+    public void setStateOfPlayer(String stateOfPlayer) {
+        this.stateOfPlayer = stateOfPlayer;
+    }
+
+    public String getStateOfPlayer() {
+        return stateOfPlayer;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
 }
 

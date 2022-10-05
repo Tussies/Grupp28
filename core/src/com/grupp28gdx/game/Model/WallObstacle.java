@@ -5,11 +5,11 @@ package com.grupp28gdx.game.Model;
  * This obstacle will not disappear, much like the permanent obstacle, if the player shoots it with a gun.
  */
 public class WallObstacle implements Obstacle{
-    private String shape;
+    private ObstacleShape shape;
     private Position position;
 
     public WallObstacle() {
-        shape = "rectangle";
+        shape = ObstacleShape.RECTANGLE;
         this.position = new Position(0,0);
         this.position.setXPosition(0);
         this.position.setYPosition(0);
@@ -18,5 +18,9 @@ public class WallObstacle implements Obstacle{
     @Override
     public Obstacle createObstacle() {
         return new WallObstacle();
+    }
+
+    public ObstacleShape getShape() {
+        return shape;
     }
 }
