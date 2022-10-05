@@ -21,11 +21,11 @@ public class Position {
     }
 
     public void setXPosition(float x) {
-        x_position = x;
+        this.x_position = x;
     }
 
     public void setYPosition(float y) {
-        y_position = y;
+        this.y_position = y;
     }
 
     public float getXPosition() {
