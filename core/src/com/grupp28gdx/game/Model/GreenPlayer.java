@@ -141,5 +141,7 @@ public class GreenPlayer implements Player{
     public void setLives(int lives) {
         this.lives = lives;
     }
+
+
 }
 
