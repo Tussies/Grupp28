@@ -6,6 +6,20 @@ package com.grupp28gdx.game.Model;
  */
 public class Position {
 
+    protected float x;
+    protected float y;
+
+    public Position(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void setXPosition(float x) {
+        this.x = x;
+    }
+
+    public void setYPosition(float y) {
+        this.y = y;
     private float x_position;
     private float y_position;
     private int forceX;
@@ -29,11 +43,11 @@ public class Position {
     }
 
     public float getXPosition() {
-        return this.x_position;
+        return this.x;
     }
 
     public float getYPosition() {
-        return this.y_position;
+        return this.y;
     }
 
     public void setForceX(int forceX) {
