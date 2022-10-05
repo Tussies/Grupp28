@@ -8,6 +8,7 @@ public class OrangePlayer implements Player{
     private String stateOfPlayer;
     private Player player;
     private int lives;
+    private int gemCounter;
 
     public OrangePlayer() {
         this.position.setMovementSpeed(700);
@@ -18,6 +19,8 @@ public class OrangePlayer implements Player{
         this.position.setForceX(0);
         this.position.setForceY(0);
         stateOfPlayer = "walking";
+
+        this.gemCounter = 0;
     }
 
     @Override
@@ -52,5 +55,12 @@ public class OrangePlayer implements Player{
 
     public void setLives(int lives) {
         this.lives = lives;
+    }
+
+    public void setGemCounter(int points){
+        this.gemCounter=points;
+    }
+    public int getGemCounter(){
+        return this.gemCounter;
     }
 }

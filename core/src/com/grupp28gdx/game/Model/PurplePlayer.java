@@ -8,6 +8,7 @@ public class PurplePlayer implements Player{
     private Position position;
     private Player player;
     private int lives;
+    private int gemCounter;
 
     public PurplePlayer() {
         this.position.setMovementSpeed(900);
@@ -18,6 +19,8 @@ public class PurplePlayer implements Player{
         this.position.setForceX(0);
         this.position.setForceY(0);
         stateOfPlayer = "walking";
+
+        this.gemCounter = 0;
     }
 
     @Override
@@ -53,5 +56,12 @@ public class PurplePlayer implements Player{
 
     public void setLives(int lives) {
         this.lives = lives;
+    }
+
+    public void setGemCounter(int points){
+        this.gemCounter=points;
+    }
+    public int getGemCounter(){
+        return this.gemCounter;
     }
 }

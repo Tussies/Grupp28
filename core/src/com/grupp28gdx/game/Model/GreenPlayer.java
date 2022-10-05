@@ -17,6 +17,7 @@ public class GreenPlayer implements Player{
     private String stateOfPlayer;
     private Player player;
     private int lives;
+    private int gemCounter;
 
     enum States{idle,walking,jumping, falling, running}
     enum Directions{left,right}
@@ -35,6 +36,8 @@ public class GreenPlayer implements Player{
         this.position.setForceX(0);
         this.position.setForceY(0);
         stateOfPlayer = "walking";
+
+        this.gemCounter = 0;
     }
 
     private void positionUpdate() {
@@ -143,5 +146,11 @@ public class GreenPlayer implements Player{
     }
 
 
+    public void setGemCounter(int points){
+        this.gemCounter=points;
+    }
+    public int getGemCounter(){
+        return this.gemCounter;
+    }
 }
 

@@ -13,6 +13,6 @@ public interface Player {
     void jump();
     void run();
 
-    void setGemCounter();
+    void setGemCounter(int points);
     int getGemCounter();
 }
