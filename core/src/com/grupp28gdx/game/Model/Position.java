@@ -6,27 +6,27 @@ package com.grupp28gdx.game.Model;
  */
 public class Position {
 
-    private float x_position;
-    private float y_position;
+    protected float x;
+    protected float y;
 
     public Position(float x, float y) {
-        this.x_position = x;
-        this.y_position = y;
+        this.x = x;
+        this.y = y;
     }
 
     public void setXPosition(float x) {
-        x_position = x;
+        this.x = x;
     }
 
     public void setYPosition(float y) {
-        y_position = y;
+        this.y = y;
     }
 
     public float getXPosition() {
-        return this.x_position;
+        return this.x;
     }
 
     public float getYPosition() {
-        return this.y_position;
+        return this.y;
     }
 }

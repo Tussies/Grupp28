@@ -5,12 +5,25 @@ package com.grupp28gdx.game.Model;
  */
 public class GreenPlayer implements Player{
     private int movementSpeed;
-    private int forceX;
-    private int forceY;
+
+    private float forceX;;
+    private float forceY;
+    private float velocityY;
+
     private Position position;
+
     private int numberOfJumps;
+
     private String stateOfPlayer;
     private Player player;
+
+    enum States{idle,walking,jumping, falling, running}
+    enum Directions{left,right}
+
+    States playerState = States.idle;
+    Directions playerDirection = Directions.right;
+
+    boolean onGround = true;
 
     public GreenPlayer() {
         movementSpeed = 700;
@@ -23,6 +36,16 @@ public class GreenPlayer implements Player{
         stateOfPlayer = "walking";
     }
 
+    private void positionUpdate() {
+        if (position.y<1)collisionGroundBegin();
+        if(position.y>1)collisionGroundEnd();
+        if (playerState == States.jumping || playerState == States.falling) jump();
+        else{
+            position.x += forceX;
+            position.y += velocityY;
+        }
+    }
+
     @Override
     public Player createPlayer() {
         if(player == null){
@@ -31,14 +54,75 @@ public class GreenPlayer implements Player{
         return player;
     }
 
+    public void collisionGroundBegin() {
+        forceY = 0;
+        position.y = 1;
+        onGround = true;
+        playerState = States.idle;
+        velocityY = 0;
+    }
+
+    public void collisionGroundEnd() {
+        onGround = false;
+    }
+
+
     @Override
     public void jump() {
-
+        position.x += forceX;
+        if (velocityY < 0.3 && playerState == States.jumping){
+            velocityY += 0.07;
+        }else{
+            playerState = States.falling;
+            velocityY -=0.0098;
+        }
+        position.y += velocityY;
     }
 
     @Override
     public void run() {
 
     }
+
+    public void inputKeyDown(int key){
+        switch (key){
+            case 51: // w
+                if (onGround){
+                    playerState = States.jumping;
+                }
+                velocityY = 0.1f;
+                break;
+            case 47: // s
+                break;
+            case 29: // ad
+                if (onGround){
+                    playerDirection = Directions.left;}
+                forceX = -0.1f;
+                break;
+            case 32: //d
+                if (onGround){
+                    playerDirection = Directions.right;}
+                forceX = 0.1f;
+                break;
+        }
+    }
+
+    public void inputKeyUp(int key){
+        switch (key){
+            case 51:
+                velocityY = 0;
+                break;// w
+            case 47: // s
+                velocityY = -0.01f;
+                break;
+            case 29: // a
+            case 32: //d
+                if (onGround){
+                    playerState = States.idle;}
+                forceX = 0;
+                break;
+        }
+    }
+
 }
 
