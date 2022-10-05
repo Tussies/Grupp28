@@ -16,7 +16,7 @@ public class HardModeFactory implements ModeFactory{
     }
 
     @Override
-    public Obstacle createObstacle() {
+    public Obstacle createObstacle(float spawnX,float spawnY) {
         return new DestroyableObstacle();
     }
 }

@@ -16,7 +16,7 @@ public class DefaultModeFactory implements ModeFactory{
     }
 
     @Override
-    public Obstacle createObstacle() {
-        return new WallObstacle();
+    public Obstacle createObstacle(float spawnX,float spawnY) {
+        return new WallObstacle(spawnX,spawnY);
     }
 }

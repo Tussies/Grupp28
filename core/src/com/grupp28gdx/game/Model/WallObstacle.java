@@ -5,18 +5,53 @@ package com.grupp28gdx.game.Model;
  * This obstacle will not disappear, much like the permanent obstacle, if the player shoots it with a gun.
  */
 public class WallObstacle implements Obstacle{
-    private String shape;
-    private Position position;
 
-    public WallObstacle() {
-        shape = "rectangle";
-        this.position = new Position(0,0);
-        this.position.setXPosition(0);
-        this.position.setYPosition(0);
+    private final String shape;
+
+    private float[] vectorListX;
+    private float[] vectorListY;
+
+    private final Position position;
+
+    public WallObstacle(float spawnPosX, float spawnPosY){
+        shape = "wall";
+        position = new Position(spawnPosX,spawnPosY);
+        createShape();
+    }
+
+    private void createShape() {
+        vectorListX = new float[]{
+                position.getXPosition(),
+                position.getXPosition(),
+                position.getXPosition()+1,
+                position.getXPosition()+1
+        };
+        vectorListY = new float[]{
+                position.getXPosition(),
+                position.getXPosition()+1,
+                position.getXPosition()+1,
+                position.getXPosition()
+        };
+    }
+
+    public float[] getVectorListX(){
+        return vectorListX;
+    }
+
+    public float[] getVectorListY(){
+        return vectorListY;
+    }
+
+    public String getShape(){
+        return shape;
+    }
+
+    public Position getPosition(){
+        return position;
     }
 
     @Override
-    public Obstacle createObstacle() {
-        return new WallObstacle();
+    public Obstacle createObstacle(float spawnX, float spawnY) {
+        return new WallObstacle(spawnX,spawnY);
     }
 }
