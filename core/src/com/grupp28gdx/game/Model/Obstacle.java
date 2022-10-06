@@ -5,5 +5,5 @@ package com.grupp28gdx.game.Model;
  * in total for the player to maneuver. If the player makes contact with an obstacle the game is over.
  */
 public interface Obstacle {
-    Obstacle createObstacle();
+    Obstacle createObstacle(float x,float y);
 }

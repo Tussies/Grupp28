@@ -17,8 +17,8 @@ public class DestroyableObstacle implements Obstacle {
     }
 
     @Override
-    public Obstacle createObstacle() {
-        return new PermanentObstacle();
+    public Obstacle createObstacle(float spawnX, float spawnY) {
+        return new PermanentObstacle(spawnX,spawnY);
     }
 
     public ObstacleShape getShape() {

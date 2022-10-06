@@ -1,38 +1,30 @@
 package com.grupp28gdx.game.Model;
 
-/**
- * This obstacle is like the permanent obstacle, but its height is longer.
- * This obstacle will not disappear, much like the permanent obstacle, if the player shoots it with a gun.
- */
-public class WallObstacle implements Obstacle{
+public class SpikeObstacle implements Obstacle{
 
     private final String shape;
-    private ObstacleShape shape;
 
     private float[] vectorListX;
     private float[] vectorListY;
 
     private final Position position;
 
-    public WallObstacle(float spawnPosX, float spawnPosY){
-        shape = ObstacleShape.RECTANGLE;
-        shape = "wall";
+    public SpikeObstacle(float spawnPosX, float spawnPosY){
+        shape = "spike";
         position = new Position(spawnPosX,spawnPosY);
-        createShape();
+        createSpikeShape();
     }
 
-    private void createShape() {
+    private void createSpikeShape() {
         vectorListX = new float[]{
                 position.getXPosition(),
-                position.getXPosition(),
-                position.getXPosition()+1,
+                position.getXPosition()+2,
                 position.getXPosition()+1
         };
         vectorListY = new float[]{
-                position.getXPosition(),
                 position.getXPosition()+1,
                 position.getXPosition()+1,
-                position.getXPosition()
+                position.getXPosition()+2,
         };
     }
 
@@ -54,10 +46,6 @@ public class WallObstacle implements Obstacle{
 
     @Override
     public Obstacle createObstacle(float spawnX, float spawnY) {
-        return new WallObstacle(spawnX,spawnY);
-    }
-
-    public ObstacleShape getShape() {
-        return shape;
+        return new SpikeObstacle(spawnX,spawnY);
     }
 }
