@@ -30,4 +30,6 @@ public class MediumCoin implements Coin{
     public float getRadius() {
         return this.radius;
     }
+
+    public int getPoints() {return this.points;}
 }
