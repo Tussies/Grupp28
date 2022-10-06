@@ -10,8 +10,8 @@ public class EasyModeFactory implements ModeFactory{
     }
 
     @Override
-    public Coin createCoin() {
-        return new BigCoin();
+    public Gemstone createCoin() {
+        return new BigGemstone();
     }
 
     @Override

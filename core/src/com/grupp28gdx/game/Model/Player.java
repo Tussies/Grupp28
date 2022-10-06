@@ -6,6 +6,13 @@ package com.grupp28gdx.game.Model;
  */
 public interface Player {
     Player createPlayer();
+    void setStateOfPlayer(String stateOfPlayer);
+    String getStateOfPlayer();
+    int getLives();
+    void setLives(int lives);
     void jump();
     void run();
+
+    void setGemCounter(int points);
+    int getGemCounter();
 }

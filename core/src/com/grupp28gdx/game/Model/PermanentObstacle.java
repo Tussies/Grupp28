@@ -6,6 +6,7 @@ package com.grupp28gdx.game.Model;
 public class PermanentObstacle implements Obstacle {
 
     private final String shape;
+    private ObstacleShape shape;
 
     private float[] vectorListX;
     private float[] vectorListY;
@@ -13,6 +14,7 @@ public class PermanentObstacle implements Obstacle {
     private final Position position;
 
     public PermanentObstacle(float spawnPosX, float spawnPosY){
+        shape = ObstacleShape.SQUARE;
         shape = "PermanentObstacle";
         position = new Position(spawnPosX,spawnPosY);
         createShape();
@@ -53,5 +55,9 @@ public class PermanentObstacle implements Obstacle {
     @Override
     public Obstacle createObstacle(float spawnX, float spawnY) {
         return new PermanentObstacle(spawnX,spawnY);
+    }
+
+    public ObstacleShape getShape() {
+        return shape;
     }
 }

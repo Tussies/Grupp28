@@ -11,8 +11,8 @@ public class HardModeFactory implements ModeFactory{
     }
 
     @Override
-    public Coin createCoin() {
-        return new SmallCoin();
+    public Gemstone createCoin() {
+        return new SmallGemstone();
     }
 
     @Override

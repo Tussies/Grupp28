@@ -11,8 +11,8 @@ public class DefaultModeFactory implements ModeFactory{
     }
 
     @Override
-    public Coin createCoin() {
-        return new MediumCoin();
+    public Gemstone createCoin() {
+        return new MediumGemstone();
     }
 
     @Override
