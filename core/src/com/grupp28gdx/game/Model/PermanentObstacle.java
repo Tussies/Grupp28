@@ -5,7 +5,7 @@ package com.grupp28gdx.game.Model;
  */
 public class PermanentObstacle implements Obstacle {
 
-    private final String shape;
+    private final String shapeName;
     private ObstacleShape shape;
 
     private float[] vectorListX;
@@ -15,7 +15,7 @@ public class PermanentObstacle implements Obstacle {
 
     public PermanentObstacle(float spawnPosX, float spawnPosY){
         shape = ObstacleShape.SQUARE;
-        shape = "PermanentObstacle";
+        shapeName = "PermanentObstacle";
         position = new Position(spawnPosX,spawnPosY);
         createShape();
     }
@@ -44,8 +44,8 @@ public class PermanentObstacle implements Obstacle {
         return vectorListY;
     }
 
-    public String getShape(){
-        return shape;
+    public String getShapeName(){
+        return shapeName;
     }
 
     public Position getPosition(){

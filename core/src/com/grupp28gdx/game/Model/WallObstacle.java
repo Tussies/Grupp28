@@ -6,8 +6,8 @@ package com.grupp28gdx.game.Model;
  */
 public class WallObstacle implements Obstacle{
 
-    private final String shape;
-    private ObstacleShape shape;
+/*    private final String shape;
+    private ObstacleShape shape;*/
 
     private float[] vectorListX;
     private float[] vectorListY;
@@ -15,8 +15,8 @@ public class WallObstacle implements Obstacle{
     private final Position position;
 
     public WallObstacle(float spawnPosX, float spawnPosY){
-        shape = ObstacleShape.RECTANGLE;
-        shape = "wall";
+/*        shape = ObstacleShape.RECTANGLE;
+        shape = "wall";*/
         position = new Position(spawnPosX,spawnPosY);
         createShape();
     }
@@ -44,10 +44,6 @@ public class WallObstacle implements Obstacle{
         return vectorListY;
     }
 
-    public String getShape(){
-        return shape;
-    }
-
     public Position getPosition(){
         return position;
     }
@@ -57,7 +53,10 @@ public class WallObstacle implements Obstacle{
         return new WallObstacle(spawnX,spawnY);
     }
 
-    public ObstacleShape getShape() {
+/*    public ObstacleShape getShape() {
         return shape;
     }
+    public String getShape(){
+        return shape;
+    }*/
 }
