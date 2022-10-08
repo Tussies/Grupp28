@@ -17,6 +17,10 @@ public class MediumGemstone implements Gemstone {
         this.position.setYPosition(0);
     }
 
+    /**
+     * A method which creates an instance of the class SmallGemstone
+     * @return SmallGemstone
+     */
     @Override
     public Gemstone createCoin() {
         Gemstone gemstone = new MediumGemstone();
@@ -24,15 +28,20 @@ public class MediumGemstone implements Gemstone {
     }
 
 
-
+    /**
+     * Method that updates the attribute GemCounter in the player class
+     * @param player
+     */
     public void updateGemCounter(Player player){
         player.setGemCounter(player.getGemCounter() + this.points);
 
     }
 
-    public void setSideLength(float x) {
-        sideLength = x;
-    }
+
+    /**
+     * Returns the side length of the gemstone instance
+     * @return sideLength
+     */
 
     public float getSideLength() {
         return this.sideLength;
