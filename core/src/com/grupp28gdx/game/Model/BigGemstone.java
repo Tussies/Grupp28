@@ -19,7 +19,7 @@ public class BigGemstone implements Gemstone {
     }
 
     @Override
-    public Gemstone createCoin() {
+    public Gemstone createGemstone() {
         Gemstone gemstone = new BigGemstone();
         return gemstone;
     }
@@ -33,6 +33,7 @@ public class BigGemstone implements Gemstone {
         sideLength = x;
     }
 
+    @Override
     public float getSideLength() {
         return this.sideLength;
     }

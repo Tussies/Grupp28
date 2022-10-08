@@ -18,7 +18,7 @@ public class MediumGemstone implements Gemstone {
     }
 
     @Override
-    public Gemstone createCoin() {
+    public Gemstone createGemstone() {
         Gemstone gemstone = new MediumGemstone();
         return gemstone;
     }

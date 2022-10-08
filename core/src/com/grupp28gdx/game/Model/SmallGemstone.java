@@ -19,7 +19,7 @@ public class SmallGemstone implements Gemstone {
     }
 
     @Override
-    public Gemstone createCoin() {
+    public Gemstone createGemstone() {
         Gemstone gemstone = new MediumGemstone();
         return gemstone;
     }

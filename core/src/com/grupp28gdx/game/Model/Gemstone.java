@@ -1,6 +1,7 @@
 package com.grupp28gdx.game.Model;
 
 public interface Gemstone {
-    Gemstone createCoin();
+    Gemstone createGemstone();
     void updateGemCounter(Player player);
+    float getSideLength();
 }
