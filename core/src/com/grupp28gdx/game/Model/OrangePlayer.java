@@ -11,9 +11,9 @@ public class OrangePlayer implements Player{
     private int gemCounter;
 
     public OrangePlayer() {
+        this.position = new Position(0,0);
         this.position.setMovementSpeed(700);
         lives = 5;
-        this.position = new Position(0,0);
         this.position.setXPosition(0);
         this.position.setYPosition(0);
         this.position.setForceX(0);

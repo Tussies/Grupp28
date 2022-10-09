@@ -11,9 +11,9 @@ public class PurplePlayer implements Player{
     private int gemCounter;
 
     public PurplePlayer() {
+        this.position = new Position(0,0);
         this.position.setMovementSpeed(900);
         lives = 0;
-        this.position = new Position(0,0);
         this.position.setXPosition(0);
         this.position.setYPosition(0);
         this.position.setForceX(0);

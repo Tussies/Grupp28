@@ -3,13 +3,14 @@ package Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GreenPlayer;
+import com.grupp28gdx.game.Model.OrangePlayer;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertTrue;
 
 public class BigGemstoneTest {
     BigGemstone bigGemstone = new BigGemstone();
-    GreenPlayer tempPlayer = new GreenPlayer();
+    OrangePlayer tempPlayer = new OrangePlayer();
 
     @Test
     public void createBigGemstone(){
