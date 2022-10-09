@@ -28,9 +28,10 @@ public class GreenPlayer implements Player{
     boolean onGround = true;
 
     public GreenPlayer() {
+        this.position = new Position(0,0);
         this.position.setMovementSpeed(700);
         lives = 3;
-        this.position = new Position(0,0);
+
         this.position.setXPosition(0);
         this.position.setYPosition(0);
         this.position.setForceX(0);

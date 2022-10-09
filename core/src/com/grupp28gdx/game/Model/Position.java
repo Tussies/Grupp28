@@ -14,6 +14,7 @@ public class Position {
     private int forceY;
     private int movementSpeed;
 
+
     public Position(float x, float y) {
         this.movementSpeed = 0;
         this.x_position = x;

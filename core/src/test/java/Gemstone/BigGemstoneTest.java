@@ -1,7 +1,8 @@
+package Gemstone;
+
 import com.grupp28gdx.game.Model.BigGemstone;
 import com.grupp28gdx.game.Model.Gemstone;
 import com.grupp28gdx.game.Model.GreenPlayer;
-import com.grupp28gdx.game.Player;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertTrue;
