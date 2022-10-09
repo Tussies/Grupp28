@@ -7,24 +7,24 @@ public class SpikeObstacle implements Obstacle{
     private float[] vectorListX;
     private float[] vectorListY;
 
-    private final Position position;
+    private final Body body;
 
     public SpikeObstacle(float spawnPosX, float spawnPosY){
         shape = "spike";
-        position = new Position(spawnPosX,spawnPosY);
+        body = new Body(spawnPosX,spawnPosY);
         createSpikeShape();
     }
 
     private void createSpikeShape() {
         vectorListX = new float[]{
-                position.getXPosition(),
-                position.getXPosition()+2,
-                position.getXPosition()+1
+                body.getXPosition(),
+                body.getXPosition()+2,
+                body.getXPosition()+1
         };
         vectorListY = new float[]{
-                position.getXPosition()+1,
-                position.getXPosition()+1,
-                position.getXPosition()+2,
+                body.getXPosition()+1,
+                body.getXPosition()+1,
+                body.getXPosition()+2,
         };
     }
 
@@ -40,8 +40,8 @@ public class SpikeObstacle implements Obstacle{
         return shape;
     }
 
-    public Position getPosition(){
-        return position;
+    public Body getPosition(){
+        return body;
     }
 
     @Override
