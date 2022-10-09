@@ -10,8 +10,8 @@ import com.grupp28gdx.game.Model.Position;
  */
 public class BigGemstone implements Gemstone {
     private Position position;
-    private float sideLength;
-    private int points;
+    final private float sideLength;
+    final private int points;
 
     public BigGemstone() {
         this.points = 10;

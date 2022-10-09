@@ -9,8 +9,8 @@ import com.grupp28gdx.game.Model.Position;
  */
 public class MediumGemstone implements Gemstone {
     private Position position;
-    private float sideLength;
-    private int points;
+    final private float sideLength;
+    final private int points;
 
     public MediumGemstone() {
         points = 30;
