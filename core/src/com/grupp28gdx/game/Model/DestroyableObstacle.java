@@ -1,7 +1,7 @@
 package com.grupp28gdx.game.Model;
 
 /**
- * This obstacle is not permanent, which means that it will disappear if the player shoots it with a gun.
+ * This obstacle is destroyable and not permanent, which means that it will disappear if the player shoots it with a gun.
  */
 public class DestroyableObstacle implements Obstacle {
     private ObstacleShape shape;

@@ -1,7 +1,12 @@
 package com.grupp28gdx.game.Model;
 
 /**
- * This player is the default player.
+ * This player is the default player. How fast this player runs, how high it jumps and how many
+ * lives it has is the original and default settings for a Player.
+ * The body variable is a Body object put in the GreenPlayer class by composition, determines all
+ * movement, force, speed, etc. of the Player object.
+ * @see Body
+ *
  */
 public class GreenPlayer implements Player{
     private Body body;
@@ -35,6 +40,9 @@ public class GreenPlayer implements Player{
         playerDirection = StateOfPlayerDirection.RIGHT;
     }
 
+    /**
+     * kommentera här, fråga Isak
+     */
     private void positionUpdate() {
         if (body.y<1) collisionGroundBegin();
         if(body.y>1)collisionGroundEnd();
@@ -45,6 +53,11 @@ public class GreenPlayer implements Player{
         }
     }
 
+    /**
+     * The playerUpdate method should be put in the step, cycle, update e.g. method of the game.
+     * It updates a player's movement, with gravity acting upon it.
+     * @param deltaTime is the time between each update of the movement of Player.
+     */
     @Override
     public void playerUpdate(float deltaTime) {
         body.x += body.speedX * deltaTime;
@@ -56,6 +69,9 @@ public class GreenPlayer implements Player{
         body.accelerate(0, -body.gravity);
     }
 
+    /**
+     * kommentera här, fråga Isak
+     */
     public void collisionGroundBegin() {
         body.y = 1;
         onGround = true;
@@ -68,6 +84,9 @@ public class GreenPlayer implements Player{
     }
 
 
+    /**
+     * kommentera här, fråga Isak
+     */
     @Override
     public void jump() {
         body.x += body.forceX;
@@ -80,6 +99,9 @@ public class GreenPlayer implements Player{
         body.y += body.forceY;
     }
 
+    /**
+     * kommentera här, fråga Isak
+     */
     public void inputKeyDown(int key){
         switch (key){
             case 51: // w

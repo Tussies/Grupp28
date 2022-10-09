@@ -1,7 +1,8 @@
 package com.grupp28gdx.game.Model;
 
 /**
- * This is the most difficult player. It runs faster than the default player.
+ * This is the hardest player a user can choose. It runs faster and has less lives
+ * than the default GreenPlayer. It inherits the rest of its functionality from GreenPlayer.
  */
 public class PurplePlayer extends GreenPlayer implements Player{
     private Body body;

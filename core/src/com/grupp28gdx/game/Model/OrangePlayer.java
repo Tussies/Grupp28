@@ -1,7 +1,8 @@
 package com.grupp28gdx.game.Model;
 
 /**
- * This is the easiest player. It runs slower than the default player.
+ * This is the easiest player. It runs slower, jumps higher and has more lives
+ * than the default GreenPlayer. It inherits the rest of its functionality from GreenPlayer.
  */
 public class OrangePlayer extends GreenPlayer implements Player{
     private Body body;
