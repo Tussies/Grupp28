@@ -1,7 +1,7 @@
 package Gemstone;
 
-import com.grupp28gdx.game.Model.BigGemstone;
-import com.grupp28gdx.game.Model.Gemstone;
+import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
+import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GreenPlayer;
 import org.junit.jupiter.api.Test;
 
