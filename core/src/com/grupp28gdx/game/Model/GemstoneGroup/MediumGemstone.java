@@ -33,9 +33,6 @@ public class MediumGemstone implements Gemstone {
 
     }
 
-    public void setSideLength(float x) {
-        sideLength = x;
-    }
 
     public float getSideLength() {
         return this.sideLength;

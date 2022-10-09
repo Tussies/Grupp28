@@ -23,7 +23,7 @@ public class SmallGemstone implements Gemstone {
 
     @Override
     public Gemstone createGemstone() {
-        Gemstone gemstone = new MediumGemstone();
+        Gemstone gemstone = new SmallGemstone();
         return gemstone;
     }
 
