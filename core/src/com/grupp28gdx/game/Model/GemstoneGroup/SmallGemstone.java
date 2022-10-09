@@ -35,9 +35,6 @@ public class SmallGemstone implements Gemstone {
 
     }
 
-    public void setSideLength(float x) {
-        sideLength = x;
-    }
 
     public float getSideLength() {
         return this.sideLength;

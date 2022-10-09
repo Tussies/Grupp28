@@ -32,9 +32,6 @@ public class BigGemstone implements Gemstone {
 
     }
 
-    public void setSideLength(float x) {
-        sideLength = x;
-    }
 
     @Override
     public float getSideLength() {
