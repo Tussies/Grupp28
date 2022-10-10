@@ -11,27 +11,27 @@ public class PermanentObstacle implements Obstacle {
     private float[] vectorListX;
     private float[] vectorListY;
 
-    private final Position position;
+    private final Body body;
 
     public PermanentObstacle(float spawnPosX, float spawnPosY){
         shape = ObstacleShape.SQUARE;
         shapeName = "PermanentObstacle";
-        position = new Position(spawnPosX,spawnPosY);
+        body = new Body(spawnPosX,spawnPosY);
         createShape();
     }
 
     private void createShape() {
         vectorListX = new float[]{
-                position.getXPosition(),
-                position.getXPosition(),
-                position.getXPosition()+1,
-                position.getXPosition()+1
+                body.getXPosition(),
+                body.getXPosition(),
+                body.getXPosition()+1,
+                body.getXPosition()+1
         };
         vectorListY = new float[]{
-                position.getXPosition(),
-                position.getXPosition()+2,
-                position.getXPosition()+2,
-                position.getXPosition()
+                body.getXPosition(),
+                body.getXPosition()+2,
+                body.getXPosition()+2,
+                body.getXPosition()
         };
 
     }
@@ -48,8 +48,8 @@ public class PermanentObstacle implements Obstacle {
         return shapeName;
     }
 
-    public Position getPosition(){
-        return position;
+    public Body getPosition(){
+        return body;
     }
 
     @Override
