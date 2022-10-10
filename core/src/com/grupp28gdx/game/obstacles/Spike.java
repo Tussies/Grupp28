@@ -1,15 +1,15 @@
 package com.grupp28gdx.game.obstacles;
 
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.grupp28gdx.game.Model.Body;
+
 
 public class Spike extends Obstacle {
-    Vector2[] spikeBodyVectors = {
-            new Vector2(this.getX_position(),this.getY_position()+1),
-            new Vector2(this.getX_position()+2,this.getY_position()+1),
-            new Vector2(this.getX_position()+1,this.getY_position()+2)};
+    Body[] spikeBodyVectors = {
+            new Body(this.getX_position(),this.getY_position()+1),
+            new Body(this.getX_position()+2,this.getY_position()+1),
+            new Body(this.getX_position()+1,this.getY_position()+2)};
     PolygonShape spike;
     BodyDef definition;
     public Spike(float posX, float posY) {
@@ -17,12 +17,12 @@ public class Spike extends Obstacle {
         definition.type = BodyDef.BodyType.StaticBody;
         definition.position.set(posX, (float) (Math.random()%5));
         definition.fixedRotation = true;
-        Vector2 v2 = new Vector2();
-        v2.x = posX;
-        v2.y = posY;
-        this.setPosition(v2);
+        
+
+        this.setPosition(posX, posY);
         spike = new PolygonShape();
-        spike.set(spikeBodyVectors);
+        //@TODO fix the fucking shapes
+        //spike.set(spikeBodyVectors);
     }
     @Override
     public PolygonShape getBodyShape(){
@@ -33,9 +33,9 @@ public class Spike extends Obstacle {
         return definition;
     }
     @Override
-    public Body getBody(){return body;}
+    public com.badlogic.gdx.physics.box2d.Body getBody(){return body;}
     @Override
-    public void setBody(Body setBody){
+    public void setBody(com.badlogic.gdx.physics.box2d.Body setBody){
         body = setBody;
     }
 }

@@ -2,8 +2,6 @@ package com.grupp28gdx.game.states;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -62,9 +60,8 @@ public class PlayState extends State {
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
         world = new World(new Vector2(0, -9.8f), true);
         world.setContactListener(new BodyContactListener(this));
-        player = new Player(this.world);
+        player = new Player();
         this.playInput = new PlayInputHandler(player);
-        playerBody = player.getPlayerBody();
         ground = createGround();
         debugRenderer = new Box2DDebugRenderer();
         rc.renderBirdMusic();
@@ -89,7 +86,7 @@ public class PlayState extends State {
     public Body createGround() {
         BodyDef definition = new BodyDef();
         definition.type = BodyDef.BodyType.StaticBody;
-        definition.position.set(0,0);
+        definition.position.set(-10,-10);
         definition.fixedRotation = true;
         ground = world.createBody(definition);
 
@@ -120,8 +117,8 @@ public class PlayState extends State {
 
     public void cameraUpdate(float delta) {
         Vector3 position = cam.position;
-        position.x = playerBody.getPosition().x * pixelsPerMeter;
-        position.y = playerBody.getPosition().y * pixelsPerMeter;
+        position.x = player.getX_position()* pixelsPerMeter;
+        position.y = player.getY_position() * pixelsPerMeter;
 
         rc.updateCamera(cam,position);
     }
@@ -151,16 +148,16 @@ public class PlayState extends State {
                 frame += 0.1;
                 frame = frame % 60;
                 animationFrame = animationFrame % 5;
-                rc.render(playerWalkingAnimation[animationFrame], playerBody.getPosition().x * pixelsPerMeter - (playerWalkingAnimation[1].getWidth()/8f), playerBody.getPosition().y * pixelsPerMeter - 30, 200/4f, 422/4f);
+                rc.render(playerWalkingAnimation[animationFrame], player.getX_position() * pixelsPerMeter - (playerWalkingAnimation[1].getWidth()/8f), player.getY_position() * pixelsPerMeter - 30, 200/4f, 422/4f);
                 break;
             case "jumping":
                 frame += 0.1;
                 frame = frame % 60;
-                System.out.println(player.getForceY());
+
                 if(player.getForceY() == 180){ frame = 0; animationFrame=0;}
                 animationFrame = animationFrame % 4;
-                System.out.println(animationFrame);
-                rc.render(playerJumpingAnimation[animationFrame], playerBody.getPosition().x * pixelsPerMeter - (playerJumpingAnimation[1].getWidth()/8f), playerBody.getPosition().y * pixelsPerMeter - 30, 250/4f, 422/4f);
+
+                rc.render(playerJumpingAnimation[animationFrame], player.getX_position() * pixelsPerMeter - (playerJumpingAnimation[1].getWidth()/8f), player.getY_position() * pixelsPerMeter - 30, 250/4f, 422/4f);
                 break;
         }
     }

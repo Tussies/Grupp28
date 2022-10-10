@@ -1,9 +1,9 @@
 package com.grupp28gdx.game.Controller;
 
 import com.grupp28gdx.game.Model.BigGemstone;
+import com.grupp28gdx.game.Model.Body;
 import com.grupp28gdx.game.Model.MediumGemstone;
 import com.grupp28gdx.game.Model.SmallGemstone;
-import com.grupp28gdx.game.Model.Position;
 import com.grupp28gdx.game.View.CoinView;
 
 public class GemstoneAdapter {
@@ -19,14 +19,14 @@ public class GemstoneAdapter {
         this.coinView = coinView;
     }
 
-    public float getBigRadius(float radius){ return bigGemstoneModel.getRadius(); }
+    public float getBigSideLength(float sideLength){ return bigGemstoneModel.getSideLength(); }
 
-    public float getMediumRadius(float radius){
-        return mediumGemstoneModel.getRadius();
+    public float getMediumSideLength(float sideLength){
+        return mediumGemstoneModel.getSideLength();
     }
 
-    public float getSmallRadius(float radius){
-        return smallGemstoneModel.getRadius();
+    public float getSmallSideLength(float radius){
+        return smallGemstoneModel.getSideLength();
     }
 
     public int getBigPoints(int points) { return bigGemstoneModel.getPoints(); }
@@ -37,15 +37,16 @@ public class GemstoneAdapter {
         return smallGemstoneModel.getPoints();
     }
 
-    public Position getBigPosition(Position position) {
-        return bigGemstoneModel.position;
+    public Body getBigPosition(Body body) {
+        return bigGemstoneModel.body;
     }
 
-    public Position getMediumPosition(Position position) {
-        return mediumGemstoneModel.position;
+    public Body getMediumPosition(Body body) {
+        return mediumGemstoneModel.body;
     }
-    public Position getSmallPosition(Position position) {
-        return smallGemstoneModel.position;
+
+    public Body getSmallPosition(Body body) {
+        return smallGemstoneModel.body;
     }
 
     public void removeGemstone(BigGemstone bg, MediumGemstone mg, SmallGemstone sg){

@@ -2,21 +2,38 @@ package com.grupp28gdx.game.Model;
 
 /**
  * This is the concrete hard mode factory. It produces harder, or, more difficult versions
- * of the standard type of objects. This includes all objects in the game, namely player, coins and obstacles.
+ * of the standard type of objects. This includes almost all objects in the game, namely player, coins and obstacles.
  */
 public class HardModeFactory implements ModeFactory{
+
+    /**
+     * This method implements the skeleton method of a player in ModeFactory.
+     * @return a PurplePlayer, which is a harder version of the default GreenPlayer.
+     */
     @Override
     public Player createPlayer() {
         return new PurplePlayer();
     }
 
+    /**
+     * This method implements the skeleton method of a gemstone in ModeFactory.
+     * @return a SmallGemstone, this gemstone returns more points and is harder
+     * to gather than MediumGemstone.
+     */
     @Override
-    public Coin createCoin() {
-        return new SmallCoin();
+    public Gemstone createCoin() {
+        return new SmallGemstone();
     }
 
+    /**
+     * This method implements the skeleton method of an obstacle in ModeFactory.
+     * @param spawnX decides the x-position the destroyable obstacle will appear.
+     * @param spawnY decides the y-position the destroyable obstacle will appear.
+     * @return DestroyableObject is the most difficult version of an obstacle to maneuver.
+     * It can be destroyed if shot by a projectile of a gun.
+     */
     @Override
-    public Obstacle createObstacle() {
+    public Obstacle createObstacle(float spawnX,float spawnY) {
         return new DestroyableObstacle();
     }
 }

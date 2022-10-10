@@ -1,15 +1,25 @@
 package com.grupp28gdx.game.Model;
 
+import com.badlogic.gdx.math.Vector2;
+
 /**
  * This is the common interface for the different type of players. There are three players in total in the game
- * to choose from.
+ * to choose from. The method createPlayer is implemented as a singleton in all player classes.
  */
 public interface Player {
-    Player createPlayer();
-    void setStateOfPlayer(String stateOfPlayer);
-    String getStateOfPlayer();
+    void setStateOfPlayer(StateOfPlayer stateOfPlayer);
+    StateOfPlayer getStateOfPlayer();
     int getLives();
     void setLives(int lives);
+
+    void playerUpdate(float deltaTime);
+
+    void createPlayer();
+
     void jump();
-    void run();
+
+
+    // det ska finnas ett gemcounter-objekt i varje playerfactory istället
+    //void setGemCounter(int points);
+    //int getGemCounter();
 }

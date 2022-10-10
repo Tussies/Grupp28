@@ -1,89 +1,106 @@
 package com.grupp28gdx.game;
 
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
+
 import com.grupp28gdx.game.states.GameStateManager;
 import com.grupp28gdx.game.states.MenuState;
 
-import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
 public class Player implements Spawnables {
-    private Body player;
-    private BodyDef bodyDef;
-    private PolygonShape bodyShape;
-    private int movementSpeed;
-    private int forceX=0;
-    private int forceY=0;
+
+
+    private float forceX = 0.2f;
+    private int forceY = 0;
     private float x_position;
     private float y_position;
     private GameStateManager gsm;
     private int jumps = 0;
-    private long lastTap = 0;
     private String playerState;
 
-    public Player(World world){
-        bodyDef = new BodyDef();
-        bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.position.set(0,1);
-        bodyDef.fixedRotation = true;
-        player = world.createBody(bodyDef);
-        movementSpeed = 700;
-        bodyShape = new PolygonShape();
-        bodyShape.setAsBox(30/pixelsPerMeter, 30/pixelsPerMeter);
-        player.createFixture(bodyShape, 1.0f);
+    private float xVelocity = 0.2f;
+    private float yVelocity;
+
+    //Removed world from parameters
+    public Player() {
+
         gsm = new GameStateManager();
 
         playerState = "walking";
     }
 
-    public void  setPosition(Vector2 v2){
-        x_position = v2.x;
-        y_position = v2.y;
+    public void setPosition(float xPos, float yPos) {
+        x_position = xPos;
+        y_position = yPos;
     }
 
-    public float getX_position(){return this.x_position;}
-    public float getY_position(){return this.y_position;}
 
     public void inputActionDown(int key) {
-        switch (key){
-            case 19: if(player.getLinearVelocity().y==0 || jumps < 2){
-                jumps ++;
-                this.forceY = 200;System.out.println("jump");
-                if(player.getLinearVelocity().y == 0) {
-                    jumps = 0;
+        switch (key) {
+            case 19:
+                this.jump();
+                playerState = "jumping";
+                break;
+            case 22:
+                this.setXVelocity(0.4f);
+                break;
+            case 20:
+                if(this.getY_position() == 0){
+                    break;
                 }
-            }
-            playerState = "jumping";
-            break;
-            case 22: forceX += 1; break;
-            case 20: forceY = -60; break;
+
+                this.setYVelocity(-0.3f);
+
+                break;
         }
     }
+
     public void inputActionUp(int key) {
-        switch (key){
-            case 19:this.forceY=0; break;
-            case 20: forceY = 0; break;
-            case 111: gsm.set(new MenuState(gsm));
+        switch (key) {
+            case 19:
+               //this.setYVelocity(0.5f);
+
+                break;
+            case 20:
+                forceY = 0;
+
+                break;
+
+            case 22:
+                this.setXVelocity(0.2f);
+                break;
+            case 111:
+                gsm.set(new MenuState(gsm));
         }
     }
 
-    public Body getPlayerBody(){
-        return player;
+
+    public void jump (){
+        if (this.getYVelocity() == 0 || this.jumps < 2) {
+            this.jumps++;
+            this.setYVelocity(0.5f);
+
+            if (this.getY_position() == 0) {
+                this.jumps = 0;
+            }
+        }
+
     }
 
-    public PolygonShape getBodyShape(){
-        return bodyShape;
-    }
 
     public void playerMovementUpdate(float delta) {
-        player.applyForceToCenter(movementSpeed, forceY, false);
-        player.setLinearVelocity(forceX * 5, player.getLinearVelocity().y);
-        if(forceY>0) {forceY +=-10;}
-        if(player.getLinearVelocity().y<=-2){playerState="walking";}
-        this.setPosition(player.getPosition());
+
+        this.setPosition(this.getX_position() + this.getXVelocity(), this.getY_position()+this.getYVelocity());
+
+        if(this.getY_position() > 0){
+            this.setYVelocity(this.getYVelocity()-0.02f);
+        }
+        if(this.getY_position() <=0){
+            this.playerState = "walking";
+            this.setYVelocity(0);
+            this.setPosition(this.getX_position(), 0f);
+
+        }
+
+
     }
 
     public String getPlayerState() {
@@ -93,4 +110,30 @@ public class Player implements Spawnables {
     public int getForceY() {
         return forceY;
     }
+
+    public void setXVelocity(float velocity) {
+        this.xVelocity = velocity;
+    }
+
+    public void setYVelocity(float velocity) {
+        this.yVelocity = velocity;
+    }
+
+    public float getXVelocity() {
+        return this.xVelocity;
+    }
+
+    public float getYVelocity() {
+        return this.yVelocity;
+    }
+
+    public float getX_position() {
+        return this.x_position;
+    }
+
+    public float getY_position() {
+        return this.y_position;
+    }
+
+
 }
