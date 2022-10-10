@@ -6,7 +6,7 @@ package com.grupp28gdx.game.Model;
 public class GreenPlayer implements Player{
     private int movementSpeed;
 
-    private float forceX;;
+    private float forceX;
     private float forceY;
     private float velocityY;
 
