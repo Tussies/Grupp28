@@ -5,7 +5,7 @@ package com.grupp28gdx.game.Model;
  * catches the medium coin. There are three types of coins in total in the game to catch.
  */
 public class SmallCoin implements Coin{
-    private Position position;
+    public Position position;
     private float radius;
     private int points;
 
