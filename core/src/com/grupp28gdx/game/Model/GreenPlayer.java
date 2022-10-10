@@ -153,5 +153,8 @@ public class GreenPlayer implements Player{
     public int getGemCounter(){
         return this.gemCounter;
     }
+    public float getVelocityY(){
+        return this.velocityY;
+    }
 }
 

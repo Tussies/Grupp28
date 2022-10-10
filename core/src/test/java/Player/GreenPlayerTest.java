@@ -3,6 +3,7 @@ package Player;
 import com.grupp28gdx.game.Model.GreenPlayer;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class GreenPlayerTest {
@@ -22,7 +23,19 @@ public class GreenPlayerTest {
     @Test
     public void collisionGroundBeginTest(){
         greenPlayer.collisionGroundBegin();
+        assertTrue(greenPlayer.);
+    }
 
+    @Test
+    public void jumpTestUp(){
+        greenPlayer.inputKeyDown(51);
+        greenPlayer.jump();
+        assertTrue(greenPlayer.getVelocityY() == 0.17f);
+    }
+    @Test
+    public void getStateOfPlayerTest(){
+        greenPlayer.setStateOfPlayer("jumping");
+        assertEquals(greenPlayer.getStateOfPlayer(), "jumping");
     }
 
     @Test
