@@ -6,7 +6,7 @@ package com.grupp28gdx.game.Model;
  * catches the medium coin. There are three types of coins in total in the game to catch.
  */
 public class BigGemstone implements Gemstone {
-    private Body body;
+    public Body body;
     private float sideLength;
     private int points;
 
@@ -27,6 +27,10 @@ public class BigGemstone implements Gemstone {
     public void updateGemCounter(Player player){
         /*player.setGemCounter(player.getGemCounter() + this.points);*/
 
+    }
+
+    public int getPoints() {
+        return points;
     }
 
     public void setSideLength(float x) {
