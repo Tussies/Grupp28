@@ -11,18 +11,41 @@ public class OrangePlayer extends GreenPlayer implements Player{
     private int speedX;
     private int speedY;
 
+    public OrangePlayer() {
+        this.body = new Body(0,0);
+        this.body.setMovementSpeed(700);
+        lives = 5;
+        this.body.setXPosition(0);
+        this.body.setYPosition(0);
+        this.body.setForceX(0);
+        this.body.setForceY(0);
+        //stateOfPlayer = "walking";
+    }
+
+    /*@Override
+    public Player createPlayer() {
+        if(player == null){
+            player = new OrangePlayer();
+        }
+        return player;
+    }*/
+
+    @Override
+    public void jump() {
+
+    }
     StateOfPlayer playerState;
     StateOfPlayerDirection playerDirection;
 
     boolean onGround = true;
 
-    public OrangePlayer() {
+/*    public OrangePlayer() {
         lives = 5;
         speedX = 1;
         speedY = 0;
         createPlayer();
     }
-
+*/
     public int getLives() {
         return this.lives;
     }

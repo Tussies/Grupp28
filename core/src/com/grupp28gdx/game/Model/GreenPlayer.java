@@ -9,6 +9,16 @@ package com.grupp28gdx.game.Model;
  *
  */
 public class GreenPlayer implements Player{
+
+    private int movementSpeed;
+
+    private float forceX;
+    private float forceY;
+    private float velocityY;
+
+    private int numberOfJumps;
+
+    private String stateOfPlayer;
     private Body body;
     private Player player;
     private int lives;
@@ -37,8 +47,7 @@ public class GreenPlayer implements Player{
         this.body.setForceX(0);
         this.body.setForceY(0);
         playerState = StateOfPlayer.IDLE;
-        playerDirection = StateOfPlayerDirection.RIGHT;
-    }
+        playerDirection = StateOfPlayerDirection.RIGHT;}
 
     /**
      * kommentera här, fråga Isak
@@ -158,12 +167,5 @@ public class GreenPlayer implements Player{
         this.lives = lives;
     }
 
-
-/*    public void setGemCounter(int points){
-        this.gemCounter=points;
-    }
-    public int getGemCounter(){
-        return this.gemCounter;
-    }*/
 }
 

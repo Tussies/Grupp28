@@ -1,5 +1,9 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.GemstoneGroup;
 
+
+import com.grupp28gdx.game.Model.Body;
+import com.grupp28gdx.game.Model.Player;
+import com.grupp28gdx.game.Model.Position;
 
 /**
  * This is the big coin. When the player catches this coin it gains x/3 the amount of points as when the player
@@ -19,24 +23,21 @@ public class BigGemstone implements Gemstone {
     }
 
     @Override
-    public Gemstone createCoin() {
+    public Gemstone createGemstone() {
         Gemstone gemstone = new BigGemstone();
         return gemstone;
     }
     @Override
-    public void updateGemCounter(Player player){
+    public void updateGemCounter(){
         /*player.setGemCounter(player.getGemCounter() + this.points);*/
 
     }
-
     public int getPoints() {
         return points;
     }
 
-    public void setSideLength(float x) {
-        sideLength = x;
-    }
 
+    @Override
     public float getSideLength() {
         return this.sideLength;
     }

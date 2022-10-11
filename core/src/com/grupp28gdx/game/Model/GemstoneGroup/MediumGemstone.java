@@ -1,10 +1,14 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.GemstoneGroup;
+
+import com.grupp28gdx.game.Model.Body;
+import com.grupp28gdx.game.Model.Player;
 
 /**
  * This is the medium coin. When the player catches this coin it gains the default amount of points.
  * There are three types of coins in total in the game to catch.
  */
 public class MediumGemstone implements Gemstone {
+
     public Body body;
     private float sideLength;
     private int points;
@@ -18,24 +22,20 @@ public class MediumGemstone implements Gemstone {
     }
 
     @Override
-    public Gemstone createCoin() {
+    public Gemstone createGemstone() {
         Gemstone gemstone = new MediumGemstone();
         return gemstone;
     }
 
 
 
-    public void updateGemCounter(Player player){
+    public void updateGemCounter(){
         /*player.setGemCounter(player.getGemCounter() + this.points);*/
 
     }
 
     public int getPoints() {
         return points;
-    }
-
-    public void setSideLength(float x) {
-        sideLength = x;
     }
 
     public float getSideLength() {

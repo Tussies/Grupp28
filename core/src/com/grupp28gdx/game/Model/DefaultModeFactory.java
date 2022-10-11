@@ -1,5 +1,8 @@
 package com.grupp28gdx.game.Model;
 
+import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
+import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
+
 /**
  * This is the concrete default mode factory. It produces all standard versions of almost all objects, namely player,
  * obstacles and coins.
@@ -20,7 +23,7 @@ public class DefaultModeFactory implements ModeFactory{
      * @return a MediumGemstome, which is the default gemstone.
      */
     @Override
-    public Gemstone createCoin() {
+    public Gemstone createGemstone() {
         return new MediumGemstone();
     }
 

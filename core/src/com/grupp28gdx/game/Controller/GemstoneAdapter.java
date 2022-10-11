@@ -1,9 +1,9 @@
 package com.grupp28gdx.game.Controller;
 
-import com.grupp28gdx.game.Model.BigGemstone;
 import com.grupp28gdx.game.Model.Body;
-import com.grupp28gdx.game.Model.MediumGemstone;
-import com.grupp28gdx.game.Model.SmallGemstone;
+import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
+import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
+import com.grupp28gdx.game.Model.GemstoneGroup.SmallGemstone;
 import com.grupp28gdx.game.View.CoinView;
 
 public class GemstoneAdapter {
