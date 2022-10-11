@@ -4,7 +4,7 @@ package com.grupp28gdx.game.Model;
  * This is the hardest player a user can choose. It runs faster and has less lives
  * than the default GreenPlayer. It inherits the rest of its functionality from GreenPlayer.
  */
-public class PurplePlayer extends GreenPlayer implements Player{
+public class PurplePlayer extends GreenPlayer implements Player {
     private Body body;
     private Player player;
     private int lives;
@@ -12,49 +12,48 @@ public class PurplePlayer extends GreenPlayer implements Player{
     private int speedY;
 
     public PurplePlayer() {
-        this.body = new Body(0,0);
+        this.body = new Body(0, 0);
         this.body.setMovementSpeed(900);
         lives = 0;
         this.body.setXPosition(0);
         this.body.setYPosition(0);
         this.body.setForceX(0);
         this.body.setForceY(0);
-        stateOfPlayer = "walking";
+        //stateOfPlayer = "walking";
 
-        this.gemCounter = 0;
+        //this.gemCounter = 0;
     }
 
-    @Override
+    /*@Override
     public Player createPlayer() {
-        if(player == null){
+        if (player == null) {
             player = new PurplePlayer();
         }
         return player;
-    }
+    }*/
 
 
     @Override
     public void jump() {
 
     }
-
+    /*
     @Override
     public void run() {
 
-    }
-=======
+    }*/
+
     StateOfPlayer playerState;
     StateOfPlayerDirection playerDirection;
->>>>>>> c573e94815dcf37e2e184393fbcfe61cc8260dd5
 
     boolean onGround = true;
-
+/*
     public PurplePlayer() {
         lives = 1;
         speedX = 3;
         speedY = 0;
         createPlayer();
-    }
+    }*/
 
     public int getLives() {
         return lives;
