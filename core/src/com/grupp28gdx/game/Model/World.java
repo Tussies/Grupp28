@@ -1,80 +1,46 @@
 package com.grupp28gdx.game.Model;
 
+
 /**
- * This is where all objects of the world will be placed and updated. Also the game loop.
+ * This is where all objects of the world will be placed and updated.
  */
-/*public class World implements Runnable {
-    private Thread thread;
-    private int fps;
-    private double timePerTick;
+public class World{
+    /**
+     * This is the gravity in the x-direction and y-direction.
+     * DeltaTime is the amount of time it takes for our game
+     * to step forward, in this case 1/60 of a second or 60Hz.
+     */
+    protected static Player player;
+    protected static final float UPDATE_RATE = 60.0f;
+    protected final float deltaTime = 1.0f/UPDATE_RATE;
 
-    public boolean running = false;
-    public double delta;
-    public long timeNow;
-    public long lastTime;
-    public long timer;
-    public int ticks;
+    public World() {
+        player = new GreenPlayer();
 
-    public static void main(String[] args) {
-    }
+        /**
+         * A separate thread is started from LibGDX.
+         * While the program is running it will update a step every 1/60 of a second.
+         * Time, velocity and position is responsible for the physics
+         * of the game.
+         *
+         * The player moves with the speedX every step.
+         *
+         * The render method is responsible for updating the graphics.
+         *
+         */
+        Thread gameThread = new Thread() {
+            public void run() {
+                while (true) {
+                    player.playerUpdate(deltaTime);
 
-    @Override
-    public void run() {
-        fps = 60;
-        timePerTick = 1000000000 / fps;
-        delta = 0;
-        lastTime = System.nanoTime();
-        timer = 0;
-        ticks = 0;
-
-        while(running) {
-            timeNow = System.nanoTime();
-            delta += (timeNow - lastTime) / timePerTick;
-            timer += timeNow - lastTime;
-            lastTime = timeNow;
-            if(delta >= 1) {
-                update();
-                //render(); (vi har inte denna än men den skall ligga här)
-                ticks++;
-                delta--;
+                    //render();
+                    try {
+                        Thread.sleep((long) (1000 / UPDATE_RATE));
+                    } catch (InterruptedException ex) { }
+                }
             }
-            if(timer >= 1000000000) {
-                ticks = 0;
-                timer = 0;
-            }
-        }
-
-        stop();
-
-        System.out.println("Thread has ended");
+        };
+        gameThread.start();
     }
+}
 
-    public synchronized void start() {
-
-        if(running == true) {
-            return;
-        }
-        running = true;
-
-        thread = new Thread(this);
-
-        thread.start();
-    }
-
-    public synchronized void stop() {
-        if(running == false) {
-            return;
-        }
-        running = false;
-
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void update() {
-        //skall uppdatera alla variabler sen
-    }
-}*/

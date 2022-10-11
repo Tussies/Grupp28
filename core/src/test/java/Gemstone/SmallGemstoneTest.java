@@ -9,7 +9,6 @@ import static org.junit.Assert.assertTrue;
 
 public class SmallGemstoneTest {
     SmallGemstone smallGemstone = new SmallGemstone();
-    PurplePlayer playerTemp = new PurplePlayer();
 
     @Test
     public void createSmallGemstoneTest() {
@@ -20,8 +19,6 @@ public class SmallGemstoneTest {
 
     @Test
     public void updateGemstoneCounterTest() {
-        smallGemstone.updateGemCounter(playerTemp);
-        assertTrue(playerTemp.getGemCounter() == 60);
     }
 
     @Test

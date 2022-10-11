@@ -20,8 +20,7 @@ public class MediumGemstoneTest {
 
     @Test
     public void updateGemstoneCounterTest() {
-        mediumGemstone.updateGemCounter(playerTemp);
-        assertTrue(playerTemp.getGemCounter() == 30);
+
     }
 
     @Test

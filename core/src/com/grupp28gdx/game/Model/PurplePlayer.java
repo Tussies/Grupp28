@@ -1,23 +1,24 @@
 package com.grupp28gdx.game.Model;
 
 /**
- * This is the most difficult player. It runs faster than the default player.
+ * This is the hardest player a user can choose. It runs faster and has less lives
+ * than the default GreenPlayer. It inherits the rest of its functionality from GreenPlayer.
  */
-public class PurplePlayer implements Player{
-    private String stateOfPlayer;
-    private Position position;
+public class PurplePlayer extends GreenPlayer implements Player{
+    private Body body;
     private Player player;
     private int lives;
-    private int gemCounter;
+    private int speedX;
+    private int speedY;
 
     public PurplePlayer() {
-        this.position = new Position(0,0);
-        this.position.setMovementSpeed(900);
+        this.body = new Body(0,0);
+        this.body.setMovementSpeed(900);
         lives = 0;
-        this.position.setXPosition(0);
-        this.position.setYPosition(0);
-        this.position.setForceX(0);
-        this.position.setForceY(0);
+        this.body.setXPosition(0);
+        this.body.setYPosition(0);
+        this.body.setForceX(0);
+        this.body.setForceY(0);
         stateOfPlayer = "walking";
 
         this.gemCounter = 0;
@@ -41,13 +42,18 @@ public class PurplePlayer implements Player{
     public void run() {
 
     }
+=======
+    StateOfPlayer playerState;
+    StateOfPlayerDirection playerDirection;
+>>>>>>> c573e94815dcf37e2e184393fbcfe61cc8260dd5
 
-    public void setStateOfPlayer(String stateOfPlayer) {
-        this.stateOfPlayer = stateOfPlayer;
-    }
+    boolean onGround = true;
 
-    public String getStateOfPlayer() {
-        return stateOfPlayer;
+    public PurplePlayer() {
+        lives = 1;
+        speedX = 3;
+        speedY = 0;
+        createPlayer();
     }
 
     public int getLives() {
@@ -58,10 +64,4 @@ public class PurplePlayer implements Player{
         this.lives = lives;
     }
 
-    public void setGemCounter(int points){
-        this.gemCounter=points;
-    }
-    public int getGemCounter(){
-        return this.gemCounter;
-    }
 }

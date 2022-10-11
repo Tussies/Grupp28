@@ -1,6 +1,7 @@
 package com.grupp28gdx.game.Model.GemstoneGroup;
 
 
+import com.grupp28gdx.game.Model.Body;
 import com.grupp28gdx.game.Model.Player;
 import com.grupp28gdx.game.Model.Position;
 
@@ -9,16 +10,16 @@ import com.grupp28gdx.game.Model.Position;
  * catches the medium coin. There are three types of coins in total in the game to catch.
  */
 public class BigGemstone implements Gemstone {
-    private Position position;
-    final private float sideLength;
-    final private int points;
+    public Body body;
+    private float sideLength;
+    private int points;
 
     public BigGemstone() {
         this.points = 10;
         this.sideLength = 10;
-        this.position = new Position(0,0);
-        this.position.setXPosition(0);
-        this.position.setYPosition(0);
+        this.body = new Body(0,0);
+        this.body.setXPosition(0);
+        this.body.setYPosition(0);
     }
 
     @Override
@@ -27,9 +28,12 @@ public class BigGemstone implements Gemstone {
         return gemstone;
     }
     @Override
-    public void updateGemCounter(Player player){
-        player.setGemCounter(player.getGemCounter() + this.points);
+    public void updateGemCounter(){
+        /*player.setGemCounter(player.getGemCounter() + this.points);*/
 
+    }
+    public int getPoints() {
+        return points;
     }
 
 

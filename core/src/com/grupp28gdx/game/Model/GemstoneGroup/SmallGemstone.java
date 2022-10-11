@@ -1,24 +1,26 @@
 package com.grupp28gdx.game.Model.GemstoneGroup;
 
+import com.grupp28gdx.game.Model.Body;
 import com.grupp28gdx.game.Model.Player;
-import com.grupp28gdx.game.Model.Position;
+
 
 /**
  * This is the smallest coin. When the player catches this coin it gains 3x the amount of points as when the player
  * catches the medium coin. There are three types of coins in total in the game to catch.
  */
 public class SmallGemstone implements Gemstone {
-    private Position position;
-    final private float sideLength;
-    final private int points;
+
+    public Body body;
+    private float sideLength;
+    private int points;
 
 
     public SmallGemstone() {
         this.points = 60;
         this.sideLength = 2;
-        this.position = new Position(0,0);
-        this.position.setXPosition(0);
-        this.position.setYPosition(0);
+        this.body = new Body(0,0);
+        this.body.setXPosition(0);
+        this.body.setYPosition(0);
     }
 
     @Override
@@ -30,11 +32,15 @@ public class SmallGemstone implements Gemstone {
 
 
     @Override
-    public void updateGemCounter(Player player){
-        player.setGemCounter(player.getGemCounter() + this.points);
+    public void updateGemCounter(){
+/*        player.setGemCounter(player.getGemCounter() + this.points);*/
 
     }
 
+
+    public int getPoints() {
+        return points;
+    }
 
     public float getSideLength() {
         return this.sideLength;

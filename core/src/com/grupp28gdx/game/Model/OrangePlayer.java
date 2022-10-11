@@ -1,26 +1,25 @@
 package com.grupp28gdx.game.Model;
 
 /**
- * This is the easiest player. It runs slower than the default player.
+ * This is the easiest player. It runs slower, jumps higher and has more lives
+ * than the default GreenPlayer. It inherits the rest of its functionality from GreenPlayer.
  */
-public class OrangePlayer implements Player{
-    private Position position;
-    private String stateOfPlayer;
+public class OrangePlayer extends GreenPlayer implements Player{
+    private Body body;
     private Player player;
     private int lives;
-    private int gemCounter;
+    private int speedX;
+    private int speedY;
 
     public OrangePlayer() {
-        this.position = new Position(0,0);
-        this.position.setMovementSpeed(700);
+        this.body = new Body(0,0);
+        this.body.setMovementSpeed(700);
         lives = 5;
-        this.position.setXPosition(0);
-        this.position.setYPosition(0);
-        this.position.setForceX(0);
-        this.position.setForceY(0);
+        this.body.setXPosition(0);
+        this.body.setYPosition(0);
+        this.body.setForceX(0);
+        this.body.setForceY(0);
         stateOfPlayer = "walking";
-
-        this.gemCounter = 0;
     }
 
     @Override
@@ -35,32 +34,26 @@ public class OrangePlayer implements Player{
     public void jump() {
 
     }
+=======
+    StateOfPlayer playerState;
+    StateOfPlayerDirection playerDirection;
+>>>>>>> c573e94815dcf37e2e184393fbcfe61cc8260dd5
 
-    @Override
-    public void run() {
+    boolean onGround = true;
 
-    }
-
-    public void setStateOfPlayer(String stateOfPlayer) {
-        this.stateOfPlayer = stateOfPlayer;
-    }
-
-    public String getStateOfPlayer() {
-        return stateOfPlayer;
+    public OrangePlayer() {
+        lives = 5;
+        speedX = 1;
+        speedY = 0;
+        createPlayer();
     }
 
     public int getLives() {
-        return lives;
+        return this.lives;
     }
 
     public void setLives(int lives) {
         this.lives = lives;
     }
 
-    public void setGemCounter(int points){
-        this.gemCounter=points;
-    }
-    public int getGemCounter(){
-        return this.gemCounter;
-    }
 }
