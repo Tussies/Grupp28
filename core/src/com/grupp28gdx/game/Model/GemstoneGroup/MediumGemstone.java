@@ -1,20 +1,26 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.GemstoneGroup;
+
+import com.grupp28gdx.game.Model.Body;
+import com.grupp28gdx.game.Model.Player;
 
 /**
  * This is the medium coin. When the player catches this coin it gains the default amount of points.
  * There are three types of coins in total in the game to catch.
  */
 public class MediumGemstone implements Gemstone {
-    private Position position;
+
+    public Body body;
     private float sideLength;
     private int points;
+    private int totalPoints;
 
     public MediumGemstone() {
         points = 30;
         sideLength = 5;
-        this.position = new Position(0,0);
-        this.position.setXPosition(0);
-        this.position.setYPosition(0);
+        this.body = new Body(0,0);
+        this.body.setXPosition(0);
+        this.body.setYPosition(0);
+        this.totalPoints = 0;
     }
 
     /**
@@ -22,7 +28,7 @@ public class MediumGemstone implements Gemstone {
      * @return SmallGemstone
      */
     @Override
-    public Gemstone createCoin() {
+    public Gemstone createGemstone() {
         Gemstone gemstone = new MediumGemstone();
         return gemstone;
     }
@@ -30,10 +36,10 @@ public class MediumGemstone implements Gemstone {
 
     /**
      * Method that updates the attribute GemCounter in the player class
-     * @param player
+     *
      */
-    public void updateGemCounter(Player player){
-        player.setGemCounter(player.getGemCounter() + this.points);
+    public void updateGemCounter(){
+        this.totalPoints += this.points;
 
     }
 
@@ -42,8 +48,19 @@ public class MediumGemstone implements Gemstone {
      * Returns the side length of the gemstone instance
      * @return sideLength
      */
-
     public float getSideLength() {
         return this.sideLength;
     }
+
+
+    /**
+     * Returns the point value that an instance of BigGemstone is worth
+     * @return points
+     */
+
+    public int getPoints() {
+        return points;
+    }
+
+
 }

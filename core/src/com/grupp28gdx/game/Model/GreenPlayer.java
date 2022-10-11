@@ -1,69 +1,91 @@
 package com.grupp28gdx.game.Model;
 
 /**
- * This player is the default player.
+ * This player is the default player. How fast this player runs, how high it jumps and how many
+ * lives it has is the original and default settings for a Player.
+ * The body variable is a Body object put in the GreenPlayer class by composition, determines all
+ * movement, force, speed, etc. of the Player object.
+ * @see Body
+ *
  */
 public class GreenPlayer implements Player{
+
     private int movementSpeed;
 
-    private float forceX;;
+    private float forceX;
     private float forceY;
     private float velocityY;
-
-    private Position position;
 
     private int numberOfJumps;
 
     private String stateOfPlayer;
+    private Body body;
     private Player player;
     private int lives;
-    private int gemCounter;
+    private int speedX;
+    private int speedY;
+    //private int gemCounter; det ska finnas ett gemcounter-objekt istället
 
-    enum States{idle,walking,jumping, falling, running}
-    enum Directions{left,right}
-
-    States playerState = States.idle;
-    Directions playerDirection = Directions.right;
+    StateOfPlayer playerState;
+    StateOfPlayerDirection playerDirection;
 
     boolean onGround = true;
 
     public GreenPlayer() {
-        this.position.setMovementSpeed(700);
         lives = 3;
-        this.position = new Position(0,0);
-        this.position.setXPosition(0);
-        this.position.setYPosition(0);
-        this.position.setForceX(0);
-        this.position.setForceY(0);
-        stateOfPlayer = "walking";
-
-        this.gemCounter = 0;
+        speedX = 2;
+        speedY = 0;
+        createPlayer();
+        //this.gemCounter = 0;
     }
 
+    public void createPlayer() {
+        this.body = new Body(0,0);
+        this.body.setMovementSpeed(1);
+        this.body.setXPosition(0);
+        this.body.setYPosition(0);
+        this.body.setForceX(0);
+        this.body.setForceY(0);
+        playerState = StateOfPlayer.IDLE;
+        playerDirection = StateOfPlayerDirection.RIGHT;}
+
+    /**
+     * kommentera här, fråga Isak
+     */
     private void positionUpdate() {
-        if (position.y<1)collisionGroundBegin();
-        if(position.y>1)collisionGroundEnd();
-        if (playerState == States.jumping || playerState == States.falling) jump();
+        if (body.y<1) collisionGroundBegin();
+        if(body.y>1)collisionGroundEnd();
+        if (playerState == StateOfPlayer.JUMPING|| playerState == StateOfPlayer.FALLING) jump();
         else{
-            position.x += forceX;
-            position.y += velocityY;
+            body.x += body.forceX;
+            body.y += body.forceY;
         }
     }
 
+    /**
+     * The playerUpdate method should be put in the step, cycle, update e.g. method of the game.
+     * It updates a player's movement, with gravity acting upon it.
+     * @param deltaTime is the time between each update of the movement of Player.
+     */
     @Override
-    public Player createPlayer() {
-        if(player == null){
-            player = new GreenPlayer();
-        }
-        return player;
+    public void playerUpdate(float deltaTime) {
+        body.x += body.speedX * deltaTime;
+        body.y += body.speedY * deltaTime;
+        body.speedY += body.gravity * deltaTime;
+
+        body.move(speedX, speedY);
+
+        body.accelerate(0, -body.gravity);
     }
 
+    /**
+     * kommentera här, fråga Isak
+     */
     public void collisionGroundBegin() {
-        forceY = 0;
-        position.y = 1;
+        body.y = 1;
         onGround = true;
-        playerState = States.idle;
-        velocityY = 0;
+        playerState = StateOfPlayer.IDLE;
+        body.forceY = 0;
     }
 
     public void collisionGroundEnd() {
@@ -71,43 +93,43 @@ public class GreenPlayer implements Player{
     }
 
 
+    /**
+     * kommentera här, fråga Isak
+     */
     @Override
     public void jump() {
-        position.x += forceX;
-        if (velocityY < 0.3 && playerState == States.jumping){
-            velocityY += 0.07;
+        body.x += body.forceX;
+        if (body.forceY < 0.3 && playerState == StateOfPlayer.JUMPING){
+            body.forceY += 0.07;
         }else{
-            playerState = States.falling;
-            velocityY -=0.0098;
+            playerState = StateOfPlayer.FALLING;
+            body.forceY -=0.0098;
         }
-        position.y += velocityY;
+        body.y += body.forceY;
     }
 
-    @Override
-    public void run() {
-
-    }
-
-
+    /**
+     * kommentera här, fråga Isak
+     */
     public void inputKeyDown(int key){
         switch (key){
             case 51: // w
                 if (onGround){
-                    playerState = States.jumping;
+                    playerState = StateOfPlayer.JUMPING;
                 }
-                velocityY = 0.1f;
+                body.forceY = 0.1f;
                 break;
             case 47: // s
                 break;
             case 29: // ad
                 if (onGround){
-                    playerDirection = Directions.left;}
-                forceX = -0.1f;
+                    playerDirection = StateOfPlayerDirection.LEFT;}
+                body.forceX = -0.1f;
                 break;
             case 32: //d
                 if (onGround){
-                    playerDirection = Directions.right;}
-                forceX = 0.1f;
+                    playerDirection = StateOfPlayerDirection.RIGHT;}
+                body.forceX = 0.1f;
                 break;
         }
     }
@@ -115,26 +137,26 @@ public class GreenPlayer implements Player{
     public void inputKeyUp(int key){
         switch (key){
             case 51:
-                velocityY = 0;
+                body.forceY = 0;
                 break;// w
             case 47: // s
-                velocityY = -0.01f;
+                body.forceY = -0.01f;
                 break;
             case 29: // a
             case 32: //d
                 if (onGround){
-                    playerState = States.idle;}
-                forceX = 0;
+                    playerState = StateOfPlayer.IDLE;}
+                body.forceX = 0;
                 break;
         }
     }
 
-    public void setStateOfPlayer(String stateOfPlayer) {
-        this.stateOfPlayer = stateOfPlayer;
+    public void setStateOfPlayer(StateOfPlayer stateOfPlayer) {
+        playerState = stateOfPlayer;
     }
 
-    public String getStateOfPlayer() {
-        return stateOfPlayer;
+    public StateOfPlayer getStateOfPlayer() {
+        return playerState;
     }
 
     public int getLives() {
@@ -145,12 +167,5 @@ public class GreenPlayer implements Player{
         this.lives = lives;
     }
 
-
-    public void setGemCounter(int points){
-        this.gemCounter=points;
-    }
-    public int getGemCounter(){
-        return this.gemCounter;
-    }
 }
 
