@@ -36,18 +36,17 @@ public class PermanentObstacle implements Obstacle {
 
     }
 
+    @Override
     public float[] getVectorListX(){
         return vectorListX;
     }
 
+    @Override
     public float[] getVectorListY(){
         return vectorListY;
     }
 
-    public String getShapeName(){
-        return shapeName;
-    }
-
+    @Override
     public Body getPosition(){
         return body;
     }

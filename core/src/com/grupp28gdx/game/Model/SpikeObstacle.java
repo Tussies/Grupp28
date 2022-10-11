@@ -28,18 +28,17 @@ public class SpikeObstacle implements Obstacle{
         };
     }
 
+    @Override
     public float[] getVectorListX(){
         return vectorListX;
     }
 
+    @Override
     public float[] getVectorListY(){
         return vectorListY;
     }
 
-    public String getShape(){
-        return shape;
-    }
-
+    @Override
     public Body getPosition(){
         return body;
     }

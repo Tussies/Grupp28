@@ -36,14 +36,17 @@ public class WallObstacle implements Obstacle{
         };
     }
 
+    @Override
     public float[] getVectorListX(){
         return vectorListX;
     }
 
+    @Override
     public float[] getVectorListY(){
         return vectorListY;
     }
 
+    @Override
     public Body getPosition(){
         return body;
     }
