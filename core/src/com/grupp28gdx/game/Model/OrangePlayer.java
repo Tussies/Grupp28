@@ -5,7 +5,7 @@ package com.grupp28gdx.game.Model;
  * than the default GreenPlayer. It inherits the rest of its functionality from GreenPlayer.
  */
 public class OrangePlayer extends GreenPlayer implements Player{
-    private Body body;
+    public Body body;
     private Player player;
     private int lives;
     private int speedX;
@@ -13,7 +13,7 @@ public class OrangePlayer extends GreenPlayer implements Player{
 
     public OrangePlayer() {
         this.body = new Body(0,0);
-        this.body.setMovementSpeed(700);
+        this.body.setMovementSpeed(1);
         lives = 5;
         this.body.setXPosition(0);
         this.body.setYPosition(0);

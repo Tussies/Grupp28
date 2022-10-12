@@ -73,11 +73,11 @@ public class Body {
     }
 
     public void setMovementSpeed(int speed) {
-        this.speedY = speed;
+        this.speedX = speed;
     }
 
     public int getMovementSpeed() {
-        return this.speedY;
+        return this.speedX;
     }
 }
 

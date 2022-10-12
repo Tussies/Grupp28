@@ -5,7 +5,7 @@ package com.grupp28gdx.game.Model;
  * than the default GreenPlayer. It inherits the rest of its functionality from GreenPlayer.
  */
 public class PurplePlayer extends GreenPlayer implements Player {
-    private Body body;
+    public Body body;
     private Player player;
     private int lives;
     private int speedX;

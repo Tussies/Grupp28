@@ -51,7 +51,9 @@ public class GreenPlayer implements Player{
 
     /**
      * kommentera här, fråga Isak
+     * DENNA SKA BORT
      */
+
     private void positionUpdate() {
         if (body.y<1) collisionGroundBegin();
         if(body.y>1)collisionGroundEnd();
@@ -75,7 +77,7 @@ public class GreenPlayer implements Player{
 
         body.move(speedX, speedY);
 
-        body.accelerate(0, -body.gravity);
+        body.accelerate(0, -body.gravity); //body.gravity negativ???
     }
 
     /**
@@ -94,7 +96,7 @@ public class GreenPlayer implements Player{
 
 
     /**
-     * kommentera här, fråga Isak
+     * kommentera här, fråga Isak DEN SKA BORT
      */
     @Override
     public void jump() {
@@ -109,7 +111,7 @@ public class GreenPlayer implements Player{
     }
 
     /**
-     * kommentera här, fråga Isak
+     * kommentera här, fråga Isak DEN SKA VA KVAR
      */
     public void inputKeyDown(int key){
         switch (key){
@@ -134,6 +136,7 @@ public class GreenPlayer implements Player{
         }
     }
 
+    //DEN SKA VA KVAR
     public void inputKeyUp(int key){
         switch (key){
             case 51:
