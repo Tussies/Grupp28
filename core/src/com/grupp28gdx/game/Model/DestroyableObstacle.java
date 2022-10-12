@@ -8,7 +8,7 @@ public class DestroyableObstacle implements Obstacle {
     private ObstacleColor color; //this color makes the destroyable obstacle distinguishable from the permanent obstacles
     private Body body;
 
-    public DestroyableObstacle() {
+    public DestroyableObstacle(float spawnPosX, float spawnPosY) {
         shape = ObstacleShape.SQUARE;
         color = ObstacleColor.BLUE;
         this.body = new Body(0,0);
@@ -18,7 +18,7 @@ public class DestroyableObstacle implements Obstacle {
 
     @Override
     public Obstacle createObstacle(float spawnX, float spawnY) {
-        return new PermanentObstacle(spawnX,spawnY);
+        return new DestroyableObstacle(spawnX,spawnY);
     }
 
     public ObstacleShape getShape() {
