@@ -59,6 +59,10 @@ public class Body {
     public float getXPosition() {
         return this.x;
     }
+    public float getYPosition() {
+        return this.y;
+    }
+
 
     public void setForceX(int forceX) {
         this.forceX = forceX;

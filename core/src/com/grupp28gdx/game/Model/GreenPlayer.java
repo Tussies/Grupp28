@@ -19,7 +19,7 @@ public class GreenPlayer implements Player{
     private int numberOfJumps;
 
     private String stateOfPlayer;
-    private Body body;
+    public Body body;
     private Player player;
     private int lives;
     private int speedX;
