@@ -5,14 +5,15 @@ import com.grupp28gdx.game.Model.Player;
 
 
 /**
- * This is the smallest coin. When the player catches this coin it gains 3x the amount of points as when the player
- * catches the medium coin. There are three types of coins in total in the game to catch.
+ * This is the smallest gemstone. When the player catches this gemstone it gains 3x the amount of points as when the player
+ * catches the medium gemstone There are three types of gemstone in total in the game to catch.
  */
 public class SmallGemstone implements Gemstone {
 
     public Body body;
     private float sideLength;
     private int points;
+    private int totalPoints;
 
 
     public SmallGemstone() {
@@ -21,8 +22,13 @@ public class SmallGemstone implements Gemstone {
         this.body = new Body(0,0);
         this.body.setXPosition(0);
         this.body.setYPosition(0);
+        this.totalPoints = 0;
     }
 
+    /**
+     * A method which creates an instance of the class SmallGemstone
+     * @return SmallGemstone
+     */
     @Override
     public Gemstone createGemstone() {
         Gemstone gemstone = new SmallGemstone();
@@ -30,19 +36,30 @@ public class SmallGemstone implements Gemstone {
     }
 
 
-
+    /**
+     * Method that updates the attribute GemCounter in the player class
+     */
     @Override
     public void updateGemCounter(){
-/*        player.setGemCounter(player.getGemCounter() + this.points);*/
-
+        this.totalPoints += this.points;
     }
 
 
-    public int getPoints() {
-        return points;
-    }
 
+    /**
+     * Returns the side length of the gemstone instance
+     * @return sideLength
+     */
     public float getSideLength() {
         return this.sideLength;
+    }
+
+
+    /**
+     * Returns the point value that an instance of SmallGemstone is worth
+     * @return points
+     */
+    public int getPoints() {
+        return points;
     }
 }
