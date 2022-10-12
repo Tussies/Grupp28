@@ -2,7 +2,8 @@ package com.grupp28gdx.game.Model;
 
 public class SpikeObstacle implements Obstacle{
 
-    private final String shape;
+    private final ObstacleShape shape;
+    private ObstacleColor color;
 
     private float[] vectorListX;
     private float[] vectorListY;
@@ -10,7 +11,8 @@ public class SpikeObstacle implements Obstacle{
     private final Body body;
 
     public SpikeObstacle(float spawnPosX, float spawnPosY){
-        shape = "spike";
+        shape = ObstacleShape.TRIANGLE;
+        this.color = ObstacleColor.GREEN;
         body = new Body(spawnPosX,spawnPosY);
         createSpikeShape();
     }
@@ -36,8 +38,14 @@ public class SpikeObstacle implements Obstacle{
         return vectorListY;
     }
 
-    public String getShape(){
+    @Override
+    public ObstacleShape getShape(){
         return shape;
+    }
+
+    @Override
+    public ObstacleColor getColor() {
+        return this.color;
     }
 
     public Body getPosition(){

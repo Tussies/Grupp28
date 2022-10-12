@@ -6,8 +6,9 @@ package com.grupp28gdx.game.Model;
  */
 public class WallObstacle implements Obstacle{
 
-/*    private final String shape;
-    private ObstacleShape shape;*/
+//   private final String shape;
+    private ObstacleShape shape;
+    private ObstacleColor color;
 
     private float[] vectorListX;
     private float[] vectorListY;
@@ -15,8 +16,9 @@ public class WallObstacle implements Obstacle{
     private final Body body;
 
     public WallObstacle(float spawnPosX, float spawnPosY){
-/*        shape = ObstacleShape.RECTANGLE;
-        shape = "wall";*/
+        shape = ObstacleShape.RECTANGLE;
+        this.color = ObstacleColor.PURPLE;
+     //   shape = "wall";
         body = new Body(spawnPosX,spawnPosY);
         createShape();
     }
@@ -51,6 +53,16 @@ public class WallObstacle implements Obstacle{
     @Override
     public Obstacle createObstacle(float spawnX, float spawnY) {
         return new WallObstacle(spawnX,spawnY);
+    }
+
+    @Override
+    public ObstacleShape getShape() {
+        return null;
+    }
+
+    @Override
+    public ObstacleColor getColor() {
+        return null;
     }
 
 /*    public ObstacleShape getShape() {

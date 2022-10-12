@@ -6,4 +6,7 @@ package com.grupp28gdx.game.Model;
  */
 public interface Obstacle {
     Obstacle createObstacle(float x,float y);
+    ObstacleShape getShape();
+    ObstacleColor getColor();
+
 }

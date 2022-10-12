@@ -7,6 +7,7 @@ public class PermanentObstacle implements Obstacle {
 
     private final String shapeName;
     private ObstacleShape shape;
+    private ObstacleColor color;
 
     private float[] vectorListX;
     private float[] vectorListY;
@@ -15,6 +16,7 @@ public class PermanentObstacle implements Obstacle {
 
     public PermanentObstacle(float spawnPosX, float spawnPosY){
         shape = ObstacleShape.SQUARE;
+        this.color = ObstacleColor.RED;
         shapeName = "PermanentObstacle";
         body = new Body(spawnPosX,spawnPosY);
         createShape();
@@ -59,5 +61,10 @@ public class PermanentObstacle implements Obstacle {
 
     public ObstacleShape getShape() {
         return shape;
+    }
+
+    @Override
+    public ObstacleColor getColor() {
+        return this.color;
     }
 }

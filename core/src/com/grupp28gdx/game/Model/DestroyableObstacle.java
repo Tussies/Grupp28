@@ -21,10 +21,12 @@ public class DestroyableObstacle implements Obstacle {
         return new PermanentObstacle(spawnX,spawnY);
     }
 
+    @Override
     public ObstacleShape getShape() {
         return shape;
     }
 
+    @Override
     public ObstacleColor getColor() {
         return color;
     }

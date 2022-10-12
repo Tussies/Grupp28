@@ -1,5 +1,8 @@
 package com.grupp28gdx.game.Model;
 
 public enum ObstacleColor {
-    BLUE
+    BLUE,
+    RED,
+    GREEN,
+    PURPLE
 }
