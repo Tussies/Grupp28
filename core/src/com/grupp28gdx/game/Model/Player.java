@@ -16,8 +16,6 @@ public interface Player {
 
     void createPlayer();
 
-    void jump();
-
 
     // det ska finnas ett gemcounter-objekt i varje playerfactory istället
     //void setGemCounter(int points);

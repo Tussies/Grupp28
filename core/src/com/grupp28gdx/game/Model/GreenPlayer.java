@@ -14,7 +14,6 @@ public class GreenPlayer implements Player{
     private int lives;
     private int speedX;
     private int speedY;
-    //private int gemCounter; det ska finnas ett gemcounter-objekt istället
 
     StateOfPlayer playerState;
     StateOfPlayerDirection playerDirection;
@@ -26,7 +25,6 @@ public class GreenPlayer implements Player{
         speedX = 2;
         speedY = 0;
         createPlayer();
-        //this.gemCounter = 0;
     }
 
     public void createPlayer() {
@@ -41,31 +39,14 @@ public class GreenPlayer implements Player{
     }
 
     /**
-     * kommentera här, fråga Isak
-     */
-    private void positionUpdate() {
-        if (body.y<1) collisionGroundBegin();
-        if(body.y>1)collisionGroundEnd();
-        if (playerState == StateOfPlayer.JUMPING|| playerState == StateOfPlayer.FALLING) jump();
-        else{
-            body.x += body.forceX;
-            body.y += body.forceY;
-        }
-    }
-
-    /**
      * The playerUpdate method should be put in the step, cycle, update e.g. method of the game.
      * It updates a player's movement, with gravity acting upon it.
      * @param deltaTime is the time between each update of the movement of Player.
      */
     @Override
     public void playerUpdate(float deltaTime) {
-        body.x += body.speedX * deltaTime;
-        body.y += body.speedY * deltaTime;
         body.speedY += body.gravity * deltaTime;
-
         body.move(speedX, speedY);
-
         body.accelerate(0, -body.gravity);
     }
 
@@ -83,24 +64,9 @@ public class GreenPlayer implements Player{
         onGround = false;
     }
 
-
     /**
      * kommentera här, fråga Isak
-     */
-    @Override
-    public void jump() {
-        body.x += body.forceX;
-        if (body.forceY < 0.3 && playerState == StateOfPlayer.JUMPING){
-            body.forceY += 0.07;
-        }else{
-            playerState = StateOfPlayer.FALLING;
-            body.forceY -=0.0098;
-        }
-        body.y += body.forceY;
-    }
-
-    /**
-     * kommentera här, fråga Isak
+     * wasd-layout on keyboard
      */
     public void inputKeyDown(int key){
         switch (key){
@@ -108,19 +74,19 @@ public class GreenPlayer implements Player{
                 if (onGround){
                     playerState = StateOfPlayer.JUMPING;
                 }
-                body.forceY = 0.1f;
+                //body.forceY = 0.1f; skriv om till speed här
                 break;
             case 47: // s
                 break;
             case 29: // ad
                 if (onGround){
                     playerDirection = StateOfPlayerDirection.LEFT;}
-                body.forceX = -0.1f;
+                //body.forceX = -0.1f;
                 break;
             case 32: //d
                 if (onGround){
                     playerDirection = StateOfPlayerDirection.RIGHT;}
-                body.forceX = 0.1f;
+                //body.forceX = 0.1f;
                 break;
         }
     }
@@ -157,13 +123,5 @@ public class GreenPlayer implements Player{
     public void setLives(int lives) {
         this.lives = lives;
     }
-
-
-/*    public void setGemCounter(int points){
-        this.gemCounter=points;
-    }
-    public int getGemCounter(){
-        return this.gemCounter;
-    }*/
 }
 

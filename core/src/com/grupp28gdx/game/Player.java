@@ -90,13 +90,13 @@ public class Player implements Spawnables {
 
         this.setPosition(this.getX_position() + this.getXVelocity(), this.getY_position()+this.getYVelocity());
 
-        if(this.getY_position() > 0){
+        if(this.getY_position() > 1.5f){
             this.setYVelocity(this.getYVelocity()-0.02f);
         }
         if(this.getY_position() <=0){
             this.playerState = "walking";
             this.setYVelocity(0);
-            this.setPosition(this.getX_position(), 0f);
+            this.setPosition(this.getX_position(), 1.5f);
 
         }
 
