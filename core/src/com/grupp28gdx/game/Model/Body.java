@@ -60,6 +60,10 @@ public class Body {
         return this.x;
     }
 
+    public float getYPosition() {
+        return this.y;
+    }
+
     public void setForceX(int forceX) {
         this.forceX = forceX;
     }
@@ -69,11 +73,13 @@ public class Body {
     }
 
     public void setMovementSpeed(int speed) {
-        this.speedY = speed;
+        this.speedX = speed;
     }
 
     public int getMovementSpeed() {
-        return this.speedY;
+        return this.speedX;
     }
+
+    public float getForceY() { return this.forceY; }
 }
 

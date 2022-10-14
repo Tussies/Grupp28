@@ -35,7 +35,7 @@ public class OrangePlayer extends GreenPlayer implements Player{
 
     }
     StateOfPlayer playerState;
-    StateOfPlayerDirection playerDirection;
+    //StateOfPlayerDirection playerDirection;
 
     boolean onGround = true;
 

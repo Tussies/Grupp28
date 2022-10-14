@@ -9,10 +9,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.grupp28gdx.game.BodyContactListener;
-import com.grupp28gdx.game.Player;
+import com.grupp28gdx.game.Model.GreenPlayer;
+import com.grupp28gdx.game.Model.Player;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
 import com.grupp28gdx.game.input.PlayInputHandler;
 import com.grupp28gdx.game.render.Hud;
+import jdk.internal.icu.text.UTF16;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
@@ -60,7 +62,7 @@ public class PlayState extends State {
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
         world = new World(new Vector2(0, -9.8f), true);
         world.setContactListener(new BodyContactListener(this));
-        player = new Player();
+        player = new GreenPlayer();
         this.playInput = new PlayInputHandler(player);
         ground = createGround();
         debugRenderer = new Box2DDebugRenderer();
@@ -108,17 +110,17 @@ public class PlayState extends State {
     public void update(float delta) {
         world.step(1/60f, 6,2);
         updateBackground();
-        player.playerMovementUpdate(delta);
+        player.playerUpdate(delta);
         cameraUpdate(delta);
-        ground.setTransform(player.getX_position(),0, 0);
-        obstacleHandler.update(Math.round(player.getX_position()),0);
-        hud.updateScore(Math.round(player.getX_position()));
+        ground.setTransform(player.getBody().getXPosition(),0, 0);
+        obstacleHandler.update(Math.round(player.getBody().getXPosition()),0);
+        hud.updateScore(Math.round(player.getBody().getXPosition()));
     }
 
     public void cameraUpdate(float delta) {
         Vector3 position = cam.position;
-        position.x = player.getX_position()* pixelsPerMeter;
-        position.y = player.getY_position() * pixelsPerMeter;
+        position.x = player.getBody().getXPosition()* pixelsPerMeter;
+        position.y = player.getBody().getXPosition() * pixelsPerMeter;
 
         rc.updateCamera(cam,position);
     }
@@ -143,21 +145,21 @@ public class PlayState extends State {
 
     private void updatePlayerTexture() {
         int animationFrame = Math.round(frame);
-        switch (player.getPlayerState()){
+        switch (player.getStateOfPlayer().toString()) {
             case "walking":
                 frame += 0.1;
                 frame = frame % 60;
                 animationFrame = animationFrame % 5;
-                rc.render(playerWalkingAnimation[animationFrame], player.getX_position() * pixelsPerMeter - (playerWalkingAnimation[1].getWidth()/8f), player.getY_position() * pixelsPerMeter - 30, 200/4f, 422/4f);
+                rc.render(playerWalkingAnimation[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerWalkingAnimation[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 200/4f, 422/4f);
                 break;
             case "jumping":
                 frame += 0.1;
                 frame = frame % 60;
 
-                if(player.getForceY() == 180){ frame = 0; animationFrame=0;}
+                if(player.getBody().getForceY() == 180){ frame = 0; animationFrame=0;}
                 animationFrame = animationFrame % 4;
 
-                rc.render(playerJumpingAnimation[animationFrame], player.getX_position() * pixelsPerMeter - (playerJumpingAnimation[1].getWidth()/8f), player.getY_position() * pixelsPerMeter - 30, 250/4f, 422/4f);
+                rc.render(playerJumpingAnimation[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerJumpingAnimation[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 250/4f, 422/4f);
                 break;
         }
     }

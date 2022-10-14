@@ -1,2 +1,4 @@
-package com.grupp28gdx.game.View;public class PlayerView {
+package com.grupp28gdx.game.View;
+
+public class PlayerView {
 }

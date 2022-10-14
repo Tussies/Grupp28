@@ -8,7 +8,9 @@ import com.badlogic.gdx.math.Vector2;
  */
 public interface Player {
     void setStateOfPlayer(StateOfPlayer stateOfPlayer);
+
     StateOfPlayer getStateOfPlayer();
+
     int getLives();
     void setLives(int lives);
 
@@ -17,6 +19,12 @@ public interface Player {
     void createPlayer();
 
     void jump();
+
+    void inputKeyDown(int key);
+
+    void inputKeyUp(int key);
+
+    Body getBody();
 
 
     // det ska finnas ett gemcounter-objekt i varje playerfactory istället
