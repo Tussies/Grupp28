@@ -63,4 +63,8 @@ public class BigGemstone implements Gemstone {
     }
 
 
+    @Override
+    public Body getBody(){
+        return body;
+    }
 }

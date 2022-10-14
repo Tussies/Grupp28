@@ -42,10 +42,7 @@ public class PermanentObstacle implements Obstacle {
         return vectorListY;
     }
 
-    public String getShapeName(){
-        return shapeName;
-    }
-
+    @Override
     public Body getPosition(){
         return body;
     }

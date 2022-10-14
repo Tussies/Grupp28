@@ -62,5 +62,10 @@ public class MediumGemstone implements Gemstone {
         return points;
     }
 
+    @Override
+    public Body getBody(){
+        return body;
+    }
+
 
 }
