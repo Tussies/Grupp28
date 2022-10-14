@@ -63,6 +63,10 @@ public class Body {
         return  this.y;
     }
 
+    public float getYPosition() {
+        return this.y;
+    }
+
     public void setForceX(int forceX) {
         this.forceX = forceX;
     } //forceX är en float men metoden ber om en int
@@ -78,15 +82,12 @@ public class Body {
 
     public void setMovementSpeed(int speed) {
         this.speedX = speed;
-    }
 
     public int getMovementSpeed() { //Confusing name
         return this.speedX;
     }
-
-
-    public int getSpeedY(){ //setter?
-        return this.speedY;
     }
+
+    public float getForceY() { return this.forceY; }
 }
 
