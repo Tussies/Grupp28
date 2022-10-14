@@ -43,9 +43,6 @@ public class PurplePlayer extends GreenPlayer implements Player {
 
     }*/
 
-    StateOfPlayer playerState;
-    StateOfPlayerDirection playerDirection;
-
     boolean onGround = true;
 /*
     public PurplePlayer() {
