@@ -3,16 +3,27 @@ package com.grupp28gdx.game.Model;
 /**
  * This is all the states a player can have.
  */
-enum StateOfPlayer{
-    IDLE,
-    WALKING,
-    JUMPING,
-    FALLING,
-    RUNNING,
-    DEAD
-}
+public enum StateOfPlayer{
+    IDLE("idle"),
+    WALKING("walking"),
+    JUMPING("jumping"),
+    FALLING("falling"),
+    RUNNING("running"),
+    DEAD("dead")
+    ;
 
-enum StateOfPlayerDirection{
+    public final String text;
+
+    StateOfPlayer(final String text) {
+        this.text = text;
+    }
+
+    @Override
+    public String toString() {
+        return text;
+    }
+
+    /*enum StateOfPlayerDirection{
     LEFT,
-    RIGHT
+    RIGHT*/
 }
