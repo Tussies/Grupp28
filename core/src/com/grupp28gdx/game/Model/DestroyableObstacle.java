@@ -1,5 +1,7 @@
 package com.grupp28gdx.game.Model;
 
+import java.util.ArrayList;
+
 /**
  * This obstacle is destroyable and not permanent, which means that it will disappear if the player shoots it with a gun.
  */
@@ -7,9 +9,9 @@ public class DestroyableObstacle implements Obstacle {
     private ObstacleShape shape;
     private ObstacleColor color;
     private Body body;
-    private float[] vectorListX;
-    private float[] vectorListY;
     private boolean destroyObstacle;
+    ArrayList<Float> vectorListX = new ArrayList<Float>();
+    ArrayList<Float> vectorListY = new ArrayList<Float>();
 
     /**
      * This is the constructor for the destroyable objects, the color makes the destroyable obstacle distinguishable from the permanent obstacles.
@@ -22,6 +24,7 @@ public class DestroyableObstacle implements Obstacle {
         this.body = new Body(spawnPosX,spawnPosY);
         this.body.setXPosition(0);
         this.body.setYPosition(0);
+
         createShape();
         if (destroyObstacle){
             destroyShape();
@@ -32,33 +35,23 @@ public class DestroyableObstacle implements Obstacle {
      * This method will create the shape for the destroyable object, which is a square;
      */
     private void createShape() {
-        vectorListX = new float[]{
-                body.getXPosition(),
-                body.getXPosition(),
-                body.getXPosition() + 1,
-                body.getXPosition() + 1
-        };
-        vectorListY = new float[]{
-                body.getXPosition(),
-                body.getXPosition()+2,
-                body.getXPosition()+2,
-                body.getXPosition()
-        };
+        vectorListX.add(body.getXPosition());
+        vectorListX.add(body.getXPosition());
+        vectorListX.add(body.getXPosition()+1);
+        vectorListX.add(body.getXPosition()+1);
+
+        vectorListY.add(body.getXPosition());
+        vectorListY.add(body.getXPosition()+2);
+        vectorListY.add(body.getXPosition()+2);
+        vectorListY.add(body.getXPosition());
     }
 
     /**
-     * Thid method will destroy the shape when the object has been destroyed by shooting at it.
+     * This method will destroy the shape when the object has been destroyed by shooting at it.
      */
     private void destroyShape() {
-        vectorListX[0] = 0;
-        vectorListX[1] = 0;
-        vectorListX[2] = 0;
-        vectorListX[3] = 0;
-
-        vectorListY[0] = 0;
-        vectorListY[1] = 0;
-        vectorListY[2] = 0;
-        vectorListY[3] = 0;
+        vectorListX.clear();
+        vectorListY.clear();
     }
 
 
@@ -67,16 +60,18 @@ public class DestroyableObstacle implements Obstacle {
         return new DestroyableObstacle(spawnX,spawnY);
     }
 
-    public Body getPosition(){
-        return body;
+    public ArrayList<Float> getVectorListX(){
+        return vectorListX;
     }
 
-
-    public ObstacleShape getShape() {
-        return shape;
+    public ArrayList<Float> getVectorListY(){
+        return vectorListY;
     }
 
-    public ObstacleColor getColor() {
-        return color;
-    }
+    public Body getPosition(){ return body; }
+
+
+    public ObstacleShape getShape() { return shape; }
+
+    public ObstacleColor getColor() { return color; }
 }

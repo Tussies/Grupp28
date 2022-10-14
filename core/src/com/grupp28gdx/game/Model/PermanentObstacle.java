@@ -1,5 +1,7 @@
 package com.grupp28gdx.game.Model;
 
+import java.util.ArrayList;
+
 /**
  * This obstacle is permanent, which means that it will not disappear if the player shoots it with a gun.
  */
@@ -8,8 +10,8 @@ public class PermanentObstacle implements Obstacle {
     private final String shapeName;
     private ObstacleShape shape;
 
-    private float[] vectorListX;
-    private float[] vectorListY;
+    ArrayList<Float> vectorListX = new ArrayList<Float>();
+    ArrayList<Float> vectorListY = new ArrayList<Float>();
 
     private final Body body;
 
@@ -21,26 +23,22 @@ public class PermanentObstacle implements Obstacle {
     }
 
     private void createShape() {
-        vectorListX = new float[]{
-                body.getXPosition(),
-                body.getXPosition(),
-                body.getXPosition()+1,
-                body.getXPosition()+1
-        };
-        vectorListY = new float[]{
-                body.getXPosition(),
-                body.getXPosition()+2,
-                body.getXPosition()+2,
-                body.getXPosition()
-        };
+        vectorListX.add(body.getXPosition());
+        vectorListX.add(body.getXPosition());
+        vectorListX.add(body.getXPosition()+1);
+        vectorListX.add(body.getXPosition()+1);
 
+        vectorListY.add(body.getXPosition());
+        vectorListY.add(body.getXPosition()+2);
+        vectorListY.add(body.getXPosition()+2);
+        vectorListY.add(body.getXPosition());
     }
 
-    public float[] getVectorListX(){
+    public ArrayList<Float> getVectorListX(){
         return vectorListX;
     }
 
-    public float[] getVectorListY(){
+    public ArrayList<Float> getVectorListY(){
         return vectorListY;
     }
 
