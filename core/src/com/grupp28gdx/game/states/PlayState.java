@@ -2,6 +2,7 @@ package com.grupp28gdx.game.states;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -114,6 +115,8 @@ public class PlayState extends State {
         ground.setTransform(player.getBody().getXPosition(),0, 0);
         obstacleHandler.update(Math.round(player.getBody().getXPosition()),0);
         hud.updateScore(Math.round(player.getBody().getXPosition()));
+
+        if(Gdx.input.isKeyPressed(Input.Keys.UP)) player.jump();
     }
 
     public void cameraUpdate(float delta) {

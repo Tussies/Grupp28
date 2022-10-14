@@ -44,7 +44,7 @@ public class GreenPlayer implements Player{
     public void playerUpdate(float deltaTime) {
         body.speedY += body.gravity * deltaTime;
         body.move(body.getMovementSpeed()*deltaTime, body.speedY*deltaTime);
-        body.accelerate(0, -body.gravity);
+        body.accelerate(0, body.gravity);
 
         if(body.y <= 0){
             playerState = PlayerStates.WALKING;
@@ -53,14 +53,14 @@ public class GreenPlayer implements Player{
 
     @Override
     public void jump (){
-        if (body.speedY == 0 || this.jumps < 2) {
-            this.jumps++;
-            body.speedY = -25;
+/*        if (body.speedY == 0 || this.jumps < 2) {
+            this.jumps++;*/
+            body.speedY = 30;
 
-            if (body.y == 0) {
+/*            if (body.y == 0) {
                 this.jumps = 0;
             }
-        }
+        }*/
 
     }
 
