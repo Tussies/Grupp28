@@ -59,6 +59,9 @@ public class Body {
     public float getXPosition() {
         return this.x;
     }
+    public float getYPosition(){
+        return  this.y;
+    }
 
     public float getYPosition() {
         return this.y;
@@ -66,18 +69,23 @@ public class Body {
 
     public void setForceX(int forceX) {
         this.forceX = forceX;
-    }
+    } //forceX är en float men metoden ber om en int
 
     public void setForceY(int forceY) {
         this.forceY = forceY;
-    }
+    } //forceY är en float men metoden ber om int
+
+    public float getForceX(){return this.forceX; }
+
+    public float getForceY(){return this.forceY; }
+
 
     public void setMovementSpeed(int speed) {
         this.speedX = speed;
-    }
 
-    public int getMovementSpeed() {
+    public int getMovementSpeed() { //Confusing name
         return this.speedX;
+    }
     }
 
     public float getForceY() { return this.forceY; }
