@@ -51,8 +51,5 @@ public class ObstacleAdapter {
         return bodyDef;
     }
 
-    private Body createBody(){
 
-        return null;
-        }
     }
