@@ -5,13 +5,17 @@ package com.grupp28gdx.game.Model;
  */
 public class DestroyableObstacle implements Obstacle {
     private ObstacleShape shape;
-    private ObstacleColor color; //this color makes the destroyable obstacle distinguishable from the permanent obstacles
+    private ObstacleColor color;
     private Body body;
     private float[] vectorListX;
     private float[] vectorListY;
     private boolean destroyObstacle;
 
-
+    /**
+     * This is the constructor for the destroyable objects, the color makes the destroyable obstacle distinguishable from the permanent obstacles.
+     * @param spawnPosX
+     * @param spawnPosY
+     */
     public DestroyableObstacle(float spawnPosX, float spawnPosY) {
         shape = ObstacleShape.SQUARE;
         color = ObstacleColor.BLUE;
@@ -24,6 +28,9 @@ public class DestroyableObstacle implements Obstacle {
         };
     }
 
+    /**
+     * This method will create the shape for the destroyable object, which is a square;
+     */
     private void createShape() {
         vectorListX = new float[]{
                 body.getXPosition(),
@@ -39,8 +46,19 @@ public class DestroyableObstacle implements Obstacle {
         };
     }
 
+    /**
+     * Thid method will destroy the shape when the object has been destroyed by shooting at it.
+     */
     private void destroyShape() {
+        vectorListX[0] = 0;
+        vectorListX[1] = 0;
+        vectorListX[2] = 0;
+        vectorListX[3] = 0;
 
+        vectorListY[0] = 0;
+        vectorListY[1] = 0;
+        vectorListY[2] = 0;
+        vectorListY[3] = 0;
     }
 
 
