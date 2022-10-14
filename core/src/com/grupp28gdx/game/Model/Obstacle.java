@@ -6,4 +6,9 @@ package com.grupp28gdx.game.Model;
  */
 public interface Obstacle {
     Obstacle createObstacle(float x,float y);
+    public float[] getVectorListX();
+
+    public float[] getVectorListY();
+
+    public Body getPosition();
 }
