@@ -21,4 +21,7 @@ public interface Player {
     void inputKeyUp(int key);
 
     Body getBody();
+
+    void collisionGroundBegin();
+    void collisionGroundEnd();
 }
