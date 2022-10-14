@@ -12,7 +12,7 @@ public class Body {
     protected float gravity = -1.0f;
     protected float x;
     protected float y;
-    protected int speedX;
+    protected float speedX;
     protected int speedY;
     protected float forceX;
     protected float forceY;
@@ -68,12 +68,12 @@ public class Body {
         this.forceY = forceY;
     }
 
-    public void setMovementSpeed(int speed) {
-        this.speedY = speed;
+    public void setMovementSpeed(float speed) {
+        this.speedX = speed;
     }
 
-    public int getMovementSpeed() {
-        return this.speedY;
+    public float getMovementSpeed() {
+        return this.speedX;
     }
 }
 
