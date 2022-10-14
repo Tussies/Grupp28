@@ -5,10 +5,10 @@ import com.grupp28gdx.game.Model.Body;
 public class Gun {
     public Body body;
     private Bullet bullet;
+    private int bulletCounter;
 
     public Gun(){ //Send in player coordinates
-        this.body.setXPosition(0);
-        this.body.setYPosition(0);
+        this.body = new Body(0,0);
     }
 
 
@@ -25,6 +25,9 @@ public class Gun {
 
     public void shootGun(float xPos, float yPos, float speed) {
      bullet = new Bullet(xPos, yPos, speed);
+
+        this.bulletCounter++;
+        System.out.println("Bullet nr " + bulletCounter);
     }
 
 
