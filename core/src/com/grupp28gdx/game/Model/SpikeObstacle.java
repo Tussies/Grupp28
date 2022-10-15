@@ -23,9 +23,9 @@ public class SpikeObstacle implements Obstacle{
         vectorListX.add(body.getXPosition()+2);
         vectorListX.add(body.getXPosition()+1);
 
-        vectorListY.add(body.getXPosition()+1);
-        vectorListY.add(body.getXPosition()+1);
-        vectorListY.add(body.getXPosition()+2);
+        vectorListY.add(body.getYPosition()+1);
+        vectorListY.add(body.getYPosition()+1);
+        vectorListY.add(body.getYPosition()+2);
     }
 
     @Override

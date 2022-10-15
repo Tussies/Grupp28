@@ -28,10 +28,10 @@ public class PermanentObstacle implements Obstacle {
         vectorListX.add(body.getXPosition()+1);
         vectorListX.add(body.getXPosition()+1);
 
-        vectorListY.add(body.getXPosition());
-        vectorListY.add(body.getXPosition()+2);
-        vectorListY.add(body.getXPosition()+2);
-        vectorListY.add(body.getXPosition());
+        vectorListY.add(body.getYPosition());
+        vectorListY.add(body.getYPosition()+2);
+        vectorListY.add(body.getYPosition()+2);
+        vectorListY.add(body.getYPosition());
     }
 
     public ArrayList<Float> getVectorListX(){

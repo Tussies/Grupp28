@@ -1,22 +1,25 @@
 package com.grupp28gdx.game.handlers;
 
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.grupp28gdx.game.obstacles.*;
+import com.grupp28gdx.game.Controller.ObstacleAdapter;
+import com.grupp28gdx.game.Model.ModeFactory;
+import com.grupp28gdx.game.Model.Obstacle;
+import com.grupp28gdx.game.render.RenderController;
 
-import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
 public class ObstacleHandler extends SpawnHandler{
-    protected Array<Obstacle> itemArray = new Array<>();
+    protected Array<ObstacleAdapter> itemArray = new Array<>();
     protected World world;
-    public ObstacleHandler(World world){
+    protected  RenderController rc;
+    protected ModeFactory modeFactory;
+    public ObstacleHandler(World world, RenderController rc, ModeFactory modeFactory){
         this.world = world;
+        this.rc = rc;
+        this.modeFactory = modeFactory;
     }
 
-    public Array<Obstacle> getObstacles(){
+    public Array<ObstacleAdapter> getObstacles(){
         return itemArray;
     }
 
@@ -26,30 +29,24 @@ public class ObstacleHandler extends SpawnHandler{
         int i = rand.nextInt() % n;
         int randomNum = 1 + i;
         switch (randomNum){
-            case 1: itemArray.add(new Spike(posX+20,posY));
+            case 1: itemArray.add(new ObstacleAdapter(world,modeFactory,posX,posY,rc));
         }
     }
 
     @Override
     public void update(float posX,float posY) {
-        if (posX % 10 == 0) {
+        if (posX % 5 == 0) {
             if (itemArray.isEmpty()) {
-                createObstacle(posX, -0.1f);
-            } else if (!(itemArray.get(itemArray.size - 1).getX_position() == posX+20)) {
-                createObstacle(posX, -0.1f);
+                generate(posX, posY);
+            } else if (!(itemArray.get(itemArray.size - 1).getObstacleData().getPosition().getXPosition() == posX+1)) {
+                generate(posX+1, posY);
             }
-            while (itemArray.get(0).getX_position() - posX <= -10) {
-                world.destroyBody(itemArray.get(0).getBody());
+            System.out.println(posX);
+            while (itemArray.get(0).getObstacleData().getPosition().getXPosition() - posX <= -5) {
+                itemArray.get(0).destroyBody();
                 itemArray.removeIndex(0);
             }
         }
-    }
-
-    private void createObstacle(float posX, float posY) {
-        generate(posX,posY);
-        itemArray.get(itemArray.size - 1).setBody(world.createBody(itemArray.get(itemArray.size - 1).getBodyDef()));
-        itemArray.get(itemArray.size - 1).getBody().createFixture(itemArray.get(itemArray.size - 1).getBodyShape(),1.0f);
-        itemArray.get(itemArray.size - 1).getBodyShape().dispose();
     }
 }
 
