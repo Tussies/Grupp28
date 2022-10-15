@@ -1,8 +1,5 @@
 package com.grupp28gdx.game.handlers;
 
-import com.badlogic.gdx.utils.Array;
-import com.grupp28gdx.game.Coin;
-
 import java.util.Random;
 
 public abstract class SpawnHandler {
@@ -10,7 +7,6 @@ public abstract class SpawnHandler {
     protected int numberOfSpawnableItems = 1;
 
     protected abstract void generate(float posX,float posY);
-
 
     public abstract void update(float posX, float posY);
 }
