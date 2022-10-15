@@ -1,5 +1,6 @@
 package com.grupp28gdx.game.Model;
 
+import com.grupp28gdx.game.Controller.ObstacleAdapter;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 
 public class CollisionDetector {
@@ -27,9 +28,9 @@ public class CollisionDetector {
         return false;
     }
 
-    public boolean hasCollided(Player player, SpikeObstacle spike){
+    public boolean hasCollided(Player player, ObstacleAdapter spike){
         Body playerBody = player.getBody();
-        Body spikeBody = spike.getPosition();
+        Body spikeBody = spike.getObstacleData().getPosition();
         float playerOffsetX = 1f;
         float playerOffsetY = 1f;
 
@@ -54,7 +55,6 @@ public class CollisionDetector {
 
         if(playerBody.y < yPosition)
         {
-            System.out.println("UnderGround");
             return true;
         }
         return false;

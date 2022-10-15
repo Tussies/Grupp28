@@ -45,6 +45,7 @@ public class Hud {
     }
 
     public void updateScore(int newScore){
+        System.out.println(newScore);
         scoreCounterLabel.setText(String.format("%06d",newScore));
     }
     public void updateCoins(int coins){coinCountLabel.setText(String.format("%02d",coins));}

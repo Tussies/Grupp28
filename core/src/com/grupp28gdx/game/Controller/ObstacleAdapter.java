@@ -50,6 +50,16 @@ public class ObstacleAdapter {
         bodyDef.fixedRotation = true;
         return bodyDef;
     }
+    public Body getObstacleBody(){
+        return obstacleBody;
+    }
 
+    public void destroyBody(){
+        world.destroyBody(obstacleBody);
+    }
+
+    public Obstacle getObstacleData(){
+        return obstacleData;
+    }
 
     }
