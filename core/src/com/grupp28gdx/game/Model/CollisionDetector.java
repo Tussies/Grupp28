@@ -31,17 +31,25 @@ public class CollisionDetector {
     public boolean hasCollided(Player player, ObstacleAdapter spike){
         Body playerBody = player.getBody();
         Body spikeBody = spike.getObstacleData().getPosition();
-        float playerOffsetX = 1f;
-        float playerOffsetY = 1f;
+        float playerOffsetX = 0.6f;
+        float playerOffsetY = 1.5f;
 
-        float spikeOffsetX = 0.5f;
-        float spikeOffsetY = 0.5f;
+        float spikeOffsetX = 1f;
+        float spikeOffsetY = 2f;
 
-        if((
-                (playerBody.x<=spikeBody.x+spikeOffsetX && playerBody.x>=spikeBody.x) &&
-                        (playerBody.y<=spikeBody.y+spikeOffsetY && playerBody.y>=spikeBody.y))||
-                ((playerBody.x+playerOffsetX>=spikeBody.x && playerBody.x<=spikeBody.x) &&
-                        (playerBody.y+playerOffsetY>=spikeBody.y && playerBody.y<=spikeBody.y)))
+        if(
+                ((spikeBody.x<=playerBody.x+playerOffsetX &&
+                 spikeBody.x>=playerBody.x) &&
+                (spikeBody.y <= playerBody.y+playerOffsetY &&
+                 spikeBody.y >= playerBody.y))
+
+                        ||
+
+                ((playerBody.x<=spikeBody.x+spikeOffsetX &&
+                 playerBody.x>=spikeBody.x) &&
+                (playerBody.y <= spikeBody.y+spikeOffsetY &&
+                 playerBody.y >= spikeBody.y))
+                )
         {
             System.out.println("Collision");
             return true;

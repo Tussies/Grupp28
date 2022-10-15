@@ -18,7 +18,7 @@ public class PermanentObstacle implements Obstacle {
     public PermanentObstacle(float spawnPosX, float spawnPosY){
         shape = ObstacleShape.SQUARE;
         shapeName = "PermanentObstacle";
-        body = new Body(spawnPosX,spawnPosY);
+        body = new Body(spawnPosX,spawnPosY+1);
         createShape();
     }
 
