@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
-import com.grupp28gdx.game.BodyContactListener;
+import com.grupp28gdx.game.Model.AssetManager;
 import com.grupp28gdx.game.Model.CollisionDetector;
 import com.grupp28gdx.game.Model.GreenPlayer;
 import com.grupp28gdx.game.Model.Player;
@@ -33,20 +33,7 @@ public class PlayState extends State {
     private float h = Gdx.graphics.getHeight();
     private float frame;
 
-    private Texture background;
-    private Texture alien;
-    private Texture[] playerWalkingAnimation = {
-            new Texture("alien_walking_1.png"),
-            new Texture("armor__0007_walk_2.png"),
-            new Texture("armor__0008_walk_3.png"),
-            new Texture("armor__0009_walk_4.png"),
-            new Texture("armor__0010_walk_5.png"),
-            new Texture("armor__0011_walk_6.png")};
-    private Texture[] playerJumpingAnimation = {
-            new Texture("armor__0027_jump_1.png"),
-            new Texture("armor__0028_jump_2.png"),
-            new Texture("armor__0028_jump_3.png"),
-            new Texture("armor__0030_jump_4.png")};
+    private final AssetManager assetManager = new AssetManager();
 
     private Vector2 backgroundPosition1, backgroundPosition2;
     private ObstacleHandler obstacleHandler;
@@ -59,7 +46,6 @@ public class PlayState extends State {
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
-        background = new Texture("nebulaset1.png");
         cam = new OrthographicCamera();
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
@@ -143,9 +129,9 @@ public class PlayState extends State {
 
         update(Gdx.graphics.getDeltaTime());
         rc.setProjectionMatrix(cam.combined);
-        rc.render(background, backgroundPosition1.x, backgroundPosition1.y, w, h);
-        rc.render(background, backgroundPosition1.x, backgroundPosition1.y, w, h);
-        rc.render(background, backgroundPosition2.x, backgroundPosition2.y, w, h);
+        rc.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, w, h);
+        rc.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, w, h);
+        rc.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, w, h);
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         updatePlayerTexture();
         rc.render(hud);
@@ -159,7 +145,9 @@ public class PlayState extends State {
                 frame += 0.1;
                 frame = frame % 60;
                 animationFrame = animationFrame % 5;
-                rc.render(playerWalkingAnimation[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerWalkingAnimation[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 200/4f, 422/4f);
+                rc.render(assetManager.getGreenAlienWalkingAnimation()[animationFrame],
+                        player.getBody().getXPosition() * pixelsPerMeter - (assetManager.getGreenAlienWalkingAnimation()[1].getWidth()/8f),
+                        player.getBody().getYPosition() * pixelsPerMeter - 30, 200/4f, 422/4f);
                 break;
             case "jumping":
                 frame += 0.1;
@@ -168,20 +156,22 @@ public class PlayState extends State {
                 if(player.getBody().getForceY() == 180){ frame = 0; animationFrame=0;}
                 animationFrame = animationFrame % 4;
 
-                rc.render(playerJumpingAnimation[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerJumpingAnimation[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 250/4f, 422/4f);
+                rc.render(assetManager.getGreenAlienJumpingAnimation()[animationFrame],
+                        player.getBody().getXPosition() * pixelsPerMeter - (assetManager.getGreenAlienJumpingAnimation()[1].getWidth()/8f),
+                        player.getBody().getYPosition() * pixelsPerMeter - 30, 250/4f, 422/4f);
                 break;
         }
     }
 
     @Override
     public void dispose() {
-        background.dispose();
+        assetManager.getBackground().dispose();
         world.dispose();
         debugRenderer.dispose();
-        for (Texture texture : playerWalkingAnimation){
+        for (Texture texture : assetManager.getGreenAlienWalkingAnimation()){
             texture.dispose();
         }
-        for (Texture texture : playerJumpingAnimation){
+        for (Texture texture : assetManager.getGreenAlienJumpingAnimation()){
             texture.dispose();
         }
     }
