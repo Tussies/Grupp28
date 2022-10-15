@@ -26,18 +26,18 @@ public class ObstacleAdapter {
         }
 
     private Vector2[] getVectors() {
-        if (obstacleData.getVectorListX().length == 4){
+        if (obstacleData.getVectorListX().size() == 4){
             return new Vector2[]{
-                    new Vector2(obstacleData.getVectorListX()[0],obstacleData.getVectorListY()[0]),
-                    new Vector2(obstacleData.getVectorListX()[1],obstacleData.getVectorListY()[1]),
-                    new Vector2(obstacleData.getVectorListX()[2],obstacleData.getVectorListY()[2]),
-                    new Vector2(obstacleData.getVectorListX()[3],obstacleData.getVectorListY()[3]),
+                    new Vector2(obstacleData.getVectorListX().get(0),obstacleData.getVectorListY().get(0)),
+                    new Vector2(obstacleData.getVectorListX().get(1),obstacleData.getVectorListY().get(1)),
+                    new Vector2(obstacleData.getVectorListX().get(2),obstacleData.getVectorListY().get(2)),
+                    new Vector2(obstacleData.getVectorListX().get(3),obstacleData.getVectorListY().get(3)),
             };
-        }else if (obstacleData.getVectorListX().length == 3){
+        }else if (obstacleData.getVectorListX().size() == 3){
             return new Vector2[]{
-                    new Vector2(obstacleData.getVectorListX()[0],obstacleData.getVectorListY()[0]),
-                    new Vector2(obstacleData.getVectorListX()[1],obstacleData.getVectorListY()[1]),
-                    new Vector2(obstacleData.getVectorListX()[2],obstacleData.getVectorListY()[2]),
+                    new Vector2(obstacleData.getVectorListX().get(0),obstacleData.getVectorListY().get(0)),
+                    new Vector2(obstacleData.getVectorListX().get(1),obstacleData.getVectorListY().get(1)),
+                    new Vector2(obstacleData.getVectorListX().get(2),obstacleData.getVectorListY().get(2)),
             };
         }else return null;
     }

@@ -1,11 +1,13 @@
 package com.grupp28gdx.game.Model;
 
+import java.util.ArrayList;
+
 public class SpikeObstacle implements Obstacle{
 
     private final String shape;
 
-    private float[] vectorListX;
-    private float[] vectorListY;
+    ArrayList<Float> vectorListX = new ArrayList<Float>();
+    ArrayList<Float> vectorListY = new ArrayList<Float>();
 
     private final Body body;
 
@@ -16,25 +18,23 @@ public class SpikeObstacle implements Obstacle{
     }
 
     private void createSpikeShape() {
-        vectorListX = new float[]{
-                body.getXPosition(),
-                body.getXPosition()+2,
-                body.getXPosition()+1
-        };
-        vectorListY = new float[]{
-                body.getXPosition()+1,
-                body.getXPosition()+1,
-                body.getXPosition()+2,
-        };
+
+        vectorListX.add(body.getXPosition());
+        vectorListX.add(body.getXPosition()+2);
+        vectorListX.add(body.getXPosition()+1);
+
+        vectorListY.add(body.getXPosition()+1);
+        vectorListY.add(body.getXPosition()+1);
+        vectorListY.add(body.getXPosition()+2);
     }
 
     @Override
-    public float[] getVectorListX(){
+    public  ArrayList<Float> getVectorListX(){
         return vectorListX;
     }
 
     @Override
-    public float[] getVectorListY(){
+    public ArrayList<Float> getVectorListY(){
         return vectorListY;
     }
 
