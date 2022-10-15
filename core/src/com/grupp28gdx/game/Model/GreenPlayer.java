@@ -67,13 +67,17 @@ public class GreenPlayer implements Player{
     /**
      * kommentera här, fråga Isak
      */
+
+    @Override
     public void collisionGroundBegin() {
         body.y = 1;
         onGround = true;
-        playerState = PlayerStates.IDLE;
+        //playerState = PlayerStates.IDLE;
         body.forceY = 0;
+        body.speedY = 0;
     }
 
+    @Override
     public void collisionGroundEnd() {
         onGround = false;
     }

@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.grupp28gdx.game.BodyContactListener;
+import com.grupp28gdx.game.Model.CollisionDetector;
 import com.grupp28gdx.game.Model.GreenPlayer;
 import com.grupp28gdx.game.Model.Player;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
@@ -53,6 +54,8 @@ public class PlayState extends State {
     private OrthographicCamera cam;
     private Hud hud;
 
+    private CollisionDetector collisionDetector;
+
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -61,7 +64,7 @@ public class PlayState extends State {
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
         world = new World(new Vector2(0, 0), true);
-        world.setContactListener(new BodyContactListener(this));
+        collisionDetector = new CollisionDetector();
         player = new GreenPlayer();
         this.playInput = new PlayInputHandler(player);
         ground = createGround();
@@ -88,12 +91,12 @@ public class PlayState extends State {
     public Body createGround() {
         BodyDef definition = new BodyDef();
         definition.type = BodyDef.BodyType.StaticBody;
-        definition.position.set(-10,-10);
+        definition.position.set(0,0);
         definition.fixedRotation = true;
         ground = world.createBody(definition);
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(100/pixelsPerMeter, 20/pixelsPerMeter);
+        shape.setAsBox(1000/pixelsPerMeter, 20/pixelsPerMeter);
 
         ground.createFixture(shape, 1.0f);
         shape.dispose();
@@ -112,11 +115,15 @@ public class PlayState extends State {
         updateBackground();
         player.playerUpdate(delta);
         cameraUpdate(delta);
-        ground.setTransform(player.getBody().getXPosition(),0, 0);
+        ground.setTransform(player.getBody().getXPosition(),-0.5f, 0);
         obstacleHandler.update(Math.round(player.getBody().getXPosition()),0);
         hud.updateScore(Math.round(player.getBody().getXPosition()));
 
         if(Gdx.input.isKeyPressed(Input.Keys.UP)) player.jump();
+
+        if(collisionDetector.hasCollided(player,1f)){
+            player.collisionGroundBegin();
+        }else player.collisionGroundEnd();
     }
 
     public void cameraUpdate(float delta) {

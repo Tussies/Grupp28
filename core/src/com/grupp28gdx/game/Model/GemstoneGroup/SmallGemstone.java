@@ -62,4 +62,9 @@ public class SmallGemstone implements Gemstone {
     public int getPoints() {
         return points;
     }
+
+    @Override
+    public Body getBody(){
+        return body;
+    }
 }
