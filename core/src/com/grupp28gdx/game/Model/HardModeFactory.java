@@ -2,6 +2,8 @@ package com.grupp28gdx.game.Model;
 
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.SmallGemstone;
+import com.grupp28gdx.game.Model.PlayerGroup.Player;
+import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
 
 /**
  * This is the concrete hard mode factory. It produces harder, or, more difficult versions
@@ -37,6 +39,6 @@ public class HardModeFactory implements ModeFactory{
      */
     @Override
     public Obstacle createObstacle(float spawnX,float spawnY) {
-        return new DestroyableObstacle();
+        return new DestroyableObstacle(spawnX,spawnY);
     }
 }

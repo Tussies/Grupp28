@@ -3,6 +3,8 @@ package ModeFactory;
 import com.grupp28gdx.game.Model.*;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.SmallGemstone;
+import com.grupp28gdx.game.Model.PlayerGroup.Player;
+import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;

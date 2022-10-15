@@ -1,9 +1,6 @@
 package com.grupp28gdx.game.input;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
-import com.grupp28gdx.game.Player;
-import com.grupp28gdx.game.handlers.ObstacleHandler;
+import com.grupp28gdx.game.Model.PlayerGroup.Player;
 
 public class PlayInputHandler extends InputHandler {
     private Player player;
@@ -12,7 +9,7 @@ public class PlayInputHandler extends InputHandler {
     }
     @Override
     public boolean keyDown(int keycode) {
-        player.inputActionDown(keycode);
+        player.inputKeyDown(keycode);
         return false;
 
         /** Called when a key was released
@@ -23,7 +20,7 @@ public class PlayInputHandler extends InputHandler {
 
     @Override
     public boolean keyUp(int keycode) {
-        player.inputActionUp(keycode);
+        player.inputKeyUp(keycode);
         return false;
 
         /** Called when a key was typed

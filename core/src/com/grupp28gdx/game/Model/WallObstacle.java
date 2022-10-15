@@ -1,5 +1,7 @@
 package com.grupp28gdx.game.Model;
 
+import java.util.ArrayList;
+
 /**
  * This obstacle is like the permanent obstacle, but its height is longer.
  * This obstacle will not disappear, much like the permanent obstacle, if the player shoots it with a gun.
@@ -9,8 +11,8 @@ public class WallObstacle implements Obstacle{
 /*    private final String shape;
     private ObstacleShape shape;*/
 
-    private float[] vectorListX;
-    private float[] vectorListY;
+    ArrayList<Float> vectorListX = new ArrayList<Float>();
+    ArrayList<Float> vectorListY = new ArrayList<Float>();
 
     private final Body body;
 
@@ -22,28 +24,28 @@ public class WallObstacle implements Obstacle{
     }
 
     private void createShape() {
-        vectorListX = new float[]{
-                body.getXPosition(),
-                body.getXPosition(),
-                body.getXPosition()+1,
-                body.getXPosition()+1
-        };
-        vectorListY = new float[]{
-                body.getXPosition(),
-                body.getXPosition()+1,
-                body.getXPosition()+1,
-                body.getXPosition()
-        };
+        vectorListX.add(body.getXPosition());
+        vectorListX.add(body.getXPosition());
+        vectorListX.add(body.getXPosition()+1);
+        vectorListX.add(body.getXPosition()+1);
+
+        vectorListY.add(body.getXPosition());
+        vectorListY.add(body.getXPosition()+1);
+        vectorListY.add(body.getXPosition()+1);
+        vectorListY.add(body.getXPosition());
     }
 
-    public float[] getVectorListX(){
+    @Override
+    public ArrayList<Float> getVectorListX(){
         return vectorListX;
     }
 
-    public float[] getVectorListY(){
+    @Override
+    public ArrayList<Float> getVectorListY(){
         return vectorListY;
     }
 
+    @Override
     public Body getPosition(){
         return body;
     }

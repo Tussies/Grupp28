@@ -2,6 +2,8 @@ package com.grupp28gdx.game.Model;
 
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
+import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
+import com.grupp28gdx.game.Model.PlayerGroup.Player;
 
 /**
  * This is the concrete default mode factory. It produces all standard versions of almost all objects, namely player,
