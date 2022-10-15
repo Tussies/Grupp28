@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class Hud {
     public Stage stage;
     private Viewport viewport;
+    private Stage gameOverStage;
 
     Label scoreCounterLabel;
     Label coinCountLabel;
@@ -44,15 +45,15 @@ public class Hud {
         table.add(scoreCounterLabel).expandX();
 
         stage.addActor(table);
+
+        createGameOverStage();
     }
 
-    public void gameOver(boolean gameOver) {
-        if (gameOver){
-        viewport = new FitViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), new OrthographicCamera());
-        stage = new Stage(viewport);
+    public void createGameOverStage(){
+        gameOverStage = new Stage(viewport);
         Table table = new Table();
-            table.setFillParent(true);
-            table.padBottom(Gdx.graphics.getHeight()/2);
+        table.setFillParent(true);
+        table.padBottom(Gdx.graphics.getHeight()/2);
         gameOverLabel = new Label("Game Over",new Label.LabelStyle(new BitmapFont(Gdx.files.internal("Bullpen3DBitmap.fnt")), Color.WHITE));
         gameOverLabel.setFontScale(2);
 
@@ -62,8 +63,14 @@ public class Hud {
         table.add(scoreTextLabel).expandX();
         table.row();
         table.add(scoreCounterLabel).expandX();
-            stage.addActor(table);}
+        gameOverStage.addActor(table);}
+
+
+    public void gameOver(boolean gameOver) {
+        if (gameOver){
+            stage = gameOverStage;
     }
+}
 
     public void updateScore(int newScore){
         System.out.println(newScore);
