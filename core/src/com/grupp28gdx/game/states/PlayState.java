@@ -116,7 +116,7 @@ public class PlayState extends State {
         }else player.collisionGroundEnd();
 
         for(ObstacleAdapter obstacle : obstacleHandler.getObstacles()){
-            if(collisionDetector.hasCollided(player,obstacle)) System.out.println("Collision");
+            hud.gameOver(collisionDetector.hasCollided(player,obstacle));
         }
     }
 
@@ -154,7 +154,7 @@ public class PlayState extends State {
                 frame = frame % 60;
                 animationFrame = animationFrame % 5;
                 rc.render(assetManager.getGreenAlienWalkingAnimation()[animationFrame],
-                        player.getBody().getXPosition() * 64 - (assetManager.getGreenAlienWalkingAnimation()[1].getWidth()/8f),
+                        player.getBody().getXPosition() * 64 -15 - (assetManager.getGreenAlienWalkingAnimation()[1].getWidth()/8f),
                         player.getBody().getYPosition() * 64, 200/4f, 422/4f);
                 break;
             case "jumping":
