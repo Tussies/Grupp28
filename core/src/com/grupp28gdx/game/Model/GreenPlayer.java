@@ -31,6 +31,7 @@ public class GreenPlayer implements Player{
         this.body.setYPosition(0);
         this.body.setForceX(0);
         this.body.setForceY(0);
+        
         playerState = PlayerStates.IDLE;
         //playerDirection = StateOfPlayerDirection.RIGHT;
         }
@@ -61,7 +62,6 @@ public class GreenPlayer implements Player{
                 this.jumps = 0;
             }
         }*/
-
     }
 
     /**
@@ -83,9 +83,10 @@ public class GreenPlayer implements Player{
     }
 
     /**
-     * kommentera här, fråga Isak
+     * kommentera här, fråga Isak DEN SKA BORT
      */
     @Override
+
     public void inputKeyDown(int key){
         switch (key){
             case 51: // w
@@ -107,6 +108,7 @@ public class GreenPlayer implements Player{
                         }
                 }
 
+    //DEN SKA VA KVAR
     public void inputKeyUp(int key){
         switch (key){
             case 51:
