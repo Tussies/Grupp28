@@ -1,12 +1,12 @@
 package com.grupp28gdx.game.states;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.grupp28gdx.game.input.InputHandler;
 import com.grupp28gdx.game.render.RenderController;
 
-import java.awt.*;
-
+/**
+ * This is the state class that creates the basis of states in the game
+ */
 public abstract class State {
     protected GameStateManager gsm;
     protected RenderController rc;
