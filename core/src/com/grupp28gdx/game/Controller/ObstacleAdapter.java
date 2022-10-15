@@ -17,7 +17,7 @@ public class ObstacleAdapter {
     public ObstacleAdapter(World world, ModeFactory factory, float spawnPosX, float spawnPosY, RenderController rc){
         this.world = world;
         this.obstacleData = factory.createObstacle(spawnPosX,spawnPosY);
-        obstacleBody = world.createBody(generateBodyDef(spawnPosX,spawnPosY));
+        obstacleBody = world.createBody(generateBodyDef(spawnPosX-1,spawnPosY));
         PolygonShape bodyShape = new PolygonShape();
         bodyShape.set(getVectors());
         rc.createFixture(obstacleBody,bodyShape);
@@ -50,6 +50,16 @@ public class ObstacleAdapter {
         bodyDef.fixedRotation = true;
         return bodyDef;
     }
+    public Body getObstacleBody(){
+        return obstacleBody;
+    }
 
+    public void destroyBody(){
+        world.destroyBody(obstacleBody);
+    }
+
+    public Obstacle getObstacleData(){
+        return obstacleData;
+    }
 
     }

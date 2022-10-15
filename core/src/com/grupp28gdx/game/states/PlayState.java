@@ -14,12 +14,20 @@ import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.World;
+import com.grupp28gdx.game.Controller.ObstacleAdapter;
+import com.grupp28gdx.game.Model.*;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
 import com.grupp28gdx.game.input.PlayInputHandler;
 import com.grupp28gdx.game.render.Hud;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
+/**
+ * This class is the play state, which is used for showing the play-state of the game in the view.
+ * The play-state shows the actual game that the user plays.
+ */
 public class PlayState extends State {
 
     Box2DDebugRenderer debugRenderer;
@@ -78,6 +86,7 @@ public class PlayState extends State {
             new Texture("blue__0028_jump_2.png"),
             new Texture("blue__0029_jump_3.png"),
             new Texture("blue__0030_jump_4.png")};
+    private final AssetManager assetManager = new AssetManager();
 
     private Vector2 backgroundPosition1, backgroundPosition2;
     private ObstacleHandler obstacleHandler;
@@ -90,7 +99,6 @@ public class PlayState extends State {
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
-        background = new Texture("nebulaset1.png");
         cam = new OrthographicCamera();
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
@@ -106,7 +114,7 @@ public class PlayState extends State {
 
         setInputProcessor(playInput);
         hud = new Hud();
-        obstacleHandler = new ObstacleHandler(world);
+        obstacleHandler = new ObstacleHandler(world,rc,new EasyModeFactory());
 
         frame = 0;
     }
@@ -127,7 +135,7 @@ public class PlayState extends State {
         ground = world.createBody(definition);
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(1000/pixelsPerMeter, 20/pixelsPerMeter);
+        shape.setAsBox(1000/pixelsPerMeter, 30/pixelsPerMeter);
 
         ground.createFixture(shape, 1.0f);
         shape.dispose();
@@ -145,9 +153,9 @@ public class PlayState extends State {
         world.step(1/60f, 6,2);
         updateBackground();
         player.playerUpdate(delta);
-        cameraUpdate(delta);
-        ground.setTransform(player.getBody().getXPosition(),-0.5f, 0);
-        obstacleHandler.update(Math.round(player.getBody().getXPosition()),0);
+
+        ground.setTransform(player.getBody().getXPosition()*2,1, 0);
+        obstacleHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         hud.updateScore(Math.round(player.getBody().getXPosition()));
 
         if(Gdx.input.isKeyPressed(Input.Keys.UP)) player.jump();
@@ -155,12 +163,16 @@ public class PlayState extends State {
         if(collisionDetector.hasCollided(player,1f)){
             player.collisionGroundBegin();
         }else player.collisionGroundEnd();
+
+        for(ObstacleAdapter obstacle : obstacleHandler.getObstacles()){
+            hud.gameOver(collisionDetector.hasCollided(player,obstacle));
+        }
     }
 
-    public void cameraUpdate(float delta) {
+    public void cameraUpdate() {
         Vector3 position = cam.position;
-        position.x = player.getBody().getXPosition() * pixelsPerMeter;
-        position.y = player.getBody().getYPosition() * pixelsPerMeter;
+        position.x = player.getBody().getXPosition()*64;
+        position.y = player.getBody().getYPosition()*64;
 
         rc.updateCamera(cam,position);
     }
@@ -170,13 +182,13 @@ public class PlayState extends State {
         Gdx.gl.glClearColor(0f, 0f, 0f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-
+        cameraUpdate();
 
         update(Gdx.graphics.getDeltaTime());
         rc.setProjectionMatrix(cam.combined);
-        rc.render(background, backgroundPosition1.x, backgroundPosition1.y, w, h);
-        rc.render(background, backgroundPosition1.x, backgroundPosition1.y, w, h);
-        rc.render(background, backgroundPosition2.x, backgroundPosition2.y, w, h);
+        rc.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, w, h);
+        rc.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, w, h);
+        rc.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, w, h);
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         updatePlayerTexture();
         rc.render(hud);
@@ -190,6 +202,7 @@ public class PlayState extends State {
                 frame += 0.1;
                 frame = frame % 60;
                 animationFrame = animationFrame % 5;
+
                 if(player instanceof OrangePlayer) {
                     rc.render(playerWalkingAnimationOrangePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerWalkingAnimationOrangePlayer[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 200/4f, 422/4f);
                 }
@@ -229,7 +242,7 @@ public class PlayState extends State {
 
     @Override
     public void dispose() {
-        background.dispose();
+        assetManager.getBackground().dispose();
         world.dispose();
         debugRenderer.dispose();
         for (Texture texture : playerWalkingAnimationGreenPlayer){

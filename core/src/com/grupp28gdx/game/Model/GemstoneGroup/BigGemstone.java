@@ -1,6 +1,5 @@
 package com.grupp28gdx.game.Model.GemstoneGroup;
 
-
 import com.grupp28gdx.game.Model.Body;
 
 /**
@@ -60,7 +59,10 @@ public class BigGemstone implements Gemstone {
         return points;
     }
 
-
+    /**
+     * Returns the body of big gemstone.
+     * @return body
+     */
     @Override
     public Body getBody(){
         return body;

@@ -2,7 +2,6 @@ package com.grupp28gdx.game.Model.GemstoneGroup;
 
 import com.grupp28gdx.game.Model.Body;
 
-
 /**
  * This is the smallest gemstone. When the player catches this gemstone it gains 3x the amount of points as when the player
  * catches the medium gemstone There are three types of gemstone in total in the game to catch.
@@ -44,7 +43,6 @@ public class SmallGemstone implements Gemstone {
     }
 
 
-
     /**
      * Returns the side length of the gemstone instance
      * @return sideLength
@@ -62,6 +60,10 @@ public class SmallGemstone implements Gemstone {
         return points;
     }
 
+    /**
+     * Returns the body of big gemstone.
+     * @return body
+     */
     @Override
     public Body getBody(){
         return body;

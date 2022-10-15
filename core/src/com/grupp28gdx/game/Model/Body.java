@@ -85,6 +85,10 @@ public class Body {
     public void setMovementSpeed(int speed) {
         this.speedX = speed;
     }
+    public int getSpeedY(){
+        return this.speedY;
+    }
+
 
     public int getMovementSpeed() { //Confusing name
         return this.speedX;

@@ -2,10 +2,12 @@ package com.grupp28gdx.game.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.grupp28gdx.game.input.InputHandler;
 import com.grupp28gdx.game.input.MenuInputHandler;
 
+/**
+ * This class is the menu state, which is used for showing the menu in the view.
+ * The menu shows a set of options for the player to choose: New game, Options, and Exit game.
+ */
 public class MenuState extends State{
     private Texture background;
     private Texture playButton;
@@ -40,12 +42,26 @@ public class MenuState extends State{
         this.x = screenWidth/2 - playButtonWidth/2;
     }
 
+    /**
+     * This is a method for when the user hovers over a specific coordinate.
+     * @param texture
+     * @param y
+     * @param screenWidth
+     * @param buttonWidth
+     * @param screenHeight
+     */
     public void hover(Texture texture, int y, int screenWidth, int buttonWidth, int screenHeight){
         int posX = (screenWidth/2) - (buttonWidth/2);
         int posY = screenHeight/y;
         this.rc.render(texture, posX, posY);
     }
 
+    /**
+     * This is a method for handling mouse input of the user, and calling new states in the GameStateManager.
+     * If the user presses new game-button it will start a new game.
+     * If the user presses options-button, options will be shown.
+     * If the user presses exit-button the programme will quit.
+     */
     @Override
     public void handleInput() {
         int inputX = MenuInputHandler.checkInputX();
@@ -75,6 +91,10 @@ public class MenuState extends State{
         handleInput();
     }
 
+    /**
+     * Render method used to render Textures.
+     * If the user hovers, a new Texture will be called to create a hover-effect.
+     */
     @Override
     public void render() {
         int inputX = MenuInputHandler.checkInputX();
@@ -96,6 +116,9 @@ public class MenuState extends State{
         }
     }
 
+    /**
+     * Dispose-method for getting rid of Textures.
+     */
     @Override
     public void dispose() {
         background.dispose();

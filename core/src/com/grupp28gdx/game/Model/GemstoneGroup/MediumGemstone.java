@@ -35,11 +35,9 @@ public class MediumGemstone implements Gemstone {
 
     /**
      * Method that updates the attribute GemCounter in the player class
-     *
      */
     public void updateGemCounter(){
         this.totalPoints += this.points;
-
     }
 
 
@@ -56,15 +54,17 @@ public class MediumGemstone implements Gemstone {
      * Returns the point value that an instance of BigGemstone is worth
      * @return points
      */
-
     public int getPoints() {
         return points;
     }
 
+    /**
+     * Returns the body of medium gemstone.
+     * @return body
+     */
     @Override
     public Body getBody(){
         return body;
     }
-
 
 }
