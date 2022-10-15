@@ -3,7 +3,7 @@ package com.grupp28gdx.game.Model;
 /**
  * All objects that have a position in the game(obstacles, player, coins) have a Position object that
  * updates as the game progresses, x and y are the vector positions of an object.
- *
+ * <p>
  * The less the float of gravity variable is, the stronger it is.
  * Both speed and force can be manipulated in the horizontal and vertical axis.
  */
@@ -59,13 +59,11 @@ public class Body {
     public float getXPosition() {
         return this.x;
     }
-    public float getYPosition(){
-        return  this.y;
-    }
 
     public float getYPosition() {
         return this.y;
     }
+
 
     public void setForceX(int forceX) {
         this.forceX = forceX;
@@ -75,19 +73,23 @@ public class Body {
         this.forceY = forceY;
     } //forceY är en float men metoden ber om int
 
-    public float getForceX(){return this.forceX; }
+    public float getForceX() {
+        return this.forceX;
+    }
 
-    public float getForceY(){return this.forceY; }
+    public float getForceY() {
+        return this.forceY;
+    }
 
 
     public void setMovementSpeed(int speed) {
         this.speedX = speed;
+    }
 
     public int getMovementSpeed() { //Confusing name
         return this.speedX;
     }
-    }
-
-    public float getForceY() { return this.forceY; }
 }
+
+
 

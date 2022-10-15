@@ -10,7 +10,7 @@ package com.grupp28gdx.game.Model;
  */
 public class GreenPlayer implements Player{
 
-    private Body body;
+    public Body body;
     private int lives;
     private int jumps = 0;
 
