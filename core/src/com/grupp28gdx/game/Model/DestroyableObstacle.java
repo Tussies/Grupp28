@@ -40,10 +40,10 @@ public class DestroyableObstacle implements Obstacle {
         vectorListX.add(body.getXPosition()+1);
         vectorListX.add(body.getXPosition()+1);
 
-        vectorListY.add(body.getXPosition());
-        vectorListY.add(body.getXPosition()+2);
-        vectorListY.add(body.getXPosition()+2);
-        vectorListY.add(body.getXPosition());
+        vectorListY.add(body.getYPosition());
+        vectorListY.add(body.getYPosition()+2);
+        vectorListY.add(body.getYPosition()+2);
+        vectorListY.add(body.getYPosition());
     }
 
     /**
@@ -60,18 +60,37 @@ public class DestroyableObstacle implements Obstacle {
         return new DestroyableObstacle(spawnX,spawnY);
     }
 
+    /**
+     * Returns the X-coordinates for drawing the shape of destroyable obstacles
+     * @return vectorListX
+     */
     public ArrayList<Float> getVectorListX(){
         return vectorListX;
     }
 
+    /**
+     * Returns the Y-coordinates for drawing the shape of destroyable obstacles
+     * @return vectorListY
+     */
     public ArrayList<Float> getVectorListY(){
         return vectorListY;
     }
 
+    /**
+     * Returns the position of body.
+     * @return body
+     */
     public Body getPosition(){ return body; }
 
-
+    /**
+     * Returns the shape of the destroyable obstacle.
+     * @return shape
+     */
     public ObstacleShape getShape() { return shape; }
 
+    /**
+     * Returns the shape of the destroyable obstacle.
+     * @return color
+     */
     public ObstacleColor getColor() { return color; }
 }

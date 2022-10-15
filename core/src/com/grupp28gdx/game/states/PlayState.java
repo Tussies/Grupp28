@@ -19,6 +19,10 @@ import com.grupp28gdx.game.render.Hud;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
+/**
+ * This class is the play state, which is used for showing the play-state of the game in the view.
+ * The play-state shows the actual game that the user plays.
+ */
 public class PlayState extends State {
 
     Box2DDebugRenderer debugRenderer;
