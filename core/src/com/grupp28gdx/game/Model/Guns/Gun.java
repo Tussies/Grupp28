@@ -11,7 +11,7 @@ public class Gun {
 
     public Gun(){ //Send in player coordinates
         this.body = new Body(0,0);
-        this.bullet = new Bullet(0, 0, 0.4f);
+        this.bullet = new Bullet(0, 0, 5);
     }
 
 
@@ -29,7 +29,7 @@ public class Gun {
 
     }
 
-    public void shootGun(float xPos, float yPos, float speed) {
+    public void shootGun(float xPos, float yPos, int speed) {
         bulletsFired.add(new Bullet(xPos, yPos, speed));
 
     }
