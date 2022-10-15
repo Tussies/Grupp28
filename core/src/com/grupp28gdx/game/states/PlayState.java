@@ -112,7 +112,7 @@ public class PlayState extends State {
         }else player.collisionGroundEnd();
 
         for(ObstacleAdapter obstacle : obstacleHandler.getObstacles()){
-            if(collisionDetector.hasCollided(player,obstacle)) System.out.println("Collision");
+            hud.gameOver(collisionDetector.hasCollided(player,obstacle));
         }
     }
 

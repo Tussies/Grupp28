@@ -21,6 +21,8 @@ public class Hud {
     Label scoreTextLabel;
     Label coinTextLabel;
 
+    Label gameOverLabel;
+
     public Hud(){
 
         viewport = new FitViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), new OrthographicCamera());
@@ -42,6 +44,25 @@ public class Hud {
         table.add(scoreCounterLabel).expandX();
 
         stage.addActor(table);
+    }
+
+    public void gameOver(boolean gameOver) {
+        if (gameOver){
+        viewport = new FitViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), new OrthographicCamera());
+        stage = new Stage(viewport);
+        Table table = new Table();
+            table.setFillParent(true);
+            table.padBottom(Gdx.graphics.getHeight()/2);
+        gameOverLabel = new Label("Game Over",new Label.LabelStyle(new BitmapFont(Gdx.files.internal("Bullpen3DBitmap.fnt")), Color.WHITE));
+        gameOverLabel.setFontScale(2);
+
+        table.add(gameOverLabel).expandX();
+        table.row();
+        scoreTextLabel = new Label(("Final score:"), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("Bullpen3DBitmap.fnt")), Color.WHITE));
+        table.add(scoreTextLabel).expandX();
+        table.row();
+        table.add(scoreCounterLabel).expandX();
+            stage.addActor(table);}
     }
 
     public void updateScore(int newScore){
