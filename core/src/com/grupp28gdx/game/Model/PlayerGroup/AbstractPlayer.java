@@ -1,83 +1,79 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.PlayerGroup;
+
+import com.grupp28gdx.game.Model.Body;
 
 /**
- * This player is the default player. How fast this player runs, how high it jumps and how many
- * lives it has is the original and default settings for a Player.
- * The body variable is a Body object put in the GreenPlayer class by composition, determines all
+ * This is an abstract player, no instances of this player can be made but OrangePlayer,
+ * GreenPlayer and PurplePlayer all derive their functionality from this class.
+ * The body variable is a Body object put in the class by composition, determines all
  * movement, force, speed, etc. of the Player object.
  * @see Body
- *
  */
-public class GreenPlayer implements Player{
+public abstract class AbstractPlayer implements Player{
 
     public Body body;
     private int lives;
-    private int jumps = 0;
+    private float friction;
+
 
     public PlayerStates playerState;
-    //private StateOfPlayerDirection playerDirection;
 
     boolean onGround = true;
 
-    public GreenPlayer() {
-        lives = 3;
+    public AbstractPlayer() {
+        lives = 0;
+        friction = 0.0f;
         createPlayer();
     }
 
     public void createPlayer() {
         this.body = new Body(0,0);
-        this.body.setMovementSpeed(2);
+        this.body.setMovementSpeed(0);
         this.body.setXPosition(0);
         this.body.setYPosition(0);
         this.body.setForceX(0);
         this.body.setForceY(0);
-        
+
         playerState = PlayerStates.IDLE;
-        //playerDirection = StateOfPlayerDirection.RIGHT;
-        }
+    }
 
     /**
      * The playerUpdate method should be put in the step, cycle, update e.g. method of the game.
      * It updates a player's movement, with gravity acting upon it.
      * @param deltaTime is the time between each update of the movement of Player.
      */
-    @Override
+
     public void playerUpdate(float deltaTime) {
         body.speedY += body.gravity * deltaTime;
-        body.move(body.getMovementSpeed()*deltaTime, body.speedY*deltaTime);
+        playerMove(deltaTime);
         body.accelerate(0, body.gravity);
+        playerState();
+        }
 
+    public void playerState() {
         if(body.y <= 0){
             playerState = PlayerStates.WALKING;
         }
     }
 
-    @Override
-    public void jump (){
-/*        if (body.speedY == 0 || this.jumps < 2) {
-            this.jumps++;*/
-            body.speedY = 30;
-
-/*            if (body.y == 0) {
-                this.jumps = 0;
-            }
-        }*/
+    public void playerMove(float deltaTime) {
+        body.move(body.getMovementSpeed()*deltaTime, body.speedY*deltaTime*friction);
     }
+
+    public abstract void jump();
 
     /**
      * kommentera här, fråga Isak
      */
 
-    @Override
     public void collisionGroundBegin() {
         body.y = 1;
         onGround = true;
-        //playerState = PlayerStates.IDLE;
+        playerState();
         body.forceY = 0;
         body.speedY = 0;
     }
 
-    @Override
     public void collisionGroundEnd() {
         onGround = false;
     }
@@ -85,14 +81,10 @@ public class GreenPlayer implements Player{
     /**
      * kommentera här, fråga Isak DEN SKA BORT
      */
-    @Override
 
     public void inputKeyDown(int key){
         switch (key){
             case 51: // w
-                if (onGround){
-                    playerState = PlayerStates.JUMPING;
-                }
                 jump();
                 break;
             case 47: // s
@@ -100,13 +92,13 @@ public class GreenPlayer implements Player{
             case 29: // ad
                 /*if (onGround){
                     playerDirection = StateOfPlayerDirection.LEFT;}*/
-                    break;
-                    case 32: //d
+                break;
+            case 32: //d
                         /*if (onGround){
                             playerDirection = StateOfPlayerDirection.RIGHT;}*/
-                            break;
-                        }
-                }
+                break;
+        }
+    }
 
     //DEN SKA VA KVAR
     public void inputKeyUp(int key){
@@ -146,4 +138,3 @@ public class GreenPlayer implements Player{
         return this.body;
     }
 }
-

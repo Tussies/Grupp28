@@ -1,6 +1,9 @@
 package com.grupp28gdx.game.Model;
 
 
+import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
+import com.grupp28gdx.game.Model.PlayerGroup.Player;
+
 /**
  * This is where all objects of the world will be placed and updated.
  */

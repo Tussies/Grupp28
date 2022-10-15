@@ -1,6 +1,7 @@
 package com.grupp28gdx.game.Model;
 
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
+import com.grupp28gdx.game.Model.PlayerGroup.Player;
 
 /**
  * This is an abstract factory that knows of all abstract types of the objects of type

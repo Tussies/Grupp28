@@ -1,4 +1,6 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.PlayerGroup;
+
+import com.grupp28gdx.game.Model.Body;
 
 /**
  * This is the common interface for the different type of players. There are three players in total in the game

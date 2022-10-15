@@ -1,6 +1,6 @@
 package com.grupp28gdx.game.input;
 
-import com.grupp28gdx.game.Model.Player;
+import com.grupp28gdx.game.Model.PlayerGroup.Player;
 
 public class PlayInputHandler extends InputHandler {
     private Player player;

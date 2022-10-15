@@ -1,6 +1,6 @@
 package Player;
 
-import com.grupp28gdx.game.Model.GreenPlayer;
+import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 //import com.grupp28gdx.game.Model.StateOfPlayer;
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,6 @@
 package com.grupp28gdx.game.Model.GemstoneGroup;
 
 import com.grupp28gdx.game.Model.Body;
-import com.grupp28gdx.game.Model.Player;
 
 /**
  * This is the common interface for the different type of objects. There are three types of gem objects in the game
