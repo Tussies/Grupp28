@@ -2,13 +2,16 @@ package com.grupp28gdx.game.Model.Guns;
 
 import com.grupp28gdx.game.Model.Body;
 
+import java.util.ArrayList;
+
 public class Gun {
     public Body body;
-    private Bullet bullet;
-    private int bulletCounter;
+    public Bullet bullet;
+    public ArrayList<Bullet> bulletsFired = new ArrayList<>();
 
     public Gun(){ //Send in player coordinates
         this.body = new Body(0,0);
+        this.bullet = new Bullet(0, 0, 0.4f);
     }
 
 
@@ -17,17 +20,18 @@ public class Gun {
      * @param xPos
      * @param yPos
      */
-    public void positionUpdateGun(float xPos, float yPos){ //Updates the guns position with the players x and y position. (Should be sent in)
+    public void positionUpdateGunAndBullets(float xPos, float yPos){ //Updates the guns position with the players x and y position. (Should be sent in)
         this.body.setXPosition(xPos);
         this.body.setYPosition(yPos);
+        bullet.positionUpdateBullet(bulletsFired);
+
+
 
     }
 
     public void shootGun(float xPos, float yPos, float speed) {
-     bullet = new Bullet(xPos, yPos, speed);
+        bulletsFired.add(new Bullet(xPos, yPos, speed));
 
-        this.bulletCounter++;
-        System.out.println("Bullet nr " + bulletCounter);
     }
 
 
