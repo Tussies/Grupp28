@@ -2,8 +2,6 @@ package com.grupp28gdx.game.Model.GemstoneGroup;
 
 
 import com.grupp28gdx.game.Model.Body;
-import com.grupp28gdx.game.Model.Player;
-import com.grupp28gdx.game.Model.Position;
 
 /**
  * This is the big coin. When the player catches this coin it gains x/3 the amount of points as when the player

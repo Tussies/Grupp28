@@ -9,13 +9,13 @@ package com.grupp28gdx.game.Model;
  */
 public class Body {
 
-    protected float gravity = -1.0f;
-    protected float x;
-    protected float y;
+    public float gravity = -1.0f;
+    public float x;
+    public float y;
     protected int speedX;
-    protected int speedY;
-    protected float forceX;
-    protected float forceY;
+    public int speedY;
+    public float forceX;
+    public float forceY;
 
     public Body(float x, float y) {
         this.speedX = 0;

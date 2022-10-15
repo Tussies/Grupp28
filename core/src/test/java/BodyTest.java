@@ -50,7 +50,7 @@ public class BodyTest {
         assertTrue(tempBody.getMovementSpeed() == 4);
     }
 
-    @Test
+/*    @Test
     public void getSpeedYTest(){
         assertTrue(tempBody.getSpeedY() == 0);
     }
@@ -59,7 +59,7 @@ public class BodyTest {
     public void accelerateTest(){
         tempBody.accelerate(5,3);
         assertTrue(tempBody.getMovementSpeed() == 5 || tempBody.getSpeedY() == 3); //Confusing name getMovementSpeed
-    }
+    }*/
 
     @Test
     public void moveTest(){

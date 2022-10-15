@@ -1,7 +1,6 @@
 package com.grupp28gdx.game.Model.GemstoneGroup;
 
 import com.grupp28gdx.game.Model.Body;
-import com.grupp28gdx.game.Model.Player;
 
 /**
  * This is the medium coin. When the player catches this coin it gains the default amount of points.

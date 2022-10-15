@@ -1,5 +1,7 @@
 package com.grupp28gdx.game.Model;
 
+import com.grupp28gdx.game.Model.PlayerGroup.Player;
+
 public class Boosters {
 
     public Boosters() {
