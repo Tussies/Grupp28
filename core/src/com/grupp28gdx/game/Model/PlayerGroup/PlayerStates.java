@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.PlayerGroup;
 
 /**
  * This is all the states a player can have.
@@ -23,8 +23,3 @@ public enum PlayerStates{
         return text;
     }
 }
-
-/*enum StateOfPlayerDirection{
-    LEFT,
-    RIGHT
-}*/

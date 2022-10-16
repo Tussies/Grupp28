@@ -1,9 +1,8 @@
 package com.grupp28gdx.game.Model.GemstoneGroup;
 
 import com.grupp28gdx.game.Model.Body;
-
 import java.util.ArrayList;
-import java.util.Collection;
+
 
 /**
  * This is the common interface for the different type of objects. There are three types of gem objects in the game

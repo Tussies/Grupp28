@@ -9,6 +9,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
+import com.grupp28gdx.game.Model.CollisionDetector;
+import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
+import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
+import com.grupp28gdx.game.Model.PlayerGroup.Player;
+import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.grupp28gdx.game.Controller.GemstoneAdapter;
@@ -33,13 +38,57 @@ public class PlayState extends State {
     private Body ground;
 
     private Player player;
-    private Body playerBody;
     private PlayInputHandler playInput;
 
     private float w = Gdx.graphics.getWidth();
     private float h = Gdx.graphics.getHeight();
     private float frame;
 
+    private Texture background;
+    private Texture alien;
+    private Texture[] playerWalkingAnimationOrangePlayer = {
+            new Texture("red__0006_walk_1.png"),
+            new Texture("red__0007_walk_2.png"),
+            new Texture("red__0008_walk_3.png"),
+            new Texture("red__0009_walk_4.png"),
+            new Texture("red__0010_walk_5.png"),
+            new Texture("red__0011_walk_6.png")};
+    private Texture[] playerJumpingAnimationOrangePlayer = {
+            new Texture("red__0027_jump_1.png"),
+            new Texture("red__0028_jump_2.png"),
+            new Texture("red__0029_jump_3.png"),
+            new Texture("red__0030_jump_4.png")};
+    private Texture[] playerWalkingAnimationGreenPlayer = {
+            new Texture("alien_walking_1.png"),
+            new Texture("armor__0007_walk_2.png"),
+            new Texture("armor__0008_walk_3.png"),
+            new Texture("armor__0009_walk_4.png"),
+            new Texture("armor__0010_walk_5.png"),
+            new Texture("armor__0011_walk_6.png")};
+    private Texture[] playerJumpingAnimationGreenPlayer = {
+            new Texture("armor__0027_jump_1.png"),
+            new Texture("armor__0028_jump_2.png"),
+            new Texture("armor__0028_jump_3.png"),
+            new Texture("armor__0030_jump_4.png")};
+    private Texture[] playerRunningAnimationGreenPlayer = {
+            new Texture("armor__0031_run_1.png"),
+            new Texture("armor__0032_run_2.png"),
+            new Texture("armor__0033_run_3.png"),
+            new Texture("armor__0034_run_4.png"),
+            new Texture("armor__0035_run_5.png"),
+            new Texture("armor__0036_run_6.png")};
+    private Texture[] playerRunningAnimationPurplePlayer = {
+            new Texture("blue__0012_run_1.png"),
+            new Texture("blue__0013_run_2.png"),
+            new Texture("blue__0014_run_3.png"),
+            new Texture("blue__0015_run_4.png"),
+            new Texture("blue__0016_run_5.png"),
+            new Texture("blue__0017_run_6.png")};
+    private Texture[] playerJumpingAnimationPurplePlayer = {
+            new Texture("blue__0027_jump_1.png"),
+            new Texture("blue__0028_jump_2.png"),
+            new Texture("blue__0029_jump_3.png"),
+            new Texture("blue__0030_jump_4.png")};
     private final AssetManager assetManager = new AssetManager();
 
     private Vector2 backgroundPosition1, backgroundPosition2;
@@ -122,7 +171,7 @@ public class PlayState extends State {
         }else player.collisionGroundEnd();
 
         for(ObstacleAdapter obstacle : obstacleHandler.getObstacles()){
-            if(collisionDetector.hasCollided(player,obstacle)) System.out.println("Collision");
+            hud.gameOver(collisionDetector.hasCollided(player,obstacle));
         }
     }
 
@@ -159,20 +208,40 @@ public class PlayState extends State {
                 frame += 0.1;
                 frame = frame % 60;
                 animationFrame = animationFrame % 5;
-                rc.render(assetManager.getGreenAlienWalkingAnimation()[animationFrame],
-                        player.getBody().getXPosition() * 64 - (assetManager.getGreenAlienWalkingAnimation()[1].getWidth()/8f),
-                        player.getBody().getYPosition() * 64, 200/4f, 422/4f);
+
+                if(player instanceof OrangePlayer) {
+                    rc.render(playerWalkingAnimationOrangePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerWalkingAnimationOrangePlayer[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 200/4f, 422/4f);
+                }
+
+                if(player instanceof GreenPlayer) {
+                    rc.render(playerWalkingAnimationGreenPlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerWalkingAnimationGreenPlayer[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 200/4f, 422/4f);
+                }
                 break;
             case "jumping":
                 frame += 0.1;
                 frame = frame % 60;
 
-                if(player.getBody().getForceY() == 180){ frame = 0; animationFrame=0;}
+                if(player.getBody().speedY > 0.1){ frame = 0; animationFrame=0;}
                 animationFrame = animationFrame % 4;
 
-                rc.render(assetManager.getGreenAlienJumpingAnimation()[animationFrame],
-                        player.getBody().getXPosition() * pixelsPerMeter - (assetManager.getGreenAlienJumpingAnimation()[1].getWidth()/8f),
-                        player.getBody().getYPosition() * pixelsPerMeter - 30, 250/4f, 422/4f);
+                if(player instanceof OrangePlayer) {
+                    rc.render(playerJumpingAnimationOrangePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerJumpingAnimationOrangePlayer[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 250/4f, 422/4f);
+                }
+
+                if(player instanceof GreenPlayer) {
+                    rc.render(playerJumpingAnimationGreenPlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerJumpingAnimationGreenPlayer[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 250/4f, 422/4f);
+                }
+
+                if(player instanceof PurplePlayer) {
+                    rc.render(playerJumpingAnimationPurplePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerJumpingAnimationPurplePlayer[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 250/4f, 422/4f);
+                }
+
+                break;
+            case "running":
+                frame += 0.1;
+                frame = frame % 60;
+                animationFrame = animationFrame % 5;
+                rc.render(playerRunningAnimationPurplePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerWalkingAnimationGreenPlayer[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 200/4f, 422/4f);
                 break;
         }
     }
@@ -182,10 +251,19 @@ public class PlayState extends State {
         assetManager.getBackground().dispose();
         world.dispose();
         debugRenderer.dispose();
-        for (Texture texture : assetManager.getGreenAlienWalkingAnimation()){
+        for (Texture texture : playerWalkingAnimationGreenPlayer){
             texture.dispose();
         }
-        for (Texture texture : assetManager.getGreenAlienJumpingAnimation()){
+        for (Texture texture : playerJumpingAnimationGreenPlayer){
+            texture.dispose();
+        }
+        for (Texture texture : playerRunningAnimationGreenPlayer){
+            texture.dispose();
+        }
+        for (Texture texture : playerRunningAnimationPurplePlayer){
+            texture.dispose();
+        }
+        for (Texture texture : playerJumpingAnimationGreenPlayer){
             texture.dispose();
         }
     }

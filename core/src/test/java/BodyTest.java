@@ -50,10 +50,10 @@ public class BodyTest {
         assertTrue(tempBody.getMovementSpeed() == 4);
     }
 
-    /**@Test
-    //public void getSpeedYTest(){
-    //    assertTrue(tempBody.getSpeedY() == 0);
-    //}
+/*    @Test
+    public void getSpeedYTest(){
+        assertTrue(tempBody.getSpeedY() == 0);
+    }
 
     @Test
     public void accelerateTest(){

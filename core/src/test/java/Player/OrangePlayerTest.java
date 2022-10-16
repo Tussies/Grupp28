@@ -1,7 +1,7 @@
 package Player;
 
 
-import com.grupp28gdx.game.Model.OrangePlayer;
+import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;

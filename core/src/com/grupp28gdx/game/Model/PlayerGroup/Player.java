@@ -1,4 +1,7 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.PlayerGroup;
+
+import com.grupp28gdx.game.Model.Body;
+import com.grupp28gdx.game.Model.Guns.Gun;
 
 /**
  * This is the common interface for the different type of players. There are three players in total in the game
@@ -24,4 +27,6 @@ public interface Player {
 
     void collisionGroundBegin();
     void collisionGroundEnd();
+
+    Gun getGun();
 }
