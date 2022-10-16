@@ -124,9 +124,6 @@ public class PlayState extends State {
         for(ObstacleAdapter obstacle : obstacleHandler.getObstacles()){
             if(collisionDetector.hasCollided(player,obstacle)) System.out.println("Collision");
         }
-        for(GemstoneAdapter gemstone : gemstoneHandler.getGem()){
-            if(collisionDetector.hasCollided(player, (Gemstone) gemstone)) System.out.println("Collision");
-        }
     }
 
     public void cameraUpdate() {

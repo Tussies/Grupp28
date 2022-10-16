@@ -8,7 +8,7 @@ public class CollisionDetector {
 
     public boolean hasCollided(Player player, Gemstone gemstone ){
         Body playerBody = player.getBody();
-        Body gemstoneBody = gemstone.getBody();
+        Body gemstoneBody = gemstone.getPosition();
         float playerOffsetX = 1f;
         float playerOffsetY = 1f;
 

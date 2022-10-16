@@ -30,22 +30,22 @@ public class GemstoneHandler extends SpawnHandler{
         switch (randomNum) {
             case 1:
                 itemArray.add(new GemstoneAdapter(world,modeFactory,posX,posY,rc));
-                System.out.println("Small gem added to array");
         }
     }
 
     @Override
     public void update(float posX, float posY) {
-        if (posX % 5 == 0) {
+        if (posX % 7 == 0) {
             if (itemArray.isEmpty()) {
-                generate(posX, posY);
+                generate(posX+5, posY+1);
             } else if (!(itemArray.get(itemArray.size - 1).getGemstoneData().getPosition().getXPosition() == posX+1)) {
-                generate(posX+1, posY);
+                generate(posX+5, posY+1);
             }
             System.out.println(posX);
-            while (itemArray.get(0).getGemstoneData().getPosition().getXPosition() - posX <= -5) {
+            while (itemArray.get(0).getGemstoneData().getPosition().getXPosition() - posX <= -7) {
                 itemArray.get(0).destroyBody();
                 itemArray.removeIndex(0);
+                if(itemArray.isEmpty()) {break;}
             }
         }
     }

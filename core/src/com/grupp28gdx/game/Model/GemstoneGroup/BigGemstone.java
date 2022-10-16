@@ -1,7 +1,6 @@
 package com.grupp28gdx.game.Model.GemstoneGroup;
 
 import com.grupp28gdx.game.Model.Body;
-
 import java.util.ArrayList;
 
 /**
@@ -9,6 +8,7 @@ import java.util.ArrayList;
  * catches the medium coin. There are three types of coins in total in the game to catch.
  */
 public class BigGemstone implements Gemstone {
+
     public Body body;
     private float sideLength;
     private int points;
@@ -20,9 +20,7 @@ public class BigGemstone implements Gemstone {
     public BigGemstone(float x, float y) {
         this.points = 10;
         this.sideLength = 10;
-        this.body = new Body(0, 0);
-        this.body.setXPosition(0);
-        this.body.setYPosition(0);
+        this.body = new Body(x,y);
         this.totalPoints = 0;
         createShape();
     }
@@ -42,21 +40,21 @@ public class BigGemstone implements Gemstone {
 
         vectorListX.add(body.getXPosition());
         vectorListX.add(body.getXPosition());
-        vectorListX.add(body.getXPosition()+1);
-        vectorListX.add(body.getXPosition()+1);
-        vectorListX.add(body.getXPosition()+2);
-        vectorListX.add(body.getXPosition()+2);
-        vectorListX.add(body.getXPosition()+3);
-        vectorListX.add(body.getXPosition()+3);
+        vectorListX.add((float) (body.getXPosition()+0.25));
+        vectorListX.add((float) (body.getXPosition()+0.5));
+        vectorListX.add((float) (body.getXPosition()+0.75));
+        vectorListX.add((float) (body.getXPosition()+0.75));
+        vectorListX.add((float) (body.getXPosition()+0.5));
+        vectorListX.add((float) (body.getXPosition()+0.25));
 
+        vectorListY.add((float) (body.getYPosition()+0.25));
+        vectorListY.add((float) (body.getYPosition()+0.5));
+        vectorListY.add((float) (body.getYPosition()+0.75));
+        vectorListY.add((float) (body.getYPosition()+0.75));
+        vectorListY.add((float) (body.getYPosition()+0.5));
+        vectorListY.add((float) (body.getYPosition()+0.25));
         vectorListY.add(body.getYPosition());
         vectorListY.add(body.getYPosition());
-        vectorListY.add(body.getYPosition()+1);
-        vectorListY.add(body.getYPosition()+1);
-        vectorListY.add(body.getYPosition()+2);
-        vectorListY.add(body.getYPosition()+2);
-        vectorListY.add(body.getYPosition()+3);
-        vectorListY.add(body.getYPosition()+3);
 
     }
     /**
@@ -84,15 +82,6 @@ public class BigGemstone implements Gemstone {
      */
     public int getPoints() {
         return points;
-    }
-
-    /**
-     * Returns the body of big gemstone.
-     * @return body
-     */
-    @Override
-    public Body getBody(){
-        return body;
     }
 
     @Override

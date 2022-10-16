@@ -13,8 +13,6 @@ public interface Gemstone {
     Gemstone createGemstone(float x, float y);
     void updateGemCounter();
     float getSideLength();
-    Body getBody();
-
 
     public ArrayList<Float> getVectorListX();
 

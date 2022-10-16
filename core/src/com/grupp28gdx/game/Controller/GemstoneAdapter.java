@@ -36,7 +36,7 @@ public class GemstoneAdapter {
     }
 
     private Vector2[] getVectors() {
-        if (gemstoneData.getVectorListX().size() == 4) {
+        if (gemstoneData.getVectorListX().size() == 8) {
             return new Vector2[]{
                     new Vector2(gemstoneData.getVectorListX().get(0),gemstoneData.getVectorListY().get(0)),
                     new Vector2(gemstoneData.getVectorListX().get(1),gemstoneData.getVectorListY().get(1)),

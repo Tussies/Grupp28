@@ -22,9 +22,7 @@ public class MediumGemstone implements Gemstone {
     public MediumGemstone(float x, float y) {
         points = 30;
         sideLength = 5;
-        this.body = new Body(0,0);
-        this.body.setXPosition(0);
-        this.body.setYPosition(0);
+        this.body = new Body(x,y);
         this.totalPoints = 0;
         createShape();
     }
@@ -40,23 +38,24 @@ public class MediumGemstone implements Gemstone {
 
 
     private void createShape(){
-        vectorListX.add(body.getXPosition());
-        vectorListX.add(body.getXPosition());
-        vectorListX.add((float) (body.getXPosition()+0.25));
-        vectorListX.add((float) (body.getXPosition()+0.25));
-        vectorListX.add((float) (body.getXPosition()+0.5));
-        vectorListX.add((float) (body.getXPosition()+0.5));
-        vectorListX.add((float) (body.getXPosition()+0.75));
-        vectorListX.add((float) (body.getXPosition()+0.75));
 
+        vectorListX.add(body.getXPosition());
+        vectorListX.add(body.getXPosition());
+        vectorListX.add((float) (body.getXPosition()+0.15));
+        vectorListX.add((float) (body.getXPosition()+0.3));
+        vectorListX.add((float) (body.getXPosition()+0.45));
+        vectorListX.add((float) (body.getXPosition()+0.45));
+        vectorListX.add((float) (body.getXPosition()+0.3));
+        vectorListX.add((float) (body.getXPosition()+0.15));
+
+        vectorListY.add((float) (body.getYPosition()+0.15));
+        vectorListY.add((float) (body.getYPosition()+0.3));
+        vectorListY.add((float) (body.getYPosition()+0.45));
+        vectorListY.add((float) (body.getYPosition()+0.45));
+        vectorListY.add((float) (body.getYPosition()+0.3));
+        vectorListY.add((float) (body.getYPosition()+0.15));
         vectorListY.add(body.getYPosition());
         vectorListY.add(body.getYPosition());
-        vectorListY.add((float) (body.getYPosition()+0.25));
-        vectorListY.add((float) (body.getYPosition()+0.25));
-        vectorListY.add((float) (body.getYPosition()+0.5));
-        vectorListY.add((float) (body.getYPosition()+0.5));
-        vectorListY.add((float) (body.getYPosition()+0.75));
-        vectorListY.add((float) (body.getYPosition()+0.75));
     }
 
     /**
@@ -82,15 +81,6 @@ public class MediumGemstone implements Gemstone {
      */
     public int getPoints() {
         return points;
-    }
-
-    /**
-     * Returns the body of medium gemstone.
-     * @return body
-     */
-    @Override
-    public Body getBody(){
-        return body;
     }
 
     @Override

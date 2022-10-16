@@ -20,15 +20,14 @@ public class SmallGemstone implements Gemstone {
     public SmallGemstone(float x, float y) {
         this.points = 60;
         this.sideLength = 2;
-        this.body = new Body(0,0);
-        this.body.setXPosition(0);
-        this.body.setYPosition(0);
+        this.body = new Body(x,y);
         this.totalPoints = 0;
         createShape();
     }
 
     /**
      * A method which creates an instance of the class SmallGemstone
+     *
      * @return SmallGemstone
      */
     @Override
@@ -38,23 +37,24 @@ public class SmallGemstone implements Gemstone {
     }
 
     private void createShape(){
-        vectorListX.add(body.getXPosition());
-        vectorListX.add(body.getXPosition());
-        vectorListX.add((float) (body.getXPosition()+0.25));
-        vectorListX.add((float) (body.getXPosition()+0.25));
-        vectorListX.add((float) (body.getXPosition()+0.5));
-        vectorListX.add((float) (body.getXPosition()+0.5));
-        vectorListX.add((float) (body.getXPosition()+0.75));
-        vectorListX.add((float) (body.getXPosition()+0.75));
 
+        vectorListX.add(body.getXPosition());
+        vectorListX.add(body.getXPosition());
+        vectorListX.add((float) (body.getXPosition()+0.06));
+        vectorListX.add((float) (body.getXPosition()+0.12));
+        vectorListX.add((float) (body.getXPosition()+0.18));
+        vectorListX.add((float) (body.getXPosition()+0.18));
+        vectorListX.add((float) (body.getXPosition()+0.12));
+        vectorListX.add((float) (body.getXPosition()+0.06));
+
+        vectorListY.add((float) (body.getYPosition()+0.06));
+        vectorListY.add((float) (body.getYPosition()+0.12));
+        vectorListY.add((float) (body.getYPosition()+0.18));
+        vectorListY.add((float) (body.getYPosition()+0.18));
+        vectorListY.add((float) (body.getYPosition()+0.12));
+        vectorListY.add((float) (body.getYPosition()+0.06));
         vectorListY.add(body.getYPosition());
         vectorListY.add(body.getYPosition());
-        vectorListY.add((float) (body.getYPosition()+0.25));
-        vectorListY.add((float) (body.getYPosition()+0.25));
-        vectorListY.add((float) (body.getYPosition()+0.5));
-        vectorListY.add((float) (body.getYPosition()+0.5));
-        vectorListY.add((float) (body.getYPosition()+0.75));
-        vectorListY.add((float) (body.getYPosition()+0.75));
     }
 
     /**
@@ -81,15 +81,6 @@ public class SmallGemstone implements Gemstone {
      */
     public int getPoints() {
         return points;
-    }
-
-    /**
-     * Returns the body of big gemstone.
-     * @return body
-     */
-    @Override
-    public Body getBody(){
-        return body;
     }
 
     @Override
