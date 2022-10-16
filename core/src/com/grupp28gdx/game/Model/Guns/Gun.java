@@ -25,13 +25,10 @@ public class Gun {
         this.body.setYPosition(yPos);
         bullet.positionUpdateBullet(bulletsFired);
 
-
-
     }
 
     public void shootGun(float xPos, float yPos, int speed) {
         bulletsFired.add(new Bullet(xPos, yPos, speed));
-
     }
 
 

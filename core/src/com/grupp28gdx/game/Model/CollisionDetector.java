@@ -22,7 +22,7 @@ public class CollisionDetector {
                 ((playerBody.x+playerOffsetX>=gemstoneBody.x && playerBody.x<=gemstoneBody.x) &&
                         (playerBody.y+playerOffsetY>=gemstoneBody.y && playerBody.y<=gemstoneBody.y)))
         {
-            System.out.println("Collision");
+
             return true;
         }
 
@@ -52,7 +52,6 @@ public class CollisionDetector {
                  playerBody.y >= spikeBody.y))
                 )
         {
-            System.out.println("Collision");
             return true;
         }
 
