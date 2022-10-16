@@ -24,7 +24,7 @@ public class DefaultModeFactory implements ModeFactory{
      */
     @Override
     public Gemstone createGemstone(float spawnX,float spawnY) {
-        return new MediumGemstone();
+        return new MediumGemstone(spawnX, spawnY);
     }
 
     /**

@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertTrue;
 
 public class BigGemstoneTest {
-    BigGemstone bigGemstone = new BigGemstone();
+    BigGemstone bigGemstone = new BigGemstone(1,1);
 
     @Test
     public void createBigGemstone(){
-        Gemstone tempStone = bigGemstone.createGemstone();
+        Gemstone tempStone = bigGemstone.createGemstone(1,1);
         assertTrue(tempStone.getClass() == BigGemstone.class);
     }
     @Test

@@ -14,14 +14,17 @@ public class SmallGemstone implements Gemstone {
     private int points;
     private int totalPoints;
 
+    ArrayList<Float> vectorListX = new ArrayList<Float>();
+    ArrayList<Float> vectorListY = new ArrayList<Float>();
 
-    public SmallGemstone() {
+    public SmallGemstone(float x, float y) {
         this.points = 60;
         this.sideLength = 2;
         this.body = new Body(0,0);
         this.body.setXPosition(0);
         this.body.setYPosition(0);
         this.totalPoints = 0;
+        createShape();
     }
 
     /**
@@ -29,11 +32,30 @@ public class SmallGemstone implements Gemstone {
      * @return SmallGemstone
      */
     @Override
-    public Gemstone createGemstone() {
-        Gemstone gemstone = new SmallGemstone();
+    public Gemstone createGemstone(float x, float y) {
+        Gemstone gemstone = new SmallGemstone(x,y);
         return gemstone;
     }
 
+    private void createShape(){
+        vectorListX.add(body.getXPosition());
+        vectorListX.add(body.getXPosition());
+        vectorListX.add((float) (body.getXPosition()+0.25));
+        vectorListX.add((float) (body.getXPosition()+0.25));
+        vectorListX.add((float) (body.getXPosition()+0.5));
+        vectorListX.add((float) (body.getXPosition()+0.5));
+        vectorListX.add((float) (body.getXPosition()+0.75));
+        vectorListX.add((float) (body.getXPosition()+0.75));
+
+        vectorListY.add(body.getYPosition());
+        vectorListY.add(body.getYPosition());
+        vectorListY.add((float) (body.getYPosition()+0.25));
+        vectorListY.add((float) (body.getYPosition()+0.25));
+        vectorListY.add((float) (body.getYPosition()+0.5));
+        vectorListY.add((float) (body.getYPosition()+0.5));
+        vectorListY.add((float) (body.getYPosition()+0.75));
+        vectorListY.add((float) (body.getYPosition()+0.75));
+    }
 
     /**
      * Method that updates the attribute GemCounter in the player class
@@ -72,12 +94,12 @@ public class SmallGemstone implements Gemstone {
 
     @Override
     public ArrayList<Float> getVectorListX() {
-        return null;
+        return vectorListX;
     }
 
     @Override
     public ArrayList<Float> getVectorListY() {
-        return null;
+        return vectorListY;
     }
 
     @Override

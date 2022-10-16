@@ -33,18 +33,21 @@ public class GemstoneAdapter {
         rc.createFixture(gemstoneBody,bodyShape);
         gemstoneBody.createFixture(bodyShape,4.0f);
 
-        this.world = world;
-        this.bigGemstoneModel = bigGemstoneModel;
-        this.mediumGemstoneModel = mediumGemstoneModel;
-        this.smallGemstoneModel = smallGemstoneModel;
     }
 
     private Vector2[] getVectors() {
-        if (gemstoneData.getVectorListX().size() == 8) {
-            Vector2[] gemstoneList = new Vector2[]{};
-            for (int i = 0; i < 8; i++) {
-                gemstoneList[i] = new Vector2(gemstoneData.getVectorListX().get(i), gemstoneData.getVectorListY().get(i)); }
-            return gemstoneList;
+        if (gemstoneData.getVectorListX().size() == 4) {
+            return new Vector2[]{
+                    new Vector2(gemstoneData.getVectorListX().get(0),gemstoneData.getVectorListY().get(0)),
+                    new Vector2(gemstoneData.getVectorListX().get(1),gemstoneData.getVectorListY().get(1)),
+                    new Vector2(gemstoneData.getVectorListX().get(2),gemstoneData.getVectorListY().get(2)),
+                    new Vector2(gemstoneData.getVectorListX().get(3),gemstoneData.getVectorListY().get(3)),
+                    new Vector2(gemstoneData.getVectorListX().get(4),gemstoneData.getVectorListY().get(4)),
+                    new Vector2(gemstoneData.getVectorListX().get(5),gemstoneData.getVectorListY().get(5)),
+                    new Vector2(gemstoneData.getVectorListX().get(6),gemstoneData.getVectorListY().get(6)),
+                    new Vector2(gemstoneData.getVectorListX().get(7),gemstoneData.getVectorListY().get(7)),
+
+            };
         }else return null;
     }
 

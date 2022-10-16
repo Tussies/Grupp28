@@ -11,8 +11,11 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
+import com.grupp28gdx.game.Controller.GemstoneAdapter;
 import com.grupp28gdx.game.Controller.ObstacleAdapter;
 import com.grupp28gdx.game.Model.*;
+import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
+import com.grupp28gdx.game.handlers.GemstoneHandler;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
 import com.grupp28gdx.game.input.PlayInputHandler;
 import com.grupp28gdx.game.render.Hud;
@@ -41,6 +44,7 @@ public class PlayState extends State {
 
     private Vector2 backgroundPosition1, backgroundPosition2;
     private ObstacleHandler obstacleHandler;
+    private GemstoneHandler gemstoneHandler;
 
     private OrthographicCamera cam;
     private Hud hud;
@@ -66,6 +70,7 @@ public class PlayState extends State {
         setInputProcessor(playInput);
         hud = new Hud();
         obstacleHandler = new ObstacleHandler(world,rc,new EasyModeFactory());
+        gemstoneHandler = new GemstoneHandler(world,rc,new EasyModeFactory());
 
         frame = 0;
     }
@@ -107,6 +112,7 @@ public class PlayState extends State {
 
         ground.setTransform(player.getBody().getXPosition()*2,1, 0);
         obstacleHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
+        gemstoneHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         hud.updateScore(Math.round(player.getBody().getXPosition()));
 
         if(Gdx.input.isKeyPressed(Input.Keys.UP)) player.jump();
@@ -117,6 +123,9 @@ public class PlayState extends State {
 
         for(ObstacleAdapter obstacle : obstacleHandler.getObstacles()){
             if(collisionDetector.hasCollided(player,obstacle)) System.out.println("Collision");
+        }
+        for(GemstoneAdapter gemstone : gemstoneHandler.getGem()){
+            if(collisionDetector.hasCollided(player, (Gemstone) gemstone)) System.out.println("Collision");
         }
     }
 

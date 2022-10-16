@@ -27,7 +27,7 @@ public class EasyModeFactory implements ModeFactory {
      */
     @Override
     public Gemstone createGemstone(float spawnX,float spawnY) {
-        return new BigGemstone();
+        return new BigGemstone(spawnX,spawnY);
     }
 
     /**

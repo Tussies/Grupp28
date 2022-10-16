@@ -1,6 +1,8 @@
 package com.grupp28gdx.game.Model.GemstoneGroup;
 
 import com.grupp28gdx.game.Model.Body;
+import com.grupp28gdx.game.Model.PermanentObstacle;
+
 import java.util.ArrayList;
 
 /**
@@ -17,13 +19,14 @@ public class MediumGemstone implements Gemstone {
     ArrayList<Float> vectorListX = new ArrayList<Float>();
     ArrayList<Float> vectorListY = new ArrayList<Float>();
 
-    public MediumGemstone() {
+    public MediumGemstone(float x, float y) {
         points = 30;
         sideLength = 5;
         this.body = new Body(0,0);
         this.body.setXPosition(0);
         this.body.setYPosition(0);
         this.totalPoints = 0;
+        createShape();
     }
 
     /**
@@ -31,9 +34,8 @@ public class MediumGemstone implements Gemstone {
      * @return SmallGemstone
      */
     @Override
-    public Gemstone createGemstone() {
-        Gemstone gemstone = new MediumGemstone();
-        return gemstone;
+    public Gemstone createGemstone(float x, float y) {
+        return new MediumGemstone(x,y);
     }
 
 
