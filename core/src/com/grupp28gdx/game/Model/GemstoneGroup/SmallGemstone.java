@@ -1,6 +1,7 @@
 package com.grupp28gdx.game.Model.GemstoneGroup;
 
 import com.grupp28gdx.game.Model.Body;
+import java.util.ArrayList;
 
 /**
  * This is the smallest gemstone. When the player catches this gemstone it gains 3x the amount of points as when the player
@@ -13,26 +14,48 @@ public class SmallGemstone implements Gemstone {
     private int points;
     private int totalPoints;
 
+    ArrayList<Float> vectorListX = new ArrayList<Float>();
+    ArrayList<Float> vectorListY = new ArrayList<Float>();
 
-    public SmallGemstone() {
+    public SmallGemstone(float x, float y) {
         this.points = 60;
         this.sideLength = 2;
-        this.body = new Body(0,0);
-        this.body.setXPosition(0);
-        this.body.setYPosition(0);
+        this.body = new Body(x,y);
         this.totalPoints = 0;
+        createShape();
     }
 
     /**
      * A method which creates an instance of the class SmallGemstone
+     *
      * @return SmallGemstone
      */
     @Override
-    public Gemstone createGemstone() {
-        Gemstone gemstone = new SmallGemstone();
+    public Gemstone createGemstone(float x, float y) {
+        Gemstone gemstone = new SmallGemstone(x,y);
         return gemstone;
     }
 
+    private void createShape(){
+
+        vectorListX.add(body.getXPosition());
+        vectorListX.add(body.getXPosition());
+        vectorListX.add((float) (body.getXPosition()+0.06));
+        vectorListX.add((float) (body.getXPosition()+0.12));
+        vectorListX.add((float) (body.getXPosition()+0.18));
+        vectorListX.add((float) (body.getXPosition()+0.18));
+        vectorListX.add((float) (body.getXPosition()+0.12));
+        vectorListX.add((float) (body.getXPosition()+0.06));
+
+        vectorListY.add((float) (body.getYPosition()+0.06));
+        vectorListY.add((float) (body.getYPosition()+0.12));
+        vectorListY.add((float) (body.getYPosition()+0.18));
+        vectorListY.add((float) (body.getYPosition()+0.18));
+        vectorListY.add((float) (body.getYPosition()+0.12));
+        vectorListY.add((float) (body.getYPosition()+0.06));
+        vectorListY.add(body.getYPosition());
+        vectorListY.add(body.getYPosition());
+    }
 
     /**
      * Method that updates the attribute GemCounter in the player class
@@ -60,12 +83,18 @@ public class SmallGemstone implements Gemstone {
         return points;
     }
 
-    /**
-     * Returns the body of big gemstone.
-     * @return body
-     */
     @Override
-    public Body getBody(){
+    public ArrayList<Float> getVectorListX() {
+        return vectorListX;
+    }
+
+    @Override
+    public ArrayList<Float> getVectorListY() {
+        return vectorListY;
+    }
+
+    @Override
+    public Body getPosition() {
         return body;
     }
 }

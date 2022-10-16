@@ -1,6 +1,9 @@
 package com.grupp28gdx.game.Model.GemstoneGroup;
 
 import com.grupp28gdx.game.Model.Body;
+import com.grupp28gdx.game.Model.PermanentObstacle;
+
+import java.util.ArrayList;
 
 /**
  * This is the medium coin. When the player catches this coin it gains the default amount of points.
@@ -13,13 +16,15 @@ public class MediumGemstone implements Gemstone {
     private int points;
     private int totalPoints;
 
-    public MediumGemstone() {
+    ArrayList<Float> vectorListX = new ArrayList<Float>();
+    ArrayList<Float> vectorListY = new ArrayList<Float>();
+
+    public MediumGemstone(float x, float y) {
         points = 30;
         sideLength = 5;
-        this.body = new Body(0,0);
-        this.body.setXPosition(0);
-        this.body.setYPosition(0);
+        this.body = new Body(x,y);
         this.totalPoints = 0;
+        createShape();
     }
 
     /**
@@ -27,11 +32,31 @@ public class MediumGemstone implements Gemstone {
      * @return SmallGemstone
      */
     @Override
-    public Gemstone createGemstone() {
-        Gemstone gemstone = new MediumGemstone();
-        return gemstone;
+    public Gemstone createGemstone(float x, float y) {
+        return new MediumGemstone(x,y);
     }
 
+
+    private void createShape(){
+
+        vectorListX.add(body.getXPosition());
+        vectorListX.add(body.getXPosition());
+        vectorListX.add((float) (body.getXPosition()+0.15));
+        vectorListX.add((float) (body.getXPosition()+0.3));
+        vectorListX.add((float) (body.getXPosition()+0.45));
+        vectorListX.add((float) (body.getXPosition()+0.45));
+        vectorListX.add((float) (body.getXPosition()+0.3));
+        vectorListX.add((float) (body.getXPosition()+0.15));
+
+        vectorListY.add((float) (body.getYPosition()+0.15));
+        vectorListY.add((float) (body.getYPosition()+0.3));
+        vectorListY.add((float) (body.getYPosition()+0.45));
+        vectorListY.add((float) (body.getYPosition()+0.45));
+        vectorListY.add((float) (body.getYPosition()+0.3));
+        vectorListY.add((float) (body.getYPosition()+0.15));
+        vectorListY.add(body.getYPosition());
+        vectorListY.add(body.getYPosition());
+    }
 
     /**
      * Method that updates the attribute GemCounter in the player class
@@ -58,12 +83,18 @@ public class MediumGemstone implements Gemstone {
         return points;
     }
 
-    /**
-     * Returns the body of medium gemstone.
-     * @return body
-     */
     @Override
-    public Body getBody(){
+    public ArrayList<Float> getVectorListX() {
+        return vectorListX;
+    }
+
+    @Override
+    public ArrayList<Float> getVectorListY() {
+        return vectorListY;
+    }
+
+    @Override
+    public Body getPosition() {
         return body;
     }
 
