@@ -41,7 +41,6 @@ public class ObstacleHandler extends SpawnHandler{
             } else if (!(itemArray.get(itemArray.size - 1).getObstacleData().getPosition().getXPosition() == posX+5)) {
                 generate(posX+5, posY);
             }
-            System.out.println(posX);
             while (itemArray.get(0).getObstacleData().getPosition().getXPosition() - posX <= -5) {
                 itemArray.get(0).destroyBody();
                 itemArray.removeIndex(0);

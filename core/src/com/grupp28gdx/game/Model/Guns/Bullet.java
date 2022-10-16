@@ -30,8 +30,9 @@ public class Bullet {
             bullets.set(i, tempBullet);
 
 
-            if (bulletCollision(bullets.get(i))) {
+            if (bulletCollision(bullets.get(i))) { //FIX THE PARAM
                 destroyBullet(bullets, i);
+
             }
         }
     }
@@ -45,7 +46,7 @@ public class Bullet {
 
     public boolean bulletCollision(Bullet bullet) {
 
-        if (true) { //collisiondetector with obstacle and bullet, if statement
+        if (false) { //collisiondetector with obstacle and bullet, if statement
             return true;
         }
 
