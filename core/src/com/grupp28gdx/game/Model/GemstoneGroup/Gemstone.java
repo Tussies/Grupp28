@@ -1,7 +1,9 @@
 package com.grupp28gdx.game.Model.GemstoneGroup;
 
 import com.grupp28gdx.game.Model.Body;
-import com.grupp28gdx.game.Model.Player;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * This is the common interface for the different type of objects. There are three types of gem objects in the game
@@ -12,4 +14,10 @@ public interface Gemstone {
     void updateGemCounter();
     float getSideLength();
     Body getBody();
+
+
+    public ArrayList<Float> getVectorListX();
+
+    public ArrayList<Float> getVectorListY();
+    public Body getPosition();
 }

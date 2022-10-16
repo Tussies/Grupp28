@@ -23,7 +23,7 @@ public class DefaultModeFactory implements ModeFactory{
      * @return a MediumGemstome, which is the default gemstone.
      */
     @Override
-    public Gemstone createGemstone() {
+    public Gemstone createGemstone(float spawnX,float spawnY) {
         return new MediumGemstone();
     }
 

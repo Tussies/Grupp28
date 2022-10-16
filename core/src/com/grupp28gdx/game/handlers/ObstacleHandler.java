@@ -4,7 +4,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.Controller.ObstacleAdapter;
 import com.grupp28gdx.game.Model.ModeFactory;
-import com.grupp28gdx.game.Model.Obstacle;
 import com.grupp28gdx.game.render.RenderController;
 
 

@@ -8,6 +8,6 @@ import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
  */
 public interface ModeFactory {
     Player createPlayer();
-    Gemstone createGemstone();
+    Gemstone createGemstone(float spawnX, float spawnY);
     Obstacle createObstacle(float spawnX,float spawnY);
 }

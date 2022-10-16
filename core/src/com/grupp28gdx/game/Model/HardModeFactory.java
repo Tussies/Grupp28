@@ -2,6 +2,7 @@ package com.grupp28gdx.game.Model;
 
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.SmallGemstone;
+import jdk.internal.icu.util.CodePointTrie;
 
 /**
  * This is the concrete hard mode factory. It produces harder, or, more difficult versions
@@ -24,10 +25,10 @@ public class HardModeFactory implements ModeFactory{
      * to gather than MediumGemstone.
      */
     @Override
-    public Gemstone createGemstone() {
+    public Gemstone createGemstone(float spawnX, float spawnY) {
         return new SmallGemstone();
     }
-
+    
     /**
      * This method implements the skeleton method of an obstacle in ModeFactory.
      * @param spawnX decides the x-position the destroyable obstacle will appear.

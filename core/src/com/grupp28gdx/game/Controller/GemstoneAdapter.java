@@ -1,26 +1,72 @@
 package com.grupp28gdx.game.Controller;
 
-import com.grupp28gdx.game.Model.Body;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
+import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.SmallGemstone;
-import com.grupp28gdx.game.View.CoinView;
+import com.grupp28gdx.game.Model.ModeFactory;
+import com.grupp28gdx.game.render.RenderController;
 
 /**
  * Adapter class for gemstones, this class connects the logic of the model class with the view class of all gemstones.
  * The adapter consists of multiple getters and setters from and for small, medium and Gemstones.
  */
 public class GemstoneAdapter {
-    private CoinView coinView;
+    private World world;
+    private Gemstone gemstoneData;
+    private Body gemstoneBody;
     private BigGemstone bigGemstoneModel;
     private MediumGemstone mediumGemstoneModel;
     private SmallGemstone smallGemstoneModel;
     
-    public GemstoneAdapter(BigGemstone bigGemstoneModel, MediumGemstone mediumGemstoneModel, SmallGemstone smallGemstoneModel, CoinView coinView){
+    public GemstoneAdapter(World world, ModeFactory factory, float spawnPosX, float spawnPosY, RenderController rc){
+        this.world = world;
+        this.gemstoneData = factory.createGemstone(spawnPosX,spawnPosY);
+        gemstoneBody = world.createBody(generateBodyDef(spawnPosX,spawnPosY));
+        PolygonShape bodyShape = new PolygonShape();
+        bodyShape.set(getVectors());
+        rc.createFixture(gemstoneBody,bodyShape);
+        gemstoneBody.createFixture(bodyShape,4.0f);
+
+        this.world = world;
         this.bigGemstoneModel = bigGemstoneModel;
         this.mediumGemstoneModel = mediumGemstoneModel;
         this.smallGemstoneModel = smallGemstoneModel;
-        this.coinView = coinView;
+    }
+
+    private Vector2[] getVectors() {
+        if (gemstoneData.getVectorListX().size() == 8) {
+            Vector2[] gemstoneList = new Vector2[]{};
+            for (int i = 0; i < 8; i++) {
+                gemstoneList[i] = new Vector2(gemstoneData.getVectorListX().get(i), gemstoneData.getVectorListY().get(i)); }
+            return gemstoneList;
+        }else return null;
+    }
+
+    private BodyDef generateBodyDef(float spawnX, float spawnY) {
+        BodyDef bodyDef;
+        bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+        bodyDef.position.set(spawnX,spawnY);
+        bodyDef.fixedRotation = true;
+        return bodyDef;
+    }
+
+    public Body getGemstoneBody(){
+        return gemstoneBody;
+    }
+
+    public void destroyBody(){
+        world.destroyBody(gemstoneBody);
+    }
+
+    public Gemstone getGemstoneData(){
+        return gemstoneData;
     }
 
     /**
@@ -69,33 +115,6 @@ public class GemstoneAdapter {
      */
     public int getSmallPoints(int points){
         return smallGemstoneModel.getPoints();
-    }
-
-    /**
-     * Returns position of a gemstone of type big.
-     * @param body
-     * @return body
-     */
-    public Body getBigPosition(Body body) {
-        return bigGemstoneModel.body;
-    }
-
-    /**
-     * Returns position of a gemstone of type medium.
-     * @param body
-     * @return body
-     */
-    public Body getMediumPosition(Body body) {
-        return mediumGemstoneModel.body;
-    }
-
-    /**
-     * Returns position of a gemstone of type small.
-     * @param body
-     * @return body
-     */
-    public Body getSmallPosition(Body body) {
-        return smallGemstoneModel.body;
     }
 
     /**

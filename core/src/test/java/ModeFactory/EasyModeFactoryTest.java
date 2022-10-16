@@ -18,7 +18,7 @@ public class EasyModeFactoryTest {
 
     @Test
     public void createGemstoneTest(){
-        Gemstone tempGemstone = easyFactory.createGemstone();
+        Gemstone tempGemstone = easyFactory.createGemstone(1,1);
         assertEquals(tempGemstone.getClass(), BigGemstone.class);
     }
 

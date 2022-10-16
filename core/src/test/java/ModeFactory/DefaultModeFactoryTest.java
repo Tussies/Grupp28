@@ -18,7 +18,7 @@ public class DefaultModeFactoryTest {
 
     @Test
     public void createGemstoneTest(){
-        Gemstone tempGemstone = defaultFactory.createGemstone();
+        Gemstone tempGemstone = defaultFactory.createGemstone(1,1);
         assertEquals(tempGemstone.getClass(), MediumGemstone.class);
     }
 

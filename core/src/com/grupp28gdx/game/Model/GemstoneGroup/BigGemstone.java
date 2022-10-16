@@ -2,6 +2,8 @@ package com.grupp28gdx.game.Model.GemstoneGroup;
 
 import com.grupp28gdx.game.Model.Body;
 
+import java.util.ArrayList;
+
 /**
  * This is the big coin. When the player catches this coin it gains x/3 the amount of points as when the player
  * catches the medium coin. There are three types of coins in total in the game to catch.
@@ -67,4 +69,20 @@ public class BigGemstone implements Gemstone {
     public Body getBody(){
         return body;
     }
+
+    @Override
+    public ArrayList<Float> getVectorListX() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Float> getVectorListY() {
+        return null;
+    }
+
+    @Override
+    public Body getPosition()
+        {
+            return body;
+        }
 }

@@ -1,6 +1,7 @@
 package com.grupp28gdx.game.Model.GemstoneGroup;
 
 import com.grupp28gdx.game.Model.Body;
+import java.util.ArrayList;
 
 /**
  * This is the medium coin. When the player catches this coin it gains the default amount of points.
@@ -12,6 +13,9 @@ public class MediumGemstone implements Gemstone {
     private float sideLength;
     private int points;
     private int totalPoints;
+
+    ArrayList<Float> vectorListX = new ArrayList<Float>();
+    ArrayList<Float> vectorListY = new ArrayList<Float>();
 
     public MediumGemstone() {
         points = 30;
@@ -32,6 +36,26 @@ public class MediumGemstone implements Gemstone {
         return gemstone;
     }
 
+
+    private void createShape(){
+        vectorListX.add(body.getXPosition());
+        vectorListX.add(body.getXPosition());
+        vectorListX.add((float) (body.getXPosition()+0.25));
+        vectorListX.add((float) (body.getXPosition()+0.25));
+        vectorListX.add((float) (body.getXPosition()+0.5));
+        vectorListX.add((float) (body.getXPosition()+0.5));
+        vectorListX.add((float) (body.getXPosition()+0.75));
+        vectorListX.add((float) (body.getXPosition()+0.75));
+
+        vectorListY.add(body.getYPosition());
+        vectorListY.add(body.getYPosition());
+        vectorListY.add((float) (body.getYPosition()+0.25));
+        vectorListY.add((float) (body.getYPosition()+0.25));
+        vectorListY.add((float) (body.getYPosition()+0.5));
+        vectorListY.add((float) (body.getYPosition()+0.5));
+        vectorListY.add((float) (body.getYPosition()+0.75));
+        vectorListY.add((float) (body.getYPosition()+0.75));
+    }
 
     /**
      * Method that updates the attribute GemCounter in the player class
@@ -64,6 +88,21 @@ public class MediumGemstone implements Gemstone {
      */
     @Override
     public Body getBody(){
+        return body;
+    }
+
+    @Override
+    public ArrayList<Float> getVectorListX() {
+        return vectorListX;
+    }
+
+    @Override
+    public ArrayList<Float> getVectorListY() {
+        return vectorListY;
+    }
+
+    @Override
+    public Body getPosition() {
         return body;
     }
 

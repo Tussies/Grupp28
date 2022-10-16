@@ -1,6 +1,7 @@
 package com.grupp28gdx.game.Model.GemstoneGroup;
 
 import com.grupp28gdx.game.Model.Body;
+import java.util.ArrayList;
 
 /**
  * This is the smallest gemstone. When the player catches this gemstone it gains 3x the amount of points as when the player
@@ -66,6 +67,21 @@ public class SmallGemstone implements Gemstone {
      */
     @Override
     public Body getBody(){
+        return body;
+    }
+
+    @Override
+    public ArrayList<Float> getVectorListX() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Float> getVectorListY() {
+        return null;
+    }
+
+    @Override
+    public Body getPosition() {
         return body;
     }
 }
