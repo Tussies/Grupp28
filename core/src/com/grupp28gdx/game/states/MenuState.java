@@ -74,7 +74,7 @@ public class MenuState extends State{
         }
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/3 && screenHeight - inputY > screenHeight/3) {
             if (Gdx.input.isTouched()){
-                // gsm.set(new OptionState());
+                gsm.set(new InstructionState(gsm));
                 dispose();
             }
         }
