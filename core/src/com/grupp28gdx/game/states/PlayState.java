@@ -189,7 +189,7 @@ public class PlayState extends State {
         rc.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, w, h);
         rc.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, w, h);
         rc.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, w, h);
-        rc.render(assetManager.getBulletTexture(), player.getBullet.x, player.getBullet.y , width, height );
+        rc.render(assetManager.getBulletTexture(), player.getGun().bullet.getXPosition(), player.getGun().bullet.getYPosition() , 1, 1 );
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         updatePlayerTexture();
         rc.render(hud);

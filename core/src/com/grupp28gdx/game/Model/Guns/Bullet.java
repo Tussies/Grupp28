@@ -4,7 +4,7 @@ import com.grupp28gdx.game.Model.Body;
 
 import java.util.ArrayList;
 
-public class Bullet {
+public class  Bullet {
     private Body body;
     private Bullet tempBullet;
 
@@ -86,6 +86,15 @@ public class Bullet {
     public ArrayList<Float> getVectorListY(){
         return vectorListY;
     }
+
+    public float getXPosition(){
+        return this.body.getXPosition();
+    }
+    public float getYPosition(){
+        return this.body.getYPosition();
+    }
+
+
 
 }
 
