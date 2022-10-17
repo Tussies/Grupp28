@@ -27,10 +27,10 @@ public class  Bullet {
     /**
      * Updates all the instances of Bullet position on the X-axis and calls on method destroyBullets if they have collided with an obstacle.
      */
-    public void positionUpdateBullet(ArrayList<Bullet> bullets) {
+    public void positionUpdateBullet(ArrayList<Bullet> bullets, float deltaTime) {
         for (int i = 0; i < bullets.size(); i++) {
             tempBullet = bullets.get(i);
-            tempBullet.body.setXPosition(tempBullet.body.getXPosition() + tempBullet.body.getMovementSpeed());
+            tempBullet.body.setXPosition(tempBullet.body.getXPosition() + tempBullet.body.getMovementSpeed()*deltaTime);
             bullets.set(i, tempBullet);
 
 
@@ -93,7 +93,7 @@ public class  Bullet {
     public float getYPosition(){
         return this.body.getYPosition();
     }
-
+    public float getMovementspeed(){return this.body.getMovementSpeed();}
 
 
 }

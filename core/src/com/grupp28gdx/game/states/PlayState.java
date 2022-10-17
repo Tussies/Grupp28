@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.grupp28gdx.game.Model.CollisionDetector;
+import com.grupp28gdx.game.Model.Guns.Bullet;
 import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
@@ -21,6 +22,8 @@ import com.grupp28gdx.game.Model.*;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
 import com.grupp28gdx.game.input.PlayInputHandler;
 import com.grupp28gdx.game.render.Hud;
+
+import java.util.ArrayList;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
@@ -189,11 +192,19 @@ public class PlayState extends State {
         rc.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, w, h);
         rc.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, w, h);
         rc.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, w, h);
-        rc.render(assetManager.getBulletTexture(), player.getGun().bullet.getXPosition(), player.getGun().bullet.getYPosition() , 1, 1 );
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
+        updateBulletTexture(player.getGun().getBulletsFired());
         updatePlayerTexture();
         rc.render(hud);
 
+    }
+
+    private void updateBulletTexture(ArrayList<Bullet> bullets){
+        for (int j = 0 ; j <bullets.size(); j++){
+           System.out.println("Bullet pos "+ bullets.get(j).getXPosition());
+           System.out.println("Player pos " + player.getBody().getXPosition());
+            rc.render(assetManager.getBulletTexture(),  bullets.get(j).getXPosition(),  bullets.get(j).getYPosition() , 1, 1 );
+        }
     }
 
     private void updatePlayerTexture() {
