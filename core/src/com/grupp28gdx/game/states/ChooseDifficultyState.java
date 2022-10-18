@@ -17,6 +17,7 @@ public class ChooseDifficultyState extends State{
     private Texture redplayer;
     private int screenHeight;
     private int screenWidth;
+    private int buttonHeight;
     private int buttonWidth;
     private int spriteWidth;
 
@@ -39,6 +40,7 @@ public class ChooseDifficultyState extends State{
         this.screenWidth = Gdx.graphics.getWidth();
         this.screenHeight = Gdx.graphics.getHeight();
         this.buttonWidth = normalButton.getWidth();
+        this.buttonHeight = normalButton.getHeight();
         this.spriteWidth = blueplayer.getWidth();
         this.x = screenWidth/2;
         this.y = screenHeight/2;
@@ -54,19 +56,19 @@ public class ChooseDifficultyState extends State{
     protected void handleInput() {
         int inputX = MenuInputHandler.checkInputX();
         int inputY = MenuInputHandler.checkInputY();
-        if (inputX < x + buttonWidth/2 && inputX > x - buttonWidth/2) {
+        if (inputX < x + buttonWidth/2 && inputX > x - buttonWidth/2 && inputY > 4*y/3 + buttonHeight/2 && inputY < 4*y/3 + 3*buttonHeight/2) {
             if (Gdx.input.isTouched()) {
                 gsm.set(new PlayState(gsm));
                 dispose();
             }
         }
-        if (inputX < x/2 + buttonWidth/2 && inputX > x/2 - buttonWidth/2) {
+        if (inputX < x/2 + buttonWidth/2 && inputX > x/2 - buttonWidth/2 && inputY > 4*y/3 + buttonHeight/2 && inputY < 4*y/3 + 3*buttonHeight/2) {
             if (Gdx.input.isTouched()) {
                 gsm.set(new PlayState(gsm));
                 dispose();
             }
         }
-        if (inputX < x*3/2 + buttonWidth/2 && inputX > x*3/2 - buttonWidth/2) {
+        if (inputX < x*3/2 + buttonWidth/2 && inputX > x*3/2 - buttonWidth/2 && inputY > 4*y/3 + buttonHeight/2 && inputY < 4*y/3 + 3*buttonHeight/2) {
             if (Gdx.input.isTouched()) {
                 gsm.set(new PlayState(gsm));
                 dispose();
@@ -93,17 +95,17 @@ public class ChooseDifficultyState extends State{
         rc.render(blueplayer,x*3/2 - spriteWidth/2,y*2/3);
 
         rc.render(normalButton,x-buttonWidth/2,y/3);
-        if (inputX < x + buttonWidth/2 && inputX > x - buttonWidth/2){
+        if (inputX < x + buttonWidth/2 && inputX > x - buttonWidth/2 && inputY > 4*y/3 + buttonHeight/2 && inputY < 4*y/3 + 3*buttonHeight/2){
             hover(normalButtonPressed, x - buttonWidth/2, y/3);
         }
 
         rc.render(easyButton,x/2 - buttonWidth/2,y/3);
-        if (inputX < x/2 + buttonWidth/2 && inputX > x/2 - buttonWidth/2){
+        if (inputX < x/2 + buttonWidth/2 && inputX > x/2 - buttonWidth/2 && inputY > 4*y/3 + buttonHeight/2 && inputY < 4*y/3 + 3*buttonHeight/2){
             hover(easyButtonPressed, x/2 - buttonWidth/2, y/3);
         }
 
         rc.render(hardButton,x*3/2 - buttonWidth/2,y/3);
-        if (inputX < x*3/2 + buttonWidth/2 && inputX > x*3/2 - buttonWidth/2){
+        if (inputX < x*3/2 + buttonWidth/2 && inputX > x*3/2 - buttonWidth/2 && inputY > 4*y/3 + buttonHeight/2 && inputY < 4*y/3 + 3*buttonHeight/2){
             hover(hardButtonPressed, x*3/2 - buttonWidth/2, y/3);
         }
     }
