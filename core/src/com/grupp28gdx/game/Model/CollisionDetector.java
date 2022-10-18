@@ -68,7 +68,7 @@ public class CollisionDetector {
         float bulletOffsetY = 0.25f;
 
         float wallOffsetX = 1f;
-        float wallOffsetY = 2f;
+        float wallOffsetY = 3f;
 
         if(
                 ((wallBodyX<=bulletPositionX+bulletOffsetX &&
@@ -111,7 +111,7 @@ public class CollisionDetector {
         float playerOffsetY = 2.75f;
 
         float wallOffsetX = 1f;
-        float wallOffsetY = 2f;
+        float wallOffsetY = 3f;
 
         if(
                 ((wallBodyX<=playerPositionX+playerOffsetX &&

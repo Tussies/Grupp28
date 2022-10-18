@@ -205,6 +205,15 @@ public class PlayState extends State {
         rc.render(assetManager.getGroundTexture(), backgroundPosition1.x, backgroundPosition1.y-310, 4096, 2000/3+10);
         rc.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, 4096, 2000);
         rc.render(assetManager.getGroundTexture(), backgroundPosition2.x, backgroundPosition2.y-310, 4096, 2000/3+10);
+        
+        for (ObstacleAdapter obstacle : obstacleHandler.getObstacles()){
+            if (obstacle.getObstacleData() instanceof PermanentObstacle)
+                rc.render(assetManager.getWallTexture(),obstacle.getObstacleData().getPosition().x*pixelsPerMeter*2,obstacle.getObstacleData().getPosition().y*pixelsPerMeter*2-32,32,32*3);
+            if (obstacle.getObstacleData() instanceof DestroyableObstacle)
+                rc.render(assetManager.getDestroyableTexture(),obstacle.getObstacleData().getPosition().x*pixelsPerMeter*2,obstacle.getObstacleData().getPosition().y*pixelsPerMeter*2-32,32,32*3);
+            if (obstacle.getObstacleData() instanceof SpikeObstacle)
+                rc.render(assetManager.getSpikeTexture(),obstacle.getObstacleData().getPosition().x*pixelsPerMeter*2,obstacle.getObstacleData().getPosition().y*pixelsPerMeter*2+32,64,32);
+        }
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         updateBulletTexture(player.getGun().getBulletsFired());
         updatePlayerTexture();
