@@ -64,7 +64,7 @@ public class RenderController {
     }
 
     public void renderBirdMusic(){
-        Music music = Gdx.audio.newMusic(Gdx.files.internal("Angry-Birds-Theme-Song.mp3"));
+        Music music = Gdx.audio.newMusic(Gdx.files.internal("newsong.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();

@@ -41,6 +41,7 @@ public class PlayState extends State {
     private Body ground;
 
     private Player player;
+    private Body playerHitbox;
     private PlayInputHandler playInput;
 
     private float w = Gdx.graphics.getWidth();
@@ -111,7 +112,7 @@ public class PlayState extends State {
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
         world = new World(new Vector2(0, 0), true);
         collisionDetector = new CollisionDetector();
-        player = new GreenPlayer();
+        player = new OrangePlayer();
         this.playInput = new PlayInputHandler(player);
         ground = createGround();
         debugRenderer = new Box2DDebugRenderer();
@@ -125,6 +126,8 @@ public class PlayState extends State {
         gemstoneHandler = new GemstoneHandler(world,rc,new EasyModeFactory());
 
         frame = 0;
+
+        playerHitbox = createHitBox();
     }
 
 
@@ -143,12 +146,28 @@ public class PlayState extends State {
         ground = world.createBody(definition);
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(1000/pixelsPerMeter, 30/pixelsPerMeter);
+        shape.setAsBox(1000/pixelsPerMeter, 1);
 
         ground.createFixture(shape, 1.0f);
         shape.dispose();
 
         return ground;
+    }
+
+    public Body createHitBox() {
+        BodyDef hitboxdef = new BodyDef();
+        hitboxdef.type = BodyDef.BodyType.StaticBody;
+        hitboxdef.position.set(0,0);
+        hitboxdef.fixedRotation = true;
+        playerHitbox = world.createBody(hitboxdef);
+
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(0.1f, 0.1f);
+
+        playerHitbox.createFixture(shape, 1.0f);
+        shape.dispose();
+
+        return playerHitbox;
     }
 
     @Override
@@ -167,21 +186,26 @@ public class PlayState extends State {
         gemstoneHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         hud.updateScore(Math.round(player.getBody().getXPosition()));
 
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)) player.jump();
 
         if(collisionDetector.hasCollided(player,1f)){
             player.collisionGroundBegin();
         }else player.collisionGroundEnd();
 
         for(ObstacleAdapter obstacle : obstacleHandler.getObstacles()){
-            hud.gameOver(collisionDetector.hasCollided(player,obstacle));
+            if (collisionDetector.hasCollided(player, obstacle.getObstacleData())) hud.gameOver(true);
         }
+        for(GemstoneAdapter gemstone : gemstoneHandler.getGem()){
+            if(collisionDetector.hasCollided(player,gemstone.getGemstoneData()))
+                hud.updateCoins(+10);
+        }
+
+        playerHitbox.setTransform(player.getBody().x*2,player.getBody().y*2,0);
     }
 
     public void cameraUpdate() {
         Vector3 position = cam.position;
-        position.x = player.getBody().getXPosition()*64;
-        position.y = player.getBody().getYPosition()*64;
+        position.x = player.getBody().getXPosition()*pixelsPerMeter*2;
+        position.y = player.getBody().getYPosition()*pixelsPerMeter*2;
 
         rc.updateCamera(cam,position);
     }
@@ -220,11 +244,11 @@ public class PlayState extends State {
                 animationFrame = animationFrame % 5;
 
                 if(player instanceof OrangePlayer) {
-                    rc.render(playerWalkingAnimationOrangePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerWalkingAnimationOrangePlayer[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 200/4f, 422/4f);
+                    rc.render(playerWalkingAnimationOrangePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerWalkingAnimationOrangePlayer[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 }
 
                 if(player instanceof GreenPlayer) {
-                    rc.render(playerWalkingAnimationGreenPlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerWalkingAnimationGreenPlayer[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 200/4f, 422/4f);
+                    rc.render(playerWalkingAnimationGreenPlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerWalkingAnimationGreenPlayer[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 }
                 break;
             case "jumping":
@@ -235,15 +259,15 @@ public class PlayState extends State {
                 animationFrame = animationFrame % 4;
 
                 if(player instanceof OrangePlayer) {
-                    rc.render(playerJumpingAnimationOrangePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerJumpingAnimationOrangePlayer[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 250/4f, 422/4f);
+                    rc.render(playerJumpingAnimationOrangePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerJumpingAnimationOrangePlayer[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 250/4f, 422/4f);
                 }
 
                 if(player instanceof GreenPlayer) {
-                    rc.render(playerJumpingAnimationGreenPlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerJumpingAnimationGreenPlayer[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 250/4f, 422/4f);
+                    rc.render(playerJumpingAnimationGreenPlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerJumpingAnimationGreenPlayer[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 250/4f, 422/4f);
                 }
 
                 if(player instanceof PurplePlayer) {
-                    rc.render(playerJumpingAnimationPurplePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerJumpingAnimationPurplePlayer[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 250/4f, 422/4f);
+                    rc.render(playerJumpingAnimationPurplePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerJumpingAnimationPurplePlayer[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 250/4f, 422/4f);
                 }
 
                 break;
@@ -251,7 +275,7 @@ public class PlayState extends State {
                 frame += 0.1;
                 frame = frame % 60;
                 animationFrame = animationFrame % 5;
-                rc.render(playerRunningAnimationPurplePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter - (playerWalkingAnimationGreenPlayer[1].getWidth()/8f), player.getBody().getYPosition() * pixelsPerMeter - 30, 200/4f, 422/4f);
+                rc.render(playerRunningAnimationPurplePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerWalkingAnimationGreenPlayer[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 break;
         }
     }

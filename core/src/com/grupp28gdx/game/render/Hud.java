@@ -18,6 +18,7 @@ public class Hud {
     private Stage gameOverStage;
 
     Label scoreCounterLabel;
+    Label finalScoreCounterLabel;
     Label coinCountLabel;
     Label scoreTextLabel;
     Label coinTextLabel;
@@ -56,13 +57,14 @@ public class Hud {
         table.padBottom(Gdx.graphics.getHeight()/2);
         gameOverLabel = new Label("Game Over",new Label.LabelStyle(new BitmapFont(Gdx.files.internal("Bullpen3DBitmap.fnt")), Color.WHITE));
         gameOverLabel.setFontScale(2);
+        finalScoreCounterLabel=new Label(String.format("%06d",0),new Label.LabelStyle(new BitmapFont(Gdx.files.internal("Bullpen3DBitmap.fnt")), Color.WHITE));
 
         table.add(gameOverLabel).expandX();
         table.row();
         scoreTextLabel = new Label(("Final score:"), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("Bullpen3DBitmap.fnt")), Color.WHITE));
         table.add(scoreTextLabel).expandX();
         table.row();
-        table.add(scoreCounterLabel).expandX();
+        table.add(finalScoreCounterLabel).expandX();
         gameOverStage.addActor(table);}
 
 
@@ -74,6 +76,7 @@ public class Hud {
 
     public void updateScore(int newScore){
         scoreCounterLabel.setText(String.format("%06d",newScore));
+        finalScoreCounterLabel.setText(String.format("%06d",newScore));
     }
     public void updateCoins(int coins){coinCountLabel.setText(String.format("%02d",coins));}
 }

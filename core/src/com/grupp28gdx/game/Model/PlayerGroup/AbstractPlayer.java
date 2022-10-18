@@ -90,7 +90,7 @@ public abstract class AbstractPlayer implements Player{
     public void inputKeyDown(int key){
         switch (key){
             case 51: // w
-                jump();
+                this.jump();
                 break;
             case 47: // s
                 break;

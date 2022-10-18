@@ -67,6 +67,11 @@ public class  Bullet {
         bullets.remove(i);
     }
 
+
+    public Body getBody(){
+        return body;
+    }
+
     private void createShape() {
         vectorListX.add(body.getXPosition());
         vectorListX.add(body.getXPosition());
@@ -94,7 +99,6 @@ public class  Bullet {
         return this.body.getYPosition();
     }
     public float getMovementspeed(){return this.body.getMovementSpeed();}
-
 
 }
 
