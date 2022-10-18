@@ -111,7 +111,7 @@ public class CollisionDetector {
         float playerOffsetY = 2.75f;
 
         float wallOffsetX = 1f;
-        float wallOffsetY = 3f;
+        float wallOffsetY = 2f;
 
         if(
                 ((wallBodyX<=playerPositionX+playerOffsetX &&

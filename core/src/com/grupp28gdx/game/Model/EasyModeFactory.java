@@ -42,7 +42,17 @@ public class EasyModeFactory implements ModeFactory {
      */
     @Override
     public Obstacle createObstacle(float spawnX, float spawnY) {
+        Random rand = new Random(100);
+        switch (rand.nextInt()%5){
+            case 0:
+            case 1:
+            case 2:
+                return new SpikeObstacle(spawnX,spawnY);
+            case 3:
+            case 4:
+                return new PermanentObstacle(spawnX,spawnY+1);
+        }
+        return null;
 
-        return new SpikeObstacle(spawnX, spawnY);
     }
 }

@@ -177,6 +177,7 @@ public class PlayState extends State {
             else if (gemstone.getGemstoneData() instanceof MediumGemstone){rc.render(assetManager.getMediumGemstoneTexture(),((BigGemstone) gemstone.getGemstoneData()).body.x*pixelsPerMeter*2,((BigGemstone) gemstone.getGemstoneData()).body.y*pixelsPerMeter*2,pixelsPerMeter*0.45f,pixelsPerMeter*0.45f);}
             else{rc.render(assetManager.getSmallGemstoneTexture(),((BigGemstone) gemstone.getGemstoneData()).body.x*pixelsPerMeter*2,((BigGemstone) gemstone.getGemstoneData()).body.y*pixelsPerMeter*2,pixelsPerMeter*0.18f,pixelsPerMeter*0.18f);}
         }
+        rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         updateBulletTexture(player.getGun().getBulletsFired());
         updatePlayerTexture();
         rc.render(hud);
