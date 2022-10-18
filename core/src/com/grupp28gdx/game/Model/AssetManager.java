@@ -17,19 +17,42 @@ public class AssetManager {
     private Texture mediumGemstoneTexture = new Texture("mediumGemstone.png");
     private Texture bigGemstoneTexture = new Texture("bigGemstone.png");
 
-    private Texture[] playerWalkingAnimation = {
+    private Texture[] playerWalkingAnimationOrangePlayer = {
+            new Texture("red__0006_walk_1.png"),
+            new Texture("red__0007_walk_2.png"),
+            new Texture("red__0008_walk_3.png"),
+            new Texture("red__0009_walk_4.png"),
+            new Texture("red__0010_walk_5.png"),
+            new Texture("red__0011_walk_6.png")};
+    private Texture[] playerJumpingAnimationOrangePlayer = {
+            new Texture("red__0027_jump_1.png"),
+            new Texture("red__0028_jump_2.png"),
+            new Texture("red__0029_jump_3.png"),
+            new Texture("red__0030_jump_4.png")};
+    private Texture[] playerWalkingAnimationGreenPlayer = {
             new Texture("alien_walking_1.png"),
             new Texture("armor__0007_walk_2.png"),
             new Texture("armor__0008_walk_3.png"),
             new Texture("armor__0009_walk_4.png"),
             new Texture("armor__0010_walk_5.png"),
             new Texture("armor__0011_walk_6.png")};
-
-    private Texture[] playerJumpingAnimation = {
+    private Texture[] playerJumpingAnimationGreenPlayer = {
             new Texture("armor__0027_jump_1.png"),
             new Texture("armor__0028_jump_2.png"),
             new Texture("armor__0028_jump_3.png"),
             new Texture("armor__0030_jump_4.png")};
+    private Texture[] playerRunningAnimationPurplePlayer = {
+            new Texture("blue__0012_run_1.png"),
+            new Texture("blue__0013_run_2.png"),
+            new Texture("blue__0014_run_3.png"),
+            new Texture("blue__0015_run_4.png"),
+            new Texture("blue__0016_run_5.png"),
+            new Texture("blue__0017_run_6.png")};
+    private Texture[] playerJumpingAnimationPurplePlayer = {
+            new Texture("blue__0027_jump_1.png"),
+            new Texture("blue__0028_jump_2.png"),
+            new Texture("blue__0029_jump_3.png"),
+            new Texture("blue__0030_jump_4.png")};
 
     public Texture getBackground(){
         return background;
@@ -45,12 +68,28 @@ public class AssetManager {
     public Texture getMediumGemstoneTexture(){return mediumGemstoneTexture;}
     public Texture getBigGemstoneTexture(){return bigGemstoneTexture;}
 
-    public Texture[] getGreenAlienWalkingAnimation(){
-        return playerWalkingAnimation;
+    public Texture[] getPlayerWalkingAnimationOrangePlayer(){
+        return playerWalkingAnimationOrangePlayer;
     }
 
-    public Texture[] getGreenAlienJumpingAnimation(){
-        return playerJumpingAnimation;
+    public Texture[] getPlayerJumpingAnimationOrangePlayer() {
+        return playerJumpingAnimationOrangePlayer;
+    }
+
+    public Texture[] getPlayerWalkingAnimationGreenPlayer() {
+        return playerWalkingAnimationGreenPlayer;
+    }
+
+    public Texture[] getPlayerJumpingAnimationGreenPlayer() {
+        return playerJumpingAnimationGreenPlayer;
+    }
+
+    public Texture[] getPlayerRunningAnimationPurplePlayer() {
+        return playerRunningAnimationPurplePlayer;
+    }
+
+    public Texture[] getPlayerJumpingAnimationPurplePlayer() {
+        return playerJumpingAnimationPurplePlayer;
     }
 
     public Texture getGroundTexture() { return groundTexture;
