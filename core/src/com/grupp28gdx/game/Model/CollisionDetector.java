@@ -186,10 +186,10 @@ public class CollisionDetector {
         float playerOffsetX = 1f;
         float playerOffsetY = 2.75f;
 
-        float spikeOffsetX = 2.25f;
+        float spikeOffsetX = 1.25f;
         float spikeOffsetY = 0.5f;
 
-        float spikeOffsetX2 = 1f;
+        float spikeOffsetX2 = 0.5f;
         float spikeOffsetY2 = 0.5f;
 
         if(

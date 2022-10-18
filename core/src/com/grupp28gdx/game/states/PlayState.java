@@ -65,7 +65,7 @@ public class PlayState extends State {
         super(gsm);
         cam = new OrthographicCamera();
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
-        backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
+        backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + 4096, -300);
         world = new World(new Vector2(0, 0), true);
         collisionDetector = new CollisionDetector();
         player = new OrangePlayer();
@@ -87,10 +87,10 @@ public class PlayState extends State {
 
 
     private void updateBackground() {
-        if(cam.position.x - (4096 / 2f) > backgroundPosition1.x + 4096)
-            backgroundPosition1.add(4096, 0);
-        if(cam.position.x - (4096 / 2f) > backgroundPosition2.x + 4096)
-            backgroundPosition2.add(4096/2f, 0);
+        if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition1.x + 4096)
+            backgroundPosition1.add(4096/2f, 0);
+        if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition2.x + 2048)
+            backgroundPosition2.add(4096, 0);
     }
 
 
