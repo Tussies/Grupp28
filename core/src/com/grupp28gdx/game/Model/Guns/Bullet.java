@@ -1,12 +1,16 @@
 package com.grupp28gdx.game.Model.Guns;
 
 import com.grupp28gdx.game.Model.Body;
+import com.grupp28gdx.game.Model.CollisionDetector;
+import com.grupp28gdx.game.Model.DestroyableObstacle;
+import com.grupp28gdx.game.Model.Obstacle;
 
 import java.util.ArrayList;
 
 public class  Bullet {
     private Body body;
     private Bullet tempBullet;
+    private CollisionDetector detector;
 
 
     ArrayList<Float> vectorListX = new ArrayList<Float>();
@@ -21,20 +25,22 @@ public class  Bullet {
      */
     public Bullet(float xPos, float yPos, int speed) { //Speed should be int as soon as possible
         this.body = new Body(xPos, yPos);
-       this.body.setMovementSpeed(speed);
+        this.detector = new CollisionDetector();
+
+        this.body.setMovementSpeed(speed);
     }
 
     /**
      * Updates all the instances of Bullet position on the X-axis and calls on method destroyBullets if they have collided with an obstacle.
      */
-    public void positionUpdateBullet(ArrayList<Bullet> bullets, float deltaTime) {
+    public void positionUpdateBullet(ArrayList<Bullet> bullets, ArrayList<DestroyableObstacle> obstacles, float deltaTime) {
         for (int i = 0; i < bullets.size(); i++) {
             tempBullet = bullets.get(i);
             tempBullet.body.setXPosition(tempBullet.body.getXPosition() + tempBullet.body.getMovementSpeed()*deltaTime);
             bullets.set(i, tempBullet);
 
-
-            if (bulletCollision(bullets.get(i))) { //FIX THE PARAM
+            for (int j = 0; j < obstacles.size(); j++)
+            if (detector.hasCollided(bullets.get(i), obstacles.get(j))) { //FIX THE PARAM
                 destroyBullet(bullets, i);
 
             }
@@ -50,7 +56,7 @@ public class  Bullet {
 
     public boolean bulletCollision(Bullet bullet) {
 
-        if (false) { //collisiondetector with obstacle and bullet, if statement
+        if (detector.hasCollided(bullet)) { //collisiondetector with obstacle and bullet, if statement
             return true;
         }
 
