@@ -63,5 +63,9 @@ public class Bullet {
         bullets.remove(i);
     }
 
+
+    public Body getBody(){
+        return body;
+    }
 }
 

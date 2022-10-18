@@ -183,24 +183,17 @@ public class PlayState extends State {
         gemstoneHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         hud.updateScore(Math.round(player.getBody().getXPosition()));
 
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)) player.jump();
-        //if(Gdx.input.isKeyPressed(Input.Keys.UP)) player.getBody().y += 0.01;
-        //if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) player.getBody().x -= 0.01;
-        //if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) player.getBody().x += 0.01;
-        //if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) player.getBody().y -= 0.01;
-
 
         if(collisionDetector.hasCollided(player,1f)){
             player.collisionGroundBegin();
         }else player.collisionGroundEnd();
 
         for(ObstacleAdapter obstacle : obstacleHandler.getObstacles()){
-            if (obstacle.getObstacleData() instanceof PermanentObstacle){
-                hud.gameOver(collisionDetector.hasCollided(player,(PermanentObstacle) obstacle.getObstacleData()));
-            }
-            else if (obstacle.getObstacleData() instanceof SpikeObstacle){
-                hud.gameOver(collisionDetector.hasCollided(player,(SpikeObstacle) obstacle.getObstacleData()));
-            }
+            if (collisionDetector.hasCollided(player, obstacle.getObstacleData())) hud.gameOver(true);
+        }
+        for(GemstoneAdapter gemstone : gemstoneHandler.getGem()){
+            if(collisionDetector.hasCollided(player,gemstone.getGemstoneData()))
+                hud.updateCoins(+10);
         }
 
         playerHitbox.setTransform(player.getBody().x*2,player.getBody().y*2,0);
@@ -241,11 +234,11 @@ public class PlayState extends State {
                 animationFrame = animationFrame % 5;
 
                 if(player instanceof OrangePlayer) {
-                    rc.render(playerWalkingAnimationOrangePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerWalkingAnimationOrangePlayer[1].getWidth()/8f) + pixelsPerMeter-10, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                    rc.render(playerWalkingAnimationOrangePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerWalkingAnimationOrangePlayer[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 }
 
                 if(player instanceof GreenPlayer) {
-                    rc.render(playerWalkingAnimationGreenPlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerWalkingAnimationGreenPlayer[1].getWidth()/8f) + pixelsPerMeter-10, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                    rc.render(playerWalkingAnimationGreenPlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerWalkingAnimationGreenPlayer[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 }
                 break;
             case "jumping":
@@ -272,7 +265,7 @@ public class PlayState extends State {
                 frame += 0.1;
                 frame = frame % 60;
                 animationFrame = animationFrame % 5;
-                rc.render(playerRunningAnimationPurplePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerWalkingAnimationGreenPlayer[1].getWidth()/8f) + pixelsPerMeter, player.getBody().getYPosition() * pixelsPerMeter*2, 200/4f, 422/4f);
+                rc.render(playerRunningAnimationPurplePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerWalkingAnimationGreenPlayer[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 break;
         }
     }
