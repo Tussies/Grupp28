@@ -49,51 +49,6 @@ public class PlayState extends State {
     private float h = Gdx.graphics.getHeight();
     private float frame;
 
-    private Texture background;
-    private Texture alien;
-    private Texture[] playerWalkingAnimationOrangePlayer = {
-            new Texture("red__0006_walk_1.png"),
-            new Texture("red__0007_walk_2.png"),
-            new Texture("red__0008_walk_3.png"),
-            new Texture("red__0009_walk_4.png"),
-            new Texture("red__0010_walk_5.png"),
-            new Texture("red__0011_walk_6.png")};
-    private Texture[] playerJumpingAnimationOrangePlayer = {
-            new Texture("red__0027_jump_1.png"),
-            new Texture("red__0028_jump_2.png"),
-            new Texture("red__0029_jump_3.png"),
-            new Texture("red__0030_jump_4.png")};
-    private Texture[] playerWalkingAnimationGreenPlayer = {
-            new Texture("alien_walking_1.png"),
-            new Texture("armor__0007_walk_2.png"),
-            new Texture("armor__0008_walk_3.png"),
-            new Texture("armor__0009_walk_4.png"),
-            new Texture("armor__0010_walk_5.png"),
-            new Texture("armor__0011_walk_6.png")};
-    private Texture[] playerJumpingAnimationGreenPlayer = {
-            new Texture("armor__0027_jump_1.png"),
-            new Texture("armor__0028_jump_2.png"),
-            new Texture("armor__0028_jump_3.png"),
-            new Texture("armor__0030_jump_4.png")};
-    private Texture[] playerRunningAnimationGreenPlayer = {
-            new Texture("armor__0031_run_1.png"),
-            new Texture("armor__0032_run_2.png"),
-            new Texture("armor__0033_run_3.png"),
-            new Texture("armor__0034_run_4.png"),
-            new Texture("armor__0035_run_5.png"),
-            new Texture("armor__0036_run_6.png")};
-    private Texture[] playerRunningAnimationPurplePlayer = {
-            new Texture("blue__0012_run_1.png"),
-            new Texture("blue__0013_run_2.png"),
-            new Texture("blue__0014_run_3.png"),
-            new Texture("blue__0015_run_4.png"),
-            new Texture("blue__0016_run_5.png"),
-            new Texture("blue__0017_run_6.png")};
-    private Texture[] playerJumpingAnimationPurplePlayer = {
-            new Texture("blue__0027_jump_1.png"),
-            new Texture("blue__0028_jump_2.png"),
-            new Texture("blue__0029_jump_3.png"),
-            new Texture("blue__0030_jump_4.png")};
     private final AssetManager assetManager = new AssetManager();
 
     private Vector2 backgroundPosition1, backgroundPosition2;
@@ -132,10 +87,10 @@ public class PlayState extends State {
 
 
     private void updateBackground() {
-        if(cam.position.x - (4096 / 2f) > backgroundPosition1.x + w)
-            backgroundPosition1.add(w * 2, 0);
-        if(cam.position.x - (4096 / 2f) > backgroundPosition2.x + w)
-            backgroundPosition2.add(w * 2, 0);
+        if(cam.position.x - (4096 / 2f) > backgroundPosition1.x + 4096)
+            backgroundPosition1.add(4096, 0);
+        if(cam.position.x - (4096 / 2f) > backgroundPosition2.x + 4096)
+            backgroundPosition2.add(4096/2f, 0);
     }
 
 
@@ -243,11 +198,11 @@ public class PlayState extends State {
                 animationFrame = animationFrame % 5;
 
                 if(player instanceof OrangePlayer) {
-                    rc.render(playerWalkingAnimationOrangePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerWalkingAnimationOrangePlayer[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                    rc.render(assetManager.getPlayerWalkingAnimationOrangePlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerWalkingAnimationOrangePlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 }
 
                 if(player instanceof GreenPlayer) {
-                    rc.render(playerWalkingAnimationGreenPlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerWalkingAnimationGreenPlayer[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                    rc.render(assetManager.getPlayerWalkingAnimationGreenPlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerWalkingAnimationGreenPlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 }
                 break;
             case "jumping":
@@ -258,15 +213,15 @@ public class PlayState extends State {
                 animationFrame = animationFrame % 4;
 
                 if(player instanceof OrangePlayer) {
-                    rc.render(playerJumpingAnimationOrangePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerJumpingAnimationOrangePlayer[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 250/4f, 422/4f);
+                    rc.render(assetManager.getPlayerJumpingAnimationOrangePlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerJumpingAnimationOrangePlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 250/4f, 422/4f);
                 }
 
                 if(player instanceof GreenPlayer) {
-                    rc.render(playerJumpingAnimationGreenPlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerJumpingAnimationGreenPlayer[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 250/4f, 422/4f);
+                    rc.render(assetManager.getPlayerJumpingAnimationGreenPlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerJumpingAnimationGreenPlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 250/4f, 422/4f);
                 }
 
                 if(player instanceof PurplePlayer) {
-                    rc.render(playerJumpingAnimationPurplePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerJumpingAnimationPurplePlayer[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 250/4f, 422/4f);
+                    rc.render(assetManager.getPlayerJumpingAnimationPurplePlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerJumpingAnimationPurplePlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 250/4f, 422/4f);
                 }
 
                 break;
@@ -274,7 +229,7 @@ public class PlayState extends State {
                 frame += 0.1;
                 frame = frame % 60;
                 animationFrame = animationFrame % 5;
-                rc.render(playerRunningAnimationPurplePlayer[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (playerWalkingAnimationGreenPlayer[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                rc.render(assetManager.getPlayerRunningAnimationPurplePlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerRunningAnimationPurplePlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 break;
         }
     }
@@ -284,19 +239,22 @@ public class PlayState extends State {
         assetManager.getBackground().dispose();
         world.dispose();
         debugRenderer.dispose();
-        for (Texture texture : playerWalkingAnimationGreenPlayer){
+        for (Texture texture : assetManager.getPlayerWalkingAnimationOrangePlayer()){
             texture.dispose();
         }
-        for (Texture texture : playerJumpingAnimationGreenPlayer){
+        for (Texture texture : assetManager.getPlayerWalkingAnimationGreenPlayer()){
             texture.dispose();
         }
-        for (Texture texture : playerRunningAnimationGreenPlayer){
+        for (Texture texture : assetManager.getPlayerJumpingAnimationOrangePlayer()){
             texture.dispose();
         }
-        for (Texture texture : playerRunningAnimationPurplePlayer){
+        for (Texture texture : assetManager.getPlayerJumpingAnimationGreenPlayer()){
             texture.dispose();
         }
-        for (Texture texture : playerJumpingAnimationGreenPlayer){
+        for (Texture texture : assetManager.getPlayerJumpingAnimationPurplePlayer()){
+            texture.dispose();
+        }
+        for (Texture texture : assetManager.getPlayerRunningAnimationPurplePlayer()){
             texture.dispose();
         }
     }
