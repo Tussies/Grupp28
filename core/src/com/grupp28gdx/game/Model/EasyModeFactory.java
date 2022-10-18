@@ -42,6 +42,7 @@ public class EasyModeFactory implements ModeFactory {
      */
     @Override
     public Obstacle createObstacle(float spawnX, float spawnY) {
-        return new PermanentObstacle(spawnX, spawnY);
+
+        return new SpikeObstacle(spawnX, spawnY);
     }
 }
