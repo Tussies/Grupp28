@@ -41,8 +41,8 @@ public class DestroyableObstacle implements Obstacle {
         vectorListX.add(body.getXPosition()+1);
 
         vectorListY.add(body.getYPosition());
-        vectorListY.add(body.getYPosition()+2);
-        vectorListY.add(body.getYPosition()+2);
+        vectorListY.add(body.getYPosition()+3);
+        vectorListY.add(body.getYPosition()+3);
         vectorListY.add(body.getYPosition());
     }
 

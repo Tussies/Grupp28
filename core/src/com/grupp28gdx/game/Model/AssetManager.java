@@ -7,6 +7,10 @@ public class AssetManager {
     private Texture background = new Texture("nebulaset1.png");
     private Texture bullet = new Texture("Bomb_B_01.png");
 
+    private Texture spikeTexture = new Texture("spikeTexture.png");
+    private Texture destroyableTexture = new Texture("destroyableTexture.png");
+    private Texture wallTexture = new Texture("wallTexture.png");
+
     private Texture[] playerWalkingAnimation = {
             new Texture("alien_walking_1.png"),
             new Texture("armor__0007_walk_2.png"),
@@ -26,6 +30,10 @@ public class AssetManager {
     }
 
     public Texture getBulletTexture(){return bullet;}
+
+    public Texture getSpikeTexture(){return spikeTexture;}
+    public Texture getDestroyableTexture(){return destroyableTexture;}
+    public Texture getWallTexture(){return wallTexture;}
 
     public Texture[] getGreenAlienWalkingAnimation(){
         return playerWalkingAnimation;
