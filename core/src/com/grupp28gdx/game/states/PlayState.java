@@ -201,9 +201,7 @@ public class PlayState extends State {
 
     private void updateBulletTexture(ArrayList<Bullet> bullets){
         for (int j = 0 ; j <bullets.size(); j++){
-           System.out.println("Bullet pos "+ bullets.get(j).getXPosition());
-           System.out.println("Player pos " + player.getBody().getXPosition());
-            rc.render(assetManager.getBulletTexture(),  bullets.get(j).getXPosition(),  bullets.get(j).getYPosition() , 1, 1 );
+           rc.render(assetManager.getBulletTexture(),  bullets.get(j).getXPosition()*pixelsPerMeter*2,  bullets.get(j).getYPosition()*pixelsPerMeter*2 , 40, 40 );
         }
     }
 

@@ -25,10 +25,7 @@ public class AssetManager {
         return background;
     }
 
-    public Texture getBulletTexture(){
-        return bullet;
-
-    }
+    public Texture getBulletTexture(){return bullet;}
 
     public Texture[] getGreenAlienWalkingAnimation(){
         return playerWalkingAnimation;
