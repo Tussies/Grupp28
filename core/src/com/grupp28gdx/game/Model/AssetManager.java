@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 public class AssetManager {
 
     private Texture background = new Texture("nebulaset1.png");
+    private Texture groundTexture = new Texture("groundTexture.png");
+
     private Texture bullet = new Texture("Bomb_B_01.png");
 
     private Texture[] playerWalkingAnimation = {
@@ -33,5 +35,8 @@ public class AssetManager {
 
     public Texture[] getGreenAlienJumpingAnimation(){
         return playerJumpingAnimation;
+    }
+
+    public Texture getGroundTexture() { return groundTexture;
     }
 }

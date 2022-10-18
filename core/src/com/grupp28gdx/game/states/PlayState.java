@@ -38,7 +38,6 @@ public class PlayState extends State {
 
     Box2DDebugRenderer debugRenderer;
     private World world;
-    private Body ground;
 
     private Player player;
     private Body playerHitbox;
@@ -114,7 +113,6 @@ public class PlayState extends State {
         collisionDetector = new CollisionDetector();
         player = new OrangePlayer();
         this.playInput = new PlayInputHandler(player);
-        ground = createGround();
         debugRenderer = new Box2DDebugRenderer();
         rc.renderBirdMusic();
 
@@ -138,21 +136,6 @@ public class PlayState extends State {
             backgroundPosition2.add(w * 2, 0);
     }
 
-    public Body createGround() {
-        BodyDef definition = new BodyDef();
-        definition.type = BodyDef.BodyType.StaticBody;
-        definition.position.set(0,0);
-        definition.fixedRotation = true;
-        ground = world.createBody(definition);
-
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(1000/pixelsPerMeter, 1);
-
-        ground.createFixture(shape, 1.0f);
-        shape.dispose();
-
-        return ground;
-    }
 
     public Body createHitBox() {
         BodyDef hitboxdef = new BodyDef();
@@ -181,7 +164,6 @@ public class PlayState extends State {
         updateBackground();
         player.playerUpdate(delta);
 
-        ground.setTransform(player.getBody().getXPosition()*2,1, 0);
         obstacleHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         gemstoneHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         hud.updateScore(Math.round(player.getBody().getXPosition()));
@@ -219,9 +201,10 @@ public class PlayState extends State {
 
         update(Gdx.graphics.getDeltaTime());
         rc.setProjectionMatrix(cam.combined);
-        rc.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, w, h);
-        rc.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, w, h);
-        rc.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, w, h);
+        rc.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, 4096, 4096);
+        rc.render(assetManager.getGroundTexture(), backgroundPosition1.x, backgroundPosition1.y-310, 4096, 2000/3+10);
+        rc.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, 4096, 2000);
+        rc.render(assetManager.getGroundTexture(), backgroundPosition2.x, backgroundPosition2.y-310, 4096, 2000/3+10);
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         updateBulletTexture(player.getGun().getBulletsFired());
         updatePlayerTexture();
