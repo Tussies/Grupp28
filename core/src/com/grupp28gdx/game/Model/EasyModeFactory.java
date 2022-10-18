@@ -28,8 +28,8 @@ public class EasyModeFactory implements ModeFactory {
      * easier to gather than MediumGemstone.
      */
     @Override
-    public Gemstone createGemstone() {
-        return new BigGemstone();
+    public Gemstone createGemstone(float spawnX,float spawnY) {
+        return new BigGemstone(spawnX,spawnY);
     }
 
     /**

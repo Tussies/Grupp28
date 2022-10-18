@@ -75,7 +75,6 @@ public class Hud {
 }
 
     public void updateScore(int newScore){
-        System.out.println(newScore);
         scoreCounterLabel.setText(String.format("%06d",newScore));
         finalScoreCounterLabel.setText(String.format("%06d",newScore));
     }

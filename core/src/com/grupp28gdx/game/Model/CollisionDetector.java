@@ -9,8 +9,9 @@ public class CollisionDetector {
 
     public boolean hasCollided(Player player, Gemstone gemstone ){
         Body playerBody = player.getBody();
-        Body gemstoneBody = gemstone.getBody();
-        float playerOffsetX = 2f;
+        Body gemstoneBody = gemstone.getPosition();
+
+        float playerOffsetX = 1f;
         float playerOffsetY = 1f;
 
         float gemstoneOffsetX = 0.5f;
@@ -22,7 +23,7 @@ public class CollisionDetector {
                 ((playerBody.x+playerOffsetX>=gemstoneBody.x && playerBody.x<=gemstoneBody.x) &&
                         (playerBody.y+playerOffsetY>=gemstoneBody.y && playerBody.y<=gemstoneBody.y)))
         {
-            System.out.println("Collision");
+
             return true;
         }
 
@@ -59,7 +60,6 @@ public class CollisionDetector {
                  playerPositionY >= wallBodyY))
                 )
         {
-            System.out.println("Collision");
             return true;
         }
 

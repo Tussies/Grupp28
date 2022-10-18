@@ -1,6 +1,7 @@
 package com.grupp28gdx.game.Model.PlayerGroup;
 
 import com.grupp28gdx.game.Model.Body;
+import com.grupp28gdx.game.Model.Guns.Gun;
 
 /**
  * This is an abstract player, no instances of this player can be made but OrangePlayer,
@@ -14,6 +15,7 @@ public abstract class AbstractPlayer implements Player{
     public Body body;
     private int lives;
     private float friction;
+    private Gun gun;
 
 
     public PlayerStates playerState;
@@ -34,6 +36,8 @@ public abstract class AbstractPlayer implements Player{
         this.body.setForceX(0);
         this.body.setForceY(0);
 
+        this.gun = new Gun();
+
         playerState = PlayerStates.IDLE;
     }
 
@@ -48,7 +52,8 @@ public abstract class AbstractPlayer implements Player{
         playerMove(deltaTime);
         body.accelerate(0, body.gravity);
         playerState();
-        }
+        gun.positionUpdateGunAndBullets(this.body.getXPosition(), this.body.getYPosition());
+    }
 
     public void playerState() {
         if(body.y <= 0){
@@ -97,6 +102,8 @@ public abstract class AbstractPlayer implements Player{
                         /*if (onGround){
                             playerDirection = StateOfPlayerDirection.RIGHT;}*/
                 break;
+            case 62:
+                gun.shootGun(this.body.getXPosition(), this.body.getYPosition(), this.body.getMovementSpeed()*2) ;
         }
     }
 
@@ -137,4 +144,6 @@ public abstract class AbstractPlayer implements Player{
     public Body getBody() {
         return this.body;
     }
+
+    public Gun getGun(){return this.gun;}
 }

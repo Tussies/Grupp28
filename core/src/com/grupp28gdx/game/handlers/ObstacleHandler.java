@@ -4,7 +4,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.Controller.ObstacleAdapter;
 import com.grupp28gdx.game.Model.ModeFactory;
-import com.grupp28gdx.game.Model.Obstacle;
 import com.grupp28gdx.game.render.RenderController;
 
 
@@ -41,7 +40,6 @@ public class ObstacleHandler extends SpawnHandler{
             } else if (!(itemArray.get(itemArray.size - 1).getObstacleData().getPosition().getXPosition() == posX+5)) {
                 generate(posX+5, posY);
             }
-            System.out.println(posX);
             while (itemArray.get(0).getObstacleData().getPosition().getXPosition() - posX <= -5) {
                 itemArray.get(0).destroyBody();
                 itemArray.removeIndex(0);

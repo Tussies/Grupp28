@@ -11,10 +11,10 @@ import com.grupp28gdx.game.input.MenuInputHandler;
 public class MenuState extends State{
     private Texture background;
     private Texture playButton;
-    private Texture optionButton;
+    private Texture instructionsButton;
     private Texture exitButton;
     private Texture playButtonPressed;
-    private Texture optionButtonPressed;
+    private Texture instructionsButtonPressed;
     private Texture exitButtonPressed;
     private MenuInputHandler menuInput;
     private int playButtonWidth;
@@ -29,11 +29,11 @@ public class MenuState extends State{
         setInputProcessor(menuInput);
         playButton = new Texture("New Game button.png");
         exitButton = new Texture("Exit button.png");
-        optionButton = new Texture("Options button.png");
+        instructionsButton = new Texture("Instructions button.png");
         background = new Texture("nebulaset1.png");
         playButtonPressed = new Texture("New Game button Pressed.png");
         exitButtonPressed = new Texture("Exit button Pressed.png");
-        optionButtonPressed = new Texture("Options button Pressed.png");
+        instructionsButtonPressed = new Texture("Instructions button Pressed.png");
 
         this.playButtonWidth = playButton.getWidth();
         this.playButtonHeight = playButton.getHeight();
@@ -74,7 +74,7 @@ public class MenuState extends State{
         }
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/3 && screenHeight - inputY > screenHeight/3) {
             if (Gdx.input.isTouched()){
-                // gsm.set(new OptionState());
+                gsm.set(new InstructionState(gsm));
                 dispose();
             }
         }
@@ -105,9 +105,9 @@ public class MenuState extends State{
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/2 && screenHeight - inputY > screenHeight/2) {
             hover(playButtonPressed, 2,screenWidth,playButtonWidth,screenHeight);
         }
-        rc.render(optionButton,(screenWidth/2) - (playButtonWidth/2),screenHeight/3);
+        rc.render(instructionsButton,(screenWidth/2) - (playButtonWidth/2),screenHeight/3);
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/3 && screenHeight - inputY > screenHeight/3) {
-            hover(optionButtonPressed,3,screenWidth,playButtonWidth,screenHeight);
+            hover(instructionsButtonPressed,3,screenWidth,playButtonWidth,screenHeight);
         }
         rc.render(exitButton,(screenWidth/2) - (playButtonWidth/2),screenHeight/6);
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/6 && screenHeight - inputY > screenHeight/6) {
@@ -123,7 +123,7 @@ public class MenuState extends State{
     public void dispose() {
         background.dispose();
         playButton.dispose();
-        optionButton.dispose();
+        instructionsButton.dispose();
         exitButton.dispose();
     }
 }

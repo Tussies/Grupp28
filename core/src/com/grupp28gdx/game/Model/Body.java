@@ -9,6 +9,7 @@ package com.grupp28gdx.game.Model;
  */
 public class Body {
 
+
     public float gravity = -1.0f;
     public float x;
     public float y;

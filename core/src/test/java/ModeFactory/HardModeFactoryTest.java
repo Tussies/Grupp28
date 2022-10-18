@@ -20,7 +20,7 @@ public class HardModeFactoryTest {
 
     @Test
     public void createGemstoneTest(){
-        Gemstone tempGemstone = hardFactory.createGemstone();
+        Gemstone tempGemstone = hardFactory.createGemstone(1,1);
         assertEquals(tempGemstone.getClass(), SmallGemstone.class);
     }
 

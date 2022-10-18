@@ -26,10 +26,10 @@ public class HardModeFactory implements ModeFactory{
      * to gather than MediumGemstone.
      */
     @Override
-    public Gemstone createGemstone() {
-        return new SmallGemstone();
+    public Gemstone createGemstone(float spawnX, float spawnY) {
+        return new SmallGemstone(spawnX,spawnY);
     }
-
+    
     /**
      * This method implements the skeleton method of an obstacle in ModeFactory.
      * @param spawnX decides the x-position the destroyable obstacle will appear.
