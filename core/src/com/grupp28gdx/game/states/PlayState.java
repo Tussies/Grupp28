@@ -10,6 +10,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.grupp28gdx.game.Model.CollisionDetector;
+import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
+import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
 import com.grupp28gdx.game.Model.Guns.Bullet;
 import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
@@ -130,9 +132,9 @@ public class PlayState extends State {
 
 
     private void updateBackground() {
-        if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition1.x + w)
+        if(cam.position.x - (4096 / 2f) > backgroundPosition1.x + w)
             backgroundPosition1.add(w * 2, 0);
-        if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition2.x + w)
+        if(cam.position.x - (4096 / 2f) > backgroundPosition2.x + w)
             backgroundPosition2.add(w * 2, 0);
     }
 
@@ -203,7 +205,7 @@ public class PlayState extends State {
         rc.setProjectionMatrix(cam.combined);
         rc.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, 4096, 4096);
         rc.render(assetManager.getGroundTexture(), backgroundPosition1.x, backgroundPosition1.y-310, 4096, 2000/3+10);
-        rc.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, 4096, 2000);
+        rc.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, 4096, 4096);
         rc.render(assetManager.getGroundTexture(), backgroundPosition2.x, backgroundPosition2.y-310, 4096, 2000/3+10);
         
         for (ObstacleAdapter obstacle : obstacleHandler.getObstacles()){
@@ -214,7 +216,12 @@ public class PlayState extends State {
             if (obstacle.getObstacleData() instanceof SpikeObstacle)
                 rc.render(assetManager.getSpikeTexture(),obstacle.getObstacleData().getPosition().x*pixelsPerMeter*2,obstacle.getObstacleData().getPosition().y*pixelsPerMeter*2+32,64,32);
         }
-        rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
+
+        for (GemstoneAdapter gemstone : gemstoneHandler.getGem()){
+            if (gemstone.getGemstoneData() instanceof BigGemstone){rc.render(assetManager.getBigGemstoneTexture(),((BigGemstone) gemstone.getGemstoneData()).body.x*pixelsPerMeter*2,((BigGemstone) gemstone.getGemstoneData()).body.y*pixelsPerMeter*2,pixelsPerMeter*0.75f,pixelsPerMeter*0.75f);}
+            else if (gemstone.getGemstoneData() instanceof MediumGemstone){rc.render(assetManager.getMediumGemstoneTexture(),((BigGemstone) gemstone.getGemstoneData()).body.x*pixelsPerMeter*2,((BigGemstone) gemstone.getGemstoneData()).body.y*pixelsPerMeter*2,pixelsPerMeter*0.45f,pixelsPerMeter*0.45f);}
+            else{rc.render(assetManager.getSmallGemstoneTexture(),((BigGemstone) gemstone.getGemstoneData()).body.x*pixelsPerMeter*2,((BigGemstone) gemstone.getGemstoneData()).body.y*pixelsPerMeter*2,pixelsPerMeter*0.18f,pixelsPerMeter*0.18f);}
+        }
         updateBulletTexture(player.getGun().getBulletsFired());
         updatePlayerTexture();
         rc.render(hud);
