@@ -4,14 +4,18 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class AssetManager {
 
-    private Texture background = new Texture("nebulaset1.png");
-    private Texture groundTexture = new Texture("groundTexture.png");
+    private final Texture background = new Texture("nebulaset1.png");
+    private final Texture groundTexture = new Texture("groundTexture.png");
 
-    private Texture bullet = new Texture("Bomb_B_01.png");
+    private final Texture bullet = new Texture("Bomb_B_01.png");
 
-    private Texture spikeTexture = new Texture("spikeTexture.png");
-    private Texture destroyableTexture = new Texture("destroyableTexture.png");
-    private Texture wallTexture = new Texture("wallTexture.png");
+    private final Texture spikeTexture = new Texture("spikeTexture.png");
+    private final Texture destroyableTexture = new Texture("destroyableTexture.png");
+    private final Texture wallTexture = new Texture("wallTexture.png");
+
+    private Texture smallGemstoneTexture = new Texture("smallGemstone.png");
+    private Texture mediumGemstoneTexture = new Texture("mediumGemstone.png");
+    private Texture bigGemstoneTexture = new Texture("bigGemstone.png");
 
     private Texture[] playerWalkingAnimation = {
             new Texture("alien_walking_1.png"),
@@ -36,6 +40,10 @@ public class AssetManager {
     public Texture getSpikeTexture(){return spikeTexture;}
     public Texture getDestroyableTexture(){return destroyableTexture;}
     public Texture getWallTexture(){return wallTexture;}
+
+    public Texture getSmallGemstoneTexture(){return smallGemstoneTexture;}
+    public Texture getMediumGemstoneTexture(){return mediumGemstoneTexture;}
+    public Texture getBigGemstoneTexture(){return bigGemstoneTexture;}
 
     public Texture[] getGreenAlienWalkingAnimation(){
         return playerWalkingAnimation;
