@@ -68,7 +68,7 @@ public class MenuState extends State{
         int inputY = MenuInputHandler.checkInputY();
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/2 && screenHeight - inputY > screenHeight/2) {
             if (Gdx.input.isTouched()) {
-                gsm.set(new PlayState(gsm));
+                gsm.set(new ChooseDifficultyState(gsm));
                 dispose();
             }
         }
