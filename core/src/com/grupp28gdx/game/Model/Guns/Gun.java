@@ -20,10 +20,10 @@ public class Gun {
      * @param xPos
      * @param yPos
      */
-    public void positionUpdateGunAndBullets(float xPos, float yPos){ //Updates the guns position with the players x and y position. (Should be sent in)
+    public void positionUpdateGunAndBullets(float xPos, float yPos, float deltaTime){ //Updates the guns position with the players x and y position. (Should be sent in)
         this.body.setXPosition(xPos);
         this.body.setYPosition(yPos);
-        bullet.positionUpdateBullet(bulletsFired);
+        bullet.positionUpdateBullet(bulletsFired, deltaTime);
 
     }
 
@@ -31,6 +31,7 @@ public class Gun {
         bulletsFired.add(new Bullet(xPos, yPos, speed));
     }
 
+    public ArrayList<Bullet> getBulletsFired(){return this.bulletsFired;}
 
 
 }

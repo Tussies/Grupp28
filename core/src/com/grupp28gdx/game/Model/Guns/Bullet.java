@@ -4,9 +4,13 @@ import com.grupp28gdx.game.Model.Body;
 
 import java.util.ArrayList;
 
-public class Bullet {
+public class  Bullet {
     private Body body;
     private Bullet tempBullet;
+
+
+    ArrayList<Float> vectorListX = new ArrayList<Float>();
+    ArrayList<Float> vectorListY = new ArrayList<Float>();
 
     /**
      * The Bullet object is shot from the
@@ -23,10 +27,10 @@ public class Bullet {
     /**
      * Updates all the instances of Bullet position on the X-axis and calls on method destroyBullets if they have collided with an obstacle.
      */
-    public void positionUpdateBullet(ArrayList<Bullet> bullets) {
+    public void positionUpdateBullet(ArrayList<Bullet> bullets, float deltaTime) {
         for (int i = 0; i < bullets.size(); i++) {
             tempBullet = bullets.get(i);
-            tempBullet.body.setXPosition(tempBullet.body.getXPosition() + tempBullet.body.getMovementSpeed());
+            tempBullet.body.setXPosition(tempBullet.body.getXPosition() + tempBullet.body.getMovementSpeed()*deltaTime);
             bullets.set(i, tempBullet);
 
 
@@ -67,5 +71,34 @@ public class Bullet {
     public Body getBody(){
         return body;
     }
+
+    private void createShape() {
+        vectorListX.add(body.getXPosition());
+        vectorListX.add(body.getXPosition());
+        vectorListX.add(body.getXPosition()+1);
+        vectorListX.add(body.getXPosition()+1);
+
+        vectorListY.add(body.getYPosition());
+        vectorListY.add(body.getYPosition()+2);
+        vectorListY.add(body.getYPosition()+2);
+        vectorListY.add(body.getYPosition());
+    }
+
+    public ArrayList<Float> getVectorListX(){
+        return vectorListX;
+    }
+
+    public ArrayList<Float> getVectorListY(){
+        return vectorListY;
+    }
+
+    public float getXPosition(){
+        return this.body.getXPosition();
+    }
+    public float getYPosition(){
+        return this.body.getYPosition();
+    }
+    public float getMovementspeed(){return this.body.getMovementSpeed();}
+
 }
 
