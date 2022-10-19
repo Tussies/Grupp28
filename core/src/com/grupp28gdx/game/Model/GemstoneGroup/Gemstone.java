@@ -10,7 +10,6 @@ import java.util.ArrayList;
  */
 public interface Gemstone {
     Gemstone createGemstone(float x, float y,int id);
-    void updateGemCounter();
     float getSideLength();
 
     public ArrayList<Float> getVectorListX();

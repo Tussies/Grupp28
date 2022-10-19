@@ -39,39 +39,8 @@ public class  Bullet {
             tempBullet.body.setXPosition(tempBullet.body.getXPosition() + tempBullet.body.getMovementSpeed()*deltaTime);
             bullets.set(i, tempBullet);
 
-            System.out.println(Math.round(bullets.get(i).getXPosition()));
-            if(Math.round(bullets.get(i).getXPosition()) % 30 == 0){
-
-                //destroyBullet(bullets, i);
-                System.out.println("Bullet " + i + " has been destroyed");
-            }
-            /*
-            for (int j = 0; j < obstacles.size(); j++) {
-                System.out.println("In loop");
-                if(Math.round(bullets.get(i).getXPosition()) % 30 == 0){
-
-                    destroyBullet(bullets, i);
-                    System.out.println("Bullet " + i + " has been destroyed");
-                }
-                if (detector.hasCollided(bullets.get(i), obstacles.get(j))) { //FIX THE PARAM
-                    destroyBullet(bullets, i);
-                    System.out.println("Bullet " + i + " has been destroyed");
-
-                }
-
-            }*/
         }
     }
-
-
-
-    /*/**
-     * Removes an element from ArrayList Bullets when called upon.
-     *
-     * @param bullets
-     * @param i
-     */
-
 
 
     public Body getBody(){
@@ -104,7 +73,6 @@ public class  Bullet {
     public float getYPosition(){
         return this.body.getYPosition();
     }
-    public float getMovementspeed(){return this.body.getMovementSpeed();}
 
 }
 

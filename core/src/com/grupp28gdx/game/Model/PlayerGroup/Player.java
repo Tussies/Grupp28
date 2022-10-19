@@ -11,7 +11,6 @@ import java.util.ArrayList;
  * to choose from. The method createPlayer is implemented as a singleton in all player classes.
  */
 public interface Player {
-    void setStateOfPlayer(PlayerStates stateOfPlayer);
     PlayerStates getStateOfPlayer();
 
     void playerUpdate(float deltaTime);
@@ -27,7 +26,6 @@ public interface Player {
     Body getBody();
 
     void collisionGroundBegin();
-    void collisionGroundEnd();
 
     Gun getGun();
 

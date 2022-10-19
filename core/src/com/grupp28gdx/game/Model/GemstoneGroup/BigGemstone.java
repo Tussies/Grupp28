@@ -11,8 +11,6 @@ public class BigGemstone implements Gemstone {
 
     public Body body;
     private float sideLength;
-    private int points;
-    private int totalPoints;
     private int id;
     private int value;
 
@@ -21,10 +19,8 @@ public class BigGemstone implements Gemstone {
 
     public BigGemstone(float x, float y,int id) {
         value = 1;
-        this.points = 10;
         this.sideLength = 10;
         this.body = new Body(x,y);
-        this.totalPoints = 0;
         this.id = id;
         createShape();
     }
@@ -62,14 +58,6 @@ public class BigGemstone implements Gemstone {
 
     }
     /**
-     * Method that updates the attribute GemCounter in the player class
-     */
-    @Override
-    public void updateGemCounter() {
-        this.totalPoints += this.points;
-    }
-
-    /**
      * Returns the side length of the gemstone instance
      *
      * @return sideLength
@@ -88,13 +76,6 @@ public class BigGemstone implements Gemstone {
         return this.sideLength;
     }
 
-    /**
-     * Returns the point value that an instance of BigGemstone is worth
-     * @return points
-     */
-    public int getPoints() {
-        return points;
-    }
 
     /**
      * Returns an ArrayList of x-points for creating vectors.

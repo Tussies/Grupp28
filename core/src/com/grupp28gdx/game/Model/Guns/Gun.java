@@ -1,8 +1,6 @@
 package com.grupp28gdx.game.Model.Guns;
 
 import com.grupp28gdx.game.Model.Body;
-import com.grupp28gdx.game.Model.DestroyableObstacle;
-import com.grupp28gdx.game.Model.Obstacle;
 
 import java.util.ArrayList;
 

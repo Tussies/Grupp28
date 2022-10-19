@@ -12,7 +12,6 @@ public class SmallGemstone implements Gemstone {
     public Body body;
     private float sideLength;
     private int points;
-    private int totalPoints;
     private int id;
     private int value;
 
@@ -24,7 +23,6 @@ public class SmallGemstone implements Gemstone {
         this.points = 60;
         this.sideLength = 2;
         this.body = new Body(x,y);
-        this.totalPoints = 0;
         this.id = id;
         createShape();
     }
@@ -61,14 +59,6 @@ public class SmallGemstone implements Gemstone {
         vectorListY.add(body.getYPosition());
     }
 
-    /**
-     * Method that updates the attribute GemCounter in the player class
-     */
-    @Override
-    public void updateGemCounter(){
-        this.totalPoints += this.points;
-    }
-
 
     /**
      * Returns the side length of the gemstone instance
@@ -86,13 +76,6 @@ public class SmallGemstone implements Gemstone {
         return value;
     }
 
-    /**
-     * Returns the point value that an instance of SmallGemstone is worth
-     * @return points
-     */
-    public int getPoints() {
-        return points;
-    }
 
     /**
      * Returns an ArrayList of x-points for creating vectors.

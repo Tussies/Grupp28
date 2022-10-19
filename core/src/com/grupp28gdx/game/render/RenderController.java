@@ -57,12 +57,15 @@ public class RenderController {
         hud.stage.draw();
     }
 
-    public void renderBirdMusic(){
-        Music music = Gdx.audio.newMusic(Gdx.files.internal("newsong.mp3"));
+    public void renderMusic(){
+        music = Gdx.audio.newMusic(Gdx.files.internal("newsong.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
 
+    }
+    public void musicStop(){
+        music.stop();
     }
 
     public void createFixture(Body obstacleBody, PolygonShape bodyShape) {
