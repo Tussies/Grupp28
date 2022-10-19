@@ -24,10 +24,8 @@ import com.grupp28gdx.game.handlers.GemstoneHandler;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
 import com.grupp28gdx.game.input.PlayInputHandler;
 import com.grupp28gdx.game.render.Hud;
-import sun.nio.ch.ThreadPool;
 
 import java.util.ArrayList;
-import java.util.concurrent.Executors;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
@@ -61,8 +59,6 @@ public class PlayState extends State {
 
     private CollisionDetector collisionDetector;
     private ArrayList<Obstacle> obstacleList = new ArrayList<>();
-
-    private Thread t1;
 
     public PlayState(GameStateManager gsm, int x) {
         super(gsm);
@@ -134,7 +130,6 @@ public class PlayState extends State {
 
     @Override
     public void update(float delta) {
-        System.out.println(delta);
         world.step(1/60f, 6,2);
         updateBackground();
 
