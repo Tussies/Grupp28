@@ -13,7 +13,7 @@ public class Body {
     public float gravity = -1.0f;
     public float x;
     public float y;
-    protected int speedX;
+    protected float speedX;
     public int speedY;
     public float forceX;
     public float forceY;
@@ -83,7 +83,7 @@ public class Body {
     }
 
 
-    public void setMovementSpeed(int speed) {
+    public void setMovementSpeed(float speed) {
         this.speedX = speed;
     }
     public int getSpeedY(){
@@ -91,7 +91,7 @@ public class Body {
     }
 
 
-    public int getMovementSpeed() { //Confusing name
+    public float getMovementSpeed() { //Confusing name
         return this.speedX;
     }
 }

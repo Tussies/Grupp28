@@ -7,10 +7,12 @@ import java.util.ArrayList;
  * in total for the player to maneuver. If the player makes contact with an obstacle the game is over.
  */
 public interface Obstacle {
-    Obstacle createObstacle(float x,float y);
+    Obstacle createObstacle(float x,float y,int id);
     public ArrayList<Float> getVectorListX();
 
     public ArrayList<Float> getVectorListY();
 
     public Body getPosition();
+
+    int getId();
 }

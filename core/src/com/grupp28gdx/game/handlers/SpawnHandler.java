@@ -9,4 +9,6 @@ public abstract class SpawnHandler {
     protected abstract void generate(float posX,float posY);
 
     public abstract void update(float posX, float posY);
+
+    public abstract void react(int id);
 }

@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.grupp28gdx.game.Model.CollisionDetector;
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
+import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
 import com.grupp28gdx.game.Model.Guns.Bullet;
 import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
@@ -18,7 +19,6 @@ import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
-import com.grupp28gdx.game.Controller.GemstoneAdapter;
 import com.grupp28gdx.game.Model.*;
 import com.grupp28gdx.game.handlers.GemstoneHandler;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
@@ -65,7 +65,6 @@ public class PlayState extends State {
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + 4096, -300);
         world = new World(new Vector2(0, 0), true);
-        collisionDetector = new CollisionDetector();
         this.x = x;
 
         debugRenderer = new Box2DDebugRenderer();
@@ -82,6 +81,7 @@ public class PlayState extends State {
         this.playInput = new PlayInputHandler(player);
         setInputProcessor(playInput);
         playerHitbox = createHitBox();
+        collisionDetector = new CollisionDetector(obstacleHandler,gemstoneHandler,player.getGun(),hud,player);
     }
 
 
@@ -130,24 +130,20 @@ public class PlayState extends State {
     public void update(float delta) {
         world.step(1/60f, 6,2);
         updateBackground();
-        player.playerUpdate(delta);
+        //player.playerUpdate(delta);
 
         obstacleHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         gemstoneHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         hud.updateScore(Math.round(player.getBody().getXPosition()));
+        hud.updateGemScore(player.getGemScore());
 
+        if(Gdx.input.isKeyPressed(51)) player.getBody().y +=0.01;
+        if(Gdx.input.isKeyPressed(47)) player.getBody().y -= 0.01;
+        if(Gdx.input.isKeyPressed(29)) player.getBody().x -= 0.01;
+        if(Gdx.input.isKeyPressed(32)) player.getBody().x += 0.01;
+        if(Gdx.input.isKeyPressed(62)) player.getBody().x += 0.1;
 
-        if(collisionDetector.hasCollided(player,1f)){
-            player.collisionGroundBegin();
-        }else player.collisionGroundEnd();
-
-        for(Obstacle obstacle : obstacleHandler.getObstacles()){
-            if (collisionDetector.hasCollided(player, obstacle)) hud.gameOver(true);
-        }
-        for(GemstoneAdapter gemstone : gemstoneHandler.getGem()){
-            if(collisionDetector.hasCollided(player,gemstone.getGemstoneData()))
-                hud.updateCoins(+10);
-        }
+        collisionDetector.update();
 
         playerHitbox.setTransform(player.getBody().x*2,player.getBody().y*2,0);
     }
@@ -183,10 +179,10 @@ public class PlayState extends State {
                 rc.render(assetManager.getSpikeTexture(),obstacle.getPosition().x*pixelsPerMeter*2,obstacle.getPosition().y*pixelsPerMeter*2+32,64,32);
         }
 
-        for (GemstoneAdapter gemstone : gemstoneHandler.getGem()){
-            if (gemstone.getGemstoneData() instanceof BigGemstone){rc.render(assetManager.getBigGemstoneTexture(),(gemstone.getGemstoneData()).getPosition().x*pixelsPerMeter*2,(gemstone.getGemstoneData()).getPosition().y*pixelsPerMeter+48,pixelsPerMeter*0.75f,pixelsPerMeter*0.75f);}
-            else if (gemstone.getGemstoneData() instanceof MediumGemstone){rc.render(assetManager.getMediumGemstoneTexture(),(gemstone.getGemstoneData()).getPosition().x*pixelsPerMeter*2,(gemstone.getGemstoneData()).getPosition().y*pixelsPerMeter+48,pixelsPerMeter*0.45f,pixelsPerMeter*0.45f);}
-            else{rc.render(assetManager.getSmallGemstoneTexture(), gemstone.getGemstoneData().getPosition().x*pixelsPerMeter*2,(gemstone.getGemstoneData()).getPosition().y*pixelsPerMeter+48,pixelsPerMeter*0.18f,pixelsPerMeter*0.18f);}
+        for (Gemstone gemstone : gemstoneHandler.getGem()){
+            if (gemstone instanceof BigGemstone){rc.render(assetManager.getBigGemstoneTexture(),(gemstone).getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.75f,pixelsPerMeter*0.75f);}
+            else if (gemstone instanceof MediumGemstone){rc.render(assetManager.getMediumGemstoneTexture(),(gemstone).getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.45f,pixelsPerMeter*0.45f);}
+            else{rc.render(assetManager.getSmallGemstoneTexture(), gemstone.getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.18f,pixelsPerMeter*0.18f);}
         }
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         updateBulletTexture(player.getGun().getBulletsFired());

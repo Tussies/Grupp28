@@ -26,8 +26,8 @@ public class HardModeFactory implements ModeFactory{
      * to gather than MediumGemstone.
      */
     @Override
-    public Gemstone createGemstone(float spawnX, float spawnY) {
-        return new SmallGemstone(spawnX,spawnY+1);
+    public Gemstone createGemstone(float spawnX, float spawnY,int id) {
+        return new SmallGemstone(spawnX,spawnY,id);
     }
     
     /**
@@ -38,16 +38,16 @@ public class HardModeFactory implements ModeFactory{
      * It can be destroyed if shot by a projectile of a gun.
      */
     @Override
-    public Obstacle createObstacle(float spawnX,float spawnY) {
+    public Obstacle createObstacle(float spawnX,float spawnY,int id) {
         Random rand = new Random(100);
         switch (rand.nextInt()%5){
             case 0:
             case 3:
             case 4:
-                return new PermanentObstacle(spawnX,spawnY+1);
+                return new PermanentObstacle(spawnX,spawnY+1,id);
             case 1:
             case 2:
-                return new SpikeObstacle(spawnX,spawnY);
+                return new SpikeObstacle(spawnX,spawnY, id);
         }
         return null;
 

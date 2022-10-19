@@ -29,4 +29,8 @@ public interface Player {
     void collisionGroundEnd();
 
     Gun getGun();
+
+    void addCollectedGem(int score);
+
+    int getGemScore();
 }

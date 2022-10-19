@@ -10,16 +10,19 @@ public class PermanentObstacle implements Obstacle {
     private final String shapeName;
     private ObstacleShape shape;
 
+    private int id;
+
     ArrayList<Float> vectorListX = new ArrayList<Float>();
     ArrayList<Float> vectorListY = new ArrayList<Float>();
 
     private final Body body;
 
-    public PermanentObstacle(float spawnPosX, float spawnPosY){
+    public PermanentObstacle(float spawnPosX, float spawnPosY,int id){
         shape = ObstacleShape.SQUARE;
         shapeName = "PermanentObstacle";
         body = new Body(spawnPosX,spawnPosY);
         createShape();
+        this.id = id;
     }
 
     private void createShape() {
@@ -32,6 +35,11 @@ public class PermanentObstacle implements Obstacle {
         vectorListY.add(body.getYPosition()+3);
         vectorListY.add(body.getYPosition()+3);
         vectorListY.add(body.getYPosition());
+    }
+
+    @Override
+    public int getId(){
+        return this.id;
     }
 
     public ArrayList<Float> getVectorListX(){
@@ -48,8 +56,8 @@ public class PermanentObstacle implements Obstacle {
     }
 
     @Override
-    public Obstacle createObstacle(float spawnX, float spawnY) {
-        return new PermanentObstacle(spawnX,spawnY);
+    public Obstacle createObstacle(float spawnX, float spawnY,int id) {
+        return new PermanentObstacle(spawnX,spawnY,id);
     }
 
     public ObstacleShape getShape() {

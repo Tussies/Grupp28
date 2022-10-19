@@ -17,6 +17,7 @@ public abstract class AbstractPlayer implements Player{
     private float friction;
     private Gun gun;
 
+    private int gemScore;
 
     public PlayerStates playerState;
 
@@ -37,6 +38,8 @@ public abstract class AbstractPlayer implements Player{
         this.body.setForceY(0);
 
         this.gun = new Gun();
+
+        gemScore = 0;
 
         playerState = PlayerStates.IDLE;
     }
@@ -93,6 +96,7 @@ public abstract class AbstractPlayer implements Player{
                 this.jump();
                 break;
             case 47: // s
+                this.body.speedY = -60;
                 break;
             case 29: // ad
                 /*if (onGround){
@@ -147,5 +151,12 @@ public abstract class AbstractPlayer implements Player{
 
     public Gun getGun(){return this.gun;}
 
+    public void addCollectedGem(int score){
+        gemScore += score;
+    }
+
+    public int getGemScore(){
+        return gemScore;
+    }
 
 }

@@ -1,12 +1,61 @@
 package com.grupp28gdx.game.Model;
 
+import com.grupp28gdx.game.Controller.GemstoneAdapter;
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
 import com.grupp28gdx.game.Model.Guns.Bullet;
+import com.grupp28gdx.game.Model.Guns.Gun;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
+import com.grupp28gdx.game.handlers.GemstoneHandler;
+import com.grupp28gdx.game.handlers.ObstacleHandler;
+import com.grupp28gdx.game.render.Hud;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CollisionDetector {
+
+    private List collisionsList = new ArrayList<>();
+    private Hud hud;
+    private Player player;
+
+    public CollisionDetector(ObstacleHandler obstacleHandler, GemstoneHandler gemstoneHandler, Gun gun, Hud hud,Player player){
+        collisionsList.add(obstacleHandler);
+        collisionsList.add(gemstoneHandler);
+        collisionsList.add(gun);
+        this.hud = hud;
+        this.player = player;
+    }
+
+    public void update(){
+        for (Object subscriber : collisionsList){
+            if(subscriber instanceof ObstacleHandler){
+                for(Obstacle obstacle : ((ObstacleHandler) subscriber).getObstacles()){
+                    if (hasCollided(player, obstacle)) {
+                        hud.gameOver(true);
+                        ((ObstacleHandler) subscriber).react(obstacle.getId());
+                    }
+                }
+            }else if(subscriber instanceof GemstoneHandler){
+                for(Gemstone gemstone : ((GemstoneHandler) subscriber).getGem()){
+                    if (hasCollided(player,gemstone)) {
+                        ((GemstoneHandler) subscriber).react(gemstone.getId());
+                        player.addCollectedGem(gemstone.getValue());
+                    }
+                }
+
+            }else if(subscriber instanceof Gun){
+                for (Bullet bullet : ((Gun) subscriber).getBulletsFired()){
+
+                }
+            }else System.out.println("Exception");
+        }
+        if (hasCollided(player,1)){
+            player.collisionGroundBegin();
+        }
+    }
+
 
     public boolean hasCollided(Player player, Gemstone gemstone ){
         Body playerBody = player.getBody();
@@ -16,10 +65,13 @@ public class CollisionDetector {
         float playerPositionY = playerBody.y*2;
 
         float gemstoneBodyX = gemstoneBody.x*2;
-        float gemstoneBodyY = gemstoneBody.y*2;
+        float gemstoneBodyY = gemstoneBody.y*2f;
 
-        float playerOffsetX = 1.40f - 0.5f;
-        float playerOffsetY = 2.75f;
+        //float playerOffsetX = 1.40f - 0.5f;
+        //float playerOffsetY = 2.75f;
+
+        float playerOffsetX = 0;
+        float playerOffsetY = 0;
 
         float gemstoneOffsetX = 0.18f;
         float gemstoneOffsetY = 0.18f;

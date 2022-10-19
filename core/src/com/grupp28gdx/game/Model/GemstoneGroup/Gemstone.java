@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * in total for the player to collect. If the player makes contact with a gem the point counter goes up.
  */
 public interface Gemstone {
-    Gemstone createGemstone(float x, float y);
+    Gemstone createGemstone(float x, float y,int id);
     void updateGemCounter();
     float getSideLength();
 
@@ -18,4 +18,8 @@ public interface Gemstone {
     public ArrayList<Float> getVectorListY();
 
     public Body getPosition();
+
+    int getId();
+
+    int getValue();
 }
