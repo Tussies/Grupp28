@@ -137,11 +137,8 @@ public class PlayState extends State {
         hud.updateScore(Math.round(player.getBody().getXPosition()));
         hud.updateGemScore(player.getGemScore());
 
-        /**if(Gdx.input.isKeyPressed(51)) player.getBody().y +=0.01;
-        if(Gdx.input.isKeyPressed(47)) player.getBody().y -= 0.01;
-        if(Gdx.input.isKeyPressed(29)) player.getBody().x -= 0.01;
-        if(Gdx.input.isKeyPressed(32)) player.getBody().x += 0.01;
-        if(Gdx.input.isKeyPressed(62)) player.getBody().x += 0.1;*/
+
+        if(Gdx.input.isKeyPressed(41)) gsm.set(new MenuState(gsm));
 
         collisionDetector.update();
 
