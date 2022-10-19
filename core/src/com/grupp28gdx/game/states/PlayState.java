@@ -66,7 +66,6 @@ public class PlayState extends State {
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + 4096, -300);
         world = new World(new Vector2(0, 0), true);
         collisionDetector = new CollisionDetector();
-        this.playInput = new PlayInputHandler(player);
         this.x = x;
 
         debugRenderer = new Box2DDebugRenderer();
@@ -74,14 +73,14 @@ public class PlayState extends State {
 
         cam.setToOrtho(false, w/2, h/2);
 
-        setInputProcessor(playInput);
         hud = new Hud();
         modeFactory = setFactories(this.x);
         obstacleHandler = new ObstacleHandler(world,rc,setFactories(this.x));
         gemstoneHandler = new GemstoneHandler(world,rc,setFactories(this.x));
         player = modeFactory.createPlayer();
         frame = 0;
-
+        this.playInput = new PlayInputHandler(player);
+        setInputProcessor(playInput);
         playerHitbox = createHitBox();
     }
 
