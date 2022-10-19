@@ -13,7 +13,6 @@ import com.grupp28gdx.game.Model.Guns.Gun;
 public abstract class AbstractPlayer implements Player{
 
     public Body body;
-    private int lives;
     private float friction;
     private Gun gun;
 
@@ -24,7 +23,6 @@ public abstract class AbstractPlayer implements Player{
     boolean onGround = true;
 
     public AbstractPlayer() {
-        lives = 0;
         friction = 0.0f;
         createPlayer();
     }
@@ -51,11 +49,13 @@ public abstract class AbstractPlayer implements Player{
      */
 
     public void playerUpdate(float deltaTime) {
-        body.speedY += body.gravity * deltaTime;
-        playerMove(deltaTime);
-        body.accelerate(0, body.gravity);
-        playerState();
-        gun.positionUpdateGunAndBullets(this.body.getXPosition(), this.body.getYPosition(), deltaTime);
+        if(playerState != PlayerStates.DEAD){
+            body.speedY += body.gravity * deltaTime;
+            playerMove(deltaTime);
+            body.accelerate(0, body.gravity);
+            playerState();
+            gun.positionUpdateGunAndBullets(this.body.getXPosition(), this.body.getYPosition(), deltaTime);
+        }
     }
 
     public void playerState() {
@@ -92,8 +92,8 @@ public abstract class AbstractPlayer implements Player{
 
     public void inputKeyDown(int key){
         switch (key){
-            case 51: // w
-                this.jump();
+            case 51: //w
+                if (playerState != PlayerStates.DEAD) this.jump();
                 break;
             case 47: // s
                 this.body.speedY = -60;
@@ -137,14 +137,6 @@ public abstract class AbstractPlayer implements Player{
         return playerState;
     }
 
-    public int getLives() {
-        return lives;
-    }
-
-    public void setLives(int lives) {
-        this.lives = lives;
-    }
-
     public Body getBody() {
         return this.body;
     }
@@ -157,6 +149,11 @@ public abstract class AbstractPlayer implements Player{
 
     public int getGemScore(){
         return gemScore;
+    }
+
+    public void react() {
+        body.setMovementSpeed(0);
+        playerState = PlayerStates.DEAD;
     }
 
 }

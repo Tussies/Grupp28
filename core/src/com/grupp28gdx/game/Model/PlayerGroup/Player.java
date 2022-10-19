@@ -10,8 +10,6 @@ import com.grupp28gdx.game.Model.Guns.Gun;
 public interface Player {
     void setStateOfPlayer(PlayerStates stateOfPlayer);
     PlayerStates getStateOfPlayer();
-    int getLives();
-    void setLives(int lives);
 
     void playerUpdate(float deltaTime);
 
@@ -33,4 +31,6 @@ public interface Player {
     void addCollectedGem(int score);
 
     int getGemScore();
+
+    void react();
 }

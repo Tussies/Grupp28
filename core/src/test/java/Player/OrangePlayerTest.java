@@ -58,15 +58,4 @@ public class OrangePlayerTest {
        // purplePlayer.setStateOfPlayer(StateOfPlayer.JUMPING);
 
     }
-
-    @Test
-    public void getLivesTest() {
-        assertTrue(orangePlayer.getLives() == 5);
-    }
-
-    @Test
-    public void setLivesTest() {
-        orangePlayer.setLives(2);
-        assertTrue(orangePlayer.getLives() == 2);
-    }
 }

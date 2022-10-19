@@ -17,7 +17,6 @@ public class GreenPlayer extends AbstractPlayer implements Player {
     private float friction;
 
     public GreenPlayer() {
-        lives = 3;
         jumps = 0;
         friction = 0.15f;
         super.createPlayer();

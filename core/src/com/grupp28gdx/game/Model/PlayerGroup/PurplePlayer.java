@@ -5,12 +5,10 @@ package com.grupp28gdx.game.Model.PlayerGroup;
  * than the default GreenPlayer. It inherits the rest of its functionality from GreenPlayer.
  */
 public class PurplePlayer extends AbstractPlayer implements Player {
-    private int lives;
     private int jumps;
     private float friction;
 
     public PurplePlayer() {
-        lives = 3;
         jumps = 0;
         friction = 0.3f;
         super.createPlayer();

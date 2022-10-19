@@ -34,6 +34,7 @@ public class CollisionDetector {
                     if (hasCollided(player, obstacle)) {
                         hud.gameOver(true);
                         ((ObstacleHandler) subscriber).react(obstacle.getId());
+                        player.react();
                     }
                 }
             }else if(subscriber instanceof GemstoneHandler){
@@ -66,11 +67,11 @@ public class CollisionDetector {
         float gemstoneBodyX = gemstoneBody.x*2;
         float gemstoneBodyY = gemstoneBody.y*2f;
 
-        //float playerOffsetX = 1.40f - 0.5f;
-        //float playerOffsetY = 2.75f;
+        float playerOffsetX = 1.40f - 0.5f;
+        float playerOffsetY = 2.75f;
 
-        float playerOffsetX = 0;
-        float playerOffsetY = 0;
+        //float playerOffsetX = 0;
+        //float playerOffsetY = 0;
 
         float gemstoneOffsetX = 0.18f;
         float gemstoneOffsetY = 0.18f;
@@ -157,11 +158,11 @@ public class CollisionDetector {
         float wallBodyX = wallBody.x*2;
         float wallBodyY = wallBody.y*2;
 
-        float playerOffsetX = 1.40f;
+        float playerOffsetX = 1f;
         float playerOffsetY = 2.75f;
 
-        float wallOffsetX = 1f;
-        float wallOffsetY = 2f;
+        float wallOffsetX = 0.75f;
+        float wallOffsetY = 1.90f;
 
         if(
                 ((wallBodyX<=playerPositionX+playerOffsetX &&
