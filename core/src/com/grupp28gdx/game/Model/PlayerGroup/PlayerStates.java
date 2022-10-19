@@ -7,10 +7,8 @@ public enum PlayerStates{
     IDLE("idle"),
     WALKING("walking"),
     JUMPING("jumping"),
-    FALLING("falling"),
     RUNNING("running"),
-    DEAD("dead")
-    ;
+    DEAD("dead");
 
     public final String text;
 

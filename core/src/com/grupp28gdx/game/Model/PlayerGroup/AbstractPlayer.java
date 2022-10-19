@@ -1,11 +1,7 @@
 package com.grupp28gdx.game.Model.PlayerGroup;
 
 import com.grupp28gdx.game.Model.Body;
-import com.grupp28gdx.game.Model.DestroyableObstacle;
 import com.grupp28gdx.game.Model.Guns.Gun;
-import com.grupp28gdx.game.Model.Obstacle;
-
-import java.util.ArrayList;
 
 /**
  * This is an abstract player, no instances of this player can be made but OrangePlayer,
@@ -92,7 +88,7 @@ public abstract class AbstractPlayer implements Player{
     }
 
     /**
-     * kommentera här, fråga Isak DEN SKA BORT
+     * kommentera här
      */
 
     public void inputKeyDown(int key){
@@ -103,13 +99,9 @@ public abstract class AbstractPlayer implements Player{
             case 47: // s
                 this.body.speedY = -60;
                 break;
-            case 29: // ad
-                /*if (onGround){
-                    playerDirection = StateOfPlayerDirection.LEFT;}*/
+            case 29: // a
                 break;
             case 32: //d
-                        /*if (onGround){
-                            playerDirection = StateOfPlayerDirection.RIGHT;}*/
                 break;
             case 62:
                 gun.shootGun(this.body.getXPosition(), this.body.getYPosition()+0.4f, this.body.getMovementSpeed()+1) ;
@@ -120,16 +112,14 @@ public abstract class AbstractPlayer implements Player{
     public void inputKeyUp(int key){
         switch (key){
             case 51:
-                //body.forceY = 0;
                 break;// w
+
             case 47: // s
-                //body.forceY = -0.01f;
                 break;
             case 29: // a
+                break;
             case 32: //d
-                /*if (onGround){
-                    playerState = StateOfPlayer.IDLE;}
-                body.forceX = 0;*/
+
                 break;
         }
     }

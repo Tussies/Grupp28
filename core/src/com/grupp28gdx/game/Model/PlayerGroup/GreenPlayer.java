@@ -12,7 +12,6 @@ import com.grupp28gdx.game.Model.Body;
  */
 public class GreenPlayer extends AbstractPlayer implements Player {
 
-    private int lives;
     private int jumps;
     private float friction;
 

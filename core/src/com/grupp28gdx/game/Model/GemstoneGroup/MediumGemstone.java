@@ -1,7 +1,6 @@
 package com.grupp28gdx.game.Model.GemstoneGroup;
 
 import com.grupp28gdx.game.Model.Body;
-import com.grupp28gdx.game.Model.PermanentObstacle;
 
 import java.util.ArrayList;
 
@@ -14,7 +13,6 @@ public class MediumGemstone implements Gemstone {
     public Body body;
     private float sideLength;
     private int points;
-    private int totalPoints;
     private int id;
     private int value;
 
@@ -26,7 +24,6 @@ public class MediumGemstone implements Gemstone {
         points = 30;
         sideLength = 5;
         this.body = new Body(x,y);
-        this.totalPoints = 0;
         this.id = id;
         createShape();
     }
@@ -62,14 +59,6 @@ public class MediumGemstone implements Gemstone {
         vectorListY.add(body.getYPosition());
     }
 
-    /**
-     * Method that updates the attribute GemCounter in the player class
-     */
-    public void updateGemCounter(){
-        this.totalPoints += this.points;
-    }
-
-
     @Override
     public int getId(){
         return id;
@@ -86,15 +75,6 @@ public class MediumGemstone implements Gemstone {
      */
     public float getSideLength() {
         return this.sideLength;
-    }
-
-
-    /**
-     * Returns the point value that an instance of BigGemstone is worth
-     * @return points
-     */
-    public int getPoints() {
-        return points;
     }
 
     /**
