@@ -111,7 +111,7 @@ public class CollisionDetector {
         float playerOffsetY = 2.75f;
 
         float wallOffsetX = 1f;
-        float wallOffsetY = 3f;
+        float wallOffsetY = 2f;
 
         if(
                 ((wallBodyX<=playerPositionX+playerOffsetX &&
@@ -165,7 +165,6 @@ public class CollisionDetector {
         {
             return true;
         }
-
         return false;
     }
 
@@ -186,10 +185,10 @@ public class CollisionDetector {
         float playerOffsetX = 1f;
         float playerOffsetY = 2.75f;
 
-        float spikeOffsetX = 2.25f;
+        float spikeOffsetX = 1.25f;
         float spikeOffsetY = 0.5f;
 
-        float spikeOffsetX2 = 1f;
+        float spikeOffsetX2 = 0.5f;
         float spikeOffsetY2 = 0.5f;
 
         if(
