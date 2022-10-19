@@ -17,6 +17,10 @@ public class AssetManager {
     private final Texture mediumGemstoneTexture = new Texture("mediumGemstone.png");
     private final Texture bigGemstoneTexture = new Texture("bigGemstone.png");
 
+    private final Texture orangeDeadTexture = new Texture("orangeDead.png");
+    private final Texture greenDeadTexture = new Texture("greenDead.png");
+    private final Texture purpleDeadTexture = new Texture("purpleDead.png");
+
     private final Texture[] playerWalkingAnimationOrangePlayer = {
             new Texture("red__0006_walk_1.png"),
             new Texture("red__0007_walk_2.png"),
@@ -91,4 +95,16 @@ public class AssetManager {
     }
 
     public Texture getGroundTexture() { return groundTexture;}
+
+    public Texture getOrangeDeadTexture() {
+        return orangeDeadTexture;
+    }
+
+    public Texture getGreenDeadTexture() {
+        return greenDeadTexture;
+    }
+
+    public Texture getPurpleDeadTexture() {
+        return purpleDeadTexture;
+    }
 }

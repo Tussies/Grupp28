@@ -24,6 +24,7 @@ public class Hud {
     Label coinTextLabel;
 
     Label gameOverLabel;
+    Label goBackToMenu;
 
     public Hud(){
 
@@ -58,14 +59,21 @@ public class Hud {
         gameOverLabel = new Label("Game Over",new Label.LabelStyle(new BitmapFont(Gdx.files.internal("Bullpen3DBitmap.fnt")), Color.WHITE));
         gameOverLabel.setFontScale(2);
         finalScoreCounterLabel=new Label(String.format("%06d",0),new Label.LabelStyle(new BitmapFont(Gdx.files.internal("Bullpen3DBitmap.fnt")), Color.WHITE));
+        scoreTextLabel = new Label(("Final score:"), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("Bullpen3DBitmap.fnt")), Color.WHITE));
+        goBackToMenu = new Label(("To return to menu press 'M'"), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("Bullpen3DBitmap.fnt")), Color.WHITE));
 
         table.add(gameOverLabel).expandX();
         table.row();
-        scoreTextLabel = new Label(("Final score:"), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("Bullpen3DBitmap.fnt")), Color.WHITE));
+
         table.add(scoreTextLabel).expandX();
         table.row();
         table.add(finalScoreCounterLabel).expandX();
-        gameOverStage.addActor(table);}
+        gameOverStage.addActor(table);
+        table.row();
+        table.row();
+        table.add(goBackToMenu).expandX();
+
+    }
 
 
     public void gameOver(boolean gameOver) {

@@ -130,18 +130,18 @@ public class PlayState extends State {
     public void update(float delta) {
         world.step(1/60f, 6,2);
         updateBackground();
-        //player.playerUpdate(delta);
+        player.playerUpdate(delta);
 
         obstacleHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         gemstoneHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         hud.updateScore(Math.round(player.getBody().getXPosition()));
         hud.updateGemScore(player.getGemScore());
 
-        if(Gdx.input.isKeyPressed(51)) player.getBody().y +=0.01;
+        /**if(Gdx.input.isKeyPressed(51)) player.getBody().y +=0.01;
         if(Gdx.input.isKeyPressed(47)) player.getBody().y -= 0.01;
         if(Gdx.input.isKeyPressed(29)) player.getBody().x -= 0.01;
         if(Gdx.input.isKeyPressed(32)) player.getBody().x += 0.01;
-        if(Gdx.input.isKeyPressed(62)) player.getBody().x += 0.1;
+        if(Gdx.input.isKeyPressed(62)) player.getBody().x += 0.1;*/
 
         collisionDetector.update();
 
@@ -166,9 +166,9 @@ public class PlayState extends State {
         update(Gdx.graphics.getDeltaTime());
         rc.setProjectionMatrix(cam.combined);
         rc.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, 4096, 4096);
-        rc.render(assetManager.getGroundTexture(), backgroundPosition1.x, backgroundPosition1.y-310, 4096, 2000/3+10);
+        rc.render(assetManager.getGroundTexture(), backgroundPosition1.x, backgroundPosition1.y-300, 4096, 2000/3+10);
         rc.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, 4096, 4096);
-        rc.render(assetManager.getGroundTexture(), backgroundPosition2.x, backgroundPosition2.y-310, 4096, 2000/3+10);
+        rc.render(assetManager.getGroundTexture(), backgroundPosition2.x, backgroundPosition2.y-300, 4096, 2000/3+10);
         
         for (Obstacle obstacle : obstacleHandler.getObstacles()){
             if (obstacle instanceof PermanentObstacle)
@@ -211,6 +211,19 @@ public class PlayState extends State {
 
                 if(player instanceof GreenPlayer) {
                     rc.render(assetManager.getPlayerWalkingAnimationGreenPlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerWalkingAnimationGreenPlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                }
+                break;
+            case "dead":
+                if(player instanceof OrangePlayer) {
+                    rc.render(assetManager.getOrangeDeadTexture(), player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getOrangeDeadTexture().getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                }
+
+                if(player instanceof GreenPlayer) {
+                    rc.render(assetManager.getGreenDeadTexture(), player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getGreenDeadTexture().getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                }
+
+                if(player instanceof PurplePlayer) {
+                    rc.render(assetManager.getPurpleDeadTexture(), player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPurpleDeadTexture().getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 }
                 break;
             case "jumping":
