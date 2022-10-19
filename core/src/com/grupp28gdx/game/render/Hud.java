@@ -78,5 +78,5 @@ public class Hud {
         scoreCounterLabel.setText(String.format("%06d",newScore));
         finalScoreCounterLabel.setText(String.format("%06d",newScore));
     }
-    public void updateCoins(int coins){coinCountLabel.setText(String.format("%02d",coins));}
+    public void updateGemScore(int gems){coinCountLabel.setText(String.format("%02d",gems));}
 }

@@ -27,7 +27,7 @@ public class HardModeFactory implements ModeFactory{
      */
     @Override
     public Gemstone createGemstone(float spawnX, float spawnY,int id) {
-        return new SmallGemstone(spawnX,spawnY+1,id);
+        return new SmallGemstone(spawnX,spawnY,id);
     }
     
     /**

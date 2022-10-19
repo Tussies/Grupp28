@@ -14,11 +14,13 @@ public class BigGemstone implements Gemstone {
     private int points;
     private int totalPoints;
     private int id;
+    private int value;
 
     ArrayList<Float> vectorListX = new ArrayList<Float>();
     ArrayList<Float> vectorListY = new ArrayList<Float>();
 
     public BigGemstone(float x, float y,int id) {
+        value = 1;
         this.points = 10;
         this.sideLength = 10;
         this.body = new Body(x,y);
@@ -75,6 +77,11 @@ public class BigGemstone implements Gemstone {
 
     @Override
     public int getId(){return id;}
+
+    @Override
+    public int getValue() {
+        return value;
+    }
 
     @Override
     public float getSideLength() {

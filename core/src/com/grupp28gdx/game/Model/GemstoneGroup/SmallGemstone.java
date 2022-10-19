@@ -14,11 +14,13 @@ public class SmallGemstone implements Gemstone {
     private int points;
     private int totalPoints;
     private int id;
+    private int value;
 
     ArrayList<Float> vectorListX = new ArrayList<Float>();
     ArrayList<Float> vectorListY = new ArrayList<Float>();
 
     public SmallGemstone(float x, float y,int id) {
+        value = 10;
         this.points = 60;
         this.sideLength = 2;
         this.body = new Body(x,y);
@@ -78,6 +80,11 @@ public class SmallGemstone implements Gemstone {
 
     @Override
     public int getId(){return id;}
+
+    @Override
+    public int getValue() {
+        return value;
+    }
 
     /**
      * Returns the point value that an instance of SmallGemstone is worth

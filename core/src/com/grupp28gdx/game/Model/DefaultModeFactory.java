@@ -31,13 +31,12 @@ public class DefaultModeFactory implements ModeFactory{
         Random rand = new Random(100);
         switch (rand.nextInt()%5){
             case 0:
-                return new BigGemstone(spawnX,spawnY+rand.nextInt()%2,id);
+                return new BigGemstone(spawnX,spawnY,id);
             case 1:
             case 2:
-                return new MediumGemstone(spawnX,spawnY+ rand.nextInt()%2,id);
             case 3:
             case 4:
-                return new MediumGemstone(spawnX,spawnY+ rand.nextInt()%3,id);
+                return new MediumGemstone(spawnX,spawnY,id);
         }
         return null;
 

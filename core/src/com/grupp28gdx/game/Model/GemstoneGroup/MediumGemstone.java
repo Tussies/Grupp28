@@ -16,11 +16,13 @@ public class MediumGemstone implements Gemstone {
     private int points;
     private int totalPoints;
     private int id;
+    private int value;
 
     ArrayList<Float> vectorListX = new ArrayList<Float>();
     ArrayList<Float> vectorListY = new ArrayList<Float>();
 
     public MediumGemstone(float x, float y, int id) {
+        value = 5;
         points = 30;
         sideLength = 5;
         this.body = new Body(x,y);
@@ -71,6 +73,11 @@ public class MediumGemstone implements Gemstone {
     @Override
     public int getId(){
         return id;
+    }
+
+    @Override
+    public int getValue() {
+        return value;
     }
 
     /**
