@@ -57,7 +57,7 @@ public class CollisionDetector {
     }
 
 
-    public boolean hasCollided(Player player, Gemstone gemstone ){
+    private boolean hasCollided(Player player, Gemstone gemstone ){
         Body playerBody = player.getBody();
         Body gemstoneBody = gemstone.getPosition();
 
@@ -105,7 +105,7 @@ public class CollisionDetector {
         return false;
     }
 
-    public boolean hasCollided(Bullet bullet, DestroyableObstacle Wall){
+    private boolean hasCollided(Bullet bullet, DestroyableObstacle Wall){
         Body bulletBody = bullet.getBody();
         Body wallBody = Wall.getPosition();
 
@@ -141,14 +141,14 @@ public class CollisionDetector {
         return false;
     }
 
-    public boolean hasCollided(Player player, Obstacle obstacle){
+    private boolean hasCollided(Player player, Obstacle obstacle){
         if (obstacle instanceof PermanentObstacle) return hasCollided(player, (PermanentObstacle) obstacle);
         if (obstacle instanceof DestroyableObstacle) return hasCollided(player, (DestroyableObstacle) obstacle);
         if (obstacle instanceof SpikeObstacle) return hasCollided(player, (SpikeObstacle) obstacle);
         return false;
     }
 
-    public boolean hasCollided(Player player, PermanentObstacle Wall){
+    private boolean hasCollided(Player player, PermanentObstacle Wall){
         Body playerBody = player.getBody();
         Body wallBody = Wall.getPosition();
 
@@ -184,7 +184,7 @@ public class CollisionDetector {
         return false;
     }
 
-    public boolean hasCollided(Player player, DestroyableObstacle Wall){
+    private boolean hasCollided(Player player, DestroyableObstacle Wall){
         Body playerBody = player.getBody();
         Body wallBody = Wall.getPosition();
 
@@ -220,7 +220,7 @@ public class CollisionDetector {
     }
 
 
-    public boolean hasCollided(Player player, SpikeObstacle spike){
+    private boolean hasCollided(Player player, SpikeObstacle spike){
         Body playerBody = player.getBody();
         Body spikeBody = spike.getPosition();
 
@@ -277,7 +277,7 @@ public class CollisionDetector {
         return false;
     }
 
-    public boolean hasCollided(Player player, float yPosition){
+    private boolean hasCollided(Player player, float yPosition){
         Body playerBody = player.getBody();
 
         if(playerBody.y < yPosition)

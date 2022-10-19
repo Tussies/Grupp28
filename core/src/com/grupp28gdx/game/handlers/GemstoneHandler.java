@@ -34,7 +34,7 @@ public class GemstoneHandler extends SpawnHandler{
         if (posX % 7 == 0 && posX>15) {
             if (itemArray.isEmpty()) {
                 generate(posX+ 10 + rand.nextInt()%5, posY + 3 + (rand.nextInt()%2));
-            } else if (!((itemArray.get(itemArray.size - 1).getGemstoneData().getPosition().getXPosition() >= posX+5) && (itemArray.get(itemArray.size - 1).getGemstoneData().getPosition().getXPosition() <= posX+10))) {
+            } else if (!((itemArray.get(itemArray.size - 1).getGemstoneData().getPosition().getXPosition() >= posX+10) && (itemArray.get(itemArray.size - 1).getGemstoneData().getPosition().getXPosition() <= posX+15))) {
                 generate(posX+10+ rand.nextInt()%5, posY + 3 + (rand.nextInt()%2));
             }
             if(itemArray.size != 1){
