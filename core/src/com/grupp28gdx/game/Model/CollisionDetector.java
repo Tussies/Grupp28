@@ -31,15 +31,14 @@ public class CollisionDetector {
         for (Object subscriber : collisionsList){
             if(subscriber instanceof ObstacleHandler){
                 for(Obstacle obstacle : ((ObstacleHandler) subscriber).getObstacles()){
-                    if (hasCollided(player, obstacle)) {
+                    if (checkCollision(player, obstacle)) {
                         hud.gameOver(true);
-
                         player.react();
                     }
                 }
             }else if(subscriber instanceof GemstoneHandler){
                 for(Gemstone gemstone : ((GemstoneHandler) subscriber).getGem()){
-                    if (hasCollided(player,gemstone)) {
+                    if (checkCollision(player,gemstone)) {
                         ((GemstoneHandler) subscriber).react(gemstone.getId());
                         player.addCollectedGem(gemstone.getValue());
                     }
@@ -48,7 +47,7 @@ public class CollisionDetector {
             }else if(subscriber instanceof Gun){
                 for (Obstacle obstacles : getObstacleFromCollisionList().getObstacles()){
                     for(int i = 0; i < ((Gun) subscriber).bulletsFired.size(); i++){
-                       if(hasCollided((((Gun) subscriber).getBulletsFired().get(i)), obstacles)) {
+                       if(checkCollision((((Gun) subscriber).getBulletsFired().get(i)), obstacles)) {
                            ((Gun) subscriber).destroyBullet(i);
                            if(obstacles instanceof DestroyableObstacle){
                                getObstacleFromCollisionList().react(obstacles.getId());
@@ -70,229 +69,43 @@ public class CollisionDetector {
         return null;
     }
 
-
-    public boolean hasCollided(Player player, Gemstone gemstone ){
-        Body playerBody = player.getBody();
-        Body gemstoneBody = gemstone.getPosition();
-
-        float playerPositionX = playerBody.x * 2 + 0.25f;
-        float playerPositionY = playerBody.y * 2;
-
-        float gemstoneBodyX = gemstoneBody.x*2;
-        float gemstoneBodyY = gemstoneBody.y*2f;
-
-        float playerOffsetX = 1.40f - 0.5f;
-        float playerOffsetY = 2.75f;
-
-        float gemstoneOffsetX = 0.18f;
-        float gemstoneOffsetY = 0.18f;
-
-        if (gemstone instanceof BigGemstone) {
-            gemstoneOffsetX = 0.75f;
-            gemstoneOffsetY = 0.75f;
-        } else if (gemstone instanceof MediumGemstone) {
-            gemstoneOffsetX = 0.45f;
-            gemstoneOffsetY = 0.45f;
-        }
-
-
-        if (
-                ((gemstoneBodyX <= playerPositionX + playerOffsetX &&
-                        gemstoneBodyX >= playerPositionX) &&
-                        (gemstoneBodyY <= playerPositionY + playerOffsetY &&
-                                gemstoneBodyY >= playerPositionY))
-
-                        ||
-
-                        ((playerPositionX <= gemstoneBodyX + gemstoneOffsetX &&
-                                playerPositionX >= gemstoneBodyX) &&
-                                (playerPositionY <= gemstoneBodyY + gemstoneOffsetY &&
-                                        playerPositionY >= gemstoneBodyY))
-        ) {
-            return true;
-        }
-
-        return false;
+    public boolean checkCollision(Player player,Gemstone gemstone){
+        return hasCollided(player.getBody(),gemstone.getPosition(), player.getHeight(), player.getWidth(), gemstone.getHeight(), gemstone.getWidth());
     }
 
-
-
-    public boolean hasCollided(Player player, Obstacle obstacle) {
-        if (obstacle instanceof PermanentObstacle) return hasCollided(player, (PermanentObstacle) obstacle);
-        if (obstacle instanceof DestroyableObstacle) return hasCollided(player, (DestroyableObstacle) obstacle);
-        if (obstacle instanceof SpikeObstacle) return hasCollided(player, (SpikeObstacle) obstacle);
-        return false;
+    public boolean checkCollision(Player player,Obstacle obstacle){
+        return hasCollided(player.getBody(),obstacle.getBody(), player.getHeight(),player.getWidth(),obstacle.getHeight(), obstacle.getWidth());
     }
 
-    public boolean hasCollided(Player player, PermanentObstacle Wall) {
-        Body playerBody = player.getBody();
-        Body wallBody = Wall.getPosition();
-
-        float playerPositionX = playerBody.x * 2;
-        float playerPositionY = playerBody.y * 2;
-
-        float wallBodyX = wallBody.x * 2;
-        float wallBodyY = wallBody.y * 2;
-
-        float playerOffsetX = 1f;
-        float playerOffsetY = 2.75f;
-
-        float wallOffsetX = 0.75f;
-        float wallOffsetY = 1.90f;
-
-        if (
-                ((wallBodyX <= playerPositionX + playerOffsetX &&
-                        wallBodyX >= playerPositionX) &&
-                        (wallBodyY <= playerPositionY + playerOffsetY &&
-                                wallBodyY >= playerPositionY))
-
-                        ||
-
-                        ((playerPositionX <= wallBodyX + wallOffsetX &&
-                                playerPositionX >= wallBodyX) &&
-                                (playerPositionY <= wallBodyY + wallOffsetY &&
-                                        playerPositionY >= wallBodyY))
-        ) {
-            return true;
-        }
-
-        return false;
+    public boolean checkCollision(Bullet bullet,Obstacle obstacle){
+        return hasCollided(bullet.getBody(),obstacle.getBody(), bullet.getHeight(),bullet.getWidth(),obstacle.getHeight(), obstacle.getWidth());
     }
 
-    public boolean hasCollided(Player player, DestroyableObstacle Wall) {
-        Body playerBody = player.getBody();
-        Body wallBody = Wall.getPosition();
+    public boolean hasCollided(Body o1, Body o2,float o1Height,float o1Width,float o2Height,float o2Width) {
+        float o1BodyX = o1.getXPosition() * 2;
+        float o1BodyY = o1.getYPosition() * 2;
 
-        float playerPositionX = playerBody.x * 2;
-        float playerPositionY = playerBody.y * 2;
+        float o2BodyX = o2.getXPosition() * 2;
+        float o2BodyY = o2.getYPosition() * 2;
 
-        float wallBodyX = wallBody.x * 2;
-        float wallBodyY = wallBody.y * 2;
+        float o1OffsetX = o1Width;
+        float o1OffsetY = o1Height;
 
-        float playerOffsetX = 1.40f;
-        float playerOffsetY = 2.75f;
+        float o2OffsetX = o2Width;
+        float o2OffsetY = o2Height;
 
-        float wallOffsetX = 1f;
-        float wallOffsetY = 2f;
+        return ((o2BodyX <= o1BodyX + o1OffsetX &&
+                o2BodyX >= o1BodyX) &&
+                (o2BodyY <= o1BodyY + o1OffsetY &&
+                        o2BodyY >= o1BodyY))
 
-        if (
-                ((wallBodyX <= playerPositionX + playerOffsetX &&
-                        wallBodyX >= playerPositionX) &&
-                        (wallBodyY <= playerPositionY + playerOffsetY &&
-                                wallBodyY >= playerPositionY))
+                ||
 
-                        ||
-
-                        ((playerPositionX <= wallBodyX + wallOffsetX &&
-                                playerPositionX >= wallBodyX) &&
-                                (playerPositionY <= wallBodyY + wallOffsetY &&
-                                        playerPositionY >= wallBodyY))
-        ) {
-            return true;
-        }
-        return false;
+                ((o1BodyX <= o2BodyX + o2OffsetX &&
+                        o1BodyX >= o2BodyX) &&
+                        (o1BodyY <= o2BodyY + o2OffsetY &&
+                                o1BodyY >= o2BodyY));
     }
-
-
-    public boolean hasCollided(Player player, SpikeObstacle spike) {
-        Body playerBody = player.getBody();
-        Body spikeBody = spike.getPosition();
-
-        float playerPositionX = playerBody.x * 2;
-        float playerPositionY = playerBody.y * 2;
-
-        float spikeBodyX1 = spikeBody.x * 2 + 0.25f;
-        float spikeBodyY1 = spikeBody.y * 2 + 1;
-
-        float spikeBodyX2 = spikeBodyX1 + 0.25f;
-        float spikeBodyY2 = spikeBodyY1 + 0.5f;
-
-        float playerOffsetX = 1f;
-        float playerOffsetY = 2.75f;
-
-        float spikeOffsetX = 1.25f;
-        float spikeOffsetY = 0.5f;
-
-        float spikeOffsetX2 = 0.5f;
-        float spikeOffsetY2 = 0.5f;
-
-        if (
-                ((spikeBodyX1 <= playerPositionX + playerOffsetX &&
-                        spikeBodyX1 >= playerPositionX) &&
-                        (spikeBodyY1 <= playerPositionY + playerOffsetY &&
-                                spikeBodyY1 >= playerPositionY))
-
-                        ||
-
-                        ((playerPositionX <= spikeBodyX1 + spikeOffsetX &&
-                                playerPositionX >= spikeBodyX1) &&
-                                (playerPositionY <= spikeBodyY1 + spikeOffsetY &&
-                                        playerPositionY >= spikeBodyY1))
-
-                        ||
-
-                        ((spikeBodyX2 <= playerPositionX + playerOffsetX &&
-                                spikeBodyX2 >= playerPositionX) &&
-                                (spikeBodyY2 <= playerPositionY + playerOffsetY &&
-                                        spikeBodyY2 >= playerPositionY))
-
-                        ||
-
-                        ((playerPositionX <= spikeBodyX2 + spikeOffsetX2 &&
-                                playerPositionX >= spikeBodyX2) &&
-                                (playerPositionY <= spikeBodyY2 + spikeOffsetY2 &&
-                                        playerPositionY >= spikeBodyY2))
-
-        ) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean hasCollided(Bullet bullet, Obstacle obstacle){
-        if (obstacle instanceof PermanentObstacle) return hasCollided(bullet, (PermanentObstacle) obstacle);
-        if (obstacle instanceof DestroyableObstacle) return hasCollided(bullet, (DestroyableObstacle) obstacle);
-        if (obstacle instanceof SpikeObstacle) return hasCollided(bullet, (SpikeObstacle) obstacle);
-        return false;
-    }
-
-    public boolean hasCollided(Bullet bullet, PermanentObstacle Wall){
-        Body bulletBody = bullet.getBody();
-        Body wallBody = Wall.getPosition();
-
-        float bulletPositionX = bulletBody.x*2;
-        float bulletPositionY = bulletBody.y*2;
-
-        float wallBodyX = wallBody.x*2;
-        float wallBodyY = wallBody.y*2;
-
-        float bulletOffsetX = 0.2f;
-        float bulletOffsetY = 0.2f;
-
-        float wallOffsetX = 1f;
-        float wallOffsetY = 3f;
-
-        if(
-                ((wallBodyX<=bulletPositionX+bulletOffsetX &&
-                        wallBodyX>=bulletPositionX) &&
-                        (wallBodyY <= bulletPositionY+bulletOffsetY &&
-                                wallBodyY >= bulletPositionY))
-
-                        ||
-
-                        ((bulletPositionX<=wallBodyX+wallOffsetX &&
-                                bulletPositionX>=wallBodyX) &&
-                                (bulletPositionY <= wallBodyY+wallOffsetY &&
-                                        bulletPositionY >= wallBodyY))
-        )
-        {
-            return true;
-        }
-
-        return false;
-    }
-
 
     public boolean hasCollided(Player player, float yPosition){
 
@@ -301,99 +114,6 @@ public class CollisionDetector {
         if (playerBody.y < yPosition) {
             return true;
         }
-        return false;
-    }
-
-
-    public boolean hasCollided(Bullet bullet, DestroyableObstacle Wall) {
-        Body bulletBody = bullet.getBody();
-        Body wallBody = Wall.getPosition();
-
-        float bulletPositionX = bulletBody.x * 2;
-        float bulletPositionY = bulletBody.y * 2;
-
-        float wallBodyX = wallBody.x * 2;
-        float wallBodyY = wallBody.y * 2;
-
-        float bulletOffsetX = 0.2f;
-        float bulletOffsetY = 0.2f;
-
-        float wallOffsetX = 1f;
-        float wallOffsetY = 2f;
-
-        if (
-                ((wallBodyX <= bulletPositionX + bulletOffsetX &&
-                        wallBodyX >= bulletPositionX) &&
-                        (wallBodyY <= bulletPositionY + bulletOffsetY &&
-                                wallBodyY >= bulletPositionY))
-
-                        ||
-
-                        ((bulletPositionX <= wallBodyX + wallOffsetX &&
-                                bulletPositionX >= wallBodyX) &&
-                                (bulletPositionY <= wallBodyY + wallOffsetY &&
-                                        bulletPositionY >= wallBodyY))
-        ) {
-            return true;
-        }
-
-        return false;
-    }
-
-
-    public boolean hasCollided(Bullet bullet, SpikeObstacle spike) {
-        Body bulletBody = bullet.getBody();
-        Body spikeBody = spike.getPosition();
-
-        float bulletPositionX = bulletBody.x * 2;
-        float bulletPositionY = bulletBody.y * 2;
-
-        float spikeBodyX1 = spikeBody.x * 2 + 0.25f;
-        float spikeBodyY1 = spikeBody.y * 2 + 1;
-
-        float spikeBodyX2 = spikeBodyX1 + 0.25f;
-        float spikeBodyY2 = spikeBodyY1 + 0.5f;
-
-        float bulletOffsetX = 0.2f;
-        float bulletOffsetY = 0.2f;
-
-        float spikeOffsetX = 2.25f;
-        float spikeOffsetY = 0.5f;
-
-        float spikeOffsetX2 = 1f;
-        float spikeOffsetY2 = 0.5f;
-
-        if (
-                ((spikeBodyX1 <= bulletPositionX + bulletOffsetX &&
-                        spikeBodyX1 >= bulletPositionX) &&
-                        (spikeBodyY1 <= bulletPositionY + bulletOffsetY &&
-                                spikeBodyY1 >= bulletPositionY))
-
-                        ||
-
-                        ((bulletPositionX <= spikeBodyX1 + spikeOffsetX &&
-                                bulletPositionX >= spikeBodyX1) &&
-                                (bulletPositionY <= spikeBodyY1 + spikeOffsetY &&
-                                        bulletPositionY >= spikeBodyY1))
-
-                        ||
-
-                        ((spikeBodyX2 <= bulletPositionX + bulletOffsetX &&
-                                spikeBodyX2 >= bulletPositionX) &&
-                                (spikeBodyY2 <= bulletPositionY + bulletOffsetY &&
-                                        spikeBodyY2 >= bulletPositionY))
-
-                        ||
-
-                        ((bulletPositionX <= spikeBodyX2 + spikeOffsetX2 &&
-                                bulletPositionX >= spikeBodyX2) &&
-                                (bulletPositionY <= spikeBodyY2 + spikeOffsetY2 &&
-                                        bulletPositionY >= spikeBodyY2))
-
-        ) {
-            return true;
-        }
-
         return false;
     }
 }

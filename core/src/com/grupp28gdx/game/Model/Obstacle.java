@@ -8,11 +8,11 @@ import java.util.ArrayList;
  */
 public interface Obstacle {
     Obstacle createObstacle(float x,float y,int id);
-    public ArrayList<Float> getVectorListX();
 
-    public ArrayList<Float> getVectorListY();
+    float getWidth();
+    float getHeight();
 
-    public Body getPosition();
+    public Body getBody();
 
     int getId();
 }

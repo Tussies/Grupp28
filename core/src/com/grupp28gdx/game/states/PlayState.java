@@ -24,8 +24,10 @@ import com.grupp28gdx.game.handlers.GemstoneHandler;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
 import com.grupp28gdx.game.input.PlayInputHandler;
 import com.grupp28gdx.game.render.Hud;
+import sun.nio.ch.ThreadPool;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
 
 import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
 
@@ -60,6 +62,8 @@ public class PlayState extends State {
     private CollisionDetector collisionDetector;
     private ArrayList<Obstacle> obstacleList = new ArrayList<>();
 
+    private Thread t1;
+
     public PlayState(GameStateManager gsm, int x) {
         super(gsm);
         cam = new OrthographicCamera();
@@ -83,6 +87,7 @@ public class PlayState extends State {
         setInputProcessor(playInput);
         playerHitbox = createHitBox();
         collisionDetector = new CollisionDetector(obstacleHandler,gemstoneHandler,player.getGun(),hud,player);
+
     }
 
 
@@ -129,6 +134,7 @@ public class PlayState extends State {
 
     @Override
     public void update(float delta) {
+        System.out.println(delta);
         world.step(1/60f, 6,2);
         updateBackground();
 
@@ -142,7 +148,6 @@ public class PlayState extends State {
             gsm.set(new MenuState(gsm));
             rc.musicStop();
         }
-
 
         collisionDetector.update();
 
@@ -170,14 +175,14 @@ public class PlayState extends State {
         rc.render(assetManager.getGroundTexture(), backgroundPosition1.x, backgroundPosition1.y-300, 4096, 2000/3+10);
         rc.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, 4096, 4096);
         rc.render(assetManager.getGroundTexture(), backgroundPosition2.x, backgroundPosition2.y-300, 4096, 2000/3+10);
-        
+
         for (Obstacle obstacle : obstacleHandler.getObstacles()){
             if (obstacle instanceof PermanentObstacle)
-                rc.render(assetManager.getWallTexture(),obstacle.getPosition().x*pixelsPerMeter*2,obstacle.getPosition().y*pixelsPerMeter*2-32,32,32*3);
+                rc.render(assetManager.getWallTexture(),obstacle.getBody().x*pixelsPerMeter*2,obstacle.getBody().y*pixelsPerMeter*2-32,32,32*3);
             if (obstacle instanceof DestroyableObstacle)
-                rc.render(assetManager.getDestroyableTexture(),obstacle.getPosition().x*pixelsPerMeter*2,obstacle.getPosition().y*pixelsPerMeter*2-32,32,32*3);
+                rc.render(assetManager.getDestroyableTexture(),obstacle.getBody().x*pixelsPerMeter*2,obstacle.getBody().y*pixelsPerMeter*2-32,32,32*3);
             if (obstacle instanceof SpikeObstacle)
-                rc.render(assetManager.getSpikeTexture(),obstacle.getPosition().x*pixelsPerMeter*2,obstacle.getPosition().y*pixelsPerMeter*2+32,64,32);
+                rc.render(assetManager.getSpikeTexture(),obstacle.getBody().x*pixelsPerMeter*2,obstacle.getBody().y*pixelsPerMeter*2+32,64,32);
         }
 
         for (Gemstone gemstone : gemstoneHandler.getGem()){

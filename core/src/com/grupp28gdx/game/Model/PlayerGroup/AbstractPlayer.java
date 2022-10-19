@@ -18,12 +18,17 @@ public abstract class AbstractPlayer implements Player{
 
     private int gemScore;
 
+    private float height;
+    private float width;
+
     public PlayerStates playerState;
 
     boolean onGround = true;
 
     public AbstractPlayer() {
         friction = 0.0f;
+        height = 2.75f;
+        width = 1f;
         createPlayer();
     }
 
@@ -144,6 +149,14 @@ public abstract class AbstractPlayer implements Player{
 
     public int getGemScore(){
         return gemScore;
+    }
+
+    public float getWidth() {
+        return width;
+    }
+
+    public float getHeight() {
+        return height;
     }
 
     public void react() {

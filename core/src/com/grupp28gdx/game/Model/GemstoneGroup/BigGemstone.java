@@ -11,6 +11,8 @@ public class BigGemstone implements Gemstone {
 
     public Body body;
     private float sideLength;
+    private float height;
+    private float width;
     private int id;
     private int value;
 
@@ -20,6 +22,8 @@ public class BigGemstone implements Gemstone {
     public BigGemstone(float x, float y,int id) {
         value = 1;
         this.sideLength = 10;
+        height = 0.75f;
+        width = 0.75f;
         this.body = new Body(x,y);
         this.id = id;
         createShape();
@@ -69,6 +73,16 @@ public class BigGemstone implements Gemstone {
     @Override
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public float getWidth() {
+        return width;
+    }
+
+    @Override
+    public float getHeight() {
+        return height;
     }
 
     @Override

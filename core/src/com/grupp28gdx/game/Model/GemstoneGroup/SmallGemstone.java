@@ -12,6 +12,8 @@ public class SmallGemstone implements Gemstone {
     public Body body;
     private float sideLength;
     private int points;
+    private float height;
+    private float width;
     private int id;
     private int value;
 
@@ -21,6 +23,8 @@ public class SmallGemstone implements Gemstone {
     public SmallGemstone(float x, float y,int id) {
         value = 10;
         this.points = 60;
+        height = 0.18f;
+        width = 0.18f;
         this.sideLength = 2;
         this.body = new Body(x,y);
         this.id = id;
@@ -103,4 +107,15 @@ public class SmallGemstone implements Gemstone {
     public Body getPosition() {
         return body;
     }
+
+    @Override
+    public float getWidth() {
+        return width;
+    }
+
+    @Override
+    public float getHeight() {
+        return height;
+    }
+
 }
