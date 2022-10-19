@@ -2,7 +2,6 @@ package com.grupp28gdx.game.states;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -53,7 +52,7 @@ public class PlayState extends State {
     private Vector2 backgroundPosition1, backgroundPosition2;
     private ObstacleHandler obstacleHandler;
     private GemstoneHandler gemstoneHandler;
-
+    private ModeFactory modeFactory;
     private OrthographicCamera cam;
     private Hud hud;
 
@@ -67,8 +66,6 @@ public class PlayState extends State {
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + 4096, -300);
         world = new World(new Vector2(0, 0), true);
         collisionDetector = new CollisionDetector();
-        player = new OrangePlayer();
-        this.playInput = new PlayInputHandler(player);
         this.x = x;
 
         debugRenderer = new Box2DDebugRenderer();
@@ -76,13 +73,14 @@ public class PlayState extends State {
 
         cam.setToOrtho(false, w/2, h/2);
 
-        setInputProcessor(playInput);
         hud = new Hud();
-        obstacleHandler = new ObstacleHandler(world,rc,new EasyModeFactory());
-        gemstoneHandler = new GemstoneHandler(world,rc,new EasyModeFactory());
-        setFactories(this.x);
+        modeFactory = setFactories(this.x);
+        obstacleHandler = new ObstacleHandler(world,rc,setFactories(this.x));
+        gemstoneHandler = new GemstoneHandler(world,rc,setFactories(this.x));
+        player = modeFactory.createPlayer();
         frame = 0;
-
+        this.playInput = new PlayInputHandler(player);
+        setInputProcessor(playInput);
         playerHitbox = createHitBox();
     }
 
@@ -95,18 +93,16 @@ public class PlayState extends State {
     }
 
 
-    public void setFactories(int x){
+    public ModeFactory setFactories(int x){
         switch (x) {
             case 1:
-                new DefaultModeFactory();
-                break;
+                return new DefaultModeFactory();
             case 2:
-                new EasyModeFactory();
-                break;
+                return new EasyModeFactory();
             case 3:
-                new HardModeFactory();
-                break;
+                return new HardModeFactory();
         }
+        return null;
     }
 
     public Body createHitBox() {
