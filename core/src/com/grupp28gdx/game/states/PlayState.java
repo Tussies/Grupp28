@@ -69,7 +69,7 @@ public class PlayState extends State {
         this.x = x;
 
         debugRenderer = new Box2DDebugRenderer();
-        rc.renderBirdMusic();
+        rc.renderMusic();
 
         cam.setToOrtho(false, w/2, h/2);
 
@@ -140,7 +140,11 @@ public class PlayState extends State {
         hud.updateGemScore(player.getGemScore());
 
 
-        if(Gdx.input.isKeyPressed(41)) gsm.set(new MenuState(gsm));
+        if(Gdx.input.isKeyPressed(41)) {
+            gsm.set(new MenuState(gsm));
+            rc.musicStop();
+        }
+
 
         collisionDetector.update();
 
