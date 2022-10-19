@@ -11,6 +11,7 @@ public class GemstoneHandler extends SpawnHandler{
     protected World world;
     protected RenderController rc;
     protected ModeFactory modeFactory;
+    protected int id = 0;
 
     public GemstoneHandler(World world, RenderController rc, ModeFactory modeFactory){
         this.world = world;
@@ -24,13 +25,8 @@ public class GemstoneHandler extends SpawnHandler{
 
     @Override
     public void generate(float posX, float posY) {
-        int n = 1 - numberOfSpawnableItems + 1;
-        int i = rand.nextInt() % n;
-        int randomNum = 1 + i;
-        switch (randomNum) {
-            case 1:
-                itemArray.add(new GemstoneAdapter(world,modeFactory,posX,posY,rc));
-        }
+        id += 1;
+        itemArray.add(new GemstoneAdapter(world,modeFactory,posX,posY,rc,id));
     }
 
     @Override
@@ -49,5 +45,10 @@ public class GemstoneHandler extends SpawnHandler{
                 }
             }
         }
+    }
+
+    @Override
+    public void react(int id){
+        System.out.println(id);
     }
 }
