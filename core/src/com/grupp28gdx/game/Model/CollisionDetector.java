@@ -1,6 +1,5 @@
 package com.grupp28gdx.game.Model;
 
-import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
@@ -84,9 +83,6 @@ public class CollisionDetector {
 
         float playerOffsetX = 1.40f - 0.5f;
         float playerOffsetY = 2.75f;
-
-        //float playerOffsetX = 0;
-        //float playerOffsetY = 0;
 
         float gemstoneOffsetX = 0.18f;
         float gemstoneOffsetY = 0.18f;
@@ -271,8 +267,8 @@ public class CollisionDetector {
         float wallBodyX = wallBody.x*2;
         float wallBodyY = wallBody.y*2;
 
-        float bulletOffsetX = 1.40f;
-        float bulletOffsetY = 2.75f;
+        float bulletOffsetX = 0.2f;
+        float bulletOffsetY = 0.2f;
 
         float wallOffsetX = 1f;
         float wallOffsetY = 3f;
@@ -319,8 +315,8 @@ public class CollisionDetector {
         float wallBodyX = wallBody.x * 2;
         float wallBodyY = wallBody.y * 2;
 
-        float bulletOffsetX = 1.40f;
-        float bulletOffsetY = 2.75f;
+        float bulletOffsetX = 0.2f;
+        float bulletOffsetY = 0.2f;
 
         float wallOffsetX = 1f;
         float wallOffsetY = 2f;
@@ -358,8 +354,8 @@ public class CollisionDetector {
         float spikeBodyX2 = spikeBodyX1 + 0.25f;
         float spikeBodyY2 = spikeBodyY1 + 0.5f;
 
-        float bulletOffsetX = 1f;
-        float bulletOffsetY = 2.75f;
+        float bulletOffsetX = 0.2f;
+        float bulletOffsetY = 0.2f;
 
         float spikeOffsetX = 2.25f;
         float spikeOffsetY = 0.5f;
@@ -398,15 +394,6 @@ public class CollisionDetector {
             return true;
         }
 
-        return false;
-    }
-
-    public boolean hasCollided(Bullet bullet, float yPosition) {
-        Body bulletBody = bullet.getBody();
-
-        if (bulletBody.y < yPosition) {
-            return true;
-        }
         return false;
     }
 }

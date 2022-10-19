@@ -2,8 +2,6 @@ package com.grupp28gdx.game.Model;
 
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
-import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
-import com.grupp28gdx.game.Model.GemstoneGroup.SmallGemstone;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 
