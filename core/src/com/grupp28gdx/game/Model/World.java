@@ -20,6 +20,7 @@ public class World{
     protected final float deltaTime = 1.0f/UPDATE_RATE;
     protected static ArrayList<Obstacle> obstacles= new ArrayList();
 
+
     public World() {
         player = new GreenPlayer();
 

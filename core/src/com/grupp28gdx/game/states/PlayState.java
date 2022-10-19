@@ -60,7 +60,7 @@ public class PlayState extends State {
     private Hud hud;
 
     private CollisionDetector collisionDetector;
-
+    private ArrayList<Obstacle> obstacleList = new ArrayList<>();
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -120,7 +120,9 @@ public class PlayState extends State {
     public void update(float delta) {
         world.step(1/60f, 6,2);
         updateBackground();
-        player.playerUpdate(delta, obstacles);
+
+        obstacleList = obstacleHandler.obstacleData2ObstaclesObstacle();
+        player.playerUpdate(delta, obstacleList);
 
         obstacleHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         gemstoneHandler.update(Math.round(player.getBody().getXPosition()),0.5f);

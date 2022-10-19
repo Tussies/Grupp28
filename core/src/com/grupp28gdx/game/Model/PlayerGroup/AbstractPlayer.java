@@ -107,7 +107,7 @@ public abstract class AbstractPlayer implements Player{
                             playerDirection = StateOfPlayerDirection.RIGHT;}*/
                 break;
             case 62:
-                gun.shootGun(this.body.getXPosition(), this.body.getYPosition(), this.body.getMovementSpeed()+1) ;
+                gun.shootGun(this.body.getXPosition(), this.body.getYPosition()+0.4f, this.body.getMovementSpeed()+1) ;
         }
     }
 

@@ -59,10 +59,10 @@ public class  Bullet {
                     System.out.println("Bullet " + i + " has been destroyed");
 
                 }
+
             }
         }
     }
-
 
 
 

@@ -21,6 +21,7 @@ public class GreenPlayerTest {
     public void playerUpdateTest() {
         greenPlayer.body.accelerate(1,1);
       //  greenPlayer.playerUpdate(1f); // deltaTime 1/60
+
         assertTrue(greenPlayer.body.getXPosition() == 3f || greenPlayer.body.getYPosition() == 1f);
 
     }

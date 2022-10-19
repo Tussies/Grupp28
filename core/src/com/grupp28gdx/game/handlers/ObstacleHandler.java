@@ -3,8 +3,12 @@ package com.grupp28gdx.game.handlers;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.Controller.ObstacleAdapter;
+import com.grupp28gdx.game.Model.DestroyableObstacle;
 import com.grupp28gdx.game.Model.ModeFactory;
+import com.grupp28gdx.game.Model.Obstacle;
 import com.grupp28gdx.game.render.RenderController;
+
+import java.util.ArrayList;
 
 
 public class ObstacleHandler extends SpawnHandler{
@@ -45,6 +49,17 @@ public class ObstacleHandler extends SpawnHandler{
                 itemArray.removeIndex(0);
             }
         }
+    }
+
+    public ArrayList<Obstacle> obstacleData2ObstaclesObstacle(){
+        ArrayList<Obstacle> obstacles = new ArrayList<>();
+        if(itemArray.isEmpty()){return null; }
+        else {
+            for (int k = 0 ; k < itemArray.size; k++){
+                obstacles.add(itemArray.get(k).getObstacleData());
+            }
+        }
+        return obstacles;
     }
 }
 
