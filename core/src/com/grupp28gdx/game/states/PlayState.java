@@ -136,8 +136,6 @@ public class PlayState extends State {
 
         obstacleHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         gemstoneHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
-        hud.updateScore(Math.round(player.getBody().getXPosition()));
-        hud.updateGemScore(player.getGemScore());
 
 
         if(Gdx.input.isKeyPressed(41)) {
@@ -187,10 +185,14 @@ public class PlayState extends State {
             else if (gemstone instanceof MediumGemstone){rc.render(assetManager.getMediumGemstoneTexture(),(gemstone).getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.45f,pixelsPerMeter*0.45f);}
             else{rc.render(assetManager.getSmallGemstoneTexture(), gemstone.getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.18f,pixelsPerMeter*0.18f);}
         }
+        hud.updateScore(Math.round(player.getBody().getXPosition()) + player.getGemScore() );
+        hud.updateGemScore(player.getGemScore());
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         updateBulletTexture(player.getGun().getBulletsFired());
         updatePlayerTexture();
         rc.render(hud);
+
+
 
     }
 

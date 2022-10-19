@@ -35,7 +35,7 @@ public class ObstacleHandler extends SpawnHandler{
         if (posX % 8 == 0 && posX > 15) {
             if (obstacleArray.isEmpty()) {
                 generate(posX+10+rand.nextInt()%2- rand.nextInt()%2, posY);
-            } else if (!((obstacleArray.get(obstacleArray.size - 1).getPosition().getXPosition() >= posX+5) && (obstacleArray.get(obstacleArray.size - 1).getPosition().getXPosition() <= posX+10))) {
+            } else if (!((obstacleArray.get(obstacleArray.size - 1).getPosition().getXPosition() >= posX+8) && (obstacleArray.get(obstacleArray.size - 1).getPosition().getXPosition() <= posX+12))) {
                 generate(posX+10+rand.nextInt()%2- rand.nextInt()%2, posY);
             }
             if(obstacleArray.size != 1){
@@ -46,7 +46,6 @@ public class ObstacleHandler extends SpawnHandler{
 
         }
     }
-
 
     public void react(int id){
         for (int i=0; i < obstacleArray.size-1 ; i++){
