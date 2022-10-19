@@ -1,7 +1,6 @@
 package com.grupp28gdx.game.handlers;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.grupp28gdx.game.Controller.GemstoneAdapter;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.ModeFactory;
 import com.grupp28gdx.game.render.RenderController;
