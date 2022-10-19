@@ -38,7 +38,7 @@ public class World{
         Thread gameThread = new Thread() {
             public void run() {
                 while (true) {
-                    player.playerUpdate(deltaTime, obstacles);
+                    player.playerUpdate(deltaTime);
 
                     //render();
                     try {

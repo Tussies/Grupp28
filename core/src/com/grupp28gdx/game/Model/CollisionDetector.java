@@ -1,27 +1,92 @@
 package com.grupp28gdx.game.Model;
 
-import com.grupp28gdx.game.Controller.ObstacleAdapter;
+import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
 import com.grupp28gdx.game.Model.Guns.Bullet;
 import com.grupp28gdx.game.Model.Guns.Gun;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
+import com.grupp28gdx.game.handlers.GemstoneHandler;
+import com.grupp28gdx.game.handlers.ObstacleHandler;
+import com.grupp28gdx.game.render.Hud;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CollisionDetector {
 
-    public boolean hasCollided(Player player, Gemstone gemstone) {
+    private List<Object> collisionsList = new ArrayList<Object>();
+    private Hud hud;
+    private Player player;
+
+    public CollisionDetector(ObstacleHandler obstacleHandler, GemstoneHandler gemstoneHandler, Gun gun, Hud hud,Player player){
+        collisionsList.add(obstacleHandler);
+        collisionsList.add(gemstoneHandler);
+        collisionsList.add(gun);
+        this.hud = hud;
+        this.player = player;
+    }
+
+    public void update(){
+        for (Object subscriber : collisionsList){
+            if(subscriber instanceof ObstacleHandler){
+                for(Obstacle obstacle : ((ObstacleHandler) subscriber).getObstacles()){
+                    if (hasCollided(player, obstacle)) {
+                        hud.gameOver(true);
+
+                        player.react();
+                    }
+                }
+            }else if(subscriber instanceof GemstoneHandler){
+                for(Gemstone gemstone : ((GemstoneHandler) subscriber).getGem()){
+                    if (hasCollided(player,gemstone)) {
+                        ((GemstoneHandler) subscriber).react(gemstone.getId());
+                        player.addCollectedGem(gemstone.getValue());
+                    }
+                }
+
+            }else if(subscriber instanceof Gun){
+                for (Obstacle obstacles : getObstacleFromCollisionList().getObstacles()){
+                    for(int i = 0; i < ((Gun) subscriber).bulletsFired.size(); i++){
+                       if(hasCollided((((Gun) subscriber).getBulletsFired().get(i)), obstacles)) {
+                           ((Gun) subscriber).destroyBullet(i);
+                           if(obstacles instanceof DestroyableObstacle){
+                               getObstacleFromCollisionList().react(obstacles.getId());
+                           }
+                       }
+                    }
+                }
+            }else System.out.println("Exception");
+        }
+        if (hasCollided(player,1)){
+            player.collisionGroundBegin();
+        }
+    }
+
+    private ObstacleHandler getObstacleFromCollisionList() {
+        for (Object x : collisionsList){
+            if(x instanceof ObstacleHandler) return (ObstacleHandler) x;
+        }
+        return null;
+    }
+
+
+    public boolean hasCollided(Player player, Gemstone gemstone ){
         Body playerBody = player.getBody();
         Body gemstoneBody = gemstone.getPosition();
 
         float playerPositionX = playerBody.x * 2 + 0.25f;
         float playerPositionY = playerBody.y * 2;
 
-        float gemstoneBodyX = gemstoneBody.x * 2;
-        float gemstoneBodyY = gemstoneBody.y * 2;
+        float gemstoneBodyX = gemstoneBody.x*2;
+        float gemstoneBodyY = gemstoneBody.y*2f;
 
         float playerOffsetX = 1.40f - 0.5f;
         float playerOffsetY = 2.75f;
+
+        //float playerOffsetX = 0;
+        //float playerOffsetY = 0;
 
         float gemstoneOffsetX = 0.18f;
         float gemstoneOffsetY = 0.18f;
@@ -73,11 +138,11 @@ public class CollisionDetector {
         float wallBodyX = wallBody.x * 2;
         float wallBodyY = wallBody.y * 2;
 
-        float playerOffsetX = 1.40f;
+        float playerOffsetX = 1f;
         float playerOffsetY = 2.75f;
 
-        float wallOffsetX = 1f;
-        float wallOffsetY = 3f;
+        float wallOffsetX = 0.75f;
+        float wallOffsetY = 1.90f;
 
         if (
                 ((wallBodyX <= playerPositionX + playerOffsetX &&
@@ -129,7 +194,6 @@ public class CollisionDetector {
         ) {
             return true;
         }
-
         return false;
     }
 
@@ -150,10 +214,10 @@ public class CollisionDetector {
         float playerOffsetX = 1f;
         float playerOffsetY = 2.75f;
 
-        float spikeOffsetX = 2.25f;
+        float spikeOffsetX = 1.25f;
         float spikeOffsetY = 0.5f;
 
-        float spikeOffsetX2 = 1f;
+        float spikeOffsetX2 = 0.5f;
         float spikeOffsetY2 = 0.5f;
 
         if (

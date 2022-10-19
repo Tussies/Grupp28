@@ -17,17 +17,16 @@ import java.util.ArrayList;
 public abstract class AbstractPlayer implements Player{
 
     public Body body;
-    private int lives;
     private float friction;
     private Gun gun;
 
+    private int gemScore;
 
     public PlayerStates playerState;
 
     boolean onGround = true;
 
     public AbstractPlayer() {
-        lives = 0;
         friction = 0.0f;
         createPlayer();
     }
@@ -42,6 +41,8 @@ public abstract class AbstractPlayer implements Player{
 
         this.gun = new Gun();
 
+        gemScore = 0;
+
         playerState = PlayerStates.IDLE;
     }
 
@@ -51,12 +52,15 @@ public abstract class AbstractPlayer implements Player{
      * @param deltaTime is the time between each update of the movement of Player.
      */
 
-    public void playerUpdate(float deltaTime, ArrayList<Obstacle> obstacles) {
-        body.speedY += body.gravity * deltaTime;
-        playerMove(deltaTime);
-        body.accelerate(0, body.gravity);
-        playerState();
-        gun.positionUpdateGunAndBullets(this.body.getXPosition(), this.body.getYPosition(),obstacles , deltaTime);
+
+    public void playerUpdate(float deltaTime) {
+        if(playerState != PlayerStates.DEAD){
+            body.speedY += body.gravity * deltaTime;
+            playerMove(deltaTime);
+            body.accelerate(0, body.gravity);
+            playerState();
+            gun.positionUpdateGunAndBullets(this.body.getXPosition(), this.body.getYPosition(), deltaTime);
+        }
     }
 
     public void playerState() {
@@ -93,10 +97,11 @@ public abstract class AbstractPlayer implements Player{
 
     public void inputKeyDown(int key){
         switch (key){
-            case 51: // w
-                this.jump();
+            case 51: //w
+                if (playerState != PlayerStates.DEAD) this.jump();
                 break;
             case 47: // s
+                this.body.speedY = -60;
                 break;
             case 29: // ad
                 /*if (onGround){
@@ -137,19 +142,23 @@ public abstract class AbstractPlayer implements Player{
         return playerState;
     }
 
-    public int getLives() {
-        return lives;
-    }
-
-    public void setLives(int lives) {
-        this.lives = lives;
-    }
-
     public Body getBody() {
         return this.body;
     }
 
     public Gun getGun(){return this.gun;}
 
+    public void addCollectedGem(int score){
+        gemScore += score;
+    }
+
+    public int getGemScore(){
+        return gemScore;
+    }
+
+    public void react() {
+        body.setMovementSpeed(0);
+        playerState = PlayerStates.DEAD;
+    }
 
 }

@@ -24,9 +24,8 @@ public class  Bullet {
      * @param yPos
      * @param speed
      */
-    public Bullet(float xPos, float yPos, int speed) { //Speed should be int as soon as possible
+    public Bullet(float xPos, float yPos, float speed) { //Speed should be int as soon as possible
         this.body = new Body(xPos, yPos);
-        this.detector = new CollisionDetector();
 
         this.body.setMovementSpeed(speed);
     }
@@ -34,7 +33,7 @@ public class  Bullet {
     /**
      * Updates all the instances of Bullet position on the X-axis and calls on method destroyBullets if they have collided with an obstacle.
      */
-    public void positionUpdateBullet(ArrayList<Bullet> bullets, ArrayList<Obstacle> obstacles, float deltaTime) {
+    public void positionUpdateBullet(ArrayList<Bullet> bullets, float deltaTime) {
         for (int i = 0; i < bullets.size(); i++) {
             tempBullet = bullets.get(i);
             tempBullet.body.setXPosition(tempBullet.body.getXPosition() + tempBullet.body.getMovementSpeed()*deltaTime);
@@ -43,10 +42,10 @@ public class  Bullet {
             System.out.println(Math.round(bullets.get(i).getXPosition()));
             if(Math.round(bullets.get(i).getXPosition()) % 30 == 0){
 
-                destroyBullet(bullets, i);
+                //destroyBullet(bullets, i);
                 System.out.println("Bullet " + i + " has been destroyed");
             }
-
+            /*
             for (int j = 0; j < obstacles.size(); j++) {
                 System.out.println("In loop");
                 if(Math.round(bullets.get(i).getXPosition()) % 30 == 0){
@@ -60,21 +59,19 @@ public class  Bullet {
 
                 }
 
-            }
+            }*/
         }
     }
 
 
 
-    /**
+    /*/**
      * Removes an element from ArrayList Bullets when called upon.
      *
      * @param bullets
      * @param i
      */
-    public void destroyBullet(ArrayList<Bullet> bullets, int i) {
-        bullets.remove(i);
-    }
+
 
 
     public Body getBody(){

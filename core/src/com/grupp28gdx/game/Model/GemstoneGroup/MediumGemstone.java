@@ -15,15 +15,19 @@ public class MediumGemstone implements Gemstone {
     private float sideLength;
     private int points;
     private int totalPoints;
+    private int id;
+    private int value;
 
     ArrayList<Float> vectorListX = new ArrayList<Float>();
     ArrayList<Float> vectorListY = new ArrayList<Float>();
 
-    public MediumGemstone(float x, float y) {
+    public MediumGemstone(float x, float y, int id) {
+        value = 5;
         points = 30;
         sideLength = 5;
         this.body = new Body(x,y);
         this.totalPoints = 0;
+        this.id = id;
         createShape();
     }
 
@@ -32,8 +36,8 @@ public class MediumGemstone implements Gemstone {
      * @return SmallGemstone
      */
     @Override
-    public Gemstone createGemstone(float x, float y) {
-        return new MediumGemstone(x,y);
+    public Gemstone createGemstone(float x, float y,int id) {
+        return new MediumGemstone(x,y,id);
     }
 
 
@@ -66,6 +70,16 @@ public class MediumGemstone implements Gemstone {
     }
 
 
+    @Override
+    public int getId(){
+        return id;
+    }
+
+    @Override
+    public int getValue() {
+        return value;
+    }
+
     /**
      * Returns the side length of the gemstone instance
      * @return sideLength
@@ -83,16 +97,28 @@ public class MediumGemstone implements Gemstone {
         return points;
     }
 
+    /**
+     * Returns an ArrayList of x-points for creating vectors.
+     * @return vectorListX.
+     */
     @Override
     public ArrayList<Float> getVectorListX() {
         return vectorListX;
     }
 
+    /**
+     * Returns an ArrayList of y-points for creating vectors.
+     * @return vectorListY.
+     */
     @Override
     public ArrayList<Float> getVectorListY() {
         return vectorListY;
     }
 
+    /**
+     * Getter for obtaining a body and its position.
+     * @return body.
+     */
     @Override
     public Body getPosition() {
         return body;

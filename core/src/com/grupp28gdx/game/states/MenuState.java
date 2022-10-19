@@ -50,7 +50,7 @@ public class MenuState extends State{
      * @param buttonWidth
      * @param screenHeight
      */
-    public void hover(Texture texture, int y, int screenWidth, int buttonWidth, int screenHeight){
+    private void hover(Texture texture, int y, int screenWidth, int buttonWidth, int screenHeight){
         int posX = (screenWidth/2) - (buttonWidth/2);
         int posY = screenHeight/y;
         this.rc.render(texture, posX, posY);
@@ -68,7 +68,7 @@ public class MenuState extends State{
         int inputY = MenuInputHandler.checkInputY();
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/2 && screenHeight - inputY > screenHeight/2) {
             if (Gdx.input.isTouched()) {
-                gsm.set(new PlayState(gsm));
+                gsm.set(new ChooseDifficultyState(gsm));
                 dispose();
             }
         }

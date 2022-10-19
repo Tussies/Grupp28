@@ -13,15 +13,19 @@ public class BigGemstone implements Gemstone {
     private float sideLength;
     private int points;
     private int totalPoints;
+    private int id;
+    private int value;
 
     ArrayList<Float> vectorListX = new ArrayList<Float>();
     ArrayList<Float> vectorListY = new ArrayList<Float>();
 
-    public BigGemstone(float x, float y) {
+    public BigGemstone(float x, float y,int id) {
+        value = 1;
         this.points = 10;
         this.sideLength = 10;
         this.body = new Body(x,y);
         this.totalPoints = 0;
+        this.id = id;
         createShape();
     }
 
@@ -31,8 +35,8 @@ public class BigGemstone implements Gemstone {
      * @return SmallGemstone
      */
     @Override
-    public Gemstone createGemstone(float x, float y) {
-        Gemstone gemstone = new BigGemstone(x, y);
+    public Gemstone createGemstone(float x, float y,int id) {
+        Gemstone gemstone = new BigGemstone(x, y, id);
         return gemstone;
     }
 
@@ -72,6 +76,14 @@ public class BigGemstone implements Gemstone {
      */
 
     @Override
+    public int getId(){return id;}
+
+    @Override
+    public int getValue() {
+        return value;
+    }
+
+    @Override
     public float getSideLength() {
         return this.sideLength;
     }
@@ -84,16 +96,28 @@ public class BigGemstone implements Gemstone {
         return points;
     }
 
+    /**
+     * Returns an ArrayList of x-points for creating vectors.
+     * @return vectorListX.
+     */
     @Override
     public ArrayList<Float> getVectorListX() {
         return vectorListX;
     }
 
+    /**
+     * Returns an ArrayList of y-points for creating vectors.
+     * @return vectorListY.
+     */
     @Override
     public ArrayList<Float> getVectorListY() {
         return vectorListY;
     }
 
+    /**
+     * Getter for obtaining a body and its position.
+     * @return body.
+     */
     @Override
     public Body getPosition()
         {

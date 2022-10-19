@@ -5,16 +5,14 @@ package com.grupp28gdx.game.Model.PlayerGroup;
  * than the default GreenPlayer. It inherits the rest of its functionality from GreenPlayer.
  */
 public class PurplePlayer extends AbstractPlayer implements Player {
-    private int lives;
     private int jumps;
     private float friction;
 
     public PurplePlayer() {
-        lives = 3;
         jumps = 0;
-        friction = 0.8f;
+        friction = 0.3f;
         super.createPlayer();
-        this.body.setMovementSpeed(14);
+        this.body.setMovementSpeed(4);
     }
 
     @Override
@@ -26,7 +24,7 @@ public class PurplePlayer extends AbstractPlayer implements Player {
         if (body.speedY < 0.01 && jumps < 2) {
             playerState = PlayerStates.JUMPING;
             jumps++;
-            body.speedY = 40;
+            body.speedY = 50;
             body.accelerate(0, body.gravity);
         }
     }

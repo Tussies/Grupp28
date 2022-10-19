@@ -13,10 +13,8 @@ import java.util.ArrayList;
 public interface Player {
     void setStateOfPlayer(PlayerStates stateOfPlayer);
     PlayerStates getStateOfPlayer();
-    int getLives();
-    void setLives(int lives);
 
-    void playerUpdate(float deltaTime, ArrayList<Obstacle> obstacles);
+    void playerUpdate(float deltaTime);
 
     void createPlayer();
 
@@ -32,4 +30,10 @@ public interface Player {
     void collisionGroundEnd();
 
     Gun getGun();
+
+    void addCollectedGem(int score);
+
+    int getGemScore();
+
+    void react();
 }

@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertTrue;
 
 public class SmallGemstoneTest {
-    SmallGemstone smallGemstone = new SmallGemstone(1,1);
+    SmallGemstone smallGemstone = new SmallGemstone(1,1,1);
 
     @Test
     public void createSmallGemstoneTest() {
-        Gemstone tempStone = smallGemstone.createGemstone(1,1);
+        Gemstone tempStone = smallGemstone.createGemstone(1,1,1);
         assertTrue(tempStone.getClass() == SmallGemstone.class);
 
     }

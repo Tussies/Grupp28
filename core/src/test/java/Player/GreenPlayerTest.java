@@ -58,15 +58,4 @@ public class GreenPlayerTest {
     public void setStateOfPlayerTest(){ //StateOFPlayer not public? how find enum?
     //greenPlayer.setStateOfPlayer(StateOfPlayer.WALKING);
     }
-
-    @Test
-    public void getLivesTest() {
-        assertTrue(greenPlayer.getLives() == 3);
-    }
-
-    @Test
-    public void setLivesTest() {
-        greenPlayer.setLives(2);
-        assertTrue(greenPlayer.getLives() == 2);
-    }
 }

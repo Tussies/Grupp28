@@ -1,16 +1,20 @@
 package com.grupp28gdx.game.handlers;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.grupp28gdx.game.Controller.GemstoneAdapter;
+import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.ModeFactory;
 import com.grupp28gdx.game.render.RenderController;
 
+/**
+ * This class is used to generate gemstones and make them spawn in the game.
+ */
 public class GemstoneHandler extends SpawnHandler{
 
-    protected Array<GemstoneAdapter> itemArray = new Array<>();
+    protected Array<Gemstone> itemArray = new Array<>();
     protected World world;
     protected RenderController rc;
     protected ModeFactory modeFactory;
+    protected int id = 0;
 
     public GemstoneHandler(World world, RenderController rc, ModeFactory modeFactory){
         this.world = world;
@@ -18,33 +22,56 @@ public class GemstoneHandler extends SpawnHandler{
         this.modeFactory = modeFactory;
     }
 
-    public Array<GemstoneAdapter> getGem(){
+    /**
+     * Method to getting gemstones.
+     * @return itemArray an itemArray of all gemstones.
+     */
+    public Array<Gemstone> getGem(){
+
         return itemArray;
     }
 
+    /**
+     * Method used to generate the gems, adds them to Array itemArray.
+     * @param posX
+     * @param posY
+     */
     @Override
     public void generate(float posX, float posY) {
-        int n = 1 - numberOfSpawnableItems + 1;
-        int i = rand.nextInt() % n;
-        int randomNum = 1 + i;
-        switch (randomNum) {
-            case 1:
-                itemArray.add(new GemstoneAdapter(world,modeFactory,posX,posY,rc));
+        id += 1;
+        itemArray.add(modeFactory.createGemstone(posX,posY,id));
+    }
+
+    /**
+     * Method that updates the gemstone spawning.
+     * Calls on generate method when itemArray is empty, and destroys gemstone object when it has passed the camera scope.
+     * @param posX
+     * @param posY
+     */
+    @Override
+    public void update(float posX, float posY) {
+        if (posX % 7 == 0 && posX>15) {
+            if (itemArray.isEmpty()) {
+                generate(posX+ 10 + rand.nextInt()%5, posY + 3 + (rand.nextInt()%2));
+            } else if (!((itemArray.get(itemArray.size - 1).getPosition().getXPosition() >= posX+10) && (itemArray.get(itemArray.size - 1).getPosition().getXPosition() <= posX+15))) {
+                generate(posX+10+ rand.nextInt()%5, posY + 3 + (rand.nextInt()%2));
+            }
+
+            if(itemArray.size != 1){
+                while (itemArray.get(0).getPosition().getXPosition() - posX <= -7) {
+                    itemArray.removeIndex(0);
+                    if(itemArray.size == 1) {break;}
+                }
+            }
         }
     }
 
     @Override
-    public void update(float posX, float posY) {
-        if (posX % 7 == 0) {
-            if (itemArray.isEmpty()) {
-                generate(posX+5, posY+1);
-            } else if (!(itemArray.get(itemArray.size - 1).getGemstoneData().getPosition().getXPosition() == posX+1)) {
-                generate(posX+5, posY+1);
-            }
-            while (itemArray.get(0).getGemstoneData().getPosition().getXPosition() - posX <= -7) {
-                itemArray.get(0).destroyBody();
-                itemArray.removeIndex(0);
-                if(itemArray.isEmpty()) {break;}
+    public void react(int id){
+
+        for (int i=0; i < itemArray.size-1 ; i++){
+            if (itemArray.get(i).getId() == id){
+                itemArray.removeIndex(i);
             }
         }
     }

@@ -20,13 +20,13 @@ public class HardModeFactoryTest {
 
     @Test
     public void createGemstoneTest(){
-        Gemstone tempGemstone = hardFactory.createGemstone(1,1);
+        Gemstone tempGemstone = hardFactory.createGemstone(1,1,1);
         assertEquals(tempGemstone.getClass(), SmallGemstone.class);
     }
 
     @Test
     public void createObstacleTest(){
-        Obstacle tempObstacle = hardFactory.createObstacle(1,1);
+        Obstacle tempObstacle = hardFactory.createObstacle(1,1,1);
         assertEquals(tempObstacle.getClass(), DestroyableObstacle.class);
     }
 }

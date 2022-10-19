@@ -17,11 +17,10 @@ public class GreenPlayer extends AbstractPlayer implements Player {
     private float friction;
 
     public GreenPlayer() {
-        lives = 3;
         jumps = 0;
-        friction = 0.3f;
+        friction = 0.15f;
         super.createPlayer();
-        this.body.setMovementSpeed(7);
+        this.body.setMovementSpeed(2.7f);
     }
 
     @Override
@@ -33,7 +32,7 @@ public class GreenPlayer extends AbstractPlayer implements Player {
         if (body.speedY < 0.01 && jumps < 2) {
             playerState = PlayerStates.JUMPING;
             jumps++;
-            body.speedY = 60;
+            body.speedY = 70;
             body.accelerate(0, body.gravity);
         }
     }

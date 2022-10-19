@@ -9,6 +9,7 @@ public class DestroyableObstacle implements Obstacle {
     private ObstacleShape shape;
     private ObstacleColor color;
     private Body body;
+    private int id;
     private boolean destroyObstacle;
     ArrayList<Float> vectorListX = new ArrayList<Float>();
     ArrayList<Float> vectorListY = new ArrayList<Float>();
@@ -18,12 +19,12 @@ public class DestroyableObstacle implements Obstacle {
      * @param spawnPosX
      * @param spawnPosY
      */
-    public DestroyableObstacle(float spawnPosX, float spawnPosY) {
+    public DestroyableObstacle(float spawnPosX, float spawnPosY,int id) {
         shape = ObstacleShape.SQUARE;
         color = ObstacleColor.BLUE;
         this.body = new Body(spawnPosX,spawnPosY);
-        this.body.setXPosition(0);
-        this.body.setYPosition(0);
+
+        this.id = id;
 
         createShape();
         if (destroyObstacle){
@@ -56,8 +57,8 @@ public class DestroyableObstacle implements Obstacle {
 
 
     @Override
-    public Obstacle createObstacle(float spawnX, float spawnY) {
-        return new DestroyableObstacle(spawnX,spawnY);
+    public Obstacle createObstacle(float spawnX, float spawnY,int id) {
+        return new DestroyableObstacle(spawnX,spawnY,id);
     }
 
     /**
@@ -81,6 +82,11 @@ public class DestroyableObstacle implements Obstacle {
      * @return body
      */
     public Body getPosition(){ return body; }
+
+    @Override
+    public int getId() {
+        return this.id;
+    }
 
     /**
      * Returns the shape of the destroyable obstacle.

@@ -1,7 +1,9 @@
 package com.grupp28gdx.game.Model;
 
+import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
+import com.grupp28gdx.game.Model.GemstoneGroup.SmallGemstone;
 import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 
@@ -25,8 +27,19 @@ public class DefaultModeFactory implements ModeFactory{
      * @return a MediumGemstome, which is the default gemstone.
      */
     @Override
-    public Gemstone createGemstone(float spawnX,float spawnY) {
-        return new MediumGemstone(spawnX, spawnY);
+    public Gemstone createGemstone(float spawnX,float spawnY,int id) {
+        Random rand = new Random(100);
+        switch (rand.nextInt()%5){
+            case 0:
+                return new BigGemstone(spawnX,spawnY,id);
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                return new MediumGemstone(spawnX,spawnY,id);
+        }
+        return null;
+
     }
 
     /**
@@ -37,7 +50,19 @@ public class DefaultModeFactory implements ModeFactory{
      * This obstacle cannot be destroyed.
      */
     @Override
-    public Obstacle createObstacle(float spawnX,float spawnY) {
-        return new WallObstacle(spawnX,spawnY);
+    public Obstacle createObstacle(float spawnX,float spawnY,int id) {
+        Random rand = new Random(100);
+        switch (rand.nextInt()%5){
+            case 0:
+                return new DestroyableObstacle(spawnX,spawnY+1,id);
+            case 1:
+            case 2:
+                return new SpikeObstacle(spawnX,spawnY,id);
+            case 3:
+            case 4:
+                return new PermanentObstacle(spawnX,spawnY+1,id);
+        }
+        return null;
+
     }
 }

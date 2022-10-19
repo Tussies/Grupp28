@@ -59,15 +59,4 @@ public class PurplePlayerTest {
        // purplePlayer.setStateOfPlayer(StateOfPlayer.JUMPING);
 
     }
-
-    @Test
-    public void getLivesTest() {
-        assertTrue(purplePlayer.getLives() == 0);
-    }
-
-    @Test
-    public void setLivesTest() {
-        purplePlayer.setLives(2);
-        assertTrue(purplePlayer.getLives() == 2);
-    }
 }

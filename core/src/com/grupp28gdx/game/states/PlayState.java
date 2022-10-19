@@ -2,7 +2,6 @@ package com.grupp28gdx.game.states;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,6 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.grupp28gdx.game.Model.CollisionDetector;
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
+import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
 import com.grupp28gdx.game.Model.Guns.Bullet;
 import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
@@ -19,10 +19,7 @@ import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
-import com.grupp28gdx.game.Controller.GemstoneAdapter;
-import com.grupp28gdx.game.Controller.ObstacleAdapter;
 import com.grupp28gdx.game.Model.*;
-import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.handlers.GemstoneHandler;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
 import com.grupp28gdx.game.input.PlayInputHandler;
@@ -48,6 +45,7 @@ public class PlayState extends State {
     private float w = Gdx.graphics.getWidth();
     private float h = Gdx.graphics.getHeight();
     private float frame;
+    private int x;
 
     private final AssetManager assetManager = new AssetManager();
     private ArrayList<Obstacle> obstacles = new ArrayList<>();
@@ -55,45 +53,58 @@ public class PlayState extends State {
     private Vector2 backgroundPosition1, backgroundPosition2;
     private ObstacleHandler obstacleHandler;
     private GemstoneHandler gemstoneHandler;
-
+    private ModeFactory modeFactory;
     private OrthographicCamera cam;
     private Hud hud;
 
     private CollisionDetector collisionDetector;
     private ArrayList<Obstacle> obstacleList = new ArrayList<>();
 
-    public PlayState(GameStateManager gsm) {
+    public PlayState(GameStateManager gsm, int x) {
         super(gsm);
         cam = new OrthographicCamera();
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
-        backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + w, -300);
+        backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + 4096, -300);
         world = new World(new Vector2(0, 0), true);
-        collisionDetector = new CollisionDetector();
-        player = new OrangePlayer();
-        this.playInput = new PlayInputHandler(player);
+        this.x = x;
+
         debugRenderer = new Box2DDebugRenderer();
         rc.renderBirdMusic();
 
         cam.setToOrtho(false, w/2, h/2);
 
-        setInputProcessor(playInput);
         hud = new Hud();
-        obstacleHandler = new ObstacleHandler(world,rc,new EasyModeFactory());
-        gemstoneHandler = new GemstoneHandler(world,rc,new EasyModeFactory());
-
+        modeFactory = setFactories(this.x);
+        obstacleHandler = new ObstacleHandler(world,rc,setFactories(this.x));
+        gemstoneHandler = new GemstoneHandler(world,rc,setFactories(this.x));
+        player = modeFactory.createPlayer();
         frame = 0;
-
+        this.playInput = new PlayInputHandler(player);
+        setInputProcessor(playInput);
         playerHitbox = createHitBox();
+        collisionDetector = new CollisionDetector(obstacleHandler,gemstoneHandler,player.getGun(),hud,player);
     }
 
 
     private void updateBackground() {
-        if(cam.position.x - (4096 / 2f) > backgroundPosition1.x + 4096)
-            backgroundPosition1.add(4096, 0);
-        if(cam.position.x - (4096 / 2f) > backgroundPosition2.x + 4096)
-            backgroundPosition2.add(4096/2f, 0);
+        if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition1.x + 4096)
+            backgroundPosition1.add(4096/2f, 0);
+        if(cam.position.x - (cam.viewportWidth / 2) > backgroundPosition2.x + 2048)
+            backgroundPosition2.add(4096, 0);
     }
 
+
+    public ModeFactory setFactories(int x){
+        switch (x) {
+            case 1:
+                return new DefaultModeFactory();
+            case 2:
+                return new EasyModeFactory();
+            case 3:
+                return new HardModeFactory();
+        }
+        return null;
+    }
 
     public Body createHitBox() {
         BodyDef hitboxdef = new BodyDef();
@@ -121,25 +132,17 @@ public class PlayState extends State {
         world.step(1/60f, 6,2);
         updateBackground();
 
-        obstacleList = obstacleHandler.obstacleData2ObstaclesObstacle();
-        player.playerUpdate(delta, obstacleList);
+        player.playerUpdate(delta);
 
         obstacleHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         gemstoneHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         hud.updateScore(Math.round(player.getBody().getXPosition()));
+        hud.updateGemScore(player.getGemScore());
 
 
-        if(collisionDetector.hasCollided(player,1f)){
-            player.collisionGroundBegin();
-        }else player.collisionGroundEnd();
+        if(Gdx.input.isKeyPressed(41)) gsm.set(new MenuState(gsm));
 
-        for(ObstacleAdapter obstacle : obstacleHandler.getObstacles()){
-            if (collisionDetector.hasCollided(player, obstacle.getObstacleData())) hud.gameOver(true);
-        }
-        for(GemstoneAdapter gemstone : gemstoneHandler.getGem()){
-            if(collisionDetector.hasCollided(player,gemstone.getGemstoneData()))
-                hud.updateCoins(+10);
-        }
+        collisionDetector.update();
 
         playerHitbox.setTransform(player.getBody().x*2,player.getBody().y*2,0);
     }
@@ -162,24 +165,25 @@ public class PlayState extends State {
         update(Gdx.graphics.getDeltaTime());
         rc.setProjectionMatrix(cam.combined);
         rc.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, 4096, 4096);
-        rc.render(assetManager.getGroundTexture(), backgroundPosition1.x, backgroundPosition1.y-310, 4096, 2000/3+10);
+        rc.render(assetManager.getGroundTexture(), backgroundPosition1.x, backgroundPosition1.y-300, 4096, 2000/3+10);
         rc.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, 4096, 4096);
-        rc.render(assetManager.getGroundTexture(), backgroundPosition2.x, backgroundPosition2.y-310, 4096, 2000/3+10);
+        rc.render(assetManager.getGroundTexture(), backgroundPosition2.x, backgroundPosition2.y-300, 4096, 2000/3+10);
         
-        for (ObstacleAdapter obstacle : obstacleHandler.getObstacles()){
-            if (obstacle.getObstacleData() instanceof PermanentObstacle)
-                rc.render(assetManager.getWallTexture(),obstacle.getObstacleData().getPosition().x*pixelsPerMeter*2,obstacle.getObstacleData().getPosition().y*pixelsPerMeter*2-32,32,32*3);
-            if (obstacle.getObstacleData() instanceof DestroyableObstacle)
-                rc.render(assetManager.getDestroyableTexture(),obstacle.getObstacleData().getPosition().x*pixelsPerMeter*2,obstacle.getObstacleData().getPosition().y*pixelsPerMeter*2-32,32,32*3);
-            if (obstacle.getObstacleData() instanceof SpikeObstacle)
-                rc.render(assetManager.getSpikeTexture(),obstacle.getObstacleData().getPosition().x*pixelsPerMeter*2,obstacle.getObstacleData().getPosition().y*pixelsPerMeter*2+32,64,32);
+        for (Obstacle obstacle : obstacleHandler.getObstacles()){
+            if (obstacle instanceof PermanentObstacle)
+                rc.render(assetManager.getWallTexture(),obstacle.getPosition().x*pixelsPerMeter*2,obstacle.getPosition().y*pixelsPerMeter*2-32,32,32*3);
+            if (obstacle instanceof DestroyableObstacle)
+                rc.render(assetManager.getDestroyableTexture(),obstacle.getPosition().x*pixelsPerMeter*2,obstacle.getPosition().y*pixelsPerMeter*2-32,32,32*3);
+            if (obstacle instanceof SpikeObstacle)
+                rc.render(assetManager.getSpikeTexture(),obstacle.getPosition().x*pixelsPerMeter*2,obstacle.getPosition().y*pixelsPerMeter*2+32,64,32);
         }
 
-        for (GemstoneAdapter gemstone : gemstoneHandler.getGem()){
-            if (gemstone.getGemstoneData() instanceof BigGemstone){rc.render(assetManager.getBigGemstoneTexture(),((BigGemstone) gemstone.getGemstoneData()).body.x*pixelsPerMeter*2,((BigGemstone) gemstone.getGemstoneData()).body.y*pixelsPerMeter*2,pixelsPerMeter*0.75f,pixelsPerMeter*0.75f);}
-            else if (gemstone.getGemstoneData() instanceof MediumGemstone){rc.render(assetManager.getMediumGemstoneTexture(),((BigGemstone) gemstone.getGemstoneData()).body.x*pixelsPerMeter*2,((BigGemstone) gemstone.getGemstoneData()).body.y*pixelsPerMeter*2,pixelsPerMeter*0.45f,pixelsPerMeter*0.45f);}
-            else{rc.render(assetManager.getSmallGemstoneTexture(),((BigGemstone) gemstone.getGemstoneData()).body.x*pixelsPerMeter*2,((BigGemstone) gemstone.getGemstoneData()).body.y*pixelsPerMeter*2,pixelsPerMeter*0.18f,pixelsPerMeter*0.18f);}
+        for (Gemstone gemstone : gemstoneHandler.getGem()){
+            if (gemstone instanceof BigGemstone){rc.render(assetManager.getBigGemstoneTexture(),(gemstone).getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.75f,pixelsPerMeter*0.75f);}
+            else if (gemstone instanceof MediumGemstone){rc.render(assetManager.getMediumGemstoneTexture(),(gemstone).getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.45f,pixelsPerMeter*0.45f);}
+            else{rc.render(assetManager.getSmallGemstoneTexture(), gemstone.getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.18f,pixelsPerMeter*0.18f);}
         }
+        rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         updateBulletTexture(player.getGun().getBulletsFired());
         updatePlayerTexture();
         rc.render(hud);
@@ -206,6 +210,19 @@ public class PlayState extends State {
 
                 if(player instanceof GreenPlayer) {
                     rc.render(assetManager.getPlayerWalkingAnimationGreenPlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerWalkingAnimationGreenPlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                }
+                break;
+            case "dead":
+                if(player instanceof OrangePlayer) {
+                    rc.render(assetManager.getOrangeDeadTexture(), player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getOrangeDeadTexture().getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                }
+
+                if(player instanceof GreenPlayer) {
+                    rc.render(assetManager.getGreenDeadTexture(), player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getGreenDeadTexture().getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                }
+
+                if(player instanceof PurplePlayer) {
+                    rc.render(assetManager.getPurpleDeadTexture(), player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPurpleDeadTexture().getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 }
                 break;
             case "jumping":

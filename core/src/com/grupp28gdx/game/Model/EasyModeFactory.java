@@ -2,6 +2,8 @@ package com.grupp28gdx.game.Model;
 
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
+import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
+import com.grupp28gdx.game.Model.GemstoneGroup.SmallGemstone;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 
@@ -28,8 +30,9 @@ public class EasyModeFactory implements ModeFactory {
      * easier to gather than MediumGemstone.
      */
     @Override
-    public Gemstone createGemstone(float spawnX,float spawnY) {
-        return new BigGemstone(spawnX,spawnY);
+    public Gemstone createGemstone(float spawnX,float spawnY,int id) {
+                return new BigGemstone(spawnX,spawnY,id);
+
     }
 
     /**
@@ -41,8 +44,18 @@ public class EasyModeFactory implements ModeFactory {
      * It is square shaped and cannot be destroyed.
      */
     @Override
-    public Obstacle createObstacle(float spawnX, float spawnY) {
+    public Obstacle createObstacle(float spawnX, float spawnY,int id) {
+        Random rand = new Random(100);
+        switch (rand.nextInt()%5){
+            case 0:
+            case 3:
+            case 4:
+                return new DestroyableObstacle(spawnX,spawnY+1,id);
+            case 1:
+            case 2:
+                return new SpikeObstacle(spawnX,spawnY,id);
+        }
+        return null;
 
-        return new SpikeObstacle(spawnX, spawnY);
     }
 }

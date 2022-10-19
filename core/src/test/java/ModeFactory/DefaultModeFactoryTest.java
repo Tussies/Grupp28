@@ -20,13 +20,8 @@ public class DefaultModeFactoryTest {
 
     @Test
     public void createGemstoneTest(){
-        Gemstone tempGemstone = defaultFactory.createGemstone(1,1);
+        Gemstone tempGemstone = defaultFactory.createGemstone(1,1,1);
         assertEquals(tempGemstone.getClass(), MediumGemstone.class);
     }
 
-    @Test
-    public void createObstacleTest(){
-        Obstacle tempObstacle = defaultFactory.createObstacle(1,1);
-        assertEquals(tempObstacle.getClass(), WallObstacle.class);
-    }
 }

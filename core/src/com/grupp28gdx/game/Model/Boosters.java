@@ -15,11 +15,7 @@ public class Boosters {
 
     }
 
-    public void setRunFaster(int speedMultiplier, Body body) {
+    public void setRunFaster(float speedMultiplier, Body body) {
         body.setMovementSpeed(body.getMovementSpeed()*speedMultiplier);
-    }
-
-    public void moreLives(int numberOfAddedLives, Player player) {
-        player.setLives(player.getLives() + numberOfAddedLives);
     }
 }

@@ -22,14 +22,17 @@ public class Gun {
      * @param xPos
      * @param yPos
      */
-    public void positionUpdateGunAndBullets(float xPos, float yPos, ArrayList<Obstacle> obstacles, float deltaTime){ //Updates the guns position with the players x and y position. (Should be sent in)
+    public void positionUpdateGunAndBullets(float xPos, float yPos, float deltaTime){ //Updates the guns position with the players x and y position. (Should be sent in)
         this.body.setXPosition(xPos);
         this.body.setYPosition(yPos);
-        bullet.positionUpdateBullet(bulletsFired,obstacles, deltaTime);
+        bullet.positionUpdateBullet(bulletsFired, deltaTime);
 
     }
+    public void destroyBullet(int i) {
+        bulletsFired.remove(i);
+    }
 
-    public void shootGun(float xPos, float yPos, int speed) {
+    public void shootGun(float xPos, float yPos, float speed) {
         bulletsFired.add(new Bullet(xPos, yPos, speed));
     }
 
