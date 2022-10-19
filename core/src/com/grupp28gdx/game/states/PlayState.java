@@ -108,12 +108,6 @@ public class PlayState extends State {
                 break;
         }
     }
-    public Body createGround() {
-        BodyDef definition = new BodyDef();
-        definition.type = BodyDef.BodyType.StaticBody;
-        definition.position.set(0,0);
-        definition.fixedRotation = true;
-        ground = world.createBody(definition);
 
     public Body createHitBox() {
         BodyDef hitboxdef = new BodyDef();
