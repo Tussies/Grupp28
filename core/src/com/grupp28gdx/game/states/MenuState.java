@@ -50,7 +50,7 @@ public class MenuState extends State{
      * @param buttonWidth
      * @param screenHeight
      */
-    public void hover(Texture texture, int y, int screenWidth, int buttonWidth, int screenHeight){
+    private void hover(Texture texture, int y, int screenWidth, int buttonWidth, int screenHeight){
         int posX = (screenWidth/2) - (buttonWidth/2);
         int posY = screenHeight/y;
         this.rc.render(texture, posX, posY);

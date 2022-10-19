@@ -2,7 +2,6 @@ package com.grupp28gdx.game.input;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
-import com.grupp28gdx.game.states.State;
 
 public class InputHandler implements InputProcessor {
     public static int checkInputX(){

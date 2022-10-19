@@ -83,16 +83,28 @@ public class MediumGemstone implements Gemstone {
         return points;
     }
 
+    /**
+     * Returns an ArrayList of x-points for creating vectors.
+     * @return vectorListX.
+     */
     @Override
     public ArrayList<Float> getVectorListX() {
         return vectorListX;
     }
 
+    /**
+     * Returns an ArrayList of y-points for creating vectors.
+     * @return vectorListY.
+     */
     @Override
     public ArrayList<Float> getVectorListY() {
         return vectorListY;
     }
 
+    /**
+     * Getter for obtaining a body and its position.
+     * @return body.
+     */
     @Override
     public Body getPosition() {
         return body;
