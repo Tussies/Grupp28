@@ -27,7 +27,7 @@ public class Gun {
 
     }
 
-    public void shootGun(float xPos, float yPos, int speed) {
+    public void shootGun(float xPos, float yPos, float speed) {
         bulletsFired.add(new Bullet(xPos, yPos, speed));
     }
 

@@ -93,6 +93,7 @@ public abstract class AbstractPlayer implements Player{
                 this.jump();
                 break;
             case 47: // s
+                this.body.speedY = -60;
                 break;
             case 29: // ad
                 /*if (onGround){
