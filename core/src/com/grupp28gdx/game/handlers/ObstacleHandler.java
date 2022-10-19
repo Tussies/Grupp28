@@ -34,7 +34,7 @@ public class ObstacleHandler extends SpawnHandler{
 
     @Override
     public void update(float posX,float posY) {
-        if (posX % 5 == 0) {
+        if (posX % 5 == 0 && posX > 15) {
             if (itemArray.isEmpty()) {
                 generate(posX+5, posY);
             } else if (!(itemArray.get(itemArray.size - 1).getObstacleData().getPosition().getXPosition() == posX+5)) {

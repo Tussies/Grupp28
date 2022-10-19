@@ -27,12 +27,6 @@ public class RenderController {
         sb.end();
     }
 
-    public void render(Texture texture,int x,int y,int screenWith,int screenHeight){
-        sb.begin();
-        sb.draw(texture,x,y,screenWith,screenHeight);
-        sb.end();
-    }
-
     public void render(Texture texture,float x,float y,float screenWith,float screenHeight){
         sb.begin();
         sb.draw(texture,x,y,screenWith,screenHeight);
@@ -64,7 +58,7 @@ public class RenderController {
     }
 
     public void renderBirdMusic(){
-        Music music = Gdx.audio.newMusic(Gdx.files.internal("Angry-Birds-Theme-Song.mp3"));
+        Music music = Gdx.audio.newMusic(Gdx.files.internal("newsong.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();

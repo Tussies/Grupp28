@@ -18,7 +18,7 @@ public class PermanentObstacle implements Obstacle {
     public PermanentObstacle(float spawnPosX, float spawnPosY){
         shape = ObstacleShape.SQUARE;
         shapeName = "PermanentObstacle";
-        body = new Body(spawnPosX,spawnPosY+1);
+        body = new Body(spawnPosX,spawnPosY);
         createShape();
     }
 
@@ -29,8 +29,8 @@ public class PermanentObstacle implements Obstacle {
         vectorListX.add(body.getXPosition()+1);
 
         vectorListY.add(body.getYPosition());
-        vectorListY.add(body.getYPosition()+2);
-        vectorListY.add(body.getYPosition()+2);
+        vectorListY.add(body.getYPosition()+3);
+        vectorListY.add(body.getYPosition()+3);
         vectorListY.add(body.getYPosition());
     }
 

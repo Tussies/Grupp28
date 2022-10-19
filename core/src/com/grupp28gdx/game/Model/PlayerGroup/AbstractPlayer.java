@@ -52,7 +52,7 @@ public abstract class AbstractPlayer implements Player{
         playerMove(deltaTime);
         body.accelerate(0, body.gravity);
         playerState();
-        gun.positionUpdateGunAndBullets(this.body.getXPosition(), this.body.getYPosition());
+        gun.positionUpdateGunAndBullets(this.body.getXPosition(), this.body.getYPosition(), deltaTime);
     }
 
     public void playerState() {
@@ -90,7 +90,7 @@ public abstract class AbstractPlayer implements Player{
     public void inputKeyDown(int key){
         switch (key){
             case 51: // w
-                jump();
+                this.jump();
                 break;
             case 47: // s
                 break;
@@ -103,7 +103,7 @@ public abstract class AbstractPlayer implements Player{
                             playerDirection = StateOfPlayerDirection.RIGHT;}*/
                 break;
             case 62:
-                gun.shootGun(this.body.getXPosition(), this.body.getYPosition(), this.body.getMovementSpeed()*2) ;
+                gun.shootGun(this.body.getXPosition(), this.body.getYPosition(), this.body.getMovementSpeed()+1) ;
         }
     }
 
@@ -146,4 +146,6 @@ public abstract class AbstractPlayer implements Player{
     }
 
     public Gun getGun(){return this.gun;}
+
+
 }
