@@ -33,16 +33,20 @@ public class  Bullet {
     /**
      * Updates all the instances of Bullet position on the X-axis and calls on method destroyBullets if they have collided with an obstacle.
      */
-    public void positionUpdateBullet(ArrayList<Bullet> bullets, ArrayList<DestroyableObstacle> obstacles, float deltaTime) {
+    public void positionUpdateBullet(ArrayList<Bullet> bullets, ArrayList<Obstacle> obstacles, float deltaTime) {
         for (int i = 0; i < bullets.size(); i++) {
             tempBullet = bullets.get(i);
             tempBullet.body.setXPosition(tempBullet.body.getXPosition() + tempBullet.body.getMovementSpeed()*deltaTime);
             bullets.set(i, tempBullet);
 
+            if(obstacles.isEmpty()){
+                break;
+            }
+            else{
             for (int j = 0; j < obstacles.size(); j++)
             if (detector.hasCollided(bullets.get(i), obstacles.get(j))) { //FIX THE PARAM
                 destroyBullet(bullets, i);
-
+            }
             }
         }
     }
@@ -54,14 +58,8 @@ public class  Bullet {
      * @return true if collision with object has occurred and false if it has not.
      */
 
-    public boolean bulletCollision(Bullet bullet) {
 
-        if (detector.hasCollided(bullet)) { //collisiondetector with obstacle and bullet, if statement
-            return true;
-        }
 
-        return false;
-    }
 
     /**
      * Removes an element from ArrayList Bullets when called upon.
