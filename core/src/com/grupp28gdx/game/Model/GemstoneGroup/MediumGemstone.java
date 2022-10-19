@@ -15,15 +15,17 @@ public class MediumGemstone implements Gemstone {
     private float sideLength;
     private int points;
     private int totalPoints;
+    private int id;
 
     ArrayList<Float> vectorListX = new ArrayList<Float>();
     ArrayList<Float> vectorListY = new ArrayList<Float>();
 
-    public MediumGemstone(float x, float y) {
+    public MediumGemstone(float x, float y, int id) {
         points = 30;
         sideLength = 5;
         this.body = new Body(x,y);
         this.totalPoints = 0;
+        this.id = id;
         createShape();
     }
 
@@ -32,8 +34,8 @@ public class MediumGemstone implements Gemstone {
      * @return SmallGemstone
      */
     @Override
-    public Gemstone createGemstone(float x, float y) {
-        return new MediumGemstone(x,y);
+    public Gemstone createGemstone(float x, float y,int id) {
+        return new MediumGemstone(x,y,id);
     }
 
 
@@ -65,6 +67,11 @@ public class MediumGemstone implements Gemstone {
         this.totalPoints += this.points;
     }
 
+
+    @Override
+    public int getId(){
+        return id;
+    }
 
     /**
      * Returns the side length of the gemstone instance

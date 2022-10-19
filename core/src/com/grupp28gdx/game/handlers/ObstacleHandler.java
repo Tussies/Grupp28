@@ -13,6 +13,7 @@ public class ObstacleHandler extends SpawnHandler{
     protected World world;
     protected  RenderController rc;
     protected ModeFactory modeFactory;
+    protected int id = 0;
     public ObstacleHandler(World world, RenderController rc, ModeFactory modeFactory){
         this.world = world;
         this.rc = rc;
@@ -25,7 +26,8 @@ public class ObstacleHandler extends SpawnHandler{
 
     @Override
     protected void generate(float posX,float posY) {
-        itemArray.add(modeFactory.createObstacle(posX,posY));
+        id += 1;
+        itemArray.add(modeFactory.createObstacle(posX,posY,id));
     }
 
     @Override
@@ -43,6 +45,10 @@ public class ObstacleHandler extends SpawnHandler{
             }
 
         }
+    }
+
+    public void react(int id){
+        System.out.println(id);
     }
 }
 

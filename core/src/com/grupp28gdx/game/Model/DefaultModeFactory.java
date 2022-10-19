@@ -27,17 +27,17 @@ public class DefaultModeFactory implements ModeFactory{
      * @return a MediumGemstome, which is the default gemstone.
      */
     @Override
-    public Gemstone createGemstone(float spawnX,float spawnY) {
+    public Gemstone createGemstone(float spawnX,float spawnY,int id) {
         Random rand = new Random(100);
         switch (rand.nextInt()%5){
             case 0:
-                return new BigGemstone(spawnX,spawnY+rand.nextInt()%2);
+                return new BigGemstone(spawnX,spawnY+rand.nextInt()%2,id);
             case 1:
             case 2:
-                return new MediumGemstone(spawnX,spawnY+ rand.nextInt()%2);
+                return new MediumGemstone(spawnX,spawnY+ rand.nextInt()%2,id);
             case 3:
             case 4:
-                return new MediumGemstone(spawnX,spawnY+ rand.nextInt()%3);
+                return new MediumGemstone(spawnX,spawnY+ rand.nextInt()%3,id);
         }
         return null;
 
@@ -51,17 +51,17 @@ public class DefaultModeFactory implements ModeFactory{
      * This obstacle cannot be destroyed.
      */
     @Override
-    public Obstacle createObstacle(float spawnX,float spawnY) {
+    public Obstacle createObstacle(float spawnX,float spawnY,int id) {
         Random rand = new Random(100);
         switch (rand.nextInt()%5){
             case 0:
-                return new DestroyableObstacle(spawnX,spawnY+1);
+                return new DestroyableObstacle(spawnX,spawnY+1,id);
             case 1:
             case 2:
-                return new SpikeObstacle(spawnX,spawnY);
+                return new SpikeObstacle(spawnX,spawnY,id);
             case 3:
             case 4:
-                return new PermanentObstacle(spawnX,spawnY+1);
+                return new PermanentObstacle(spawnX,spawnY+1,id);
         }
         return null;
 

@@ -6,15 +6,18 @@ public class SpikeObstacle implements Obstacle{
 
     private final String shape;
 
+    private int id;
+
     ArrayList<Float> vectorListX = new ArrayList<Float>();
     ArrayList<Float> vectorListY = new ArrayList<Float>();
 
     private final Body body;
 
-    public SpikeObstacle(float spawnPosX, float spawnPosY){
+    public SpikeObstacle(float spawnPosX, float spawnPosY,int id){
         shape = "spike";
         body = new Body(spawnPosX,spawnPosY);
         createSpikeShape();
+        this.id = id;
     }
 
     private void createSpikeShape() {
@@ -26,6 +29,11 @@ public class SpikeObstacle implements Obstacle{
         vectorListY.add(body.getYPosition()+1);
         vectorListY.add(body.getYPosition()+1);
         vectorListY.add(body.getYPosition()+2);
+    }
+
+    @Override
+    public int getId(){
+        return this.id;
     }
 
     @Override
@@ -44,7 +52,7 @@ public class SpikeObstacle implements Obstacle{
     }
 
     @Override
-    public Obstacle createObstacle(float spawnX, float spawnY) {
-        return new SpikeObstacle(spawnX,spawnY);
+    public Obstacle createObstacle(float spawnX, float spawnY,int id) {
+        return new SpikeObstacle(spawnX,spawnY,id);
     }
 }

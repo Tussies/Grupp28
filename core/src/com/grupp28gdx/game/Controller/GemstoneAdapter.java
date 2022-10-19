@@ -24,9 +24,9 @@ public class GemstoneAdapter {
     private MediumGemstone mediumGemstoneModel;
     private SmallGemstone smallGemstoneModel;
     
-    public GemstoneAdapter(World world, ModeFactory factory, float spawnPosX, float spawnPosY, RenderController rc){
+    public GemstoneAdapter(World world, ModeFactory factory, float spawnPosX, float spawnPosY, RenderController rc,int id){
         this.world = world;
-        this.gemstoneData = factory.createGemstone(spawnPosX,spawnPosY);
+        this.gemstoneData = factory.createGemstone(spawnPosX,spawnPosY,id);
         gemstoneBody = world.createBody(generateBodyDef(spawnPosX,spawnPosY));
         PolygonShape bodyShape = new PolygonShape();
         bodyShape.set(getVectors());

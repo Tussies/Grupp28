@@ -65,7 +65,6 @@ public class PlayState extends State {
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + 4096, -300);
         world = new World(new Vector2(0, 0), true);
-        collisionDetector = new CollisionDetector();
         this.x = x;
 
         debugRenderer = new Box2DDebugRenderer();
@@ -82,6 +81,7 @@ public class PlayState extends State {
         this.playInput = new PlayInputHandler(player);
         setInputProcessor(playInput);
         playerHitbox = createHitBox();
+        collisionDetector = new CollisionDetector(obstacleHandler,gemstoneHandler,player.getGun(),hud,player);
     }
 
 
@@ -137,17 +137,7 @@ public class PlayState extends State {
         hud.updateScore(Math.round(player.getBody().getXPosition()));
 
 
-        if(collisionDetector.hasCollided(player,1f)){
-            player.collisionGroundBegin();
-        }else player.collisionGroundEnd();
-
-        for(Obstacle obstacle : obstacleHandler.getObstacles()){
-            if (collisionDetector.hasCollided(player, obstacle)) hud.gameOver(true);
-        }
-        for(GemstoneAdapter gemstone : gemstoneHandler.getGem()){
-            if(collisionDetector.hasCollided(player,gemstone.getGemstoneData()))
-                hud.updateCoins(+10);
-        }
+        collisionDetector.update();
 
         playerHitbox.setTransform(player.getBody().x*2,player.getBody().y*2,0);
     }
