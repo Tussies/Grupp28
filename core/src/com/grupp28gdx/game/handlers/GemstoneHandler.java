@@ -6,6 +6,9 @@ import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.ModeFactory;
 import com.grupp28gdx.game.render.RenderController;
 
+/**
+ * This class is used to generate gemstones and make them spawn in the game.
+ */
 public class GemstoneHandler extends SpawnHandler{
 
     protected Array<Gemstone> itemArray = new Array<>();
@@ -20,16 +23,32 @@ public class GemstoneHandler extends SpawnHandler{
         this.modeFactory = modeFactory;
     }
 
+    /**
+     * Method to getting gemstones.
+     * @return itemArray an itemArray of all gemstones.
+     */
     public Array<Gemstone> getGem(){
+
         return itemArray;
     }
 
+    /**
+     * Method used to generate the gems, adds them to Array itemArray.
+     * @param posX
+     * @param posY
+     */
     @Override
     public void generate(float posX, float posY) {
         id += 1;
         itemArray.add(modeFactory.createGemstone(posX,posY,id));
     }
 
+    /**
+     * Method that updates the gemstone spawning.
+     * Calls on generate method when itemArray is empty, and destroys gemstone object when it has passed the camera scope.
+     * @param posX
+     * @param posY
+     */
     @Override
     public void update(float posX, float posY) {
         if (posX % 7 == 0 && posX>15) {

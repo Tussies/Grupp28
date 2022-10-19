@@ -33,7 +33,7 @@ public class InstructionState extends State {
         this.y = 890;
     }
 
-    public void hover(Texture texture, int x, int y){
+    private void hover(Texture texture, int x, int y){
         this.rc.render(texture, x, y);
     }
 
