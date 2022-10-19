@@ -50,6 +50,7 @@ public class PlayState extends State {
     private float frame;
 
     private final AssetManager assetManager = new AssetManager();
+    private ArrayList<Obstacle> obstacles = new ArrayList<>();
 
     private Vector2 backgroundPosition1, backgroundPosition2;
     private ObstacleHandler obstacleHandler;
@@ -119,7 +120,7 @@ public class PlayState extends State {
     public void update(float delta) {
         world.step(1/60f, 6,2);
         updateBackground();
-        player.playerUpdate(delta);
+        player.playerUpdate(delta, obstacles);
 
         obstacleHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         gemstoneHandler.update(Math.round(player.getBody().getXPosition()),0.5f);

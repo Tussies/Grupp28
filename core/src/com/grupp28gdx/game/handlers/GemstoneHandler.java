@@ -41,7 +41,6 @@ public class GemstoneHandler extends SpawnHandler{
             } else if (!(itemArray.get(itemArray.size - 1).getGemstoneData().getPosition().getXPosition() == posX+1)) {
                 generate(posX+5, posY+1);
             }
-            System.out.println(posX);
             while (itemArray.get(0).getGemstoneData().getPosition().getXPosition() - posX <= -7) {
                 itemArray.get(0).destroyBody();
                 itemArray.removeIndex(0);

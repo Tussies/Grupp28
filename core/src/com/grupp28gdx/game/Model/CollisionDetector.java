@@ -227,6 +227,110 @@ public class CollisionDetector {
         return false;
     }
 
+    public boolean hasCollided(Bullet bullet, Obstacle obstacle){
+        if (obstacle instanceof PermanentObstacle) return hasCollided(bullet, (PermanentObstacle) obstacle);
+        if (obstacle instanceof DestroyableObstacle) return hasCollided(bullet, (DestroyableObstacle) obstacle);
+        if (obstacle instanceof SpikeObstacle) return hasCollided(bullet, (SpikeObstacle) obstacle);
+        return false;
+    }
+
+    public boolean hasCollided(Bullet bullet, PermanentObstacle Wall){
+        Body bulletBody = bullet.getBody();
+        Body wallBody = Wall.getPosition();
+
+        float bulletPositionX = bulletBody.x*2;
+        float bulletPositionY = bulletBody.y*2;
+
+        float wallBodyX = wallBody.x*2;
+        float wallBodyY = wallBody.y*2;
+
+        float bulletOffsetX = 1.40f;
+        float bulletOffsetY = 2.75f;
+
+        float wallOffsetX = 1f;
+        float wallOffsetY = 3f;
+
+        if(
+                ((wallBodyX<=bulletPositionX+bulletOffsetX &&
+                        wallBodyX>=bulletPositionX) &&
+                        (wallBodyY <= bulletPositionY+bulletOffsetY &&
+                                wallBodyY >= bulletPositionY))
+
+                        ||
+
+                        ((bulletPositionX<=wallBodyX+wallOffsetX &&
+                                bulletPositionX>=wallBodyX) &&
+                                (bulletPositionY <= wallBodyY+wallOffsetY &&
+                                        bulletPositionY >= wallBodyY))
+        )
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+
+
+
+    public boolean hasCollided(Bullet bullet, SpikeObstacle spike){
+        Body bulletBody = bullet.getBody();
+        Body spikeBody = spike.getPosition();
+
+        float bulletPositionX = bulletBody.x*2;
+        float bulletPositionY = bulletBody.y*2;
+
+        float spikeBodyX1 = spikeBody.x*2+0.25f;
+        float spikeBodyY1 = spikeBody.y*2+1;
+
+        float spikeBodyX2 = spikeBodyX1 + 0.25f;
+        float spikeBodyY2 = spikeBodyY1 + 0.5f;
+
+        float bulletOffsetX = 1f;
+        float bulletOffsetY = 2.75f;
+
+        float spikeOffsetX = 2.25f;
+        float spikeOffsetY = 0.5f;
+
+        float spikeOffsetX2 = 1f;
+        float spikeOffsetY2 = 0.5f;
+
+        if(
+                ((spikeBodyX1<=bulletPositionX+bulletOffsetX &&
+                        spikeBodyX1>=bulletPositionX) &&
+                        (spikeBodyY1 <= bulletPositionY+bulletOffsetY &&
+                                spikeBodyY1 >= bulletPositionY))
+
+                        ||
+
+                        ((bulletPositionX<=spikeBodyX1+spikeOffsetX &&
+                                bulletPositionX>=spikeBodyX1) &&
+                                (bulletPositionY <= spikeBodyY1+spikeOffsetY &&
+                                        bulletPositionY >= spikeBodyY1))
+
+                        ||
+
+                        ((spikeBodyX2<=bulletPositionX+bulletOffsetX &&
+                                spikeBodyX2>=bulletPositionX) &&
+                                (spikeBodyY2 <= bulletPositionY+bulletOffsetY &&
+                                        spikeBodyY2 >= bulletPositionY))
+
+                        ||
+
+                        ((bulletPositionX<=spikeBodyX2+spikeOffsetX2 &&
+                                bulletPositionX>=spikeBodyX2) &&
+                                (bulletPositionY <= spikeBodyY2+spikeOffsetY2 &&
+                                        bulletPositionY >= spikeBodyY2))
+
+        )
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+
     public boolean hasCollided(Player player, float yPosition){
         Body playerBody = player.getBody();
 
