@@ -41,6 +41,7 @@ public class CollisionDetector {
                 for(GemstoneAdapter gemstone : ((GemstoneHandler) subscriber).getGem()){
                     if (hasCollided(player,gemstone.getGemstoneData())) {
                         ((GemstoneHandler) subscriber).react(gemstone.getGemstoneData().getId());
+                        player.addCollectedGem(gemstone.getGemstoneData().getValue());
                     }
                 }
 
@@ -64,10 +65,13 @@ public class CollisionDetector {
         float playerPositionY = playerBody.y*2;
 
         float gemstoneBodyX = gemstoneBody.x*2;
-        float gemstoneBodyY = gemstoneBody.y*2;
+        float gemstoneBodyY = gemstoneBody.y*2f;
 
         float playerOffsetX = 1.40f - 0.5f;
         float playerOffsetY = 2.75f;
+
+        //float playerOffsetX = 0;
+        //float playerOffsetY = 0;
 
         float gemstoneOffsetX = 0.18f;
         float gemstoneOffsetY = 0.18f;

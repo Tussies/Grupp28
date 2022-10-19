@@ -31,8 +31,7 @@ public class EasyModeFactory implements ModeFactory {
      */
     @Override
     public Gemstone createGemstone(float spawnX,float spawnY,int id) {
-        Random rand = new Random(100);
-                return new BigGemstone(spawnX,spawnY+ rand.nextInt()%5,id);
+                return new BigGemstone(spawnX,spawnY,id);
 
     }
 

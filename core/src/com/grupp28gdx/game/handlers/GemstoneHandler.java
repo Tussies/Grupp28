@@ -33,9 +33,9 @@ public class GemstoneHandler extends SpawnHandler{
     public void update(float posX, float posY) {
         if (posX % 7 == 0 && posX>15) {
             if (itemArray.isEmpty()) {
-                generate(posX+ 10 + rand.nextInt()%5, posY+1);
+                generate(posX+ 10 + rand.nextInt()%5, posY + 3 + (rand.nextInt()%2));
             } else if (!((itemArray.get(itemArray.size - 1).getGemstoneData().getPosition().getXPosition() >= posX+5) && (itemArray.get(itemArray.size - 1).getGemstoneData().getPosition().getXPosition() <= posX+10))) {
-                generate(posX+10+ rand.nextInt()%5, posY+1);
+                generate(posX+10+ rand.nextInt()%5, posY + 3 + (rand.nextInt()%2));
             }
             if(itemArray.size != 1){
                 while (itemArray.get(0).getGemstoneData().getPosition().getXPosition() - posX <= -7) {
@@ -49,6 +49,11 @@ public class GemstoneHandler extends SpawnHandler{
 
     @Override
     public void react(int id){
-        System.out.println(id);
+
+        for (int i=0; i < itemArray.size-1 ; i++){
+            if (itemArray.get(i).getGemstoneData().getId() == id){
+                itemArray.removeIndex(i);
+            }
+        }
     }
 }

@@ -20,4 +20,6 @@ public interface Gemstone {
     public Body getPosition();
 
     int getId();
+
+    int getValue();
 }

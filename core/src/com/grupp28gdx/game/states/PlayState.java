@@ -135,7 +135,13 @@ public class PlayState extends State {
         obstacleHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         gemstoneHandler.update(Math.round(player.getBody().getXPosition()),0.5f);
         hud.updateScore(Math.round(player.getBody().getXPosition()));
+        hud.updateGemScore(player.getGemScore());
 
+        /**if(Gdx.input.isKeyPressed(51)) player.getBody().y +=0.01;
+        if(Gdx.input.isKeyPressed(47)) player.getBody().y -= 0.01;
+        if(Gdx.input.isKeyPressed(29)) player.getBody().x -= 0.01;
+        if(Gdx.input.isKeyPressed(32)) player.getBody().x += 0.01;
+        if(Gdx.input.isKeyPressed(62)) player.getBody().x += 0.1;*/
 
         collisionDetector.update();
 
@@ -174,11 +180,11 @@ public class PlayState extends State {
         }
 
         for (GemstoneAdapter gemstone : gemstoneHandler.getGem()){
-            if (gemstone.getGemstoneData() instanceof BigGemstone){rc.render(assetManager.getBigGemstoneTexture(),(gemstone.getGemstoneData()).getPosition().x*pixelsPerMeter*2,(gemstone.getGemstoneData()).getPosition().y*pixelsPerMeter+48,pixelsPerMeter*0.75f,pixelsPerMeter*0.75f);}
+            if (gemstone.getGemstoneData() instanceof BigGemstone){rc.render(assetManager.getBigGemstoneTexture(),(gemstone.getGemstoneData()).getPosition().x*pixelsPerMeter*2,(gemstone.getGemstoneData()).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.75f,pixelsPerMeter*0.75f);}
             else if (gemstone.getGemstoneData() instanceof MediumGemstone){rc.render(assetManager.getMediumGemstoneTexture(),(gemstone.getGemstoneData()).getPosition().x*pixelsPerMeter*2,(gemstone.getGemstoneData()).getPosition().y*pixelsPerMeter+48,pixelsPerMeter*0.45f,pixelsPerMeter*0.45f);}
-            else{rc.render(assetManager.getSmallGemstoneTexture(), gemstone.getGemstoneData().getPosition().x*pixelsPerMeter*2,(gemstone.getGemstoneData()).getPosition().y*pixelsPerMeter+48,pixelsPerMeter*0.18f,pixelsPerMeter*0.18f);}
+            else{rc.render(assetManager.getSmallGemstoneTexture(), gemstone.getGemstoneData().getPosition().x*pixelsPerMeter*2,(gemstone.getGemstoneData()).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.18f,pixelsPerMeter*0.18f);}
         }
-        rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
+        //rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         updateBulletTexture(player.getGun().getBulletsFired());
         updatePlayerTexture();
         rc.render(hud);
