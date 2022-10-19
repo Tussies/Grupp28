@@ -4,6 +4,8 @@ package com.grupp28gdx.game.Model;
 import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 
+import java.util.ArrayList;
+
 /**
  * This is where all objects of the world will be placed and updated.
  */
@@ -16,6 +18,8 @@ public class World{
     protected static Player player;
     protected static final float UPDATE_RATE = 60.0f;
     protected final float deltaTime = 1.0f/UPDATE_RATE;
+    protected static ArrayList<Obstacle> obstacles= new ArrayList();
+
 
     public World() {
         player = new GreenPlayer();

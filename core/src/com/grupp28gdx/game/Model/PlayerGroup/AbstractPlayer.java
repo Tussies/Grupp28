@@ -1,7 +1,11 @@
 package com.grupp28gdx.game.Model.PlayerGroup;
 
 import com.grupp28gdx.game.Model.Body;
+import com.grupp28gdx.game.Model.DestroyableObstacle;
 import com.grupp28gdx.game.Model.Guns.Gun;
+import com.grupp28gdx.game.Model.Obstacle;
+
+import java.util.ArrayList;
 
 /**
  * This is an abstract player, no instances of this player can be made but OrangePlayer,
@@ -47,6 +51,7 @@ public abstract class AbstractPlayer implements Player{
      * It updates a player's movement, with gravity acting upon it.
      * @param deltaTime is the time between each update of the movement of Player.
      */
+
 
     public void playerUpdate(float deltaTime) {
         if(playerState != PlayerStates.DEAD){
@@ -107,7 +112,7 @@ public abstract class AbstractPlayer implements Player{
                             playerDirection = StateOfPlayerDirection.RIGHT;}*/
                 break;
             case 62:
-                gun.shootGun(this.body.getXPosition(), this.body.getYPosition(), this.body.getMovementSpeed()+1) ;
+                gun.shootGun(this.body.getXPosition(), this.body.getYPosition()+0.4f, this.body.getMovementSpeed()+1) ;
         }
     }
 

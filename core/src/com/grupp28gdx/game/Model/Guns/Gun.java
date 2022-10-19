@@ -1,6 +1,8 @@
 package com.grupp28gdx.game.Model.Guns;
 
 import com.grupp28gdx.game.Model.Body;
+import com.grupp28gdx.game.Model.DestroyableObstacle;
+import com.grupp28gdx.game.Model.Obstacle;
 
 import java.util.ArrayList;
 
@@ -25,6 +27,9 @@ public class Gun {
         this.body.setYPosition(yPos);
         bullet.positionUpdateBullet(bulletsFired, deltaTime);
 
+    }
+    public void destroyBullet(int i) {
+        bulletsFired.remove(i);
     }
 
     public void shootGun(float xPos, float yPos, float speed) {

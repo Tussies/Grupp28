@@ -1,12 +1,17 @@
 package com.grupp28gdx.game.Model.Guns;
 
 import com.grupp28gdx.game.Model.Body;
+import com.grupp28gdx.game.Model.CollisionDetector;
+import com.grupp28gdx.game.Model.DestroyableObstacle;
+import com.grupp28gdx.game.Model.Obstacle;
+import com.grupp28gdx.game.Model.PlayerGroup.Player;
 
 import java.util.ArrayList;
 
 public class  Bullet {
     private Body body;
     private Bullet tempBullet;
+    private CollisionDetector detector;
 
 
     ArrayList<Float> vectorListX = new ArrayList<Float>();
@@ -21,7 +26,8 @@ public class  Bullet {
      */
     public Bullet(float xPos, float yPos, float speed) { //Speed should be int as soon as possible
         this.body = new Body(xPos, yPos);
-       this.body.setMovementSpeed(speed);
+
+        this.body.setMovementSpeed(speed);
     }
 
     /**
@@ -33,39 +39,39 @@ public class  Bullet {
             tempBullet.body.setXPosition(tempBullet.body.getXPosition() + tempBullet.body.getMovementSpeed()*deltaTime);
             bullets.set(i, tempBullet);
 
+            System.out.println(Math.round(bullets.get(i).getXPosition()));
+            if(Math.round(bullets.get(i).getXPosition()) % 30 == 0){
 
-            if (bulletCollision(bullets.get(i))) { //FIX THE PARAM
-                destroyBullet(bullets, i);
-
+                //destroyBullet(bullets, i);
+                System.out.println("Bullet " + i + " has been destroyed");
             }
+            /*
+            for (int j = 0; j < obstacles.size(); j++) {
+                System.out.println("In loop");
+                if(Math.round(bullets.get(i).getXPosition()) % 30 == 0){
+
+                    destroyBullet(bullets, i);
+                    System.out.println("Bullet " + i + " has been destroyed");
+                }
+                if (detector.hasCollided(bullets.get(i), obstacles.get(j))) { //FIX THE PARAM
+                    destroyBullet(bullets, i);
+                    System.out.println("Bullet " + i + " has been destroyed");
+
+                }
+
+            }*/
         }
     }
 
-    /**
-     * Checks if an instance of Bullet has collided with another object
-     *
-     * @param bullet
-     * @return true if collision with object has occurred and false if it has not.
-     */
 
-    public boolean bulletCollision(Bullet bullet) {
 
-        if (false) { //collisiondetector with obstacle and bullet, if statement
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
+    /*/**
      * Removes an element from ArrayList Bullets when called upon.
      *
      * @param bullets
      * @param i
      */
-    public void destroyBullet(ArrayList<Bullet> bullets, int i) {
-        bullets.remove(i);
-    }
+
 
 
     public Body getBody(){
