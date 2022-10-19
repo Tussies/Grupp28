@@ -19,7 +19,7 @@ public class  Bullet {
      * @param yPos
      * @param speed
      */
-    public Bullet(float xPos, float yPos, int speed) { //Speed should be int as soon as possible
+    public Bullet(float xPos, float yPos, float speed) { //Speed should be int as soon as possible
         this.body = new Body(xPos, yPos);
        this.body.setMovementSpeed(speed);
     }
