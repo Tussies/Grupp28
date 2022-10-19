@@ -27,7 +27,7 @@ public class HardModeFactory implements ModeFactory{
      */
     @Override
     public Gemstone createGemstone(float spawnX, float spawnY) {
-        return new SmallGemstone(spawnX,spawnY);
+        return new SmallGemstone(spawnX,spawnY+1);
     }
     
     /**
@@ -39,6 +39,17 @@ public class HardModeFactory implements ModeFactory{
      */
     @Override
     public Obstacle createObstacle(float spawnX,float spawnY) {
-        return new DestroyableObstacle(spawnX,spawnY);
+        Random rand = new Random(100);
+        switch (rand.nextInt()%5){
+            case 0:
+            case 3:
+            case 4:
+                return new PermanentObstacle(spawnX,spawnY+1);
+            case 1:
+            case 2:
+                return new SpikeObstacle(spawnX,spawnY);
+        }
+        return null;
+
     }
 }

@@ -4,11 +4,13 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.Controller.ObstacleAdapter;
 import com.grupp28gdx.game.Model.ModeFactory;
+import com.grupp28gdx.game.Model.Obstacle;
+import com.grupp28gdx.game.Model.Random;
 import com.grupp28gdx.game.render.RenderController;
 
 
 public class ObstacleHandler extends SpawnHandler{
-    protected Array<ObstacleAdapter> itemArray = new Array<>();
+    protected Array<Obstacle> itemArray = new Array<>();
     protected World world;
     protected  RenderController rc;
     protected ModeFactory modeFactory;
@@ -18,32 +20,29 @@ public class ObstacleHandler extends SpawnHandler{
         this.modeFactory = modeFactory;
     }
 
-    public Array<ObstacleAdapter> getObstacles(){
+    public Array<Obstacle> getObstacles(){
         return itemArray;
     }
 
     @Override
     protected void generate(float posX,float posY) {
-        int n = 1-numberOfSpawnableItems+1;
-        int i = rand.nextInt() % n;
-        int randomNum = 1 + i;
-        switch (randomNum){
-            case 1: itemArray.add(new ObstacleAdapter(world,modeFactory,posX,posY,rc));
-        }
+        itemArray.add(modeFactory.createObstacle(posX,posY));
     }
 
     @Override
     public void update(float posX,float posY) {
-        if (posX % 10 == 0 && posX > 15) {
+        if (posX % 8 == 0 && posX > 15) {
             if (itemArray.isEmpty()) {
-                generate(posX+10, posY);
-            } else if (!(itemArray.get(itemArray.size - 1).getObstacleData().getPosition().getXPosition() == posX+10)) {
-                generate(posX+10, posY);
+                generate(posX+10+rand.nextInt()%2- rand.nextInt()%2, posY);
+            } else if (!((itemArray.get(itemArray.size - 1).getPosition().getXPosition() >= posX+5) && (itemArray.get(itemArray.size - 1).getPosition().getXPosition() <= posX+10))) {
+                generate(posX+10+rand.nextInt()%2- rand.nextInt()%2, posY);
             }
-            while (itemArray.get(0).getObstacleData().getPosition().getXPosition() - posX <= -5) {
-                itemArray.get(0).destroyBody();
-                itemArray.removeIndex(0);
+            if(itemArray.size != 1){
+                while (itemArray.get(0).getPosition().getXPosition() - posX <= -5) {
+                    itemArray.removeIndex(0);
+                }
             }
+
         }
     }
 }

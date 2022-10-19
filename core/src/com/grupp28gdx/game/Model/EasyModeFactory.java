@@ -2,6 +2,8 @@ package com.grupp28gdx.game.Model;
 
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
+import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
+import com.grupp28gdx.game.Model.GemstoneGroup.SmallGemstone;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 
@@ -29,7 +31,9 @@ public class EasyModeFactory implements ModeFactory {
      */
     @Override
     public Gemstone createGemstone(float spawnX,float spawnY) {
-        return new BigGemstone(spawnX,spawnY);
+        Random rand = new Random(100);
+                return new BigGemstone(spawnX,spawnY+ rand.nextInt()%5);
+
     }
 
     /**
@@ -45,12 +49,12 @@ public class EasyModeFactory implements ModeFactory {
         Random rand = new Random(100);
         switch (rand.nextInt()%5){
             case 0:
+            case 3:
+            case 4:
+                return new DestroyableObstacle(spawnX,spawnY+1);
             case 1:
             case 2:
                 return new SpikeObstacle(spawnX,spawnY);
-            case 3:
-            case 4:
-                return new PermanentObstacle(spawnX,spawnY+1);
         }
         return null;
 

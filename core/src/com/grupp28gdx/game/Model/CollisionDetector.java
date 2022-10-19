@@ -165,7 +165,6 @@ public class CollisionDetector {
         {
             return true;
         }
-
         return false;
     }
 

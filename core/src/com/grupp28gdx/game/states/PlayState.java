@@ -20,7 +20,6 @@ import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.grupp28gdx.game.Controller.GemstoneAdapter;
-import com.grupp28gdx.game.Controller.ObstacleAdapter;
 import com.grupp28gdx.game.Model.*;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.handlers.GemstoneHandler;
@@ -77,8 +76,8 @@ public class PlayState extends State {
 
         setInputProcessor(playInput);
         hud = new Hud();
-        obstacleHandler = new ObstacleHandler(world,rc,new EasyModeFactory());
-        gemstoneHandler = new GemstoneHandler(world,rc,new EasyModeFactory());
+        obstacleHandler = new ObstacleHandler(world,rc,new DefaultModeFactory());
+        gemstoneHandler = new GemstoneHandler(world,rc,new DefaultModeFactory());
 
         frame = 0;
 
@@ -130,8 +129,8 @@ public class PlayState extends State {
             player.collisionGroundBegin();
         }else player.collisionGroundEnd();
 
-        for(ObstacleAdapter obstacle : obstacleHandler.getObstacles()){
-            if (collisionDetector.hasCollided(player, obstacle.getObstacleData())) hud.gameOver(true);
+        for(Obstacle obstacle : obstacleHandler.getObstacles()){
+            if (collisionDetector.hasCollided(player, obstacle)) hud.gameOver(true);
         }
         for(GemstoneAdapter gemstone : gemstoneHandler.getGem()){
             if(collisionDetector.hasCollided(player,gemstone.getGemstoneData()))
@@ -163,19 +162,19 @@ public class PlayState extends State {
         rc.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, 4096, 4096);
         rc.render(assetManager.getGroundTexture(), backgroundPosition2.x, backgroundPosition2.y-310, 4096, 2000/3+10);
         
-        for (ObstacleAdapter obstacle : obstacleHandler.getObstacles()){
-            if (obstacle.getObstacleData() instanceof PermanentObstacle)
-                rc.render(assetManager.getWallTexture(),obstacle.getObstacleData().getPosition().x*pixelsPerMeter*2,obstacle.getObstacleData().getPosition().y*pixelsPerMeter*2-32,32,32*3);
-            if (obstacle.getObstacleData() instanceof DestroyableObstacle)
-                rc.render(assetManager.getDestroyableTexture(),obstacle.getObstacleData().getPosition().x*pixelsPerMeter*2,obstacle.getObstacleData().getPosition().y*pixelsPerMeter*2-32,32,32*3);
-            if (obstacle.getObstacleData() instanceof SpikeObstacle)
-                rc.render(assetManager.getSpikeTexture(),obstacle.getObstacleData().getPosition().x*pixelsPerMeter*2,obstacle.getObstacleData().getPosition().y*pixelsPerMeter*2+32,64,32);
+        for (Obstacle obstacle : obstacleHandler.getObstacles()){
+            if (obstacle instanceof PermanentObstacle)
+                rc.render(assetManager.getWallTexture(),obstacle.getPosition().x*pixelsPerMeter*2,obstacle.getPosition().y*pixelsPerMeter*2-32,32,32*3);
+            if (obstacle instanceof DestroyableObstacle)
+                rc.render(assetManager.getDestroyableTexture(),obstacle.getPosition().x*pixelsPerMeter*2,obstacle.getPosition().y*pixelsPerMeter*2-32,32,32*3);
+            if (obstacle instanceof SpikeObstacle)
+                rc.render(assetManager.getSpikeTexture(),obstacle.getPosition().x*pixelsPerMeter*2,obstacle.getPosition().y*pixelsPerMeter*2+32,64,32);
         }
 
         for (GemstoneAdapter gemstone : gemstoneHandler.getGem()){
-            if (gemstone.getGemstoneData() instanceof BigGemstone){rc.render(assetManager.getBigGemstoneTexture(),((BigGemstone) gemstone.getGemstoneData()).body.x*pixelsPerMeter*2,((BigGemstone) gemstone.getGemstoneData()).body.y*pixelsPerMeter*2,pixelsPerMeter*0.75f,pixelsPerMeter*0.75f);}
-            else if (gemstone.getGemstoneData() instanceof MediumGemstone){rc.render(assetManager.getMediumGemstoneTexture(),((BigGemstone) gemstone.getGemstoneData()).body.x*pixelsPerMeter*2,((BigGemstone) gemstone.getGemstoneData()).body.y*pixelsPerMeter*2,pixelsPerMeter*0.45f,pixelsPerMeter*0.45f);}
-            else{rc.render(assetManager.getSmallGemstoneTexture(),((BigGemstone) gemstone.getGemstoneData()).body.x*pixelsPerMeter*2,((BigGemstone) gemstone.getGemstoneData()).body.y*pixelsPerMeter*2,pixelsPerMeter*0.18f,pixelsPerMeter*0.18f);}
+            if (gemstone.getGemstoneData() instanceof BigGemstone){rc.render(assetManager.getBigGemstoneTexture(),(gemstone.getGemstoneData()).getPosition().x*pixelsPerMeter*2,(gemstone.getGemstoneData()).getPosition().y*pixelsPerMeter+48,pixelsPerMeter*0.75f,pixelsPerMeter*0.75f);}
+            else if (gemstone.getGemstoneData() instanceof MediumGemstone){rc.render(assetManager.getMediumGemstoneTexture(),(gemstone.getGemstoneData()).getPosition().x*pixelsPerMeter*2,(gemstone.getGemstoneData()).getPosition().y*pixelsPerMeter+48,pixelsPerMeter*0.45f,pixelsPerMeter*0.45f);}
+            else{rc.render(assetManager.getSmallGemstoneTexture(), gemstone.getGemstoneData().getPosition().x*pixelsPerMeter*2,(gemstone.getGemstoneData()).getPosition().y*pixelsPerMeter+48,pixelsPerMeter*0.18f,pixelsPerMeter*0.18f);}
         }
         rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         updateBulletTexture(player.getGun().getBulletsFired());

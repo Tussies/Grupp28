@@ -22,8 +22,6 @@ public class DestroyableObstacle implements Obstacle {
         shape = ObstacleShape.SQUARE;
         color = ObstacleColor.BLUE;
         this.body = new Body(spawnPosX,spawnPosY);
-        this.body.setXPosition(0);
-        this.body.setYPosition(0);
 
         createShape();
         if (destroyObstacle){
