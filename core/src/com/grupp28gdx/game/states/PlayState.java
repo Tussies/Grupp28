@@ -16,10 +16,8 @@ import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
-import com.grupp28gdx.game.Controller.GemstoneAdapter;
 import com.grupp28gdx.game.Controller.ObstacleAdapter;
 import com.grupp28gdx.game.Model.*;
-import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.handlers.GemstoneHandler;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
 import com.grupp28gdx.game.input.PlayInputHandler;
@@ -43,6 +41,7 @@ public class PlayState extends State {
     private float w = Gdx.graphics.getWidth();
     private float h = Gdx.graphics.getHeight();
     private float frame;
+    private int x;
 
     private Texture background;
     private Texture alien;
@@ -101,7 +100,7 @@ public class PlayState extends State {
     private CollisionDetector collisionDetector;
 
 
-    public PlayState(GameStateManager gsm) {
+    public PlayState(GameStateManager gsm, int x) {
         super(gsm);
         cam = new OrthographicCamera();
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
@@ -110,6 +109,7 @@ public class PlayState extends State {
         collisionDetector = new CollisionDetector();
         player = new GreenPlayer();
         this.playInput = new PlayInputHandler(player);
+        this.x = x;
         ground = createGround();
         debugRenderer = new Box2DDebugRenderer();
         rc.renderBirdMusic();
@@ -120,7 +120,7 @@ public class PlayState extends State {
         hud = new Hud();
         obstacleHandler = new ObstacleHandler(world,rc,new EasyModeFactory());
         gemstoneHandler = new GemstoneHandler(world,rc,new EasyModeFactory());
-
+        setFactories(this.x);
         frame = 0;
     }
 
@@ -132,6 +132,19 @@ public class PlayState extends State {
             backgroundPosition2.add(w * 2, 0);
     }
 
+    public void setFactories(int x){
+        switch (x) {
+            case 1:
+                new DefaultModeFactory();
+                break;
+            case 2:
+                new EasyModeFactory();
+                break;
+            case 3:
+                new HardModeFactory();
+                break;
+        }
+    }
     public Body createGround() {
         BodyDef definition = new BodyDef();
         definition.type = BodyDef.BodyType.StaticBody;

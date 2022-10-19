@@ -5,24 +5,24 @@ import com.badlogic.gdx.graphics.Texture;
 import com.grupp28gdx.game.input.MenuInputHandler;
 
 public class ChooseDifficultyState extends State{
-    private Texture background;
-    private Texture easyButton;
-    private Texture easyButtonPressed;
-    private Texture normalButton;
-    private Texture normalButtonPressed;
-    private Texture hardButton;
-    private Texture hardButtonPressed;
-    private Texture blueplayer;
-    private Texture greenplayer;
-    private Texture redplayer;
-    private int screenHeight;
-    private int screenWidth;
-    private int buttonHeight;
-    private int buttonWidth;
-    private int spriteWidth;
-
-    private int x;
-    private int y;
+    private final Texture background;
+    private final Texture easyButton;
+    private final Texture easyButtonPressed;
+    private final Texture normalButton;
+    private final Texture normalButtonPressed;
+    private final Texture hardButton;
+    private final Texture hardButtonPressed;
+    private final Texture blueplayer;
+    private final Texture greenplayer;
+    private final Texture redplayer;
+    private final int screenHeight;
+    private final int screenWidth;
+    private final int buttonHeight;
+    private final int buttonWidth;
+    private final int spriteWidth;
+    private final int x;
+    private final int y;
+    private PlayState playstate;
 
     protected ChooseDifficultyState(GameStateManager gsm){
         super(gsm);
@@ -47,9 +47,7 @@ public class ChooseDifficultyState extends State{
     }
 
     public void hover(Texture texture, int x, int y){
-    int posX = x;
-    int posY = y;
-    this.rc.render(texture, posX, posY);
+        this.rc.render(texture, x, y);
     }
 
     @Override
@@ -58,19 +56,19 @@ public class ChooseDifficultyState extends State{
         int inputY = MenuInputHandler.checkInputY();
         if (inputX < x + buttonWidth/2 && inputX > x - buttonWidth/2 && inputY > 4*y/3 + buttonHeight/2 && inputY < 4*y/3 + 3*buttonHeight/2) {
             if (Gdx.input.isTouched()) {
-                gsm.set(new PlayState(gsm));
+                gsm.set(new PlayState(gsm,1));
                 dispose();
             }
         }
         if (inputX < x/2 + buttonWidth/2 && inputX > x/2 - buttonWidth/2 && inputY > 4*y/3 + buttonHeight/2 && inputY < 4*y/3 + 3*buttonHeight/2) {
             if (Gdx.input.isTouched()) {
-                gsm.set(new PlayState(gsm));
+                gsm.set(new PlayState(gsm,2));
                 dispose();
             }
         }
         if (inputX < x*3/2 + buttonWidth/2 && inputX > x*3/2 - buttonWidth/2 && inputY > 4*y/3 + buttonHeight/2 && inputY < 4*y/3 + 3*buttonHeight/2) {
             if (Gdx.input.isTouched()) {
-                gsm.set(new PlayState(gsm));
+                gsm.set(new PlayState(gsm,3));
                 dispose();
             }
         }
@@ -119,5 +117,8 @@ public class ChooseDifficultyState extends State{
         easyButtonPressed.dispose();
         hardButton.dispose();
         hardButtonPressed.dispose();
+        blueplayer.dispose();
+        redplayer.dispose();
+        greenplayer.dispose();
     }
 }
