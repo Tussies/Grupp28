@@ -17,18 +17,12 @@ public abstract class AbstractPlayer implements Player{
     private Gun gun;
 
     private int gemScore;
-
-    private float height;
-    private float width;
-
     public PlayerStates playerState;
 
     boolean onGround = true;
 
     public AbstractPlayer() {
         friction = 0.0f;
-        height = 2.75f;
-        width = 1f;
         createPlayer();
     }
 
@@ -39,6 +33,8 @@ public abstract class AbstractPlayer implements Player{
         this.body.setYPosition(0);
         this.body.setForceX(0);
         this.body.setForceY(0);
+        body.setHeight(2.75f);
+        body.setWidth(1f);
 
         this.gun = new Gun();
 
@@ -157,22 +153,6 @@ public abstract class AbstractPlayer implements Player{
 
     public int getGemScore(){
         return gemScore;
-    }
-
-    /**
-     * This getter is used to get the X offset for collisions with this object
-     * @return width
-     */
-    public float getWidth() {
-        return width;
-    }
-
-    /**
-     * This getter is used to get the Y offset for collisions with this object
-     * @return height
-     */
-    public float getHeight() {
-        return height;
     }
 
     public void react() {

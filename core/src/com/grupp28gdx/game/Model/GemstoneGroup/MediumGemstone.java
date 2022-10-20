@@ -13,8 +13,6 @@ public class MediumGemstone implements Gemstone {
     public Body body;
     private float sideLength;
     private int points;
-    private float height;
-    private float width;
     private int id;
     private int value;
 
@@ -23,11 +21,11 @@ public class MediumGemstone implements Gemstone {
 
     public MediumGemstone(float x, float y, int id) {
         value = 5;
-        height = 0.45f;
-        width = 0.45f;
         points = 30;
         sideLength = 5;
         this.body = new Body(x,y);
+        body.setHeight(0.45f);
+        body.setWidth(0.45f);
         this.id = id;
         createShape();
     }
@@ -107,15 +105,4 @@ public class MediumGemstone implements Gemstone {
     public Body getPosition() {
         return body;
     }
-
-    @Override
-    public float getWidth() {
-        return width;
-    }
-
-    @Override
-    public float getHeight() {
-        return height;
-    }
-
 }

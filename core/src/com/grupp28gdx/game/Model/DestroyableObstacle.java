@@ -8,8 +8,6 @@ import java.util.ArrayList;
 public class DestroyableObstacle implements Obstacle {
     private ObstacleShape shape;
     private ObstacleColor color;
-    private float height;
-    private float width;
     private Body body;
     private int id;
 
@@ -21,9 +19,9 @@ public class DestroyableObstacle implements Obstacle {
     public DestroyableObstacle(float spawnPosX, float spawnPosY,int id) {
         shape = ObstacleShape.SQUARE;
         color = ObstacleColor.BLUE;
-        height = 1.9f;
-        width = 1f;
         this.body = new Body(spawnPosX,spawnPosY);
+        body.setHeight(1.9f);
+        body.setWidth(1);
 
         this.id = id;
 
@@ -61,20 +59,4 @@ public class DestroyableObstacle implements Obstacle {
      * @return color
      */
     public ObstacleColor getColor() { return color; }
-
-    /**
-     * This getter is used to get the X offset for collisions with this object
-     * @return width
-     */
-    public float getWidth() {
-        return width;
-    }
-
-    /**
-     * This getter is used to get the Y offset for collisions with this object
-     * @return height
-     */
-    public float getHeight() {
-        return height;
-    }
 }

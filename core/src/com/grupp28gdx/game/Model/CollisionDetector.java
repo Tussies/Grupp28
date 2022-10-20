@@ -79,30 +79,31 @@ public class CollisionDetector {
         return null;
     }
 
-    private boolean checkCollision(Player player,Gemstone gemstone){
-        return hasCollided(player.getBody(),gemstone.getPosition(), player.getHeight(), player.getWidth(), gemstone.getHeight(), gemstone.getWidth());
+
+    public boolean checkCollision(Player player,Gemstone gemstone){
+        return hasCollided(player.getBody(),gemstone.getPosition());
     }
 
-    private boolean checkCollision(Player player,Obstacle obstacle){
-        return hasCollided(player.getBody(),obstacle.getBody(), player.getHeight(),player.getWidth(),obstacle.getHeight(), obstacle.getWidth());
+    public boolean checkCollision(Player player,Obstacle obstacle){
+        return hasCollided(player.getBody(),obstacle.getBody());
     }
 
-    private boolean checkCollision(Bullet bullet,Obstacle obstacle){
-        return hasCollided(bullet.getBody(),obstacle.getBody(), bullet.getHeight(),bullet.getWidth(),obstacle.getHeight(), obstacle.getWidth());
+    public boolean checkCollision(Bullet bullet,Obstacle obstacle){
+        return hasCollided(bullet.getBody(),obstacle.getBody());
     }
 
-    private boolean hasCollided(Body o1, Body o2,float o1Height,float o1Width,float o2Height,float o2Width) {
+    public boolean hasCollided(Body o1, Body o2) {
         float o1BodyX = o1.getXPosition() * 2;
         float o1BodyY = o1.getYPosition() * 2;
 
         float o2BodyX = o2.getXPosition() * 2;
         float o2BodyY = o2.getYPosition() * 2;
 
-        float o1OffsetX = o1Width;
-        float o1OffsetY = o1Height;
+        float o1OffsetX = o1.getWidth();
+        float o1OffsetY = o1.getHeight();
 
-        float o2OffsetX = o2Width;
-        float o2OffsetY = o2Height;
+        float o2OffsetX = o2.getWidth();
+        float o2OffsetY = o2.getHeight();
 
         return ((o2BodyX <= o1BodyX + o1OffsetX &&
                 o2BodyX >= o1BodyX) &&
