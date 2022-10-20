@@ -99,8 +99,14 @@ public abstract class AbstractPlayer implements Player{
 
     public void inputKeyDown(int key){
         switch (key){
-            case 51: //w
+            case 19: // up
                 if (playerState != PlayerStates.DEAD) this.jump();
+                break;
+            case 51 : //w
+                if (playerState != PlayerStates.DEAD) this.jump();
+                break;
+            case 20: // down
+                this.body.speedY = -60;
                 break;
             case 47: // s
                 this.body.speedY = -60;
