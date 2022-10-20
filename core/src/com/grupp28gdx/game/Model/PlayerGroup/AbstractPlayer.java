@@ -77,23 +77,28 @@ public abstract class AbstractPlayer implements Player{
     public abstract void jump();
 
     /**
-     * kommentera här, fråga Isak
+     * Locks the players Y position to the defiend value given
+     * @param y is the Ground value
      */
 
-    public void collisionGroundBegin() {
-        body.y = 1;
+    public void collisionGroundBegin(float y) {
+        body.y = y;
         onGround = true;
         playerState();
         body.forceY = 0;
         body.speedY = 0;
     }
 
+    /**
+     * Sets the onGround state to false indicating that the player is no longer touching the ground.
+     */
     public void collisionGroundEnd() {
         onGround = false;
     }
 
     /**
-     * kommentera här
+     * A method used to interpret a keypress as a certain action.
+     * @param key one of the constants in libGDX Input.KEYS
      */
 
     public void inputKeyDown(int key){
@@ -113,7 +118,10 @@ public abstract class AbstractPlayer implements Player{
         }
     }
 
-    //DEN SKA VA KVAR
+    /**
+     * A method used to interpret a key release as a certain action.
+     * @param key one of the constants in libGDX Input.KEYS
+     */
     public void inputKeyUp(int key){
         switch (key){
             case 51:
@@ -151,10 +159,18 @@ public abstract class AbstractPlayer implements Player{
         return gemScore;
     }
 
+    /**
+     * This getter is used to get the X offset for collisions with this object
+     * @return width
+     */
     public float getWidth() {
         return width;
     }
 
+    /**
+     * This getter is used to get the Y offset for collisions with this object
+     * @return height
+     */
     public float getHeight() {
         return height;
     }

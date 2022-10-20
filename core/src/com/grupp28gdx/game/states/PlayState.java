@@ -17,7 +17,6 @@ import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.grupp28gdx.game.Model.*;
 import com.grupp28gdx.game.handlers.GemstoneHandler;
@@ -39,7 +38,6 @@ public class PlayState extends State {
     private World world;
 
     private Player player;
-    private Body playerHitbox;
     private PlayInputHandler playInput;
 
     private float w = Gdx.graphics.getWidth();
@@ -69,19 +67,18 @@ public class PlayState extends State {
         this.x = x;
 
         debugRenderer = new Box2DDebugRenderer();
-        rc.renderMusic();
+        rv.renderMusic();
 
         cam.setToOrtho(false, w/2, h/2);
 
         hud = new Hud();
         modeFactory = setFactories(this.x);
-        obstacleHandler = new ObstacleHandler(world,rc,setFactories(this.x));
-        gemstoneHandler = new GemstoneHandler(world,rc,setFactories(this.x));
+        obstacleHandler = new ObstacleHandler(world, rv,setFactories(this.x));
+        gemstoneHandler = new GemstoneHandler(world, rv,setFactories(this.x));
         player = modeFactory.createPlayer();
         frame = 0;
         this.playInput = new PlayInputHandler(player);
         setInputProcessor(playInput);
-        playerHitbox = createHitBox();
         collisionDetector = new CollisionDetector(obstacleHandler,gemstoneHandler,player.getGun(),hud,player);
 
     }
@@ -95,7 +92,7 @@ public class PlayState extends State {
     }
 
 
-    public ModeFactory setFactories(int x){
+    private ModeFactory setFactories(int x){
         switch (x) {
             case 1:
                 return new DefaultModeFactory();
@@ -105,22 +102,6 @@ public class PlayState extends State {
                 return new HardModeFactory();
         }
         return null;
-    }
-
-    public Body createHitBox() {
-        BodyDef hitboxdef = new BodyDef();
-        hitboxdef.type = BodyDef.BodyType.StaticBody;
-        hitboxdef.position.set(0,0);
-        hitboxdef.fixedRotation = true;
-        playerHitbox = world.createBody(hitboxdef);
-
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(0.1f, 0.1f);
-
-        playerHitbox.createFixture(shape, 1.0f);
-        shape.dispose();
-
-        return playerHitbox;
     }
 
     @Override
@@ -141,20 +122,19 @@ public class PlayState extends State {
 
         if(Gdx.input.isKeyPressed(41)) {
             gsm.set(new MenuState(gsm));
-            rc.musicStop();
+            rv.musicStop();
         }
 
         collisionDetector.update();
 
-        playerHitbox.setTransform(player.getBody().x*2,player.getBody().y*2,0);
     }
 
-    public void cameraUpdate() {
+    private void cameraUpdate() {
         Vector3 position = cam.position;
         position.x = player.getBody().getXPosition()*pixelsPerMeter*2;
         position.y = player.getBody().getYPosition()*pixelsPerMeter*2;
 
-        rc.updateCamera(cam,position);
+        rv.updateCamera(cam,position);
     }
 
     @Override
@@ -165,32 +145,35 @@ public class PlayState extends State {
         cameraUpdate();
 
         update(Gdx.graphics.getDeltaTime());
-        rc.setProjectionMatrix(cam.combined);
-        rc.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, 4096, 4096);
-        rc.render(assetManager.getGroundTexture(), backgroundPosition1.x, backgroundPosition1.y-300, 4096, 2000/3+10);
-        rc.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, 4096, 4096);
-        rc.render(assetManager.getGroundTexture(), backgroundPosition2.x, backgroundPosition2.y-300, 4096, 2000/3+10);
+        rv.setProjectionMatrix(cam.combined);
+        rv.render(assetManager.getBackground(), backgroundPosition1.x, backgroundPosition1.y, 4096, 4096);
+        rv.render(assetManager.getGroundTexture(), backgroundPosition1.x, backgroundPosition1.y-300, 4096, 2000/3+10);
+        rv.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, 4096, 4096);
+        rv.render(assetManager.getGroundTexture(), backgroundPosition2.x, backgroundPosition2.y-300, 4096, 2000/3+10);
 
         for (Obstacle obstacle : obstacleHandler.getObstacles()){
             if (obstacle instanceof PermanentObstacle)
-                rc.render(assetManager.getWallTexture(),obstacle.getBody().x*pixelsPerMeter*2,obstacle.getBody().y*pixelsPerMeter*2-32,32,32*3);
+                rv.render(assetManager.getWallTexture(),obstacle.getBody().x*pixelsPerMeter*2,obstacle.getBody().y*pixelsPerMeter*2-32,32,32*3);
             if (obstacle instanceof DestroyableObstacle)
-                rc.render(assetManager.getDestroyableTexture(),obstacle.getBody().x*pixelsPerMeter*2,obstacle.getBody().y*pixelsPerMeter*2-32,32,32*3);
+                rv.render(assetManager.getDestroyableTexture(),obstacle.getBody().x*pixelsPerMeter*2,obstacle.getBody().y*pixelsPerMeter*2-32,32,32*3);
             if (obstacle instanceof SpikeObstacle)
-                rc.render(assetManager.getSpikeTexture(),obstacle.getBody().x*pixelsPerMeter*2,obstacle.getBody().y*pixelsPerMeter*2+32,64,32);
+                rv.render(assetManager.getSpikeTexture(),obstacle.getBody().x*pixelsPerMeter*2,obstacle.getBody().y*pixelsPerMeter*2+32,64,32);
         }
 
         for (Gemstone gemstone : gemstoneHandler.getGem()){
-            if (gemstone instanceof BigGemstone){rc.render(assetManager.getBigGemstoneTexture(),(gemstone).getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.75f,pixelsPerMeter*0.75f);}
-            else if (gemstone instanceof MediumGemstone){rc.render(assetManager.getMediumGemstoneTexture(),(gemstone).getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.45f,pixelsPerMeter*0.45f);}
-            else{rc.render(assetManager.getSmallGemstoneTexture(), gemstone.getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.18f,pixelsPerMeter*0.18f);}
+            if (gemstone instanceof BigGemstone){
+                rv.render(assetManager.getBigGemstoneTexture(),(gemstone).getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.75f,pixelsPerMeter*0.75f);}
+            else if (gemstone instanceof MediumGemstone){
+                rv.render(assetManager.getMediumGemstoneTexture(),(gemstone).getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.45f,pixelsPerMeter*0.45f);}
+            else{
+                rv.render(assetManager.getSmallGemstoneTexture(), gemstone.getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.18f,pixelsPerMeter*0.18f);}
         }
         hud.updateScore(Math.round(player.getBody().getXPosition()) + player.getGemScore() );
         hud.updateGemScore(player.getGemScore());
-        rc.debugRender(debugRenderer,world,cam,pixelsPerMeter);
+        rv.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         updateBulletTexture(player.getGun().getBulletsFired());
         updatePlayerTexture();
-        rc.render(hud);
+        rv.render(hud);
 
 
 
@@ -198,7 +181,7 @@ public class PlayState extends State {
 
     private void updateBulletTexture(ArrayList<Bullet> bullets){
         for (int j = 0 ; j <bullets.size(); j++){
-           rc.render(assetManager.getBulletTexture(),  bullets.get(j).getXPosition()*pixelsPerMeter*2,  bullets.get(j).getYPosition()*pixelsPerMeter*2 , 40, 40 );
+           rv.render(assetManager.getBulletTexture(),  bullets.get(j).getXPosition()*pixelsPerMeter*2,  bullets.get(j).getYPosition()*pixelsPerMeter*2 , 40, 40 );
         }
     }
 
@@ -211,24 +194,24 @@ public class PlayState extends State {
                 animationFrame = animationFrame % 5;
 
                 if(player instanceof OrangePlayer) {
-                    rc.render(assetManager.getPlayerWalkingAnimationOrangePlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerWalkingAnimationOrangePlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                    rv.render(assetManager.getPlayerWalkingAnimationOrangePlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerWalkingAnimationOrangePlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 }
 
                 if(player instanceof GreenPlayer) {
-                    rc.render(assetManager.getPlayerWalkingAnimationGreenPlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerWalkingAnimationGreenPlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                    rv.render(assetManager.getPlayerWalkingAnimationGreenPlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerWalkingAnimationGreenPlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 }
                 break;
             case "dead":
                 if(player instanceof OrangePlayer) {
-                    rc.render(assetManager.getOrangeDeadTexture(), player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getOrangeDeadTexture().getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                    rv.render(assetManager.getOrangeDeadTexture(), player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getOrangeDeadTexture().getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 }
 
                 if(player instanceof GreenPlayer) {
-                    rc.render(assetManager.getGreenDeadTexture(), player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getGreenDeadTexture().getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                    rv.render(assetManager.getGreenDeadTexture(), player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getGreenDeadTexture().getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 }
 
                 if(player instanceof PurplePlayer) {
-                    rc.render(assetManager.getPurpleDeadTexture(), player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPurpleDeadTexture().getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                    rv.render(assetManager.getPurpleDeadTexture(), player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPurpleDeadTexture().getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 }
                 break;
             case "jumping":
@@ -239,15 +222,15 @@ public class PlayState extends State {
                 animationFrame = animationFrame % 4;
 
                 if(player instanceof OrangePlayer) {
-                    rc.render(assetManager.getPlayerJumpingAnimationOrangePlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerJumpingAnimationOrangePlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 250/4f, 422/4f);
+                    rv.render(assetManager.getPlayerJumpingAnimationOrangePlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerJumpingAnimationOrangePlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 250/4f, 422/4f);
                 }
 
                 if(player instanceof GreenPlayer) {
-                    rc.render(assetManager.getPlayerJumpingAnimationGreenPlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerJumpingAnimationGreenPlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 250/4f, 422/4f);
+                    rv.render(assetManager.getPlayerJumpingAnimationGreenPlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerJumpingAnimationGreenPlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 250/4f, 422/4f);
                 }
 
                 if(player instanceof PurplePlayer) {
-                    rc.render(assetManager.getPlayerJumpingAnimationPurplePlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerJumpingAnimationPurplePlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 250/4f, 422/4f);
+                    rv.render(assetManager.getPlayerJumpingAnimationPurplePlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerJumpingAnimationPurplePlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 250/4f, 422/4f);
                 }
 
                 break;
@@ -255,7 +238,7 @@ public class PlayState extends State {
                 frame += 0.1;
                 frame = frame % 60;
                 animationFrame = animationFrame % 5;
-                rc.render(assetManager.getPlayerRunningAnimationPurplePlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerRunningAnimationPurplePlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                rv.render(assetManager.getPlayerRunningAnimationPurplePlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerRunningAnimationPurplePlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 break;
         }
     }

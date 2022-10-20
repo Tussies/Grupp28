@@ -3,7 +3,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.ModeFactory;
-import com.grupp28gdx.game.render.RenderController;
+import com.grupp28gdx.game.render.RenderView;
 
 /**
  * This class is used to generate gemstones and make them spawn in the game.
@@ -12,11 +12,11 @@ public class GemstoneHandler extends SpawnHandler{
 
     protected Array<Gemstone> itemArray = new Array<>();
     protected World world;
-    protected RenderController rc;
+    protected RenderView rc;
     protected ModeFactory modeFactory;
     protected int id = 0;
 
-    public GemstoneHandler(World world, RenderController rc, ModeFactory modeFactory){
+    public GemstoneHandler(World world, RenderView rc, ModeFactory modeFactory){
         this.world = world;
         this.rc = rc;
         this.modeFactory = modeFactory;

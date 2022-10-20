@@ -51,7 +51,7 @@ public class ChooseDifficultyState extends State{
 
 
     private void hover(Texture texture, int x, int y){
-        this.rc.render(texture, x, y);
+        this.rv.render(texture, x, y);
     }
 
     /**
@@ -96,25 +96,25 @@ public class ChooseDifficultyState extends State{
         int inputX = MenuInputHandler.checkInputX();
         int inputY = MenuInputHandler.checkInputY();
 
-        rc.render(background,0 ,0, screenWidth, screenHeight);
+        rv.render(background,0 ,0, screenWidth, screenHeight);
 
-        rc.render(greenPlayer, x - spriteWidth/2, y*2/3);
+        rv.render(greenPlayer, x - spriteWidth/2, y*2/3);
 
-        rc.render(redPlayer,x/2 - spriteWidth/2,y*2/3);
+        rv.render(redPlayer,x/2 - spriteWidth/2,y*2/3);
 
-        rc.render(bluePlayer,x*3/2 - spriteWidth/2,y*2/3);
+        rv.render(bluePlayer,x*3/2 - spriteWidth/2,y*2/3);
 
-        rc.render(normalButton,x-halfButtonWidth,y/3);
+        rv.render(normalButton,x-halfButtonWidth,y/3);
         if (inputX < x + halfButtonWidth && inputX > x - halfButtonWidth && inputY > 4*y/3 + halfButtonHeight && inputY < 4*y/3 + 3* halfButtonHeight){
             hover(normalButtonPressed, x - halfButtonWidth, y/3);
         }
 
-        rc.render(easyButton,x/2 - halfButtonWidth,y/3);
+        rv.render(easyButton,x/2 - halfButtonWidth,y/3);
         if (inputX < x/2 + halfButtonWidth && inputX > x/2 - halfButtonWidth && inputY > 4*y/3 + halfButtonHeight && inputY < 4*y/3 + 3* halfButtonHeight){
             hover(easyButtonPressed, x/2 - halfButtonWidth, y/3);
         }
 
-        rc.render(hardButton,x*3/2 - halfButtonWidth,y/3);
+        rv.render(hardButton,x*3/2 - halfButtonWidth,y/3);
         if (inputX < x*3/2 + halfButtonWidth && inputX > x*3/2 - halfButtonWidth && inputY > 4*y/3 + halfButtonHeight && inputY < 4*y/3 + 3* halfButtonHeight){
             hover(hardButtonPressed, x*3/2 - halfButtonWidth, y/3);
         }

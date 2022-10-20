@@ -27,6 +27,15 @@ public class CollisionDetector {
         this.player = player;
     }
 
+    /**
+     *  A method that looks through the subscribers to find collisions between objects.
+     *  Collision detector requires a player and a hud to function.
+     *  Requires subscribers to be one of the following objects.
+     * @Object ObstacleHandler
+     * @Object GemstoneHandler
+     * @Object Gun
+     */
+
     public void update(){
         for (Object subscriber : collisionsList){
             if(subscriber instanceof ObstacleHandler){
@@ -57,8 +66,9 @@ public class CollisionDetector {
                 }
             }else System.out.println("Exception");
         }
-        if (hasCollided(player,1)){
-            player.collisionGroundBegin();
+        float y = 1;
+        if (hasCollided(player,y)){
+            player.collisionGroundBegin(y);
         }
     }
 
@@ -69,19 +79,19 @@ public class CollisionDetector {
         return null;
     }
 
-    public boolean checkCollision(Player player,Gemstone gemstone){
+    private boolean checkCollision(Player player,Gemstone gemstone){
         return hasCollided(player.getBody(),gemstone.getPosition(), player.getHeight(), player.getWidth(), gemstone.getHeight(), gemstone.getWidth());
     }
 
-    public boolean checkCollision(Player player,Obstacle obstacle){
+    private boolean checkCollision(Player player,Obstacle obstacle){
         return hasCollided(player.getBody(),obstacle.getBody(), player.getHeight(),player.getWidth(),obstacle.getHeight(), obstacle.getWidth());
     }
 
-    public boolean checkCollision(Bullet bullet,Obstacle obstacle){
+    private boolean checkCollision(Bullet bullet,Obstacle obstacle){
         return hasCollided(bullet.getBody(),obstacle.getBody(), bullet.getHeight(),bullet.getWidth(),obstacle.getHeight(), obstacle.getWidth());
     }
 
-    public boolean hasCollided(Body o1, Body o2,float o1Height,float o1Width,float o2Height,float o2Width) {
+    private boolean hasCollided(Body o1, Body o2,float o1Height,float o1Width,float o2Height,float o2Width) {
         float o1BodyX = o1.getXPosition() * 2;
         float o1BodyY = o1.getYPosition() * 2;
 
@@ -107,13 +117,10 @@ public class CollisionDetector {
                                 o1BodyY >= o2BodyY));
     }
 
-    public boolean hasCollided(Player player, float yPosition){
+    private boolean hasCollided(Player player, float yPosition){
 
         Body playerBody = player.getBody();
 
-        if (playerBody.y < yPosition) {
-            return true;
-        }
-        return false;
+        return playerBody.y < yPosition;
     }
 }

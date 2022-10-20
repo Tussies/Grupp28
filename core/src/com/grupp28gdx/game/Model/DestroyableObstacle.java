@@ -62,10 +62,18 @@ public class DestroyableObstacle implements Obstacle {
      */
     public ObstacleColor getColor() { return color; }
 
+    /**
+     * This getter is used to get the X offset for collisions with this object
+     * @return width
+     */
     public float getWidth() {
         return width;
     }
 
+    /**
+     * This getter is used to get the Y offset for collisions with this object
+     * @return height
+     */
     public float getHeight() {
         return height;
     }
