@@ -2,9 +2,6 @@ package com.grupp28gdx.game.Model.PlayerGroup;
 
 import com.grupp28gdx.game.Model.Body;
 import com.grupp28gdx.game.Model.Guns.Gun;
-import com.grupp28gdx.game.Model.Obstacle;
-
-import java.util.ArrayList;
 
 /**
  * This is the common interface for the different type of players. There are three players in total in the game
@@ -25,7 +22,7 @@ public interface Player {
 
     Body getBody();
 
-    void collisionGroundBegin();
+    void collisionGroundBegin(float y);
 
     Gun getGun();
 

@@ -27,6 +27,15 @@ public class CollisionDetector {
         this.player = player;
     }
 
+    /**
+     *  A method that looks through the subscribers to find collisions between objects.
+     *  Collision detector requires a player and a hud to function.
+     *  Requires subscribers to be one of the following objects.
+     * @Object ObstacleHandler
+     * @Object GemstoneHandler
+     * @Object Gun
+     */
+
     public void update(){
         for (Object subscriber : collisionsList){
             if(subscriber instanceof ObstacleHandler){
@@ -57,8 +66,9 @@ public class CollisionDetector {
                 }
             }else System.out.println("Exception");
         }
-        if (hasCollided(player,1)){
-            player.collisionGroundBegin();
+        float y = 1;
+        if (hasCollided(player,y)){
+            player.collisionGroundBegin(y);
         }
     }
 
@@ -68,6 +78,7 @@ public class CollisionDetector {
         }
         return null;
     }
+
 
     public boolean checkCollision(Player player,Gemstone gemstone){
         return hasCollided(player.getBody(),gemstone.getPosition());
@@ -107,13 +118,10 @@ public class CollisionDetector {
                                 o1BodyY >= o2BodyY));
     }
 
-    public boolean hasCollided(Player player, float yPosition){
+    private boolean hasCollided(Player player, float yPosition){
 
         Body playerBody = player.getBody();
 
-        if (playerBody.y < yPosition) {
-            return true;
-        }
-        return false;
+        return playerBody.y < yPosition;
     }
 }

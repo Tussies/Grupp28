@@ -2,18 +2,18 @@ package com.grupp28gdx.game.states;
 
 import com.badlogic.gdx.Gdx;
 import com.grupp28gdx.game.input.InputHandler;
-import com.grupp28gdx.game.render.RenderController;
+import com.grupp28gdx.game.render.RenderView;
 
 /**
  * This is the state class that creates the basis of states in the game
  */
 public abstract class State {
     protected GameStateManager gsm;
-    protected RenderController rc;
+    protected RenderView rv;
 
     protected State(GameStateManager gsm){
         this.gsm = gsm;
-        rc = new RenderController();;
+        rv = new RenderView();;
     }
 
     protected void setInputProcessor(InputHandler inputHandler){

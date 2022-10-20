@@ -34,7 +34,7 @@ public class InstructionState extends State {
     }
 
     private void hover(Texture texture, int x, int y){
-        this.rc.render(texture, x, y);
+        this.rv.render(texture, x, y);
     }
 
     /**
@@ -67,8 +67,8 @@ public class InstructionState extends State {
         int inputX = MenuInputHandler.checkInputX();
         int inputY = MenuInputHandler.checkInputY();
 
-        rc.render(background,0 ,0, screenWidth, screenHeight);
-        rc.render(backbutton, 1092,30);
+        rv.render(background,0 ,0, screenWidth, screenHeight);
+        rv.render(backbutton, 1092,30);
         if (inputX < x + backButtonWidth && inputX > x && screenHeight - inputY < backButtonHeight + 88/2 && screenHeight - inputY > 88/2) {
             hover(backbuttonPressed, 1092,30);
         }
