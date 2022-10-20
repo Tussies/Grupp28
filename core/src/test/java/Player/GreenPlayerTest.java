@@ -29,7 +29,8 @@ public class GreenPlayerTest {
 
     @Test //INTE KLAR
     public void collisionGroundBeginTest() {
-        greenPlayer.collisionGroundBegin();
+        float y  = 1;
+        greenPlayer.collisionGroundBegin(y);
         assertEquals(greenPlayer.getStateOfPlayer(), "IDLE");
 
     }

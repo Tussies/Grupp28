@@ -51,7 +51,7 @@ public class Hud {
         createGameOverStage();
     }
 
-    public void createGameOverStage(){
+    private void createGameOverStage(){
         gameOverStage = new Stage(viewport);
         Table table = new Table();
         table.setFillParent(true);
@@ -76,15 +76,28 @@ public class Hud {
     }
 
 
+    /**
+     * If gameOver is true the viewport will display the game over screen overlay
+     * @param gameOver
+     */
     public void gameOver(boolean gameOver) {
         if (gameOver){
             stage = gameOverStage;
     }
 }
 
+    /**
+     * Sets the text to the score of the player, requires int to be displayed.
+     * @param newScore
+     */
     public void updateScore(int newScore){
         scoreCounterLabel.setText(String.format("%06d",newScore));
         finalScoreCounterLabel.setText(String.format("%06d",newScore));
     }
+
+    /**
+     * Sets the text to the label that displays collected gems value.
+     * @param gems
+     */
     public void updateGemScore(int gems){coinCountLabel.setText(String.format("%02d",gems));}
 }

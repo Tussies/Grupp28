@@ -36,10 +36,19 @@ public class SpikeObstacle implements Obstacle{
         return new SpikeObstacle(spawnX,spawnY,id);
     }
 
+    /**
+     * This getter is used to get the X offset for collisions with this object
+     * @return width
+     */
+
     public float getWidth() {
         return width;
     }
 
+    /**
+     * This getter is used to get the Y offset for collisions with this object
+     * @return height
+     */
     public float getHeight() {
         return height;
     }

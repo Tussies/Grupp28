@@ -5,18 +5,16 @@ import com.badlogic.gdx.utils.Array;
 
 import com.grupp28gdx.game.Model.ModeFactory;
 import com.grupp28gdx.game.Model.Obstacle;
-import com.grupp28gdx.game.render.RenderController;
+import com.grupp28gdx.game.render.RenderView;
 
 
 public class ObstacleHandler extends SpawnHandler{
-    protected Array<Obstacle> obstacleArray = new Array<>();
-    protected World world;
-    protected  RenderController rc;
-    protected ModeFactory modeFactory;
-    protected int id = 0;
-    public ObstacleHandler(World world, RenderController rc, ModeFactory modeFactory){
-        this.world = world;
-        this.rc = rc;
+    private Array<Obstacle> obstacleArray = new Array<>();
+    private World world;
+    private RenderView rc;
+    private final ModeFactory modeFactory;
+    private int id = 0;
+    public ObstacleHandler(World world, RenderView rc, ModeFactory modeFactory){
         this.modeFactory = modeFactory;
     }
 

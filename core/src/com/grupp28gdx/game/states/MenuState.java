@@ -53,7 +53,7 @@ public class MenuState extends State{
     private void hover(Texture texture, int y, int screenWidth, int buttonWidth, int screenHeight){
         int posX = (screenWidth/2) - (buttonWidth/2);
         int posY = screenHeight/y;
-        this.rc.render(texture, posX, posY);
+        this.rv.render(texture, posX, posY);
     }
 
     /**
@@ -100,16 +100,16 @@ public class MenuState extends State{
         int inputX = MenuInputHandler.checkInputX();
         int inputY = MenuInputHandler.checkInputY();
 
-        rc.render(background,0 ,0, screenWidth, screenHeight);
-        rc.render(playButton, (screenWidth/2) - (playButtonWidth/2), screenHeight/2);
+        rv.render(background,0 ,0, screenWidth, screenHeight);
+        rv.render(playButton, (screenWidth/2) - (playButtonWidth/2), screenHeight/2);
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/2 && screenHeight - inputY > screenHeight/2) {
             hover(playButtonPressed, 2,screenWidth,playButtonWidth,screenHeight);
         }
-        rc.render(instructionsButton,(screenWidth/2) - (playButtonWidth/2),screenHeight/3);
+        rv.render(instructionsButton,(screenWidth/2) - (playButtonWidth/2),screenHeight/3);
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/3 && screenHeight - inputY > screenHeight/3) {
             hover(instructionsButtonPressed,3,screenWidth,playButtonWidth,screenHeight);
         }
-        rc.render(exitButton,(screenWidth/2) - (playButtonWidth/2),screenHeight/6);
+        rv.render(exitButton,(screenWidth/2) - (playButtonWidth/2),screenHeight/6);
         if (inputX < x + playButtonWidth && inputX > x && screenHeight - inputY < playButtonHeight + screenHeight/6 && screenHeight - inputY > screenHeight/6) {
             hover(exitButtonPressed,6,screenWidth,playButtonWidth,screenHeight);
 

@@ -13,9 +13,9 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
-public class RenderController {
+public class RenderView {
     private SpriteBatch sb;
-    public RenderController(){
+    public RenderView(){
         sb = new SpriteBatch();
     }
 
