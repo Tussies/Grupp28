@@ -8,11 +8,10 @@ import java.util.ArrayList;
 public class DestroyableObstacle implements Obstacle {
     private ObstacleShape shape;
     private ObstacleColor color;
+    private float height;
+    private float width;
     private Body body;
     private int id;
-    private boolean destroyObstacle;
-    ArrayList<Float> vectorListX = new ArrayList<Float>();
-    ArrayList<Float> vectorListY = new ArrayList<Float>();
 
     /**
      * This is the constructor for the destroyable objects, the color makes the destroyable obstacle distinguishable from the permanent obstacles.
@@ -22,38 +21,17 @@ public class DestroyableObstacle implements Obstacle {
     public DestroyableObstacle(float spawnPosX, float spawnPosY,int id) {
         shape = ObstacleShape.SQUARE;
         color = ObstacleColor.BLUE;
+        height = 1.9f;
+        width = 1f;
         this.body = new Body(spawnPosX,spawnPosY);
 
         this.id = id;
 
-        createShape();
-        if (destroyObstacle){
-            destroyShape();
-        };
-    }
-
-    /**
-     * This method will create the shape for the destroyable object, which is a square;
-     */
-    private void createShape() {
-        vectorListX.add(body.getXPosition());
-        vectorListX.add(body.getXPosition());
-        vectorListX.add(body.getXPosition()+1);
-        vectorListX.add(body.getXPosition()+1);
-
-        vectorListY.add(body.getYPosition());
-        vectorListY.add(body.getYPosition()+3);
-        vectorListY.add(body.getYPosition()+3);
-        vectorListY.add(body.getYPosition());
     }
 
     /**
      * This method will destroy the shape when the object has been destroyed by shooting at it.
      */
-    private void destroyShape() {
-        vectorListX.clear();
-        vectorListY.clear();
-    }
 
 
     @Override
@@ -62,26 +40,10 @@ public class DestroyableObstacle implements Obstacle {
     }
 
     /**
-     * Returns the X-coordinates for drawing the shape of destroyable obstacles
-     * @return vectorListX
-     */
-    public ArrayList<Float> getVectorListX(){
-        return vectorListX;
-    }
-
-    /**
-     * Returns the Y-coordinates for drawing the shape of destroyable obstacles
-     * @return vectorListY
-     */
-    public ArrayList<Float> getVectorListY(){
-        return vectorListY;
-    }
-
-    /**
      * Returns the position of body.
      * @return body
      */
-    public Body getPosition(){ return body; }
+    public Body getBody(){ return body; }
 
     @Override
     public int getId() {
@@ -99,4 +61,12 @@ public class DestroyableObstacle implements Obstacle {
      * @return color
      */
     public ObstacleColor getColor() { return color; }
+
+    public float getWidth() {
+        return width;
+    }
+
+    public float getHeight() {
+        return height;
+    }
 }

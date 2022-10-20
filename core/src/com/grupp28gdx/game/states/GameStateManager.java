@@ -47,7 +47,7 @@ public class GameStateManager {
     /**
      * Renders the states stack.
      */
-    public void render(){
+    public void render() {
         states.peek().render();
     }
 

@@ -83,6 +83,7 @@ public class PlayState extends State {
         setInputProcessor(playInput);
         playerHitbox = createHitBox();
         collisionDetector = new CollisionDetector(obstacleHandler,gemstoneHandler,player.getGun(),hud,player);
+
     }
 
 
@@ -143,7 +144,6 @@ public class PlayState extends State {
             rc.musicStop();
         }
 
-
         collisionDetector.update();
 
         playerHitbox.setTransform(player.getBody().x*2,player.getBody().y*2,0);
@@ -170,14 +170,14 @@ public class PlayState extends State {
         rc.render(assetManager.getGroundTexture(), backgroundPosition1.x, backgroundPosition1.y-300, 4096, 2000/3+10);
         rc.render(assetManager.getBackground(), backgroundPosition2.x, backgroundPosition2.y, 4096, 4096);
         rc.render(assetManager.getGroundTexture(), backgroundPosition2.x, backgroundPosition2.y-300, 4096, 2000/3+10);
-        
+
         for (Obstacle obstacle : obstacleHandler.getObstacles()){
             if (obstacle instanceof PermanentObstacle)
-                rc.render(assetManager.getWallTexture(),obstacle.getPosition().x*pixelsPerMeter*2,obstacle.getPosition().y*pixelsPerMeter*2-32,32,32*3);
+                rc.render(assetManager.getWallTexture(),obstacle.getBody().x*pixelsPerMeter*2,obstacle.getBody().y*pixelsPerMeter*2-32,32,32*3);
             if (obstacle instanceof DestroyableObstacle)
-                rc.render(assetManager.getDestroyableTexture(),obstacle.getPosition().x*pixelsPerMeter*2,obstacle.getPosition().y*pixelsPerMeter*2-32,32,32*3);
+                rc.render(assetManager.getDestroyableTexture(),obstacle.getBody().x*pixelsPerMeter*2,obstacle.getBody().y*pixelsPerMeter*2-32,32,32*3);
             if (obstacle instanceof SpikeObstacle)
-                rc.render(assetManager.getSpikeTexture(),obstacle.getPosition().x*pixelsPerMeter*2,obstacle.getPosition().y*pixelsPerMeter*2+32,64,32);
+                rc.render(assetManager.getSpikeTexture(),obstacle.getBody().x*pixelsPerMeter*2,obstacle.getBody().y*pixelsPerMeter*2+32,64,32);
         }
 
         for (Gemstone gemstone : gemstoneHandler.getGem()){

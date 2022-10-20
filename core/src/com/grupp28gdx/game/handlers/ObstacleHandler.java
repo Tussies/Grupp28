@@ -35,11 +35,11 @@ public class ObstacleHandler extends SpawnHandler{
         if (posX % 8 == 0 && posX > 15) {
             if (obstacleArray.isEmpty()) {
                 generate(posX+10+rand.nextInt()%2- rand.nextInt()%2, posY);
-            } else if (!((obstacleArray.get(obstacleArray.size - 1).getPosition().getXPosition() >= posX+8) && (obstacleArray.get(obstacleArray.size - 1).getPosition().getXPosition() <= posX+12))) {
+            } else if (!((obstacleArray.get(obstacleArray.size - 1).getBody().getXPosition() >= posX+8) && (obstacleArray.get(obstacleArray.size - 1).getBody().getXPosition() <= posX+12))) {
                 generate(posX+10+rand.nextInt()%2- rand.nextInt()%2, posY);
             }
             if(obstacleArray.size != 1){
-                while (obstacleArray.get(0).getPosition().getXPosition() - posX <= -5) {
+                while (obstacleArray.get(0).getBody().getXPosition() - posX <= -5) {
                     obstacleArray.removeIndex(0);
                 }
             }
