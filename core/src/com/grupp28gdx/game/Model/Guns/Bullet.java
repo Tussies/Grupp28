@@ -11,10 +11,6 @@ import java.util.ArrayList;
 public class  Bullet {
     private Body body;
     private Bullet tempBullet;
-    private CollisionDetector detector;
-
-    private float height;
-    private float width;
 
     ArrayList<Float> vectorListX = new ArrayList<Float>();
     ArrayList<Float> vectorListY = new ArrayList<Float>();
@@ -28,9 +24,9 @@ public class  Bullet {
      */
     public Bullet(float xPos, float yPos, float speed) { //Speed should be int as soon as possible
         this.body = new Body(xPos, yPos);
-        height = 0.2f;
-        width = 0.2f;
         this.body.setMovementSpeed(speed);
+        body.setHeight(0.2f);
+        body.setWidth(0.2f);
     }
 
     /**
@@ -75,14 +71,6 @@ public class  Bullet {
     }
     public float getYPosition(){
         return this.body.getYPosition();
-    }
-
-    public float getWidth() {
-        return width;
-    }
-
-    public float getHeight() {
-        return height;
     }
 
 }

@@ -9,9 +9,6 @@ import java.util.ArrayList;
 public interface Obstacle {
     Obstacle createObstacle(float x,float y,int id);
 
-    float getWidth();
-    float getHeight();
-
     public Body getBody();
 
     int getId();

@@ -18,9 +18,16 @@ public class Body {
     public float forceX;
     public float forceY;
 
+    private float height;
+    private float width;
+
     public Body(float x, float y) {
         this.speedX = 0;
         this.speedY = 0;
+
+        height = 0;
+        width = 0;
+
         this.x = x;
         this.y = y;
         this.forceX = 0;
@@ -93,6 +100,22 @@ public class Body {
 
     public float getMovementSpeed() { //Confusing name
         return this.speedX;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    public void setWidth(float width) {
+        this.width = width;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public float getWidth() {
+        return width;
     }
 }
 

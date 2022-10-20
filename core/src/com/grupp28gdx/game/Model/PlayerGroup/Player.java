@@ -34,7 +34,4 @@ public interface Player {
     int getGemScore();
 
     void react();
-
-    float getWidth();
-    float getHeight();
 }

@@ -21,9 +21,9 @@ public class PermanentObstacle implements Obstacle {
     public PermanentObstacle(float spawnPosX, float spawnPosY,int id){
         shape = ObstacleShape.SQUARE;
         shapeName = "PermanentObstacle";
-        height = 1.9f;
-        width = 1f;
         body = new Body(spawnPosX,spawnPosY);
+        body.setHeight(1.9f);
+        body.setWidth(1);
         this.id = id;
     }
 
@@ -44,13 +44,5 @@ public class PermanentObstacle implements Obstacle {
 
     public ObstacleShape getShape() {
         return shape;
-    }
-
-    public float getWidth() {
-        return width;
-    }
-
-    public float getHeight() {
-        return height;
     }
 }
