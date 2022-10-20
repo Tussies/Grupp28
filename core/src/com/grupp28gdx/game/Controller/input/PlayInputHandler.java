@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.input;
+package com.grupp28gdx.game.Controller.input;
 
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 

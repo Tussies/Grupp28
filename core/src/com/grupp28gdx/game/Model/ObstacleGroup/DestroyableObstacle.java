@@ -1,6 +1,6 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.ObstacleGroup;
 
-import java.util.ArrayList;
+import com.grupp28gdx.game.Model.Body;
 
 /**
  * This obstacle is destroyable and not permanent, which means that it will disappear if the player shoots it with a gun.

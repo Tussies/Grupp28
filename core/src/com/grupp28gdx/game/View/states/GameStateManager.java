@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.states;
+package com.grupp28gdx.game.View.states;
 
 import java.util.Stack;
 

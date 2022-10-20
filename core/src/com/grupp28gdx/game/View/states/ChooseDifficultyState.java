@@ -1,8 +1,8 @@
-package com.grupp28gdx.game.states;
+package com.grupp28gdx.game.View.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.grupp28gdx.game.input.MenuInputHandler;
+import com.grupp28gdx.game.Controller.input.MenuInputHandler;
 
 /**
  * This class is the state that comes after pressing "New Game" in the menu state.

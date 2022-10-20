@@ -2,6 +2,9 @@ package com.grupp28gdx.game.Model;
 
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.SmallGemstone;
+import com.grupp28gdx.game.Model.ObstacleGroup.Obstacle;
+import com.grupp28gdx.game.Model.ObstacleGroup.PermanentObstacle;
+import com.grupp28gdx.game.Model.ObstacleGroup.SpikeObstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
 
@@ -38,7 +41,7 @@ public class HardModeFactory implements ModeFactory{
      * It can be destroyed if shot by a projectile of a gun.
      */
     @Override
-    public Obstacle createObstacle(float spawnX,float spawnY,int id) {
+    public Obstacle createObstacle(float spawnX, float spawnY, int id) {
         Random rand = new Random(100);
         switch (rand.nextInt()%5){
             case 0:

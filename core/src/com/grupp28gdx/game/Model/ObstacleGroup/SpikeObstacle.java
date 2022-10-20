@@ -1,8 +1,8 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.ObstacleGroup;
 
-import java.util.ArrayList;
+import com.grupp28gdx.game.Model.Body;
 
-public class SpikeObstacle implements Obstacle{
+public class SpikeObstacle implements Obstacle {
 
     private final String shape;
 

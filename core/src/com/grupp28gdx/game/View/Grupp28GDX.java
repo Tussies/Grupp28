@@ -1,11 +1,10 @@
-package com.grupp28gdx.game;
+package com.grupp28gdx.game.View;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.grupp28gdx.game.states.GameStateManager;
-import com.grupp28gdx.game.states.MenuState;
+import com.grupp28gdx.game.View.states.GameStateManager;
+import com.grupp28gdx.game.View.states.MenuState;
 
 
 public class Grupp28GDX extends ApplicationAdapter {

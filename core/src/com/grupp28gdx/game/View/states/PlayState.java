@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.states;
+package com.grupp28gdx.game.View.states;
 
 
 import com.badlogic.gdx.Gdx;
@@ -13,20 +13,25 @@ import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
 import com.grupp28gdx.game.Model.Guns.Bullet;
+import com.grupp28gdx.game.Model.ObstacleGroup.DestroyableObstacle;
+import com.grupp28gdx.game.Model.ObstacleGroup.Obstacle;
+import com.grupp28gdx.game.Model.ObstacleGroup.PermanentObstacle;
+import com.grupp28gdx.game.Model.ObstacleGroup.SpikeObstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.grupp28gdx.game.Model.*;
-import com.grupp28gdx.game.handlers.GemstoneHandler;
-import com.grupp28gdx.game.handlers.ObstacleHandler;
-import com.grupp28gdx.game.input.PlayInputHandler;
-import com.grupp28gdx.game.render.Hud;
+import com.grupp28gdx.game.Controller.handlers.GemstoneHandler;
+import com.grupp28gdx.game.Controller.handlers.ObstacleHandler;
+import com.grupp28gdx.game.Controller.input.PlayInputHandler;
+import com.grupp28gdx.game.View.AssetManager;
+import com.grupp28gdx.game.View.render.Hud;
 
 import java.util.ArrayList;
 
-import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
+import static com.grupp28gdx.game.Model.utils.Constants.pixelsPerMeter;
 
 /**
  * This class is the play state, which is used for showing the play-state of the game in the view.
