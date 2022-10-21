@@ -3,15 +3,10 @@ package com.grupp28gdx.game.render;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
 
 public class RenderView {
     private SpriteBatch sb;
@@ -31,11 +26,6 @@ public class RenderView {
         sb.begin();
         sb.draw(texture,x,y,screenWith,screenHeight);
         sb.end();
-    }
-
-    public void debugRender(Box2DDebugRenderer b2ddr, World world, OrthographicCamera cam, float pixelsPerMeter){
-        b2ddr.render(world, cam.combined.scl(pixelsPerMeter));
-
     }
 
     public void updateCamera(Camera cam, Vector3 position){
@@ -66,9 +56,5 @@ public class RenderView {
     }
     public void musicStop(){
         music.stop();
-    }
-
-    public void createFixture(Body obstacleBody, PolygonShape bodyShape) {
-        obstacleBody.createFixture(bodyShape,4.0f);
     }
 }

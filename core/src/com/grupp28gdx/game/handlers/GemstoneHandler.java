@@ -1,5 +1,4 @@
 package com.grupp28gdx.game.handlers;
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.ModeFactory;
@@ -11,14 +10,10 @@ import com.grupp28gdx.game.render.RenderView;
 public class GemstoneHandler extends SpawnHandler{
 
     protected Array<Gemstone> itemArray = new Array<>();
-    protected World world;
-    protected RenderView rc;
     protected ModeFactory modeFactory;
     protected int id = 0;
 
-    public GemstoneHandler(World world, RenderView rc, ModeFactory modeFactory){
-        this.world = world;
-        this.rc = rc;
+    public GemstoneHandler(ModeFactory modeFactory){
         this.modeFactory = modeFactory;
     }
 

@@ -2,6 +2,9 @@ package com.grupp28gdx.game.Model;
 
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
+import com.grupp28gdx.game.Model.Obstacles.DestroyableObstacle;
+import com.grupp28gdx.game.Model.Obstacles.Obstacle;
+import com.grupp28gdx.game.Model.Obstacles.SpikeObstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 
@@ -42,7 +45,7 @@ public class EasyModeFactory implements ModeFactory {
      * It is square shaped and cannot be destroyed.
      */
     @Override
-    public Obstacle createObstacle(float spawnX, float spawnY,int id) {
+    public Obstacle createObstacle(float spawnX, float spawnY, int id) {
         Random rand = new Random(100);
         switch (rand.nextInt()%5){
             case 0:

@@ -7,17 +7,19 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.physics.box2d.*;
 import com.grupp28gdx.game.Model.CollisionDetector;
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
 import com.grupp28gdx.game.Model.Guns.Bullet;
+import com.grupp28gdx.game.Model.Obstacles.DestroyableObstacle;
+import com.grupp28gdx.game.Model.Obstacles.Obstacle;
+import com.grupp28gdx.game.Model.Obstacles.PermanentObstacle;
+import com.grupp28gdx.game.Model.Obstacles.SpikeObstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
-import com.badlogic.gdx.physics.box2d.World;
 import com.grupp28gdx.game.Model.*;
 import com.grupp28gdx.game.handlers.GemstoneHandler;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
@@ -33,10 +35,6 @@ import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
  * The play-state shows the actual game that the user plays.
  */
 public class PlayState extends State {
-
-    Box2DDebugRenderer debugRenderer;
-    private World world;
-
     private Player player;
     private PlayInputHandler playInput;
 
@@ -63,18 +61,16 @@ public class PlayState extends State {
         cam = new OrthographicCamera();
         backgroundPosition1 = new Vector2(cam.position.x - cam.viewportWidth/2 - 500, -300);
         backgroundPosition2 = new Vector2((cam.position.x - cam.viewportWidth/2) - 500 + 4096, -300);
-        world = new World(new Vector2(0, 0), true);
         this.x = x;
 
-        debugRenderer = new Box2DDebugRenderer();
         rv.renderMusic();
 
         cam.setToOrtho(false, w/2, h/2);
 
         hud = new Hud();
         modeFactory = setFactories(this.x);
-        obstacleHandler = new ObstacleHandler(world, rv,setFactories(this.x));
-        gemstoneHandler = new GemstoneHandler(world, rv,setFactories(this.x));
+        obstacleHandler = new ObstacleHandler(setFactories(this.x));
+        gemstoneHandler = new GemstoneHandler(setFactories(this.x));
         player = modeFactory.createPlayer();
         frame = 0;
         this.playInput = new PlayInputHandler(player);
@@ -111,7 +107,6 @@ public class PlayState extends State {
 
     @Override
     public void update(float delta) {
-        world.step(1/60f, 6,2);
         updateBackground();
 
         player.playerUpdate(delta);
@@ -170,7 +165,6 @@ public class PlayState extends State {
         }
         hud.updateScore(Math.round(player.getBody().getXPosition()) + player.getGemScore() );
         hud.updateGemScore(player.getGemScore());
-        rv.debugRender(debugRenderer,world,cam,pixelsPerMeter);
         updateBulletTexture(player.getGun().getBulletsFired());
         updatePlayerTexture();
         rv.render(hud);
@@ -246,8 +240,6 @@ public class PlayState extends State {
     @Override
     public void dispose() {
         assetManager.getBackground().dispose();
-        world.dispose();
-        debugRenderer.dispose();
         for (Texture texture : assetManager.getPlayerWalkingAnimationOrangePlayer()){
             texture.dispose();
         }

@@ -1,16 +1,12 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.Obstacles;
 
-import java.util.ArrayList;
+import com.grupp28gdx.game.Model.Body;
 
 public class SpikeObstacle implements Obstacle{
-
-    private final String shape;
-
     private int id;
     private final Body body;
 
     public SpikeObstacle(float spawnPosX, float spawnPosY,int id){
-        shape = "spike";
         body = new Body(spawnPosX,spawnPosY);
         body.setHeight(1f);
         body.setWidth(2f);

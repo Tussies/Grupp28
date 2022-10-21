@@ -1,20 +1,17 @@
 package com.grupp28gdx.game.handlers;
 
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
 import com.grupp28gdx.game.Model.ModeFactory;
-import com.grupp28gdx.game.Model.Obstacle;
+import com.grupp28gdx.game.Model.Obstacles.Obstacle;
 import com.grupp28gdx.game.render.RenderView;
 
 
 public class ObstacleHandler extends SpawnHandler{
     private Array<Obstacle> obstacleArray = new Array<>();
-    private World world;
-    private RenderView rc;
     private final ModeFactory modeFactory;
     private int id = 0;
-    public ObstacleHandler(World world, RenderView rc, ModeFactory modeFactory){
+    public ObstacleHandler(ModeFactory modeFactory){
         this.modeFactory = modeFactory;
     }
 
