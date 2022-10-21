@@ -2,9 +2,8 @@ package com.grupp28gdx.game.handlers;
 
 import com.badlogic.gdx.utils.Array;
 
-import com.grupp28gdx.game.Model.ModeFactory;
+import com.grupp28gdx.game.Model.Factories.ModeFactory;
 import com.grupp28gdx.game.Model.Obstacles.Obstacle;
-import com.grupp28gdx.game.render.RenderView;
 
 
 public class ObstacleHandler extends SpawnHandler{

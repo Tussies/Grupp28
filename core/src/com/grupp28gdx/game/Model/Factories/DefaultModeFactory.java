@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.Factories;
 
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
@@ -9,6 +9,7 @@ import com.grupp28gdx.game.Model.Obstacles.PermanentObstacle;
 import com.grupp28gdx.game.Model.Obstacles.SpikeObstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
+import com.grupp28gdx.game.Model.Utils.Random;
 
 /**
  * This is the concrete default mode factory. It produces all standard versions of almost all objects, namely player,

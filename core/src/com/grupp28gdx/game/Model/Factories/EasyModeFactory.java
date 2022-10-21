@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.Factories;
 
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
@@ -7,6 +7,7 @@ import com.grupp28gdx.game.Model.Obstacles.Obstacle;
 import com.grupp28gdx.game.Model.Obstacles.SpikeObstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
+import com.grupp28gdx.game.Model.Utils.Random;
 
 /**
  * This is the concrete easy mode factory. It produces easier versions of the standard type of objects.
