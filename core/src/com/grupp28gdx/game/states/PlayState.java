@@ -51,7 +51,6 @@ public class PlayState extends State {
 
     @Override
     public void update(float delta) {
-        System.out.println(delta);
         gameWorld.update(delta);
 
         hud.updateScore(Math.round(gameWorld.getPlayer().getBody().getXPosition()) + gameWorld.getPlayer().getGemScore() );
