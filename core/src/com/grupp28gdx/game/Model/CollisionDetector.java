@@ -70,7 +70,7 @@ public class CollisionDetector {
     }
 
     public boolean checkCollision(Player player,Gemstone gemstone){
-        return hasCollided(player.getBody(),gemstone.getPosition(), player.getHeight(), player.getWidth(), gemstone.getHeight(), gemstone.getWidth());
+        return hasCollided(player.getBody(),gemstone.getBody(), player.getHeight(), player.getWidth(), gemstone.getHeight(), gemstone.getWidth());
     }
 
     public boolean checkCollision(Player player,Obstacle obstacle){

@@ -10,13 +10,12 @@ import java.util.ArrayList;
  */
 public interface Gemstone {
     Gemstone createGemstone(float x, float y,int id);
-    float getSideLength();
 
     public ArrayList<Float> getVectorListX();
 
     public ArrayList<Float> getVectorListY();
 
-    public Body getPosition();
+    public Body getBody();
 
     int getId();
 

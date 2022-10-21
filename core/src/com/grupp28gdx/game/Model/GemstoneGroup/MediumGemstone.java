@@ -74,14 +74,6 @@ public class MediumGemstone implements Gemstone {
     }
 
     /**
-     * Returns the side length of the gemstone instance
-     * @return sideLength
-     */
-    public float getSideLength() {
-        return this.sideLength;
-    }
-
-    /**
      * Returns an ArrayList of x-points for creating vectors.
      * @return vectorListX.
      */
@@ -104,7 +96,7 @@ public class MediumGemstone implements Gemstone {
      * @return body.
      */
     @Override
-    public Body getPosition() {
+    public Body getBody() {
         return body;
     }
 

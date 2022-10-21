@@ -1,6 +1,7 @@
 package Player;
 
 
+import com.grupp28gdx.game.Model.PlayerGroup.PlayerStates;
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
 //import com.grupp28gdx.game.Model.StateOfPlayer;
 import org.junit.jupiter.api.Test;
@@ -13,50 +14,20 @@ public class PurplePlayerTest {
 
 
     @Test
-    public void createPlayerTest() {
-        purplePlayer.createPlayer();
-        assertEquals(purplePlayer.getClass(), PurplePlayer.class);
+    public void jump(){
+        purplePlayer.jump();
+        assertTrue(purplePlayer.getBody().speedY == 69);
     }
 
     @Test
-    public void playerUpdateTest() { // UPPDATERAR INTE POSITION RÄTT
-        purplePlayer.body.accelerate(1,1);
-       // purplePlayer.playerUpdate(1f); // deltaTime 1/60
-        assertTrue(purplePlayer.body.getXPosition() == 3f || purplePlayer.body.getYPosition() == 1f);
-
-    }
-
-
-    @Test //INTE KLAR
-    public void collisionGroundBeginTest() {
-        purplePlayer.collisionGroundBegin();
-        assertEquals(purplePlayer.getStateOfPlayer(), "IDLE");
-
-    }
-
-    //collisionGround end INTE KLAR
-
-
-    @Test
-    public void inputKeyDownWButton(){
-        purplePlayer.inputKeyDown(51); //INTE KLAR
-        assertEquals(purplePlayer.getStateOfPlayer(), "JUMPING");
+    public void playerMove(){
+        purplePlayer.getBody().move(1, 2);
+        assertTrue(purplePlayer.getBody().getXPosition() == 1 || purplePlayer.getBody().getYPosition() == 2);
     }
 
     @Test
-    public void inputKeyDownAButton(){
-        purplePlayer.inputKeyDown(29); //????
-
-    }
-
-    @Test
-    public void inputKeyDown(){ //INTE KLAR
-
-    }
-
-    @Test
-    public void setStateOfPlayerTest(){ //StateOFPlayer not public? how find enum?
-       // purplePlayer.setStateOfPlayer(StateOfPlayer.JUMPING);
-
+    public void playerState(){
+        purplePlayer.playerState();
+        assertEquals(purplePlayer.getStateOfPlayer(), PlayerStates.WALKING);
     }
 }

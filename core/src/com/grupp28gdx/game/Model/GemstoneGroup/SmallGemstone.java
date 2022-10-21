@@ -64,13 +64,6 @@ public class SmallGemstone implements Gemstone {
     }
 
 
-    /**
-     * Returns the side length of the gemstone instance
-     * @return sideLength
-     */
-    public float getSideLength() {
-        return this.sideLength;
-    }
 
     @Override
     public int getId(){return id;}
@@ -104,7 +97,7 @@ public class SmallGemstone implements Gemstone {
      * @return body.
      */
     @Override
-    public Body getPosition() {
+    public Body getBody() {
         return body;
     }
 

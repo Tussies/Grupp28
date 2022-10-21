@@ -32,7 +32,7 @@ public class BigGemstone implements Gemstone {
     /**
      * A method which creates an instance of the class SmallGemstone
      *
-     * @return SmallGemstone
+     * @return BigGemstone
      */
     @Override
     public Gemstone createGemstone(float x, float y,int id) {
@@ -85,10 +85,6 @@ public class BigGemstone implements Gemstone {
         return height;
     }
 
-    @Override
-    public float getSideLength() {
-        return this.sideLength;
-    }
 
 
     /**
@@ -114,7 +110,7 @@ public class BigGemstone implements Gemstone {
      * @return body.
      */
     @Override
-    public Body getPosition()
+    public Body getBody()
         {
             return body;
         }

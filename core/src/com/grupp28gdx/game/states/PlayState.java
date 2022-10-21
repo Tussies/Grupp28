@@ -181,9 +181,9 @@ public class PlayState extends State {
         }
 
         for (Gemstone gemstone : gemstoneHandler.getGem()){
-            if (gemstone instanceof BigGemstone){rc.render(assetManager.getBigGemstoneTexture(),(gemstone).getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.75f,pixelsPerMeter*0.75f);}
-            else if (gemstone instanceof MediumGemstone){rc.render(assetManager.getMediumGemstoneTexture(),(gemstone).getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.45f,pixelsPerMeter*0.45f);}
-            else{rc.render(assetManager.getSmallGemstoneTexture(), gemstone.getPosition().x*pixelsPerMeter*2,(gemstone).getPosition().y*pixelsPerMeter*2,pixelsPerMeter*0.18f,pixelsPerMeter*0.18f);}
+            if (gemstone instanceof BigGemstone){rc.render(assetManager.getBigGemstoneTexture(),(gemstone).getBody().x*pixelsPerMeter*2,(gemstone).getBody().y*pixelsPerMeter*2,pixelsPerMeter*0.75f,pixelsPerMeter*0.75f);}
+            else if (gemstone instanceof MediumGemstone){rc.render(assetManager.getMediumGemstoneTexture(),(gemstone).getBody().x*pixelsPerMeter*2,(gemstone).getBody().y*pixelsPerMeter*2,pixelsPerMeter*0.45f,pixelsPerMeter*0.45f);}
+            else{rc.render(assetManager.getSmallGemstoneTexture(), gemstone.getBody().x*pixelsPerMeter*2,(gemstone).getBody().y*pixelsPerMeter*2,pixelsPerMeter*0.18f,pixelsPerMeter*0.18f);}
         }
         hud.updateScore(Math.round(player.getBody().getXPosition()) + player.getGemScore() );
         hud.updateGemScore(player.getGemScore());
