@@ -60,4 +60,32 @@ public class AbstractPlayerTest {
         greenPlayer.inputKeyDown(62);
         assertFalse(greenPlayer.getGun().getBulletsFired().isEmpty());
     }
+
+
+    @Test
+    public void addCollectedGem(){
+        greenPlayer.addCollectedGem(2);
+        assertTrue(greenPlayer.getGemScore() == 2);
+    }
+
+    @Test
+    public void getGemScore(){
+        assertTrue(greenPlayer.getGemScore() == 0);
+    }
+
+    @Test
+    public void react(){
+        greenPlayer.react();
+        assertEquals(PlayerStates.DEAD, greenPlayer.getStateOfPlayer());
+    }
+
+    @Test
+    public void getWidth(){
+        assertTrue(greenPlayer.getWidth() == 1f);
+    }
+
+    @Test
+    public void getHeight(){
+        assertTrue(greenPlayer.getHeight() == 2.75f);
+    }
 }

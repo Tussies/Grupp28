@@ -28,7 +28,7 @@ public class GreenPlayerTest {
     @Test
     public void playerState(){
         greenPlayer.playerState();
-        assertEquals(greenPlayer.getStateOfPlayer(), PlayerStates.WALKING);
+        assertEquals( PlayerStates.WALKING, greenPlayer.getStateOfPlayer());
     }
 
 

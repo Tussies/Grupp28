@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.Model.Guns;
+package com.grupp28gdx.game.Model.Weapon;
 
 import com.grupp28gdx.game.Model.Body;
 

@@ -12,7 +12,7 @@ import com.grupp28gdx.game.Model.CollisionDetector;
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
-import com.grupp28gdx.game.Model.Guns.Bullet;
+import com.grupp28gdx.game.Model.Weapon.Bullet;
 import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;

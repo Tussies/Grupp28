@@ -28,6 +28,6 @@ public class PurplePlayerTest {
     @Test
     public void playerState(){
         purplePlayer.playerState();
-        assertEquals(purplePlayer.getStateOfPlayer(), PlayerStates.WALKING);
+        assertEquals( PlayerStates.WALKING, purplePlayer.getStateOfPlayer());
     }
 }

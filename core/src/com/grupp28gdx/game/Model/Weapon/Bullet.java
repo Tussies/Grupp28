@@ -1,10 +1,7 @@
-package com.grupp28gdx.game.Model.Guns;
+package com.grupp28gdx.game.Model.Weapon;
 
 import com.grupp28gdx.game.Model.Body;
 import com.grupp28gdx.game.Model.CollisionDetector;
-import com.grupp28gdx.game.Model.DestroyableObstacle;
-import com.grupp28gdx.game.Model.Obstacle;
-import com.grupp28gdx.game.Model.PlayerGroup.Player;
 
 import java.util.ArrayList;
 

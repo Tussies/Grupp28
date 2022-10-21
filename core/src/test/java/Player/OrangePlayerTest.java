@@ -27,6 +27,6 @@ public class OrangePlayerTest {
     @Test
     public void playerState(){
         orangePlayer.playerState();
-        assertEquals(orangePlayer.getStateOfPlayer(), PlayerStates.WALKING);
+        assertEquals( PlayerStates.WALKING, orangePlayer.getStateOfPlayer());
     }
 }

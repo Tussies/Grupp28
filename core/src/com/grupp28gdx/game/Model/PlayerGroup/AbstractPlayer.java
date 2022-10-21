@@ -1,7 +1,7 @@
 package com.grupp28gdx.game.Model.PlayerGroup;
 
 import com.grupp28gdx.game.Model.Body;
-import com.grupp28gdx.game.Model.Guns.Gun;
+import com.grupp28gdx.game.Model.Weapon.Gun;
 
 /**
  * This is an abstract player, no instances of this player can be made but OrangePlayer,

@@ -1,10 +1,8 @@
 package com.grupp28gdx.game.Model;
 
-import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
-import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
-import com.grupp28gdx.game.Model.Guns.Bullet;
-import com.grupp28gdx.game.Model.Guns.Gun;
+import com.grupp28gdx.game.Model.Weapon.Bullet;
+import com.grupp28gdx.game.Model.Weapon.Gun;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.handlers.GemstoneHandler;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
