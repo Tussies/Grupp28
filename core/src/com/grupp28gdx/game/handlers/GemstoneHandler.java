@@ -63,7 +63,7 @@ public class GemstoneHandler extends SpawnHandler{
     @Override
     public void react(int id){
 
-        for (int i=0; i < itemArray.size-1 ; i++){
+        for (int i=0; i < itemArray.size ; i++){
             if (itemArray.get(i).getId() == id){
                 itemArray.removeIndex(i);
             }

@@ -37,11 +37,6 @@ public class RenderView {
         sb.setProjectionMatrix(combined);
     }
 
-    public void updateScore(int score){
-        sb.begin();
-        sb.end();
-    }
-
     public void render(Hud hud) {
         sb.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();

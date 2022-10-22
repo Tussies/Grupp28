@@ -60,6 +60,7 @@ public class PlayState extends State {
             gsm.set(new MenuState(gsm));
             rv.musicStop();
         }
+        hud.gameOver(gameWorld.getPlayer().getBody().getMovementSpeed() == 0);
 
         cameraUpdate(gameWorld.getPlayer());
 

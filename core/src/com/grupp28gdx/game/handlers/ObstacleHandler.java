@@ -42,7 +42,7 @@ public class ObstacleHandler extends SpawnHandler{
     }
 
     public void react(int id){
-        for (int i=0; i < obstacleArray.size-1 ; i++){
+        for (int i=0; i < obstacleArray.size ; i++){
             if (obstacleArray.get(i).getId() == id){
                 obstacleArray.removeIndex(i);
             }
