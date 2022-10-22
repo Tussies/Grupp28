@@ -1,4 +1,4 @@
-package Gemstone;
+package GemstoneTest;
 
 import com.grupp28gdx.game.Model.Body;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;

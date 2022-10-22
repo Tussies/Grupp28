@@ -1,11 +1,10 @@
-package Gemstone;
+package GemstoneTest;
 
 import com.grupp28gdx.game.Model.Body;
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;

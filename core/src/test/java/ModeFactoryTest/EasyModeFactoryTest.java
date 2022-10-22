@@ -1,4 +1,4 @@
-package ModeFactory;
+package ModeFactoryTest;
 
 import com.grupp28gdx.game.Model.*;
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
@@ -21,12 +21,12 @@ public class EasyModeFactoryTest {
     @Test
     public void createGemstoneTest(){
         Gemstone tempGemstone = easyFactory.createGemstone(1,1,1);
-        assertEquals(tempGemstone.getClass(), BigGemstone.class);
+        assertEquals( BigGemstone.class, tempGemstone.getClass());
     }
 
     @Test
     public void createObstacleTest(){
         Obstacle tempObstacle = easyFactory.createObstacle(1,1,1);
-        assertEquals(tempObstacle.getClass(), PermanentObstacle.class);
+        assertEquals(SpikeObstacle.class, tempObstacle.getClass());
     }
 }

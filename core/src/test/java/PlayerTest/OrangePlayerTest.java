@@ -1,4 +1,4 @@
-package Player;
+package PlayerTest;
 
 
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;

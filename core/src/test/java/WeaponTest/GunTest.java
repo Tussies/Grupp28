@@ -1,7 +1,6 @@
-package Weapon;
+package WeaponTest;
 
 import com.grupp28gdx.game.Model.Body;
-import com.grupp28gdx.game.Model.Weapon.Bullet;
 import com.grupp28gdx.game.Model.Weapon.Gun;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public class GunTest {
 
     @Test
     public void getBulletsFired(){
-        assertTrue(gun.getBulletsFired() instanceof ArrayList<Bullet>);
+        assertTrue(gun.getBulletsFired() instanceof ArrayList);
     }
 
     @Test

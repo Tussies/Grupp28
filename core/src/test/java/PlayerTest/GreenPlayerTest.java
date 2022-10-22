@@ -1,9 +1,8 @@
-package Player;
+package PlayerTest;
 
 import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 //import com.grupp28gdx.game.Model.StateOfPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.PlayerStates;
-import com.grupp28gdx.game.states.PlayState;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -1,8 +1,6 @@
-package Player;
+package PlayerTest;
 
-import com.grupp28gdx.game.Model.PlayerGroup.AbstractPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
-import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.PlayerGroup.PlayerStates;
 import org.junit.jupiter.api.Test;
 
