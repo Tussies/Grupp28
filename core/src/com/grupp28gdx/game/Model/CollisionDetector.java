@@ -44,7 +44,7 @@ public class CollisionDetector {
 
             }else if(subscriber instanceof Gun){
                 for (Obstacle obstacles : getObstacleFromCollisionList().getObstacles()){
-                    for(int i = 0; i < ((Gun) subscriber).bulletsFired.size(); i++){
+                    for(int i = 0; i < ((Gun) subscriber).getBulletsFired().size(); i++){
                        if(checkCollision((((Gun) subscriber).getBulletsFired().get(i)), obstacles)) {
                            ((Gun) subscriber).destroyBullet(i);
                            if(obstacles instanceof DestroyableObstacle){
