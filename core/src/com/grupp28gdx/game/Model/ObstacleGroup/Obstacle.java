@@ -1,6 +1,6 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.ObstacleGroup;
 
-import java.util.ArrayList;
+import com.grupp28gdx.game.Model.Body;
 
 /**
  * This is the common interface for the different type of objects. There are three types of objects in the game

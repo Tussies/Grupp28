@@ -1,14 +1,14 @@
 package com.grupp28gdx.game.Model;
 
-import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
-import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
 import com.grupp28gdx.game.Model.Guns.Bullet;
 import com.grupp28gdx.game.Model.Guns.Gun;
+import com.grupp28gdx.game.Model.ObstacleGroup.DestroyableObstacle;
+import com.grupp28gdx.game.Model.ObstacleGroup.Obstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
-import com.grupp28gdx.game.handlers.GemstoneHandler;
-import com.grupp28gdx.game.handlers.ObstacleHandler;
-import com.grupp28gdx.game.render.Hud;
+import com.grupp28gdx.game.Controller.handlers.GemstoneHandler;
+import com.grupp28gdx.game.Controller.handlers.ObstacleHandler;
+import com.grupp28gdx.game.View.render.Hud;
 
 import java.util.ArrayList;
 import java.util.List;
