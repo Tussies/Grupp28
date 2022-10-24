@@ -19,10 +19,14 @@ public class ChooseDifficultyState extends State{
     private final Texture bluePlayer;
     private final Texture greenPlayer;
     private final Texture redPlayer;
+    private final Texture backbutton;
+    private final Texture backbuttonPressed;
     private final int screenHeight;
     private final int screenWidth;
     private final int halfButtonHeight;
     private final int halfButtonWidth;
+    private final int backButtonWidth;
+    private final int backButtonHeight;
     private final int spriteWidth;
     private final int x;
     private final int y;
@@ -39,11 +43,15 @@ public class ChooseDifficultyState extends State{
         bluePlayer = new Texture("blueplayer.png");
         greenPlayer = new Texture("greenplayer.png");
         redPlayer = new Texture("redplayer.png");
+        backbutton = new Texture("Backbutton.png");
+        backbuttonPressed = new Texture("BackbuttonPressed.png");
 
         this.screenWidth = Gdx.graphics.getWidth();
         this.screenHeight = Gdx.graphics.getHeight();
         this.halfButtonWidth = normalButton.getWidth()/2;
         this.halfButtonHeight = normalButton.getHeight()/2;
+        this.backButtonWidth = backbutton.getWidth();
+        this.backButtonHeight = backbutton.getHeight();
         this.spriteWidth = bluePlayer.getWidth();
         this.x = screenWidth/2;
         this.y = screenHeight/2;
@@ -77,6 +85,12 @@ public class ChooseDifficultyState extends State{
         if (inputX < x*3/2 + halfButtonWidth && inputX > x*3/2 - halfButtonWidth && inputY > 4*y/3 + halfButtonHeight && inputY < 4*y/3 + 3* halfButtonHeight) {
             if (Gdx.input.isTouched()) {
                 gsm.set(new PlayState(gsm,3));
+                dispose();
+            }
+        }
+        if (inputX < x*3/2 + backButtonWidth && inputX > x*3/2 && screenHeight - inputY < backButtonHeight + y/9 && screenHeight - inputY > y/9){
+            if (Gdx.input.isTouched()) {
+                gsm.set(new MenuState(gsm));
                 dispose();
             }
         }
@@ -117,6 +131,10 @@ public class ChooseDifficultyState extends State{
         rv.render(hardButton,x*3/2 - halfButtonWidth,y/3);
         if (inputX < x*3/2 + halfButtonWidth && inputX > x*3/2 - halfButtonWidth && inputY > 4*y/3 + halfButtonHeight && inputY < 4*y/3 + 3* halfButtonHeight){
             hover(hardButtonPressed, x*3/2 - halfButtonWidth, y/3);
+        }
+        rv.render(backbutton, x*3/2,y/9);
+        if (inputX < x*3/2 + backButtonWidth && inputX > x*3/2 && screenHeight - inputY < backButtonHeight + y/9 && screenHeight - inputY > y/9) {
+            hover(backbuttonPressed, x*3/2,y/9);
         }
     }
 

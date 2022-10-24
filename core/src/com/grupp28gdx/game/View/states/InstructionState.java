@@ -19,7 +19,6 @@ public class InstructionState extends State {
     private int x;
     private int y;
 
-
     protected InstructionState(GameStateManager gsm) {
         super(gsm);
         background = new Texture("Instruction.png");
@@ -29,8 +28,8 @@ public class InstructionState extends State {
         this.screenWidth = Gdx.graphics.getWidth();
         this.backButtonWidth = backbutton.getWidth();
         this.backButtonHeight = backbutton.getHeight();
-        this.x = 1092;
-        this.y = 890;
+        this.x = screenWidth*3/4;
+        this.y = screenHeight/20;
     }
 
     private void hover(Texture texture, int x, int y){
@@ -45,7 +44,7 @@ public class InstructionState extends State {
     protected void handleInput() {
         int inputX = MenuInputHandler.checkInputX();
         int inputY = MenuInputHandler.checkInputY();
-        if (inputX < x + backButtonWidth && inputX > x && screenHeight - inputY < backButtonHeight + 88/2 && screenHeight - inputY > 88/2) {
+        if (inputX < x + backButtonWidth && inputX > x && screenHeight - inputY < backButtonHeight + y && screenHeight - inputY > y) {
             if (Gdx.input.isTouched()){
                 gsm.set(new MenuState(gsm));
                 dispose();
@@ -68,9 +67,9 @@ public class InstructionState extends State {
         int inputY = MenuInputHandler.checkInputY();
 
         rv.render(background,0 ,0, screenWidth, screenHeight);
-        rv.render(backbutton, 1092,30);
-        if (inputX < x + backButtonWidth && inputX > x && screenHeight - inputY < backButtonHeight + 88/2 && screenHeight - inputY > 88/2) {
-            hover(backbuttonPressed, 1092,30);
+        rv.render(backbutton, x,y);
+        if (inputX < x + backButtonWidth && inputX > x && screenHeight - inputY < backButtonHeight + y && screenHeight - inputY > y) {
+            hover(backbuttonPressed, x,y);
         }
 
     }
