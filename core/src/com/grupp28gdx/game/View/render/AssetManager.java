@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.Model.utils;
+package com.grupp28gdx.game.Model.Utils;
 
 import com.badlogic.gdx.graphics.Texture;
 
