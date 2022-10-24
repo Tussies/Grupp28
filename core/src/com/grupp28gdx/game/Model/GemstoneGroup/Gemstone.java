@@ -16,9 +16,10 @@ public interface Gemstone {
 
     public ArrayList<Float> getVectorListY();
 
-    public Body getPosition();
+    public Body getBody();
 
     int getId();
 
     int getValue();
+
 }
