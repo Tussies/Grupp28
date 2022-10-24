@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.Controller.handlers;
+package com.grupp28gdx.game.Model.handlers;
 
 import java.util.Random;
 

@@ -7,8 +7,8 @@ import com.grupp28gdx.game.Model.Guns.Gun;
 import com.grupp28gdx.game.Model.ObstacleGroup.DestroyableObstacle;
 import com.grupp28gdx.game.Model.ObstacleGroup.Obstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
-import com.grupp28gdx.game.Controller.handlers.GemstoneHandler;
-import com.grupp28gdx.game.Controller.handlers.ObstacleHandler;
+import com.grupp28gdx.game.Model.handlers.GemstoneHandler;
+import com.grupp28gdx.game.Model.handlers.ObstacleHandler;
 
 import java.util.ArrayList;
 import java.util.List;

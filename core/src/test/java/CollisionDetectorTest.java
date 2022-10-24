@@ -1,5 +1,5 @@
-import com.grupp28gdx.game.Controller.handlers.GemstoneHandler;
-import com.grupp28gdx.game.Controller.handlers.ObstacleHandler;
+import com.grupp28gdx.game.Model.handlers.GemstoneHandler;
+import com.grupp28gdx.game.Model.handlers.ObstacleHandler;
 import com.grupp28gdx.game.Model.Factories.EasyModeFactory;
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;

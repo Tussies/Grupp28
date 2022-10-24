@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.Controller.handlers;
+package com.grupp28gdx.game.Model.handlers;
 
 import com.grupp28gdx.game.Model.Factories.ModeFactory;
 import com.grupp28gdx.game.Model.ObstacleGroup.Obstacle;

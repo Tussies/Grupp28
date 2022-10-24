@@ -17,14 +17,14 @@ public class Hud {
     private Viewport viewport;
     private Stage gameOverStage;
 
-    Label scoreCounterLabel;
-    Label finalScoreCounterLabel;
-    Label coinCountLabel;
-    Label scoreTextLabel;
-    Label coinTextLabel;
+    private Label scoreCounterLabel;
+    private Label finalScoreCounterLabel;
+    private Label coinCountLabel;
+    private Label scoreTextLabel;
+    private Label coinTextLabel;
 
-    Label gameOverLabel;
-    Label goBackToMenu;
+    private Label gameOverLabel;
+    private Label goBackToMenu;
 
     public Hud(){
 
