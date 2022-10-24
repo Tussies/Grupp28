@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.Utils;
 
 public class Random {
     private int max;

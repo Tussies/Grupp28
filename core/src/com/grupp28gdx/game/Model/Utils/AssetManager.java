@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.View;
+package com.grupp28gdx.game.Model.Utils;
 
 import com.badlogic.gdx.graphics.Texture;
 
@@ -106,5 +106,38 @@ public class AssetManager {
 
     public Texture getPurpleDeadTexture() {
         return purpleDeadTexture;
+    }
+
+    public void dispose() {
+        background.dispose();
+        groundTexture.dispose();
+        bullet.dispose();
+        spikeTexture.dispose();
+        destroyableTexture.dispose();
+        wallTexture.dispose();
+        smallGemstoneTexture.dispose();
+        mediumGemstoneTexture.dispose();
+        bigGemstoneTexture.dispose();
+        orangeDeadTexture.dispose();
+        greenDeadTexture.dispose();
+        purpleDeadTexture.dispose();
+        for (Texture texture : playerJumpingAnimationOrangePlayer){
+            texture.dispose();
+        }
+        for (Texture texture : playerJumpingAnimationOrangePlayer){
+            texture.dispose();
+        }
+        for (Texture texture : playerWalkingAnimationGreenPlayer){
+            texture.dispose();
+        }
+        for (Texture texture : playerJumpingAnimationGreenPlayer){
+            texture.dispose();
+        }
+        for (Texture texture : playerRunningAnimationPurplePlayer){
+            texture.dispose();
+        }
+        for (Texture texture : playerJumpingAnimationPurplePlayer){
+            texture.dispose();
+        }
     }
 }

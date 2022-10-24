@@ -1,3 +1,4 @@
+
 package com.grupp28gdx.game.Model.ObstacleGroup;
 
 import com.grupp28gdx.game.Model.Body;
@@ -6,8 +7,6 @@ import com.grupp28gdx.game.Model.Body;
  * This obstacle is destroyable and not permanent, which means that it will disappear if the player shoots it with a gun.
  */
 public class DestroyableObstacle implements Obstacle {
-    private ObstacleShape shape;
-    private ObstacleColor color;
     private Body body;
     private int id;
 
@@ -17,8 +16,6 @@ public class DestroyableObstacle implements Obstacle {
      * @param spawnPosY
      */
     public DestroyableObstacle(float spawnPosX, float spawnPosY,int id) {
-        shape = ObstacleShape.SQUARE;
-        color = ObstacleColor.BLUE;
         this.body = new Body(spawnPosX,spawnPosY);
         body.setHeight(1.9f);
         body.setWidth(1);
@@ -47,16 +44,4 @@ public class DestroyableObstacle implements Obstacle {
     public int getId() {
         return this.id;
     }
-
-    /**
-     * Returns the shape of the destroyable obstacle.
-     * @return shape
-     */
-    public ObstacleShape getShape() { return shape; }
-
-    /**
-     * Returns the shape of the destroyable obstacle.
-     * @return color
-     */
-    public ObstacleColor getColor() { return color; }
 }
