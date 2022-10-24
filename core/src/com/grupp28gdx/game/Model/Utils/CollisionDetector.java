@@ -79,7 +79,7 @@ public class CollisionDetector {
 
 
     public boolean checkCollision(Player player,Gemstone gemstone){
-        return hasCollided(player.getBody(),gemstone.getPosition());
+        return hasCollided(player.getBody(),gemstone.getBody());
     }
 
     public boolean checkCollision(Player player,Obstacle obstacle){
@@ -116,7 +116,7 @@ public class CollisionDetector {
                                 o1BodyY >= o2BodyY));
     }
 
-    private boolean hasCollided(Player player, float yPosition){
+    public boolean hasCollided(Player player, float yPosition){
 
         Body playerBody = player.getBody();
 

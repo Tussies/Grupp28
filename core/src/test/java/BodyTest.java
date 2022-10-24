@@ -1,5 +1,5 @@
 import com.grupp28gdx.game.Model.Body;
-import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -64,6 +64,29 @@ public class BodyTest {
     @Test
     public void moveTest(){
         tempBody.move(1,2);
-        assertTrue(tempBody.getXPosition() == 2 || tempBody.getYPosition() == 3);
+        Assertions.assertTrue(tempBody.getXPosition() == 2 || tempBody.getYPosition() == 3);
+
     }
+
+    @Test
+    public void getHeightTest(){
+        Assertions.assertEquals(0, tempBody.getHeight());
+    }
+
+    @Test
+    public void getWidthTest(){
+        Assertions.assertEquals(0, tempBody.getWidth());
+    }
+
+    @Test
+    public void getGravityTest(){
+        Assertions.assertEquals(-1.0f,tempBody.gravity);
+    }
+
+    @Test
+    public void setSpeedYTest(){
+        tempBody.speedY = 1;
+        Assertions.assertEquals(1,tempBody.getSpeedY());
+    }
+
 }
