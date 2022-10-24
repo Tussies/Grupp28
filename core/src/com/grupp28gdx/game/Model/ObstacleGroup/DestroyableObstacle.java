@@ -11,9 +11,10 @@ public class DestroyableObstacle implements Obstacle {
     private int id;
 
     /**
-     * This is the constructor for the destroyable objects, the color makes the destroyable obstacle distinguishable from the permanent obstacles.
-     * @param spawnPosX
-     * @param spawnPosY
+     * This is the constructor for the destroyable objects.
+     * @param spawnPosX spawning X position
+     * @param spawnPosY spawning Y position
+     * @param id id of th obstacle
      */
     public DestroyableObstacle(float spawnPosX, float spawnPosY,int id) {
         this.body = new Body(spawnPosX,spawnPosY);
@@ -25,17 +26,19 @@ public class DestroyableObstacle implements Obstacle {
     }
 
     /**
-     * This method will destroy the shape when the object has been destroyed by shooting at it.
+     * Creates a new destroyable obstacle.
+     * @param spawnX spawning X position
+     * @param spawnY spawning Y position
+     * @param id id of the obstacle.
+     * @return new destroyable obstacle.
      */
-
-
     @Override
     public Obstacle createObstacle(float spawnX, float spawnY,int id) {
         return new DestroyableObstacle(spawnX,spawnY,id);
     }
 
     /**
-     * Returns the position of body.
+     * Getetr for the body.
      * @return body
      */
     public Body getBody(){ return body; }

@@ -35,7 +35,6 @@ public class GreenPlayer extends AbstractPlayer implements Player {
             body.accelerate(0, body.gravity);
         }
     }
-
     @Override
     public void playerMove(float deltaTime) {
         body.move(body.getMovementSpeed()*deltaTime, body.speedY*deltaTime*friction);

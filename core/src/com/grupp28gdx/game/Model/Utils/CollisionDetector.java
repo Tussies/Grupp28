@@ -9,14 +9,13 @@ import com.grupp28gdx.game.Model.ObstacleGroup.Obstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Controller.handlers.GemstoneHandler;
 import com.grupp28gdx.game.Controller.handlers.ObstacleHandler;
-import com.grupp28gdx.game.View.render.Hud;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CollisionDetector {
 
-    private List<Object> collisionsList = new ArrayList<Object>();
+    private List<Object> collisionsList = new ArrayList<>();
     private Player player;
 
     public CollisionDetector(ObstacleHandler obstacleHandler, GemstoneHandler gemstoneHandler, Gun gun,Player player){
@@ -44,22 +43,23 @@ public class CollisionDetector {
                     }
                 }
             }else if(subscriber instanceof GemstoneHandler){
-                for(Gemstone gemstone : ((GemstoneHandler) subscriber).getGem()){
-                    if (checkCollision(player,gemstone)) {
-                        ((GemstoneHandler) subscriber).react(gemstone.getId());
-                        player.addCollectedGem(gemstone.getValue());
+                for(int x = 0;x < ((GemstoneHandler) subscriber).getGem().size();x++){
+                    if (checkCollision(player,((GemstoneHandler) subscriber).getGem().get(x))) {
+                        ((GemstoneHandler) subscriber).react(((GemstoneHandler) subscriber).getGem().get(x).getId());
+                        player.addCollectedGem(((GemstoneHandler) subscriber).getGem().get(x).getValue());
                     }
                 }
 
             }else if(subscriber instanceof Gun){
-                for (Obstacle obstacles : getObstacleFromCollisionList().getObstacles()){
-                    for(int i = 0; i < ((Gun) subscriber).bulletsFired.size(); i++){
-                       if(checkCollision((((Gun) subscriber).getBulletsFired().get(i)), obstacles)) {
-                           ((Gun) subscriber).destroyBullet(i);
-                           if(obstacles instanceof DestroyableObstacle){
-                               getObstacleFromCollisionList().react(obstacles.getId());
-                           }
-                       }
+                for(int y = 0; y <= getObstacleFromCollisionList().getObstacles().size()-1; y++) {
+                    for (int i = 0; i < ((Gun) subscriber).getBulletsFired().size(); i++) {
+                        if (checkCollision((((Gun) subscriber).getBulletsFired().get(i)), getObstacleFromCollisionList().getObstacles().get(y))) {
+                            ((Gun) subscriber).destroyBullet(i);
+                            if (getObstacleFromCollisionList().getObstacles().get(y) instanceof DestroyableObstacle) {
+                                getObstacleFromCollisionList().react(getObstacleFromCollisionList().getObstacles().get(y).getId());
+                                break;
+                            }
+                        }
                     }
                 }
             }else System.out.println("Exception");
@@ -90,7 +90,7 @@ public class CollisionDetector {
         return hasCollided(bullet.getBody(),obstacle.getBody());
     }
 
-    public boolean hasCollided(Body o1, Body o2) {
+    private boolean hasCollided(Body o1, Body o2) {
         float o1BodyX = o1.getXPosition() * 2;
         float o1BodyY = o1.getYPosition() * 2;
 
@@ -116,10 +116,10 @@ public class CollisionDetector {
                                 o1BodyY >= o2BodyY));
     }
 
-    public boolean hasCollided(Player player, float yPosition){
+    private boolean hasCollided(Player player, float yPosition){
 
         Body playerBody = player.getBody();
 
-        return playerBody.y < yPosition;
+        return playerBody.getYPosition() < yPosition;
     }
 }

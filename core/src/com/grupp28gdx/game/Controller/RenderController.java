@@ -14,7 +14,7 @@ import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
-import com.grupp28gdx.game.Model.Utils.AssetManager;
+import com.grupp28gdx.game.View.render.AssetManager;
 import com.grupp28gdx.game.View.render.RenderView;
 
 import java.util.ArrayList;
@@ -146,7 +146,7 @@ public class RenderController {
                 frame += 1f;
                 frame = frame % 60;
                 animationFrame = animationFrame % 5;
-                rv.render(assetManager.getPlayerRunningAnimationPurplePlayer()[animationFrame], player.getBody().getXPosition() * pixelsPerMeter*2 - (assetManager.getPlayerRunningAnimationPurplePlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().getYPosition() * pixelsPerMeter*2-5, 200/4f, 422/4f);
+                rv.render(assetManager.getPlayerRunningAnimationPurplePlayer()[animationFrame], player.getBody().x * pixelsPerMeter*2 - (assetManager.getPlayerRunningAnimationPurplePlayer()[1].getWidth()/8f) + pixelsPerMeter-12, player.getBody().y * pixelsPerMeter*2-5, 200/4f, 422/4f);
                 break;
         }
     }

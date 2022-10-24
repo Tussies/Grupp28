@@ -31,36 +31,6 @@ public class BigGemstoneTest {
     }
 
     @Test
-    public void getVectorListX() {
-        ArrayList<Float> testList = new ArrayList() {{
-            add(1.0f);
-            add(1.0f);
-            add(1.25f);
-            add(1.5f);
-            add(1.75f);
-            add(1.75f);
-            add(1.5f);
-            add(1.25f);
-        }};
-        assertEquals(testList, bigGemstone.getVectorListX());
-    }
-
-    @Test
-    public void getVectorListY() {
-        ArrayList<Float> testList = new ArrayList() {{
-            add(1.25f);
-            add(1.5f);
-            add(1.75f);
-            add(1.75f);
-            add(1.5f);
-            add(1.25f);
-            add(1.0f);
-            add(1.0f);
-        }};
-        assertEquals(testList, bigGemstone.getVectorListY());
-    }
-
-    @Test
     public void getBody() {
         assertTrue(bigGemstone.getBody() instanceof Body);
     }
