@@ -12,16 +12,14 @@ import com.grupp28gdx.game.Model.Guns.Gun;
  */
 public abstract class AbstractPlayer implements Player{
 
-    public Body body;
+    protected Body body;
     private float friction;
     private Gun gun;
 
     private int gemScore;
-    public PlayerStates playerState;
+    protected PlayerStates playerState;
 
-    boolean onGround = true;
-
-    public AbstractPlayer() {
+    protected AbstractPlayer() {
         friction = 0.0f;
         createPlayer();
     }
@@ -61,7 +59,7 @@ public abstract class AbstractPlayer implements Player{
     }
 
     public void playerState() {
-        if(body.y <= 0){
+        if(body.y <= 1){
             playerState = PlayerStates.WALKING;
         }
     }
@@ -79,17 +77,9 @@ public abstract class AbstractPlayer implements Player{
 
     public void collisionGroundBegin(float y) {
         body.y = y;
-        onGround = true;
         playerState();
         body.forceY = 0;
         body.speedY = 0;
-    }
-
-    /**
-     * Sets the onGround state to false indicating that the player is no longer touching the ground.
-     */
-    public void collisionGroundEnd() {
-        onGround = false;
     }
 
     /**
@@ -118,29 +108,6 @@ public abstract class AbstractPlayer implements Player{
             case 62:
                 gun.shootGun(this.body.getXPosition(), this.body.getYPosition()+0.4f, this.body.getMovementSpeed()+1) ;
         }
-    }
-
-    /**
-     * A method used to interpret a key release as a certain action.
-     * @param key one of the constants in libGDX Input.KEYS
-     */
-    public void inputKeyUp(int key){
-        switch (key){
-            case 51:
-                break;// w
-
-            case 47: // s
-                break;
-            case 29: // a
-                break;
-            case 32: //d
-
-                break;
-        }
-    }
-
-    public void setStateOfPlayer(PlayerStates stateOfPlayer) {
-        playerState = stateOfPlayer;
     }
 
     public PlayerStates getStateOfPlayer() {

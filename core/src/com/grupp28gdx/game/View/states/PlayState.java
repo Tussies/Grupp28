@@ -11,7 +11,7 @@ import com.grupp28gdx.game.Controller.RenderController;
 import com.grupp28gdx.game.Controller.input.PlayInputHandler;
 import com.grupp28gdx.game.View.render.Hud;
 
-import static com.grupp28gdx.game.Model.utils.Constants.pixelsPerMeter;
+import static com.grupp28gdx.game.Model.Utils.Constants.pixelsPerMeter;
 
 /**
  * This class is the play state, which is used for showing the play-state of the game in the view.

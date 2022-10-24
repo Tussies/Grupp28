@@ -18,8 +18,6 @@ public interface Player {
 
     void inputKeyDown(int key);
 
-    void inputKeyUp(int key);
-
     Body getBody();
 
     void collisionGroundBegin(float y);

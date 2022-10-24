@@ -7,7 +7,7 @@ import com.grupp28gdx.game.Model.ObstacleGroup.PermanentObstacle;
 import com.grupp28gdx.game.Model.ObstacleGroup.SpikeObstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
-import com.grupp28gdx.game.Model.utils.Random;
+import com.grupp28gdx.game.Model.Utils.Random;
 
 /**
  * This is the concrete hard mode factory. It produces harder, or, more difficult versions

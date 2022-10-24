@@ -78,14 +78,14 @@ public class BodyTest {
         Assertions.assertEquals(0, tempBody.getWidth());
     }
 
-    @Test
+    /*@Test
     public void getGravityTest(){
         Assertions.assertEquals(-1.0f,tempBody.gravity);
-    }
+    }*/
 
     @Test
     public void setSpeedYTest(){
-        tempBody.speedY = 1;
+        tempBody.setForceX(1);
         Assertions.assertEquals(1,tempBody.getSpeedY());
     }
 

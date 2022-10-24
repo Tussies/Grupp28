@@ -5,9 +5,9 @@ import com.grupp28gdx.game.Model.Body;
 import java.util.ArrayList;
 
 public class Gun {
-    public Body body;
-    public Bullet bullet;
-    public ArrayList<Bullet> bulletsFired = new ArrayList<>();
+    private Body body;
+    private Bullet bullet;
+    private ArrayList<Bullet> bulletsFired = new ArrayList<>();
 
     public Gun(){ //Send in player coordinates
         this.body = new Body(0,0);

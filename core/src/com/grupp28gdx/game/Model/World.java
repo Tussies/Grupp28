@@ -7,7 +7,7 @@ import com.grupp28gdx.game.Model.Factories.EasyModeFactory;
 import com.grupp28gdx.game.Model.Factories.HardModeFactory;
 import com.grupp28gdx.game.Model.Factories.ModeFactory;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
-import com.grupp28gdx.game.Model.utils.CollisionDetector;
+import com.grupp28gdx.game.Model.Utils.CollisionDetector;
 
 public class World {
     private ModeFactory modeFactory;

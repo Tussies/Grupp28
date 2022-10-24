@@ -30,7 +30,6 @@ public class PlayInputHandler extends InputHandler {
 
     @Override
     public boolean keyUp(int keycode) {
-        player.inputKeyUp(keycode);
         return false;
 
         /** Called when a key was released.
