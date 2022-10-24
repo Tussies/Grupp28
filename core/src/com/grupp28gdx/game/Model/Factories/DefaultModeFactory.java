@@ -43,7 +43,6 @@ public class DefaultModeFactory implements ModeFactory{
                 return new MediumGemstone(spawnX,spawnY,id);
         }
         return null;
-
     }
 
     /**
@@ -67,6 +66,5 @@ public class DefaultModeFactory implements ModeFactory{
                 return new PermanentObstacle(spawnX,spawnY+1,id);
         }
         return null;
-
     }
 }

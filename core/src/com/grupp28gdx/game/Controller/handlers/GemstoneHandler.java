@@ -5,21 +5,14 @@ import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.Factories.ModeFactory;
 
 
-
+/**
+ * This class is used to generate gemstones and handles all the position and deletion of all gemstones.
+ */
 public class GemstoneHandler extends SpawnHandler{
 
-    /**
-     *
-     * This class is used to generate gemstones and handles all the position and deletion of all gemstones.
-     *
-     *
-     *  gemstoneArray = An array of gemstone objects
-     *  modeFactory = global modeFactory for GemstoneHandler
-     *  id = Id that will be given to a gemstone
-     * */
-    protected Array<Gemstone> gemstoneArray = new Array<>();
-    protected ModeFactory modeFactory;
-    protected int id = 0;
+    private Array<Gemstone> gemstoneArray = new Array<>();
+    private ModeFactory modeFactory;
+    private int id = 0;
 
 
     /**

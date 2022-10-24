@@ -15,9 +15,21 @@ public class SmallGemstone implements Gemstone {
     private int id;
     private int value;
 
+    /**
+     * An ArrayList of X positions for creating vectors.
+     */
     ArrayList<Float> vectorListX = new ArrayList<Float>();
+    /**
+     * An ArrayList of Y positions for creating vectors.
+     */
     ArrayList<Float> vectorListY = new ArrayList<Float>();
 
+    /**
+     * Constructor for small gemstone.
+     * @param x the X-position of gemstone body.
+     * @param y the Y-position of gemstone body.
+     * @param id the Id of the small gemstone.
+     */
     public SmallGemstone(float x, float y,int id) {
         value = 10;
         this.points = 60;
@@ -31,8 +43,7 @@ public class SmallGemstone implements Gemstone {
 
     /**
      * A method which creates an instance of the class SmallGemstone
-     *
-     * @return SmallGemstone
+     * @return SmallGemstone, a small gemstone.
      */
     @Override
     public Gemstone createGemstone(float x, float y,int id) {
@@ -61,23 +72,21 @@ public class SmallGemstone implements Gemstone {
         vectorListY.add(body.getYPosition());
     }
 
-
     /**
-     * Returns the side length of the gemstone instance
-     * @return sideLength
+     * Getter for id of small gemstone.
+     * @return id of small gemstone.
      */
-    public float getSideLength() {
-        return this.sideLength;
-    }
-
     @Override
     public int getId(){return id;}
 
+    /**
+     * Getter for value of gemstone.
+     * @return value of small gemstone.
+     */
     @Override
     public int getValue() {
         return value;
     }
-
 
     /**
      * Returns an ArrayList of x-points for creating vectors.
@@ -99,7 +108,7 @@ public class SmallGemstone implements Gemstone {
 
     /**
      * Getter for obtaining a body and its position.
-     * @return body.
+     * @return body which stores position.
      */
     @Override
     public Body getPosition() {

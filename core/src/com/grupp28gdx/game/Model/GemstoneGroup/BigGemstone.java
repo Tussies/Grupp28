@@ -4,19 +4,32 @@ import com.grupp28gdx.game.Model.Body;
 import java.util.ArrayList;
 
 /**
- * This is the big coin. When the player catches this coin it gains x/3 the amount of points as when the player
- * catches the medium coin. There are three types of coins in total in the game to catch.
+ * This is the big gemstone. When the player catches this gemstone it gains x/3 the amount of points as when the player
+ * catches the medium gemstone. There are three types of gems in total in the game to catch.
  */
 public class BigGemstone implements Gemstone {
 
-    public Body body;
+    private Body body;
     private float sideLength;
     private int id;
     private int value;
 
+    /**
+     * An ArrayList of X positions for creating vectors.
+     */
     ArrayList<Float> vectorListX = new ArrayList<Float>();
+
+    /**
+     * An ArrayList of Y positions for creating vectors.
+     */
     ArrayList<Float> vectorListY = new ArrayList<Float>();
 
+    /**
+     * Constructor for gemstone.
+     * @param x the X-position of gemstone body.
+     * @param y the Y-position of gemstone body.
+     * @param id the Id of the big gemstone.
+     */
     public BigGemstone(float x, float y,int id) {
         value = 1;
         this.sideLength = 10;
@@ -28,14 +41,13 @@ public class BigGemstone implements Gemstone {
     }
 
     /**
-     * A method which creates an instance of the class SmallGemstone
+     * A method which creates an instance of the class BigGemstone
      *
-     * @return SmallGemstone
+     * @return BigGemstone, a big gemstone.
      */
     @Override
     public Gemstone createGemstone(float x, float y,int id) {
-        Gemstone gemstone = new BigGemstone(x, y, id);
-        return gemstone;
+        return new BigGemstone(x, y, id);
     }
 
     private void createShape(){
@@ -59,29 +71,26 @@ public class BigGemstone implements Gemstone {
         vectorListY.add(body.getYPosition());
 
     }
-    /**
-     * Returns the side length of the gemstone instance
-     *
-     * @return sideLength
-     */
 
+    /**
+     * Getter for Id of big gemstone.
+     * @return id of big gemstone.
+     */
     @Override
     public int getId(){return id;}
 
+    /**
+     * Getter for value of gemstone.
+     * @return value of big gemstone.
+     */
     @Override
     public int getValue() {
         return value;
     }
 
-    @Override
-    public float getSideLength() {
-        return this.sideLength;
-    }
-
-
     /**
-     * Returns an ArrayList of x-points for creating vectors.
-     * @return vectorListX.
+     * Gets the ArrayList of X Positions for creating vectors.
+     * @return vectorListX, an ArrayList of X positions.
      */
     @Override
     public ArrayList<Float> getVectorListX() {
@@ -89,8 +98,8 @@ public class BigGemstone implements Gemstone {
     }
 
     /**
-     * Returns an ArrayList of y-points for creating vectors.
-     * @return vectorListY.
+     * Returns an ArrayList of Y Positions for creating vectors.
+     * @return vectorListY, an ArrayList of X positions.
      */
     @Override
     public ArrayList<Float> getVectorListY() {
@@ -99,7 +108,7 @@ public class BigGemstone implements Gemstone {
 
     /**
      * Getter for obtaining a body and its position.
-     * @return body.
+     * @return body which stores position.
      */
     @Override
     public Body getPosition()

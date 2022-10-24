@@ -2,17 +2,27 @@ package com.grupp28gdx.game.Controller.input;
 
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 
+/**
+ * PlayInputHandler is an input handler that takes the input of a user in the play state, e.g. when the user
+ * presses the key used for jumping, up or w.
+ */
 public class PlayInputHandler extends InputHandler {
     private Player player;
+
+    /**
+     * Constructor for PlayInputHandler.
+     * @param player instance of player used in this class.
+     */
     public PlayInputHandler(Player player){
         this.player = player;
     }
+
     @Override
     public boolean keyDown(int keycode) {
         player.inputKeyDown(keycode);
         return false;
 
-        /** Called when a key was released
+        /** Called when a key was pressed.
          *
          * @param keycode one of the constants in {@link Input.Keys}
          * @return whether the input was processed */
@@ -23,9 +33,9 @@ public class PlayInputHandler extends InputHandler {
         player.inputKeyUp(keycode);
         return false;
 
-        /** Called when a key was typed
+        /** Called when a key was released.
          *
-         * @param character The character
+         * @param keycode one of the constants in {@link Input.Keys}
          * @return whether the input was processed */
     }
 
@@ -33,11 +43,10 @@ public class PlayInputHandler extends InputHandler {
     public boolean keyTyped(char character) {
         return false;
 
-        /** Called when the screen was touched or a mouse button was pressed. The button parameter will be {@link Buttons#LEFT} on iOS.
-         * @param screenX The x coordinate, origin is in the upper left corner
-         * @param screenY The y coordinate, origin is in the upper left corner
-         * @param pointer the pointer for the event.
-         * @param button the button
-         * @return whether the input was processed */
+        /**
+         * Called when a key was typed.
+         * @param character The character
+         * @return whether the input was processed
+         */
     }
 }

@@ -4,19 +4,10 @@ import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.Model.Factories.ModeFactory;
 import com.grupp28gdx.game.Model.ObstacleGroup.Obstacle;
 
-
+/**
+ *  This class is used to generate obstacles and handles all the position and deletion of all obstacles.
+ */
 public class ObstacleHandler extends SpawnHandler{
-
-
-    /**
-     *
-     * This class is used to generate obstacles and handles all the position and deletion of all obstacles.
-     *
-     *
-     *  obstacleArray = An array of obstacle objects
-     *  modeFactory = global modeFactory for ObstacleHandler
-     *  id = Id that will be given to an obstacle
-     * */
 
     private Array<Obstacle> obstacleArray = new Array<>();
     private final ModeFactory modeFactory;

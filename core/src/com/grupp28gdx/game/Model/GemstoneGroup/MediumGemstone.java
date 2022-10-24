@@ -5,20 +5,32 @@ import com.grupp28gdx.game.Model.Body;
 import java.util.ArrayList;
 
 /**
- * This is the medium coin. When the player catches this coin it gains the default amount of points.
- * There are three types of coins in total in the game to catch.
+ * This is the medium gemstone. When the player catches this gemstone it gains the default amount of points.
+ * There are three types of gemstones in total in the game to catch.
  */
 public class MediumGemstone implements Gemstone {
 
-    public Body body;
+    private Body body;
     private float sideLength;
     private int points;
     private int id;
     private int value;
 
+    /**
+     * An ArrayList of X positions for creating vectors.
+     */
     ArrayList<Float> vectorListX = new ArrayList<Float>();
+    /**
+     * An ArrayList of Y positions for creating vectors.
+     */
     ArrayList<Float> vectorListY = new ArrayList<Float>();
 
+    /**
+     * Constructor for medium gemstone.
+     * @param x the X-position of gemstone body.
+     * @param y the Y-position of gemstone body.
+     * @param id the Id of the medium gemstone.
+     */
     public MediumGemstone(float x, float y, int id) {
         value = 5;
         points = 30;
@@ -31,8 +43,8 @@ public class MediumGemstone implements Gemstone {
     }
 
     /**
-     * A method which creates an instance of the class SmallGemstone
-     * @return SmallGemstone
+     * A method which creates an instance of the class MediumGemstone
+     * @return MediumGemstone, a medium gemstone.
      */
     @Override
     public Gemstone createGemstone(float x, float y,int id) {
@@ -61,27 +73,27 @@ public class MediumGemstone implements Gemstone {
         vectorListY.add(body.getYPosition());
     }
 
+    /**
+     * Getter for id of medium gemstone.
+     * @return id of medium gemstone.
+     */
     @Override
     public int getId(){
         return id;
     }
 
+    /**
+     * Getter for value of gemstone.
+     * @return value of medium gemstone.
+     */
     @Override
     public int getValue() {
         return value;
     }
 
     /**
-     * Returns the side length of the gemstone instance
-     * @return sideLength
-     */
-    public float getSideLength() {
-        return this.sideLength;
-    }
-
-    /**
-     * Returns an ArrayList of x-points for creating vectors.
-     * @return vectorListX.
+     * Gets the ArrayList of X Positions for creating vectors.
+     * @return vectorListX, an ArrayList of X positions.
      */
     @Override
     public ArrayList<Float> getVectorListX() {
@@ -89,8 +101,8 @@ public class MediumGemstone implements Gemstone {
     }
 
     /**
-     * Returns an ArrayList of y-points for creating vectors.
-     * @return vectorListY.
+     * Returns an ArrayList of Y Positions for creating vectors.
+     * @return vectorListY, an ArrayList of X positions.
      */
     @Override
     public ArrayList<Float> getVectorListY() {
@@ -99,7 +111,7 @@ public class MediumGemstone implements Gemstone {
 
     /**
      * Getter for obtaining a body and its position.
-     * @return body.
+     * @return body which stores position.
      */
     @Override
     public Body getPosition() {
