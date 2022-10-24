@@ -9,7 +9,7 @@ import com.grupp28gdx.game.Model.ObstacleGroup.PermanentObstacle;
 import com.grupp28gdx.game.Model.ObstacleGroup.SpikeObstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
-import com.grupp28gdx.game.Model.Utils.Random;
+import com.grupp28gdx.game.Model.utils.Random;
 
 /**
  * This is the concrete default mode factory. It produces all standard versions of almost all objects, namely player,
@@ -43,7 +43,6 @@ public class DefaultModeFactory implements ModeFactory{
                 return new MediumGemstone(spawnX,spawnY,id);
         }
         return null;
-
     }
 
     /**
@@ -67,6 +66,5 @@ public class DefaultModeFactory implements ModeFactory{
                 return new PermanentObstacle(spawnX,spawnY+1,id);
         }
         return null;
-
     }
 }

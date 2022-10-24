@@ -29,6 +29,7 @@ public class HardModeFactoryTest {
         assertNotNull(tempGemstone);
     }
 
+
     @Test
     public void createObstacleTest() {
         Obstacle tempObstacle = hardFactory.createObstacle(1, 1, 1);

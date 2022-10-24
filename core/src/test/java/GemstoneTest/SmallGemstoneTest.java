@@ -59,7 +59,7 @@ public class SmallGemstoneTest {
 
     @Test
     public void getBody(){
-        assertTrue(smallGemstone.getBody() instanceof Body);
+        assertTrue(smallGemstone.getPosition() instanceof Body);
     }
 
 

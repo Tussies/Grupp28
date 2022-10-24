@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.Model.Utils;
+package com.grupp28gdx.game.Model.utils;
 
 import com.grupp28gdx.game.Model.Body;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
@@ -79,7 +79,7 @@ public class CollisionDetector {
 
 
     public boolean checkCollision(Player player,Gemstone gemstone){
-        return hasCollided(player.getBody(),gemstone.getBody());
+        return hasCollided(player.getBody(),gemstone.getPosition());
     }
 
     public boolean checkCollision(Player player,Obstacle obstacle){

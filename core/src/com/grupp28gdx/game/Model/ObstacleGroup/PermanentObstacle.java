@@ -10,6 +10,12 @@ public class PermanentObstacle implements Obstacle {
 
     private final Body body;
 
+    /**
+     * This is the constructor for the permanent obstacles.
+     * @param spawnPosX spawning X position
+     * @param spawnPosY spawning Y position
+     * @param id id of th obstacle
+     */
     public PermanentObstacle(float spawnPosX, float spawnPosY,int id){
         body = new Body(spawnPosX,spawnPosY);
         body.setHeight(1.9f);
@@ -22,11 +28,22 @@ public class PermanentObstacle implements Obstacle {
         return this.id;
     }
 
+    /**
+     * Getter for the body.
+     * @return body
+     */
     @Override
     public Body getBody(){
         return body;
     }
 
+    /**
+     * Creates a new destroyable obstacle.
+     * @param spawnX spawning X position
+     * @param spawnY spawning Y position
+     * @param id id of the obstacle.
+     * @return new permanent obstacle.
+     */
     @Override
     public Obstacle createObstacle(float spawnX, float spawnY,int id) {
         return new PermanentObstacle(spawnX,spawnY,id);

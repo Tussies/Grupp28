@@ -59,7 +59,7 @@ public class MediumGemstoneTest {
 
     @Test
     public void getBody(){
-        assertTrue(mediumGemstone.getBody() instanceof Body);
+        assertTrue(mediumGemstone.getPosition() instanceof Body);
     }
 
 
