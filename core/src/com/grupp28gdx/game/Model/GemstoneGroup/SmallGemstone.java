@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class SmallGemstone implements Gemstone {
 
-    public Body body;
+    private Body body;
     private int id;
     private int value;
 
