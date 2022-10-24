@@ -1,5 +1,6 @@
 package ObstacleGroupTest;
 
+import com.grupp28gdx.game.Model.Body;
 import com.grupp28gdx.game.Model.Obstacle;
 import com.grupp28gdx.game.Model.SpikeObstacle;
 import org.junit.Test;
