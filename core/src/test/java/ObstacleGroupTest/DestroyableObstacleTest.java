@@ -5,7 +5,7 @@ import com.grupp28gdx.game.Model.DestroyableObstacle;
 import com.grupp28gdx.game.Model.Obstacle;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class DestroyableObstacleTest {
 
@@ -14,27 +14,27 @@ public class DestroyableObstacleTest {
     @Test
     public void createObstacle() {
         Obstacle temp = destroyObst.createObstacle(1, 1, 1);
-        assertTrue(temp instanceof Obstacle);
+        assertNotNull(temp);
     }
 
     @Test
     public void getBody() {
-        assertTrue(destroyObst.getBody() instanceof Body);
+        assertNotNull(destroyObst.getBody());
     }
 
     @Test
     public void getId() {
-        assertTrue(destroyObst.getId() == 1);
+        assertEquals(1, destroyObst.getId());
     }
 
     @Test
     public void getWidth() {
-        assertTrue(destroyObst.getWidth() == 1f);
+        assertEquals(1f, destroyObst.getWidth(), 0.0);
     }
 
     @Test
     public void getHeight() {
-        assertTrue(destroyObst.getHeight() == 1.9f);
+        assertEquals(1.9f, destroyObst.getHeight(), 0.0);
     }
 
 
