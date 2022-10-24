@@ -7,7 +7,7 @@ import com.grupp28gdx.game.Model.Factories.EasyModeFactory;
 import com.grupp28gdx.game.Model.Factories.HardModeFactory;
 import com.grupp28gdx.game.Model.Factories.ModeFactory;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
-import com.grupp28gdx.game.Model.Utils.CollisionDetector;
+import com.grupp28gdx.game.Model.utils.CollisionDetector;
 
 public class World {
     private ModeFactory modeFactory;
@@ -23,7 +23,7 @@ public class World {
         setupGame(difficulty);
     }
 
-    private void setupGame(int difficulty) {
+    public void setupGame(int difficulty) {
         modeFactory = setFactories(difficulty);
 
         obstacleHandler = new ObstacleHandler(modeFactory);
@@ -43,7 +43,7 @@ public class World {
         collisionDetector.update();
     }
 
-    private ModeFactory setFactories(int x){
+    public ModeFactory setFactories(int x){
         switch (x) {
             case 1:
                 return new DefaultModeFactory();

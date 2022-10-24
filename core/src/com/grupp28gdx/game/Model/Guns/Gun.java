@@ -36,5 +36,7 @@ public class Gun {
 
     public ArrayList<Bullet> getBulletsFired(){return this.bulletsFired;}
 
+    public Body getBody(){return this.body;}
+
 
 }

@@ -11,8 +11,6 @@ import java.util.ArrayList;
 public class MediumGemstone implements Gemstone {
 
     private Body body;
-    private float sideLength;
-    private int points;
     private int id;
     private int value;
 
@@ -33,8 +31,6 @@ public class MediumGemstone implements Gemstone {
      */
     public MediumGemstone(float x, float y, int id) {
         value = 5;
-        points = 30;
-        sideLength = 5;
         this.body = new Body(x,y);
         body.setHeight(0.45f);
         body.setWidth(0.45f);

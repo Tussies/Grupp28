@@ -21,4 +21,5 @@ public interface Gemstone {
     int getId();
 
     int getValue();
+
 }

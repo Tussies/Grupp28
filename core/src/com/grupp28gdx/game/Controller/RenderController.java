@@ -14,12 +14,12 @@ import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
-import com.grupp28gdx.game.Model.Utils.AssetManager;
+import com.grupp28gdx.game.Model.utils.AssetManager;
 import com.grupp28gdx.game.View.render.RenderView;
 
 import java.util.ArrayList;
 
-import static com.grupp28gdx.game.Model.Utils.Constants.pixelsPerMeter;
+import static com.grupp28gdx.game.Model.utils.Constants.pixelsPerMeter;
 
 public class RenderController {
     private final AssetManager assetManager = new AssetManager();

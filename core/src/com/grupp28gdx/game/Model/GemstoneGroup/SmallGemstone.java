@@ -10,8 +10,6 @@ import java.util.ArrayList;
 public class SmallGemstone implements Gemstone {
 
     public Body body;
-    private float sideLength;
-    private int points;
     private int id;
     private int value;
 
@@ -32,8 +30,6 @@ public class SmallGemstone implements Gemstone {
      */
     public SmallGemstone(float x, float y,int id) {
         value = 10;
-        this.points = 60;
-        this.sideLength = 2;
         this.body = new Body(x,y);
         body.setHeight(0.18f);
         body.setWidth(0.18f);

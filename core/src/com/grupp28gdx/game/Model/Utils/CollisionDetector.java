@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.Model.Utils;
+package com.grupp28gdx.game.Model.utils;
 
 import com.grupp28gdx.game.Model.Body;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
@@ -116,7 +116,7 @@ public class CollisionDetector {
                                 o1BodyY >= o2BodyY));
     }
 
-    private boolean hasCollided(Player player, float yPosition){
+    public boolean hasCollided(Player player, float yPosition){
 
         Body playerBody = player.getBody();
 

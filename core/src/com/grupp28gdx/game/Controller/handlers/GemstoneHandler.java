@@ -66,6 +66,7 @@ public class GemstoneHandler extends SpawnHandler{
                 while (gemstoneArray.get(0).getPosition().getXPosition() - posX <= -7) {
                     gemstoneArray.removeIndex(0);
                     if(gemstoneArray.size == 1) {break;}
+
                 }
             }
         }
