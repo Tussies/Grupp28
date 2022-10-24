@@ -27,39 +27,10 @@ public class MediumGemstoneTest {
     public void getValue(){
         assertTrue(mediumGemstone.getValue() == 5);
     }
-    @Test
-    public void getVectorListX(){
-        ArrayList<Float> testList = new ArrayList(){{
-            add(1.0f);
-            add(1.0f);
-            add(1.15f);
-            add(1.3f);
-            add(1.45f);
-            add(1.45f);
-            add(1.3f);
-            add(1.15f);
-        }};
-        assertEquals(testList, mediumGemstone.getVectorListX());
-    }
-
-    @Test
-    public void getVectorListY(){
-        ArrayList<Float> testList = new ArrayList(){{
-            add(1.15f);
-            add(1.3f);
-            add(1.45f);
-            add(1.45f);
-            add(1.3f);
-            add(1.15f);
-            add(1.0f);
-            add(1.0f);
-        }};
-        assertEquals(testList, mediumGemstone.getVectorListY());
-    }
 
     @Test
     public void getBody(){
-        assertTrue(mediumGemstone.getPosition() instanceof Body);
+        assertTrue(mediumGemstone.getBody() instanceof Body);
     }
 
 

@@ -27,39 +27,10 @@ public class SmallGemstoneTest {
     public void getValue(){
         assertTrue(smallGemstone.getValue() == 10);
     }
-    @Test
-    public void getVectorListX(){
-        ArrayList<Float> testList = new ArrayList(){{
-            add(1.0f);
-            add(1.0f);
-            add(1.06f);
-            add(1.12f);
-            add(1.18f);
-            add(1.18f);
-            add(1.12f);
-            add(1.06f);
-        }};
-        assertEquals(testList, smallGemstone.getVectorListX());
-    }
-
-    @Test
-    public void getVectorListY(){
-        ArrayList<Float> testList = new ArrayList(){{
-            add(1.06f);
-            add(1.12f);
-            add(1.18f);
-            add(1.18f);
-            add(1.12f);
-            add(1.06f);
-            add(1.0f);
-            add(1.0f);
-        }};
-        assertEquals(testList, smallGemstone.getVectorListY());
-    }
 
     @Test
     public void getBody(){
-        assertTrue(smallGemstone.getPosition() instanceof Body);
+        assertTrue(smallGemstone.getBody() instanceof Body);
     }
 
 

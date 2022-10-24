@@ -1,8 +1,9 @@
 package com.grupp28gdx.game.Controller.handlers;
 
-import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.Factories.ModeFactory;
+
+import java.util.ArrayList;
 
 
 /**
@@ -10,7 +11,7 @@ import com.grupp28gdx.game.Model.Factories.ModeFactory;
  */
 public class GemstoneHandler extends SpawnHandler{
 
-    private Array<Gemstone> gemstoneArray = new Array<>();
+    private ArrayList<Gemstone> gemstoneArray = new ArrayList<>();
     private ModeFactory modeFactory;
     private int id = 0;
 
@@ -28,7 +29,7 @@ public class GemstoneHandler extends SpawnHandler{
      * Method to getting gemstones.
      * @return gemstoneArray, an Array of all gemstones.
      */
-    public Array<Gemstone> getGem(){
+    public ArrayList<Gemstone> getGem(){
 
         return gemstoneArray;
     }
@@ -40,7 +41,7 @@ public class GemstoneHandler extends SpawnHandler{
      * @param posY, given place to spawn gemstone on Y position
      */
     @Override
-    public void generate(float posX, float posY) {
+    protected void generate(float posX, float posY) {
         id += 1;
         gemstoneArray.add(modeFactory.createGemstone(posX,posY,id));
 
@@ -58,14 +59,14 @@ public class GemstoneHandler extends SpawnHandler{
         if (posX % 7 == 0 && posX>15) {
             if (gemstoneArray.isEmpty()) {
                 generate(posX+ 10 + rand.nextInt()%5, posY + 3 + (rand.nextInt()%2));
-            } else if (!((gemstoneArray.get(gemstoneArray.size - 1).getPosition().getXPosition() >= posX+10) && (gemstoneArray.get(gemstoneArray.size - 1).getPosition().getXPosition() <= posX+15))) {
+            } else if (!((gemstoneArray.get(gemstoneArray.size() - 1).getBody().getXPosition() >= posX+10) && (gemstoneArray.get(gemstoneArray.size() - 1).getBody().getXPosition() <= posX+15))) {
                 generate(posX+10+ rand.nextInt()%5, posY + 3 + (rand.nextInt()%2));
             }
 
-            if(gemstoneArray.size != 1){
-                while (gemstoneArray.get(0).getPosition().getXPosition() - posX <= -7) {
-                    gemstoneArray.removeIndex(0);
-                    if(gemstoneArray.size == 1) {break;}
+            if(gemstoneArray.size() != 1){
+                while (gemstoneArray.get(0).getBody().getXPosition() - posX <= -7) {
+                    gemstoneArray.remove(0);
+                    if(gemstoneArray.size() == 1) {break;}
 
                 }
             }
@@ -80,9 +81,9 @@ public class GemstoneHandler extends SpawnHandler{
     @Override
     public void react(int id){
 
-        for (int i = 0; i < gemstoneArray.size ; i++){
+        for (int i = 0; i < gemstoneArray.size() ; i++){
             if (gemstoneArray.get(i).getId() == id){
-                gemstoneArray.removeIndex(i);
+                gemstoneArray.remove(i);
             }
         }
     }

@@ -12,11 +12,7 @@ public interface Gemstone {
 
     Gemstone createGemstone(float x, float y,int id);
 
-    ArrayList<Float> getVectorListX();
-
-    ArrayList<Float> getVectorListY();
-
-    Body getPosition();
+    Body getBody();
 
     int getId();
 

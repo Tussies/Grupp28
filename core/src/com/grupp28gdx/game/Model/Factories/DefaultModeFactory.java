@@ -9,7 +9,7 @@ import com.grupp28gdx.game.Model.ObstacleGroup.PermanentObstacle;
 import com.grupp28gdx.game.Model.ObstacleGroup.SpikeObstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
-import com.grupp28gdx.game.Model.utils.Random;
+import com.grupp28gdx.game.Model.Utils.Random;
 
 /**
  * This is the concrete default mode factory. It produces all standard versions of almost all objects, namely player,

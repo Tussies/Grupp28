@@ -15,15 +15,6 @@ public class MediumGemstone implements Gemstone {
     private int value;
 
     /**
-     * An ArrayList of X positions for creating vectors.
-     */
-    ArrayList<Float> vectorListX = new ArrayList<Float>();
-    /**
-     * An ArrayList of Y positions for creating vectors.
-     */
-    ArrayList<Float> vectorListY = new ArrayList<Float>();
-
-    /**
      * Constructor for medium gemstone.
      * @param x the X-position of gemstone body.
      * @param y the Y-position of gemstone body.
@@ -35,7 +26,6 @@ public class MediumGemstone implements Gemstone {
         body.setHeight(0.45f);
         body.setWidth(0.45f);
         this.id = id;
-        createShape();
     }
 
     /**
@@ -45,28 +35,6 @@ public class MediumGemstone implements Gemstone {
     @Override
     public Gemstone createGemstone(float x, float y,int id) {
         return new MediumGemstone(x,y,id);
-    }
-
-
-    private void createShape(){
-
-        vectorListX.add(body.getXPosition());
-        vectorListX.add(body.getXPosition());
-        vectorListX.add((float) (body.getXPosition()+0.15));
-        vectorListX.add((float) (body.getXPosition()+0.3));
-        vectorListX.add((float) (body.getXPosition()+0.45));
-        vectorListX.add((float) (body.getXPosition()+0.45));
-        vectorListX.add((float) (body.getXPosition()+0.3));
-        vectorListX.add((float) (body.getXPosition()+0.15));
-
-        vectorListY.add((float) (body.getYPosition()+0.15));
-        vectorListY.add((float) (body.getYPosition()+0.3));
-        vectorListY.add((float) (body.getYPosition()+0.45));
-        vectorListY.add((float) (body.getYPosition()+0.45));
-        vectorListY.add((float) (body.getYPosition()+0.3));
-        vectorListY.add((float) (body.getYPosition()+0.15));
-        vectorListY.add(body.getYPosition());
-        vectorListY.add(body.getYPosition());
     }
 
     /**
@@ -91,26 +59,13 @@ public class MediumGemstone implements Gemstone {
      * Gets the ArrayList of X Positions for creating vectors.
      * @return vectorListX, an ArrayList of X positions.
      */
-    @Override
-    public ArrayList<Float> getVectorListX() {
-        return vectorListX;
-    }
-
-    /**
-     * Returns an ArrayList of Y Positions for creating vectors.
-     * @return vectorListY, an ArrayList of X positions.
-     */
-    @Override
-    public ArrayList<Float> getVectorListY() {
-        return vectorListY;
-    }
 
     /**
      * Getter for obtaining a body and its position.
      * @return body which stores position.
      */
     @Override
-    public Body getPosition() {
+    public Body getBody() {
         return body;
     }
 }

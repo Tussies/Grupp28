@@ -1,15 +1,16 @@
 package com.grupp28gdx.game.Controller.handlers;
 
-import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.Model.Factories.ModeFactory;
 import com.grupp28gdx.game.Model.ObstacleGroup.Obstacle;
+
+import java.util.ArrayList;
 
 /**
  *  This class is used to generate obstacles and handles all the position and deletion of all obstacles.
  */
 public class ObstacleHandler extends SpawnHandler{
 
-    private Array<Obstacle> obstacleArray = new Array<>();
+    private ArrayList<Obstacle> obstacleArray = new ArrayList<>();
     private final ModeFactory modeFactory;
     private int id = 0;
 
@@ -25,7 +26,7 @@ public class ObstacleHandler extends SpawnHandler{
      * Method to getting obstacles.
      * @return obstacleArray, an Array of all obstacles.
      */
-    public Array<Obstacle> getObstacles(){
+    public ArrayList<Obstacle> getObstacles(){
         return obstacleArray;
 
     }
@@ -53,12 +54,12 @@ public class ObstacleHandler extends SpawnHandler{
         if (posX % 8 == 0 && posX > 15) {
             if (obstacleArray.isEmpty()) {
                 generate(posX+10+rand.nextInt()%2- rand.nextInt()%2, posY);
-            } else if (!((obstacleArray.get(obstacleArray.size - 1).getBody().getXPosition() >= posX+8) && (obstacleArray.get(obstacleArray.size - 1).getBody().getXPosition() <= posX+12))) {
+            } else if (!((obstacleArray.get(obstacleArray.size() - 1).getBody().getXPosition() >= posX+8) && (obstacleArray.get(obstacleArray.size() - 1).getBody().getXPosition() <= posX+12))) {
                 generate(posX+10+rand.nextInt()%2- rand.nextInt()%2, posY);
             }
-            if(obstacleArray.size != 1){
+            if(obstacleArray.size() != 1){
                 while (obstacleArray.get(0).getBody().getXPosition() - posX <= -5) {
-                    obstacleArray.removeIndex(0);
+                    obstacleArray.remove(0);
                 }
             }
 
@@ -70,9 +71,9 @@ public class ObstacleHandler extends SpawnHandler{
      * @param id, used to locate a specific obstacle
      */
     public void react(int id){
-        for (int i=0; i < obstacleArray.size ; i++){
+        for (int i=0; i < obstacleArray.size() ; i++){
             if (obstacleArray.get(i).getId() == id){
-                obstacleArray.removeIndex(i);
+                obstacleArray.remove(i);
             }
         }
     }

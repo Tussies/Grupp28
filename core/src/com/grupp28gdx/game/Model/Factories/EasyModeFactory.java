@@ -7,7 +7,7 @@ import com.grupp28gdx.game.Model.ObstacleGroup.Obstacle;
 import com.grupp28gdx.game.Model.ObstacleGroup.SpikeObstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
-import com.grupp28gdx.game.Model.utils.Random;
+import com.grupp28gdx.game.Model.Utils.Random;
 
 /**
  * This is the concrete easy mode factory. It produces easier versions of the standard type of objects.
