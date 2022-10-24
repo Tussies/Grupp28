@@ -19,7 +19,7 @@ import com.grupp28gdx.game.View.render.RenderView;
 
 import java.util.ArrayList;
 
-import static com.grupp28gdx.game.Model.Utils.Constants.pixelsPerMeter;
+import static com.grupp28gdx.game.Model.PlayerGroup.Constants.pixelsPerMeter;
 
 public class RenderController {
     private final AssetManager assetManager = new AssetManager();
