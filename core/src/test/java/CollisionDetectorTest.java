@@ -3,7 +3,7 @@ import com.grupp28gdx.game.Model.CollisionDetector;
 import com.grupp28gdx.game.Model.ModeFactory;
 import com.grupp28gdx.game.handlers.ObstacleHandler;
 import com.grupp28gdx.game.render.RenderController;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertTrue;
 

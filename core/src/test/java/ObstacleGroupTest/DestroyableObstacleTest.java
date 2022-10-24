@@ -1,6 +1,5 @@
 package ObstacleGroupTest;
 
-import com.grupp28gdx.game.Model.Body;
 import com.grupp28gdx.game.Model.DestroyableObstacle;
 import com.grupp28gdx.game.Model.Obstacle;
 import org.junit.Test;
@@ -36,6 +35,8 @@ public class DestroyableObstacleTest {
     public void getHeight() {
         assertEquals(1.9f, destroyObst.getHeight(), 0.0);
     }
+
+
 
 
 }

@@ -1,4 +1,4 @@
-package Player;
+/*package Player;
 
 
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
@@ -61,3 +61,4 @@ public class PurplePlayerTest {
 
     }
 }
+*/
