@@ -13,7 +13,7 @@ public abstract class State {
 
     protected State(GameStateManager gsm){
         this.gsm = gsm;
-        rv = new RenderView();;
+        rv = new RenderView();
     }
 
     protected void setInputProcessor(InputHandler inputHandler){

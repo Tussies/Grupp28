@@ -1,9 +1,9 @@
 package com.grupp28gdx.game.Controller.handlers;
-import com.badlogic.gdx.physics.box2d.World;
+
 import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
-import com.grupp28gdx.game.Model.ModeFactory;
-import com.grupp28gdx.game.View.render.RenderView;
+import com.grupp28gdx.game.Model.Factories.ModeFactory;
+
 
 /**
  * This class is used to generate gemstones and make them spawn in the game.
@@ -11,14 +11,10 @@ import com.grupp28gdx.game.View.render.RenderView;
 public class GemstoneHandler extends SpawnHandler{
 
     protected Array<Gemstone> itemArray = new Array<>();
-    protected World world;
-    protected RenderView rc;
     protected ModeFactory modeFactory;
     protected int id = 0;
 
-    public GemstoneHandler(World world, RenderView rc, ModeFactory modeFactory){
-        this.world = world;
-        this.rc = rc;
+    public GemstoneHandler(ModeFactory modeFactory){
         this.modeFactory = modeFactory;
     }
 
@@ -69,7 +65,7 @@ public class GemstoneHandler extends SpawnHandler{
     @Override
     public void react(int id){
 
-        for (int i=0; i < itemArray.size-1 ; i++){
+        for (int i=0; i < itemArray.size ; i++){
             if (itemArray.get(i).getId() == id){
                 itemArray.removeIndex(i);
             }

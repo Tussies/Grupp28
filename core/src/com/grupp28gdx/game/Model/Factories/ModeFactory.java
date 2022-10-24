@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.Factories;
 
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.ObstacleGroup.Obstacle;

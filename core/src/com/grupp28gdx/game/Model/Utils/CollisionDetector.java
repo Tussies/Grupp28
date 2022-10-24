@@ -1,5 +1,6 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.Utils;
 
+import com.grupp28gdx.game.Model.Body;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.Guns.Bullet;
 import com.grupp28gdx.game.Model.Guns.Gun;
@@ -16,14 +17,12 @@ import java.util.List;
 public class CollisionDetector {
 
     private List<Object> collisionsList = new ArrayList<Object>();
-    private Hud hud;
     private Player player;
 
-    public CollisionDetector(ObstacleHandler obstacleHandler, GemstoneHandler gemstoneHandler, Gun gun, Hud hud,Player player){
+    public CollisionDetector(ObstacleHandler obstacleHandler, GemstoneHandler gemstoneHandler, Gun gun,Player player){
         collisionsList.add(obstacleHandler);
         collisionsList.add(gemstoneHandler);
         collisionsList.add(gun);
-        this.hud = hud;
         this.player = player;
     }
 
@@ -41,7 +40,6 @@ public class CollisionDetector {
             if(subscriber instanceof ObstacleHandler){
                 for(Obstacle obstacle : ((ObstacleHandler) subscriber).getObstacles()){
                     if (checkCollision(player, obstacle)) {
-                        hud.gameOver(true);
                         player.react();
                     }
                 }

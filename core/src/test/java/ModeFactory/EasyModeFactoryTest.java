@@ -1,6 +1,7 @@
 package ModeFactory;
 
-import com.grupp28gdx.game.Model.*;
+import com.grupp28gdx.game.Model.Factories.EasyModeFactory;
+import com.grupp28gdx.game.Model.Factories.ModeFactory;
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.ObstacleGroup.Obstacle;

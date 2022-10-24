@@ -1,20 +1,15 @@
 package com.grupp28gdx.game.Controller.handlers;
 
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-
-import com.grupp28gdx.game.Model.ModeFactory;
+import com.grupp28gdx.game.Model.Factories.ModeFactory;
 import com.grupp28gdx.game.Model.ObstacleGroup.Obstacle;
-import com.grupp28gdx.game.View.render.RenderView;
 
 
 public class ObstacleHandler extends SpawnHandler{
     private Array<Obstacle> obstacleArray = new Array<>();
-    private World world;
-    private RenderView rc;
     private final ModeFactory modeFactory;
     private int id = 0;
-    public ObstacleHandler(World world, RenderView rc, ModeFactory modeFactory){
+    public ObstacleHandler(ModeFactory modeFactory){
         this.modeFactory = modeFactory;
     }
 
@@ -46,7 +41,7 @@ public class ObstacleHandler extends SpawnHandler{
     }
 
     public void react(int id){
-        for (int i=0; i < obstacleArray.size-1 ; i++){
+        for (int i=0; i < obstacleArray.size ; i++){
             if (obstacleArray.get(i).getId() == id){
                 obstacleArray.removeIndex(i);
             }

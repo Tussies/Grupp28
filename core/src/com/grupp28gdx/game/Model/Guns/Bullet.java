@@ -8,9 +8,6 @@ public class  Bullet {
     private Body body;
     private Bullet tempBullet;
 
-    ArrayList<Float> vectorListX = new ArrayList<Float>();
-    ArrayList<Float> vectorListY = new ArrayList<Float>();
-
     /**
      * The Bullet object is shot from the
      *
@@ -40,26 +37,6 @@ public class  Bullet {
 
     public Body getBody(){
         return body;
-    }
-
-    private void createShape() {
-        vectorListX.add(body.getXPosition());
-        vectorListX.add(body.getXPosition());
-        vectorListX.add(body.getXPosition()+1);
-        vectorListX.add(body.getXPosition()+1);
-
-        vectorListY.add(body.getYPosition());
-        vectorListY.add(body.getYPosition()+2);
-        vectorListY.add(body.getYPosition()+2);
-        vectorListY.add(body.getYPosition());
-    }
-
-    public ArrayList<Float> getVectorListX(){
-        return vectorListX;
-    }
-
-    public ArrayList<Float> getVectorListY(){
-        return vectorListY;
     }
 
     public float getXPosition(){

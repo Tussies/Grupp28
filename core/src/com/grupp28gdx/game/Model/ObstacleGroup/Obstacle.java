@@ -9,7 +9,7 @@ import com.grupp28gdx.game.Model.Body;
 public interface Obstacle {
     Obstacle createObstacle(float x,float y,int id);
 
-    public Body getBody();
+    Body getBody();
 
     int getId();
 }

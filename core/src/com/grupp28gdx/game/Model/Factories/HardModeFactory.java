@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.Model;
+package com.grupp28gdx.game.Model.Factories;
 
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.SmallGemstone;
@@ -7,6 +7,7 @@ import com.grupp28gdx.game.Model.ObstacleGroup.PermanentObstacle;
 import com.grupp28gdx.game.Model.ObstacleGroup.SpikeObstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
+import com.grupp28gdx.game.Model.Utils.Random;
 
 /**
  * This is the concrete hard mode factory. It produces harder, or, more difficult versions
