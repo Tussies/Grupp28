@@ -13,7 +13,6 @@ public abstract class SpawnHandler {
      * @param posX
      * @param posY
      */
-
     public abstract void update(float posX, float posY);
 
     /**

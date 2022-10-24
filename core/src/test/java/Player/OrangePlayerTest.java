@@ -1,5 +1,5 @@
 package Player;
-
+/*
 
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import org.junit.jupiter.api.Test;
@@ -59,4 +59,4 @@ public class OrangePlayerTest {
        // purplePlayer.setStateOfPlayer(StateOfPlayer.JUMPING);
 
     }
-}
+}*/

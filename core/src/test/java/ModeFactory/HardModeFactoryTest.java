@@ -27,9 +27,9 @@ public class HardModeFactoryTest {
         assertEquals(tempGemstone.getClass(), SmallGemstone.class);
     }
 
-    @Test
+    /*@Test
     public void createObstacleTest(){
         Obstacle tempObstacle = hardFactory.createObstacle(1,1,1);
         assertEquals(tempObstacle.getClass(), DestroyableObstacle.class);
-    }
+    }*/
 }
