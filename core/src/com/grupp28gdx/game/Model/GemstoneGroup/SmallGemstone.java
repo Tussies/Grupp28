@@ -102,7 +102,7 @@ public class SmallGemstone implements Gemstone {
      * @return body.
      */
     @Override
-    public Body getPosition() {
+    public Body getBody() {
         return body;
     }
 
