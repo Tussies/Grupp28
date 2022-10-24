@@ -1,7 +1,7 @@
 package com.grupp28gdx.game.Model.Factories;
 
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
-import com.grupp28gdx.game.Model.Obstacles.Obstacle;
+import com.grupp28gdx.game.Model.ObstacleGroup.Obstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 
 /**

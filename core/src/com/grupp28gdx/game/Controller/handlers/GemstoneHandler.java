@@ -1,7 +1,9 @@
-package com.grupp28gdx.game.handlers;
+package com.grupp28gdx.game.Controller.handlers;
+
 import com.badlogic.gdx.utils.Array;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.Factories.ModeFactory;
+
 
 /**
  * This class is used to generate gemstones and make them spawn in the game.

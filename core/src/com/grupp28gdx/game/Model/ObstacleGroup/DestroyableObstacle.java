@@ -1,4 +1,5 @@
-package com.grupp28gdx.game.Model.Obstacles;
+
+package com.grupp28gdx.game.Model.ObstacleGroup;
 
 import com.grupp28gdx.game.Model.Body;
 

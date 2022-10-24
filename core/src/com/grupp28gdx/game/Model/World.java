@@ -1,13 +1,13 @@
 package com.grupp28gdx.game.Model;
 
+import com.grupp28gdx.game.Controller.handlers.GemstoneHandler;
+import com.grupp28gdx.game.Controller.handlers.ObstacleHandler;
 import com.grupp28gdx.game.Model.Factories.DefaultModeFactory;
 import com.grupp28gdx.game.Model.Factories.EasyModeFactory;
 import com.grupp28gdx.game.Model.Factories.HardModeFactory;
 import com.grupp28gdx.game.Model.Factories.ModeFactory;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.Utils.CollisionDetector;
-import com.grupp28gdx.game.handlers.GemstoneHandler;
-import com.grupp28gdx.game.handlers.ObstacleHandler;
 
 public class World {
     private ModeFactory modeFactory;

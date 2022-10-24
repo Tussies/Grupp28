@@ -1,24 +1,25 @@
-package com.grupp28gdx.game.render;
+package com.grupp28gdx.game.Controller;
 
+import com.grupp28gdx.game.Controller.handlers.GemstoneHandler;
+import com.grupp28gdx.game.Controller.handlers.ObstacleHandler;
 import com.grupp28gdx.game.Model.GemstoneGroup.BigGemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.MediumGemstone;
 import com.grupp28gdx.game.Model.Guns.Bullet;
-import com.grupp28gdx.game.Model.Obstacles.DestroyableObstacle;
-import com.grupp28gdx.game.Model.Obstacles.Obstacle;
-import com.grupp28gdx.game.Model.Obstacles.PermanentObstacle;
-import com.grupp28gdx.game.Model.Obstacles.SpikeObstacle;
+import com.grupp28gdx.game.Model.ObstacleGroup.DestroyableObstacle;
+import com.grupp28gdx.game.Model.ObstacleGroup.Obstacle;
+import com.grupp28gdx.game.Model.ObstacleGroup.PermanentObstacle;
+import com.grupp28gdx.game.Model.ObstacleGroup.SpikeObstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.GreenPlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.OrangePlayer;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
 import com.grupp28gdx.game.Model.Utils.AssetManager;
-import com.grupp28gdx.game.handlers.GemstoneHandler;
-import com.grupp28gdx.game.handlers.ObstacleHandler;
+import com.grupp28gdx.game.View.render.RenderView;
 
 import java.util.ArrayList;
 
-import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
+import static com.grupp28gdx.game.Model.Utils.Constants.pixelsPerMeter;
 
 public class RenderController {
     private final AssetManager assetManager = new AssetManager();

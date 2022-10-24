@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.render;
+package com.grupp28gdx.game.View.render;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

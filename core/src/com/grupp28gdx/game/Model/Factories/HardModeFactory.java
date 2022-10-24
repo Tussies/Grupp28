@@ -2,9 +2,9 @@ package com.grupp28gdx.game.Model.Factories;
 
 import com.grupp28gdx.game.Model.GemstoneGroup.Gemstone;
 import com.grupp28gdx.game.Model.GemstoneGroup.SmallGemstone;
-import com.grupp28gdx.game.Model.Obstacles.Obstacle;
-import com.grupp28gdx.game.Model.Obstacles.PermanentObstacle;
-import com.grupp28gdx.game.Model.Obstacles.SpikeObstacle;
+import com.grupp28gdx.game.Model.ObstacleGroup.Obstacle;
+import com.grupp28gdx.game.Model.ObstacleGroup.PermanentObstacle;
+import com.grupp28gdx.game.Model.ObstacleGroup.SpikeObstacle;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.PlayerGroup.PurplePlayer;
 import com.grupp28gdx.game.Model.Utils.Random;

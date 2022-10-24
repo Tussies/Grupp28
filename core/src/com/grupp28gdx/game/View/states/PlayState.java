@@ -1,4 +1,4 @@
-package com.grupp28gdx.game.states;
+package com.grupp28gdx.game.View.states;
 
 
 import com.badlogic.gdx.Gdx;
@@ -7,11 +7,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
 import com.grupp28gdx.game.Model.PlayerGroup.Player;
 import com.grupp28gdx.game.Model.World;
-import com.grupp28gdx.game.input.PlayInputHandler;
-import com.grupp28gdx.game.render.Hud;
-import com.grupp28gdx.game.render.RenderController;
+import com.grupp28gdx.game.Controller.RenderController;
+import com.grupp28gdx.game.Controller.input.PlayInputHandler;
+import com.grupp28gdx.game.View.render.Hud;
 
-import static com.grupp28gdx.game.utils.Constants.pixelsPerMeter;
+import static com.grupp28gdx.game.Model.Utils.Constants.pixelsPerMeter;
 
 /**
  * This class is the play state, which is used for showing the play-state of the game in the view.
